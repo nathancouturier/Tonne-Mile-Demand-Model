@@ -1,4 +1,4 @@
-"""Ad hoc remote check: do UN Comtrade six-digit coal lines for the United States carry net weights?"""
+"""Ad hoc remote check: lignite (HS 2702) volumes and Egyptian annual weights in UN Comtrade."""
 
 from __future__ import annotations
 
@@ -15,97 +15,121 @@ S.headers.update({"User-Agent": "tonne-mile-demand-model/0.1 (research)"})
 BASE = "https://comtradeapi.un.org/public/v1/preview/C/{freq}/HS"
 results = {}
 queries = {
-    "usa_coal_hs6_201401": (
-        "M",
-        {
-            "reporterCode": 842,
-            "period": "201401",
-            "cmdCode": "270111,270112,270119,270120",
-            "flowCode": "X",
-            "partnerCode": "76,528,156,392,699,826,0",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "usa_coal_hs6_201001": (
-        "M",
-        {
-            "reporterCode": 842,
-            "period": "201001",
-            "cmdCode": "270111,270112,270119,270120",
-            "flowCode": "X",
-            "partnerCode": "76,528,156,392,699,826,0",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "usa_coal_hs4_201401_classic": (
-        "M",
-        {
-            "reporterCode": 842,
-            "period": "201401",
-            "cmdCode": "2701",
-            "flowCode": "X",
-            "partnerCode": "76,528,0",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-            "breakdownMode": "classic",
-            "includeDesc": "true",
-        },
-    ),
-    "usa_coal_annual_2008": (
+    # lignite (HS 2702): how much do Indonesia, China and India report, and with weights?
+    "idn_x_2702_2024": (
         "A",
         {
-            "reporterCode": 842,
-            "period": "2008",
-            "cmdCode": "2701,270112,270119",
+            "reporterCode": 360,
+            "period": "2024",
+            "cmdCode": "2701,2702",
             "flowCode": "X",
-            "partnerCode": "0,76,528,156",
+            "partnerCode": "0,156,699,392,608",
             "partner2Code": 0,
             "customsCode": "C00",
             "motCode": 0,
-            "includeDesc": "true",
         },
     ),
-    "usa_coal_annual_2004": (
+    "idn_x_2702_2019": (
         "A",
         {
-            "reporterCode": 842,
-            "period": "2004",
-            "cmdCode": "2701,270112,270119",
+            "reporterCode": 360,
+            "period": "2019",
+            "cmdCode": "2701,2702",
             "flowCode": "X",
-            "partnerCode": "0,76,528,156",
+            "partnerCode": "0,156,699,392,608",
             "partner2Code": 0,
             "customsCode": "C00",
             "motCode": 0,
-            "includeDesc": "true",
         },
     ),
-    "usa_grains_hs4_201401": (
+    "chn_m_2702_2024": (
+        "A",
+        {
+            "reporterCode": 156,
+            "period": "2024",
+            "cmdCode": "2701,2702",
+            "flowCode": "M",
+            "partnerCode": "0,360,36,643",
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0,
+        },
+    ),
+    "ind_m_2702_2024": (
+        "A",
+        {
+            "reporterCode": 699,
+            "period": "2024",
+            "cmdCode": "2701,2702",
+            "flowCode": "M",
+            "partnerCode": "0,360,36,643,508",
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0,
+        },
+    ),
+    "idn_x_2702_m_202401": (
         "M",
         {
-            "reporterCode": 842,
-            "period": "201401",
-            "cmdCode": "1001,1005,1201",
+            "reporterCode": 360,
+            "period": "202401",
+            "cmdCode": "2701,2702",
             "flowCode": "X",
-            "partnerCode": "156,392,0",
+            "partnerCode": "0,156,699",
             "partner2Code": 0,
             "customsCode": "C00",
             "motCode": 0,
-            "includeDesc": "true",
         },
     ),
-    "aus_coal_annual_2004": (
+    # Egypt annual: do annual import records carry weights?
+    "egy_m_annual_2015": (
         "A",
         {
-            "reporterCode": 36,
-            "period": "2004",
-            "cmdCode": "2701,2601",
+            "reporterCode": 818,
+            "period": "2015",
+            "cmdCode": "1001,1003,1005,1201",
+            "flowCode": "M",
+            "partnerCode": "0,643,804,826",
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0,
+        },
+    ),
+    "egy_m_annual_2019": (
+        "A",
+        {
+            "reporterCode": 818,
+            "period": "2019",
+            "cmdCode": "1001,1003,1005,1201",
+            "flowCode": "M",
+            "partnerCode": "0,643,804,826",
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0,
+        },
+    ),
+    # Russia as a reporter: when do its exports to Egypt stop?
+    "rus_x_1001_2019": (
+        "A",
+        {
+            "reporterCode": 643,
+            "period": "2019",
+            "cmdCode": "1001",
             "flowCode": "X",
-            "partnerCode": "0,392,156",
+            "partnerCode": "0,818",
+            "partner2Code": 0,
+            "customsCode": "C00",
+            "motCode": 0,
+        },
+    ),
+    "rus_x_1001_2022": (
+        "A",
+        {
+            "reporterCode": 643,
+            "period": "2022",
+            "cmdCode": "1001",
+            "flowCode": "X",
+            "partnerCode": "0,818",
             "partner2Code": 0,
             "customsCode": "C00",
             "motCode": 0,
@@ -144,4 +168,4 @@ for name, (freq, params) in queries.items():
         ],
     }
     print(name, r.status_code, data.get("count"))
-(OUT / "comtrade_hs6_check.json").write_text(json.dumps(results, indent=1))
+(OUT / "comtrade_lignite_egypt_check.json").write_text(json.dumps(results, indent=1))
