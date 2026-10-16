@@ -127,6 +127,10 @@ def _lp(v: float) -> str:
     return f"{v:+.2f}"
 
 
+def _plural(n: int, noun: str) -> str:
+    return f"{n} {noun}" if n == 1 else f"{n} {noun}s"
+
+
 def load_results() -> dict[str, Any]:
     """Collect every processed output needed by the note and the written deliverables."""
     panel = pd.read_csv(PROCESSED_DIR / "panel_monthly.csv")
@@ -356,7 +360,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
         Paragraph(
             "Tonne-mile demand is the sum over routes of tonnes shipped times sailing distance; average haul is tonne-miles divided by tonnes, so the change in tonne-miles is exactly the change in volume plus the change in haul. "
             "Fleet supply is bulk carrier deadweight in service. Effective supply multiplies the fleet by the share of time at sea, derived from median port time per call and calls per ship. "
-            "For any two months the identity log(BDI1/BDI0) = e[dlog V + dlog H] minus e[dlog F + dlog S] + residual holds by construction, where e is a single elasticity estimated by regressing the log index on the log of tonne-miles over effective fleet. "
+            "For any two months the identity log(BDI1/BDI0) = e[dlog V + dlog H] minus e[dlog F + dlog S] + residual holds by construction, where e is a single elasticity estimated by regressing twelve-month changes in the log index on twelve-month changes in the log of tonne-miles over effective fleet. "
             "Endpoints are three-month averages. The residual is reported as the fifth component; it is never spread across the others.",
             st["body"],
         )
@@ -404,7 +408,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
         Paragraph(
             f"Routes are measured from the customs data of the exporter wherever it publishes timely monthly data (Australia, Brazil, Indonesia, South Africa, United States, Canada, Ukraine, Argentina, Colombia) and from the importer for Russian and Mozambican origins (India, Japan). "
             f"Chinese import records lag by more than a year and are used only for cross-checks. Distances are volume-weighted blends between representative terminals on a maritime routing network, with iron ore and coal routed around the Panama Canal and Red Sea routes lengthened towards the Cape in proportion to the fall in dry bulk transits through Bab el-Mandeb observed by IMF PortWatch. "
-            f"The three largest routes carry {n['top3_share']:.0%} of covered tonne-miles. Validation: {n['validation']['pass']} checks passed, {n['validation']['warn']} warnings, {n['validation']['fail']} failures (full report on the site).",
+            f"The three largest routes carry {n['top3_share']:.0%} of covered tonne-miles. Validation: {n['validation']['pass']} checks passed, {_plural(n['validation']['warn'], 'warning')}, {_plural(n['validation']['fail'], 'failure')} (full report on the site).",
             st["body"],
         )
     )
@@ -434,7 +438,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     ep_rows = [
         [
             Paragraph(f"<b>{h}</b>", st["cell"])
-            for h in ("Episode", "Window", "Total", "Volume", "Haul", "Fleet", "Port time", "Residual", "Explained")
+            for h in ("Episode", "Window", "Total", "Volume", "Haul", "Fleet", "Port", "Residual", "Explained")
         ]
     ]
     for e in n["episodes"]:
@@ -452,15 +456,19 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
                 f"{ex:.0%}" if ex is not None and np.isfinite(ex) else "",
             ]
         )
-    t2 = Table(ep_rows, colWidths=[width * 0.24, width * 0.2] + [width * 0.08] * 7, repeatRows=1)
+    t2 = Table(
+        ep_rows,
+        colWidths=[width * f for f in (0.19, 0.16, 0.085, 0.085, 0.085, 0.085, 0.085, 0.09, 0.11)],
+        repeatRows=1,
+    )
     t2.setStyle(
         TableStyle(
             [
                 ("FONTNAME", (0, 0), (-1, -1), "LiberationSerif"),
-                ("FONTSIZE", (0, 0), (-1, -1), 8.2),
+                ("FONTSIZE", (0, 0), (-1, -1), 7.8),
                 ("LINEBELOW", (0, 0), (-1, 0), 0.6, colors.HexColor("#c5bfb1")),
                 ("LINEBELOW", (0, 1), (-1, -1), 0.3, colors.HexColor("#e8e4da")),
-                ("ALIGN", (2, 1), (-1, -1), "RIGHT"),
+                ("ALIGN", (2, 0), (-1, -1), "RIGHT"),
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ]
         )
@@ -517,7 +525,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(Paragraph("Limitations", st["h2"]))
     story.append(
         Paragraph(
-            "Sailing speed, waiting outside ports and ballast ratios are not observable from public data and remain in the residual with bunker prices, sentiment and contract timing. "
+            "Sailing speed, waiting outside ports and ballast ratios are not observable from public data and remain in the residual with bunker prices, sentiment and contract timing. Some customs records carry values without weights (United States monthly records before 2016); tonnes for those months are estimated from the reporter's annual unit values and flagged, and the Russia to Egypt grain route is left out because Egyptian records lack weights in most years. "
             "The route set covers the major bulks between the main exporters and importers; minor bulks and regional trades that drive Supramax and Handysize rates are excluded. "
             "Representative ports approximate real terminals; the error is a few percent of a voyage and constant over time, so it affects levels rather than changes. "
             "Customs months record declarations, not sailings. The index composition changed in 2018. The freight index is republished by the Aland statistics office less often than the demand data, so the balanced panel ends earlier than the volume series. "
@@ -528,7 +536,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(Paragraph("Reproducibility", st["h2"]))
     story.append(
         Paragraph(
-            "The pipeline (Python 3.11 or later) runs in five stages: ingest, validate, transform, model, export; one command rebuilds everything, unit tests check the distance routing, the tonne-mile aggregation and the adding-up of the decomposition, and a scheduled GitHub Actions workflow refreshes the data and republishes the site. "
+            "The pipeline (Python 3.11 or later) runs in six stages: ingest, validate, transform, model, export and report; one command rebuilds everything, unit tests check the distance routing, the tonne-mile aggregation and the adding-up of the decomposition, and a scheduled GitHub Actions workflow refreshes the data and republishes the site. "
             "Every raw file is stored with a metadata record (source URL, retrieval timestamp, frequency, coverage, licence and known limitations). Code, data and this note: github.com/nathancouturier/Tonne-Mile-Demand-Model.",
             st["body"],
         )
@@ -587,7 +595,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
         f"contributions in log points were volume {_lp(n['last']['volume'])}, haul {_lp(n['last']['distance'])}, fleet {_lp(n['last']['fleet'])}, "
         f"port time {_lp(n['last']['effective_supply'])}, residual {_lp(n['last']['residual'])} (total {_lp(n['last']['total'])}).",
         f"* The three largest routes carry {n['top3_share']:.0%} of covered tonne-miles. Validation: {n['validation']['pass']} checks passed, "
-        f"{n['validation']['warn']} warnings, {n['validation']['fail']} failures.",
+        f"{_plural(n['validation']['warn'], 'warning')}, {_plural(n['validation']['fail'], 'failure')}.",
         "",
         "| Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |",
         "| --- | --- | --- | --- | --- | --- | --- | --- |",
