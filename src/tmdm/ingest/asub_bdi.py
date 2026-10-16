@@ -108,12 +108,14 @@ def fetch() -> pd.DataFrame:
     df = _parse_jsonstat2(js)
     df.to_csv(d / CSV_FILE, index=False)
     notes = [n.get("text", "") for n in meta_json.get("variables", []) if isinstance(n, dict) and n.get("text")]
+    notes.append(f"json-stat source field: {js.get('source', '')}; dataset updated field: {js.get('updated', '')}")
     meta = DatasetMetadata(
         dataset_id=DATASET_ID,
         title=meta_json.get("title", "Baltic Dry Index by year and month"),
         publisher="Statistics and Research Aland (ASUB), official statistics of Aland",
         source_url=WEB_URL,
-        licence="ASUB open statistics (free use with attribution); index values are produced by the Baltic Exchange",
+        licence="ASUB open statistics (free use with attribution); the table cites Capital Link as its source and the "
+        "index itself is produced by the Baltic Exchange",
         frequency="monthly",
         coverage=f"{df['month'].iloc[0]} to {df['month'].iloc[-1]}",
         units="index points, 1985 = 1,000",
@@ -122,7 +124,9 @@ def fetch() -> pd.DataFrame:
         limitations=[
             "A monthly figure for a daily index; the table documentation defines the monthly value "
             "(see metadata notes).",
-            "Secondary publication of Baltic Exchange data; the Baltic Exchange is the originator of the index.",
+            "Secondary publication of Baltic Exchange data compiled by Capital Link; the Baltic Exchange is the "
+            "originator of the index.",
+            "The table is updated by ASUB after each year end, so the latest month lags the demand data.",
         ],
         extra={"api_url": url, "variables": notes},
     )
