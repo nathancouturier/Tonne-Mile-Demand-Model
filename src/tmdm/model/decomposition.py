@@ -68,8 +68,8 @@ def fit_elasticity(panel: pd.DataFrame) -> tuple[ElasticityEstimate, dict[str, A
     p = _check_panel(panel)
     y = np.log(p["index"])
     x = log_balance(p)
-    headline = estimate_elasticity(y, x)
-    robustness: dict[str, Any] = {}
+    headline = estimate_elasticity(y, x, seasonal=True)
+    robustness: dict[str, Any] = {"levels_no_seasonal_dummies": estimate_elasticity(y, x).summary()}
     # 12-month changes
     d12 = pd.concat([y.diff(12).rename("y"), x.diff(12).rename("x")], axis=1).dropna()
     if len(d12) >= 24:

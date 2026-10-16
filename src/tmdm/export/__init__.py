@@ -58,8 +58,27 @@ def _f(x: object) -> float:
     return float(str(x))
 
 
+def _clean(obj: Any) -> Any:
+    """Replace NaN and infinities with null recursively so the JSON is strictly valid."""
+    if isinstance(obj, dict):
+        return {str(k): _clean(v) for k, v in obj.items()}
+    if isinstance(obj, list | tuple):
+        return [_clean(v) for v in obj]
+    if isinstance(obj, float | np.floating):
+        return None if not np.isfinite(obj) else float(obj)
+    if isinstance(obj, np.integer):
+        return int(obj)
+    if isinstance(obj, np.bool_):
+        return bool(obj)
+    if isinstance(obj, pd.Period | pd.Timestamp):
+        return str(obj)
+    if obj is pd.NA or obj is pd.NaT:
+        return None
+    return obj
+
+
 def _json(path: Path, obj: Any) -> None:
-    path.write_text(json.dumps(obj, separators=(",", ":"), default=_default, allow_nan=False))
+    path.write_text(json.dumps(_clean(obj), separators=(",", ":"), default=_default, allow_nan=False))
 
 
 def _default(o: Any) -> Any:

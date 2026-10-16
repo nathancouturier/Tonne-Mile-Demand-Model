@@ -106,7 +106,9 @@ def build_route_flows() -> pd.DataFrame:
         df = _comex_group_flows(comex, g) if g.reporter == "BRA_COMEX" else _comtrade_group_flows(records, g)
         log.info("flows %s: %d route-months", g.group_id, len(df))
         frames.append(df)
-    flows = pd.concat(frames, ignore_index=True)
+    flows = pd.concat([f for f in frames if not f.empty], ignore_index=True)
+    flows["month"] = pd.PeriodIndex(flows["month"], freq="M")
+    flows["tonnes"] = flows["tonnes"].astype(float)
     flows = flows[flows["tonnes"] > 0].sort_values(["route_id", "month"]).reset_index(drop=True)
     return flows
 
@@ -134,10 +136,14 @@ def complete_months(flows: pd.DataFrame, published: dict[str, set[pd.Period]] | 
     validation report and the site can list it.
     """
     out = []
+    flows = flows.copy()
+    flows["month"] = pd.PeriodIndex(flows["month"], freq="M")
     for gid, g in flows.groupby("group_id"):
         reporter = str(gid).split("_")[0]
         months = pd.period_range(g["month"].min(), g["month"].max(), freq="M")
-        pub = published.get(reporter) if published and reporter in published else None
+        # Comex Stat returns complete months; Comtrade reporters may skip months (see availability table)
+        comex = "COMEX" in str(gid)
+        pub = published.get(reporter) if (published and reporter in published and not comex) else None
         routes = g[["route_id", "origin", "destination", "commodity", "source"]].drop_duplicates()
         grid = routes.merge(pd.DataFrame({"month": months}), how="cross")
         merged = grid.merge(g[["month", "route_id", "tonnes"]], on=["month", "route_id"], how="left")

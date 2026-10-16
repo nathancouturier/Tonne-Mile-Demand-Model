@@ -53,12 +53,24 @@ class ElasticityEstimate:
         }
 
 
-def estimate_elasticity(log_index: pd.Series, log_balance: pd.Series, hac_lags: int = 12) -> ElasticityEstimate:
-    """OLS of log index on log balance with HAC (Newey-West) standard errors."""
+def estimate_elasticity(
+    log_index: pd.Series, log_balance: pd.Series, hac_lags: int = 12, seasonal: bool = False
+) -> ElasticityEstimate:
+    """OLS of log index on log balance with HAC (Newey-West) standard errors.
+
+    With ``seasonal=True`` eleven month-of-year dummies are added so that the
+    elasticity is estimated from within-season variation (freight rates and
+    cargo volumes both have pronounced seasonal patterns). The series must
+    then carry a monthly PeriodIndex.
+    """
     df = pd.concat([log_index.rename("y"), log_balance.rename("x")], axis=1).dropna()
     if len(df) < 24:
         raise ValueError("need at least 24 overlapping observations")
-    x = sm.add_constant(df["x"])
+    x = sm.add_constant(df[["x"]])
+    if seasonal:
+        months = pd.PeriodIndex(df.index, freq="M").month
+        for m in range(2, 13):
+            x[f"m{m}"] = (months == m).astype(float)
     res = sm.OLS(df["y"], x).fit(cov_type="HAC", cov_kwds={"maxlags": hac_lags})
     return ElasticityEstimate(
         elasticity=float(res.params["x"]),
