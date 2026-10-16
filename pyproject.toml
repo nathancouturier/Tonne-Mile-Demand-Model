@@ -17,7 +17,7 @@ dependencies = [
     "searoute==1.6.0",
     "networkx==3.6.1",
     "statsmodels==0.15.0",
-    "scipy==1.18.1",
+    "scipy==1.17.1",
     "matplotlib==3.11.2",
     "reportlab==5.0.1",
     "openpyxl==3.1.5",
