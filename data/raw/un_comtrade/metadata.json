@@ -5,9 +5,9 @@
   "source_url": "https://comtradeplus.un.org/",
   "licence": "UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",
   "frequency": "monthly from 2010; annual from 2000 (long history and annual unit values)",
-  "coverage": "2010-01 to latest published month per reporter; 3 reporter groups",
+  "coverage": "2010-01 to latest published month per reporter; 4 reporter groups",
   "units": "kilograms (netWgt); values in current US dollars (primaryValue)",
-  "retrieved_at": "2026-10-16T14:40:37Z",
+  "retrieved_at": "2026-10-16T16:51:30Z",
   "files": [
     "availability.csv",
     "done_shard0of3.csv",
@@ -24,15 +24,15 @@
   ],
   "sha256": {
     "availability.csv": "ccda5fb78ef7eda2afdf771efa09f0f1e8042a88a923ef4816d26b46588a8a11",
-    "done_shard0of3.csv": "1efd59c1cc1f3c201987cf3137397f52ed3df9ae57d1988881d4c9d79bafe87c",
-    "done_shard1of3.csv": "37bdee921602252d2b9ef15bc78494790385931afa6a9061da8bb9e6cc0cd7d9",
-    "done_shard2of3.csv": "014ca6d5f491a858993cd6c161c8789ce668480a1ed7349623d0bb2f470c753b",
-    "fetch_log_shard0of3.csv": "972eb7fbff57cddd3599d94c33267e93769f030b728095dcdad3fa2f7b23a8fa",
-    "fetch_log_shard1of3.csv": "8f058cb72b8fb3b5497607e8eadfb94fde9515d376c9eb1da9b7b9df3b8b0a14",
-    "fetch_log_shard2of3.csv": "ba388598e6da698ff910e48f3781b5c937430dba8747008ca9662903c9c48650",
-    "records_shard0of3.csv": "8b88e3d0882fb2cc667841cb180d0c8295ed6e0b13936f559e1b2b4b0a203ca3",
-    "records_shard1of3.csv": "1f351215523797bfa3c6e83258df65dca55f4c7590f21b3105368a48bd1996d2",
-    "records_shard2of3.csv": "f9cac4c609e41746505402c4e60934c800816b29930f3eb1efe03b69a46a55eb",
+    "done_shard0of3.csv": "bb0853d86781ffeb4c2942b746a3a46964716f87e17ddd9045c3299b89376e3d",
+    "done_shard1of3.csv": "7aa0e56a0546b89ff15f74e0a9481183d15982d6bf0217dd161191a36dc04c8e",
+    "done_shard2of3.csv": "55c5dbbcd90502567a1b57c3b7a40ecb31152bd160e72d88a557df58bd3ae1e8",
+    "fetch_log_shard0of3.csv": "2adbe66a54a3e88618d34fbaefd199b4b671b15c450c84540438950434bd0933",
+    "fetch_log_shard1of3.csv": "39072a8915514056383e0a6af782e613a66d1e76bc62dea589a6b1bf199e4460",
+    "fetch_log_shard2of3.csv": "c1e12d284ba6f6b8c036706199e49747fa6e48d4d35e685edfec7446bcf84dc8",
+    "records_shard0of3.csv": "7e36a41b8a3bfb125ee410d27442a842733783f5a8b19540d1c691dbae123e60",
+    "records_shard1of3.csv": "782cc3e44c6411d63e5c53535ec35a793b39a9ff915c07dd5de00a9448c52124",
+    "records_shard2of3.csv": "ee49ea7440aa2b2347a05726c5797ec0117e187972580a64daead6e9d5a3756a",
     "reporters.json": "f2a1d78949089831c1fc7714e009996887db724a8d5a43379cdc37be9449f74b",
     "partnerAreas.json": "2da5667693b5a7f8b203028964a431cdb46356d3a377c7369bb9736c59f03733"
   },
@@ -206,8 +206,67 @@
           0
         ],
         "note": "India reports imports; Russia and Mozambique do not report timely data; Japan reports imports of Russian coal; mirror check only"
+      },
+      {
+        "group_id": "minor_bulks",
+        "reporter_codes": [
+          842,
+          36,
+          360,
+          710,
+          124,
+          804,
+          32,
+          170
+        ],
+        "flow": "X",
+        "cmd_codes": [
+          "1701",
+          "2304",
+          "2523",
+          "2602",
+          "2606",
+          "2713",
+          "3104",
+          "4401",
+          "7204"
+        ],
+        "partner_codes": [
+          50,
+          56,
+          76,
+          152,
+          156,
+          251,
+          276,
+          360,
+          380,
+          392,
+          410,
+          458,
+          484,
+          490,
+          504,
+          528,
+          586,
+          604,
+          608,
+          616,
+          682,
+          699,
+          704,
+          724,
+          764,
+          784,
+          792,
+          818,
+          826,
+          842,
+          0
+        ],
+        "note": ""
       }
     ],
-    "rows": 48236
+    "rows": 81809
   }
 }
