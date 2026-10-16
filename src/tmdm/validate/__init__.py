@@ -16,7 +16,7 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.ingest import asub_bdi, comexstat, comtrade, portwatch, unctad
-from tmdm.reference import CODE_TO_ISO3, COMEX_COUNTRY_TO_ISO3, COMTRADE_CODES
+from tmdm.reference import CODE_TO_ISO3, COMEX_COUNTRY_TO_ISO3, COMMODITY_GROUPS, COMTRADE_CODES
 from tmdm.validate.checks import (
     CheckResult,
     check_missing,
@@ -161,7 +161,7 @@ def check_annual_unit_values(records: pd.DataFrame) -> CheckResult:
 def reconciliation_checks(records: pd.DataFrame, comex: pd.DataFrame) -> list[CheckResult]:
     """Compare pairs of sources that measure the same flow."""
     out = []
-    iron, coal, soy = {"2601"}, {"2701"}, {"1201"}
+    iron, coal, soy = {"2601"}, set(COMMODITY_GROUPS["coal"]), {"1201"}
     pairs = [
         (
             "Brazil iron ore exports to China",

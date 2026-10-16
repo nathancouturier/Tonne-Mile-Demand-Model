@@ -285,7 +285,7 @@ def fetch(
     done = (
         pd.read_csv(done_path, dtype={"period": str})
         if done_path.exists()
-        else pd.DataFrame(columns=["spec_id", "freq", "period", "n_records", "retrieved_at"])
+        else pd.DataFrame(columns=["spec_id", "freq", "period", "cmd_codes", "n_records", "retrieved_at"])
     )
     client = ComtradeClient(wait_for_quota=os.environ.get("TMDM_COMTRADE_WAIT_QUOTA", "1") == "1")
     reporter_codes = sorted({r for g in groups for r in g.reporter_codes})
@@ -315,6 +315,11 @@ def fetch(
         annual_years = (2000, now.year - 1)
     years = [str(y) for y in range(annual_years[0], annual_years[1] + 1)]
     years = [y for i, y in enumerate(years) if i % n == k]
+    # a period counts as done only if it was fetched with the current commodity list of its call group
+    sig = {g.group_id: ",".join(g.cmd_codes) for g in groups}
+    if "cmd_codes" not in done.columns:
+        done["cmd_codes"] = ""
+    done = done[[sig.get(str(s), "") == str(c) for s, c in zip(done["spec_id"], done["cmd_codes"], strict=True)]]
     done_keys = set(zip(done["spec_id"], done["freq"], done["period"], strict=True))
     frames = [existing]
     done_rows: list[dict[str, Any]] = []
@@ -357,6 +362,7 @@ def fetch(
                     "spec_id": g.group_id,
                     "freq": freq,
                     "period": period,
+                    "cmd_codes": sig[g.group_id],
                     "n_records": len(new),
                     "retrieved_at": utc_now_iso(),
                 }
@@ -388,7 +394,7 @@ def _write_done(done_path: Path, done: pd.DataFrame, rows: list[dict[str, Any]])
 def _metadata(start_month: str, groups: list[CallGroup], out: pd.DataFrame) -> DatasetMetadata:
     return DatasetMetadata(
         dataset_id=DATASET_ID,
-        title="UN Comtrade: monthly bilateral trade in iron ore, coal, grains and soybeans (net weight)",
+        title="UN Comtrade: monthly bilateral trade in iron ore, coal and lignite, grains and soybeans (net weight)",
         publisher="United Nations Statistics Division (UN Comtrade)",
         source_url=PORTAL,
         licence="UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",

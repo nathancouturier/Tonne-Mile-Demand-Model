@@ -20,7 +20,10 @@ from dataclasses import dataclass, field
 # HS 2017 four-digit headings grouped into the three major bulk commodity groups.
 COMMODITY_GROUPS: dict[str, dict[str, str]] = {
     "iron_ore": {"2601": "Iron ores and concentrates"},
-    "coal": {"2701": "Coal, briquettes and similar solid fuels manufactured from coal"},
+    "coal": {
+        "2701": "Coal, briquettes and similar solid fuels manufactured from coal",
+        "2702": "Lignite, whether or not agglomerated (excluding jet)",
+    },
     "grains": {
         "1001": "Wheat and meslin",
         "1003": "Barley",
@@ -831,7 +834,7 @@ ROUTE_GROUPS: list[RouteGroup] = [
         ("AUS", "BRA", "ZAF", "CAN", "IDN", "USA", "ARG", "RUS", "MNG"),
         "",
         "mirror check only",
-        ("2701", "1201", "1005", "1001"),
+        ("2701", "2702", "1201", "1005", "1001"),
     ),
     # Brazil as reported to Comtrade, for the cross-check against Comex Stat
     RouteGroup(

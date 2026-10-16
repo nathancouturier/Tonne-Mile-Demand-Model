@@ -35,7 +35,7 @@ Every raw download is stored under `data/raw/<dataset>/` next to a `metadata.jso
 | Series | Source | Notes |
 | --- | --- | --- |
 | Baltic Dry Index, monthly | Statistics and Research Aland (ASUB), PxWeb table SJ102, originator Baltic Exchange | Public statistical re-publication, 1985 = 1,000. The public table runs from 2011; the Baltic Exchange licenses the daily index commercially, so no free daily series is used. |
-| Bilateral trade in iron ore (HS 2601), coal (2701), wheat (1001), barley (1003), maize (1005), sorghum (1007) and soybeans (1201) | UN Comtrade public preview API | Net weight in kilograms, monthly from 2010 (2012-12 for Indonesia), annual from 2000. Exporter-reported where timely (Australia, Indonesia, South Africa, United States, Canada, Ukraine, Argentina, Colombia); importer-reported for Russian and Mozambican origins (India, Japan, Egypt). Chinese import records lag by more than a year and are used for cross-checks only. Substitution: some monthly records carry a value but no net weight (the United States before 2016, Egypt in most years). For those records tonnes are estimated as value divided by the reporter's annual unit value for the same partner and commodity from the annual Comtrade series, and flagged as a proxy; months in which most of a group's value has no usable weight are interpolated and flagged, or trimmed at the ends of the group's range. The affected groups and months are listed on the Methodology page of the site and in `data/processed/coverage.json`. |
+| Bilateral trade in iron ore (HS 2601), coal (2701) and lignite (2702), wheat (1001), barley (1003), maize (1005), sorghum (1007) and soybeans (1201) | UN Comtrade public preview API | Net weight in kilograms, monthly from 2010 (2012-12 for Indonesia), annual from 2000. Exporter-reported where timely (Australia, Indonesia, South Africa, United States, Canada, Ukraine, Argentina, Colombia); importer-reported for Russian and Mozambican origins (India, Japan, Egypt). Chinese import records lag by more than a year and are used for cross-checks only. Substitution: some monthly records carry a value but no net weight (the United States before 2016, Egypt in most years). For those records tonnes are estimated as value divided by the reporter's annual unit value for the same partner and commodity from the annual Comtrade series, and flagged as a proxy; months in which most of a group's value has no usable weight are interpolated and flagged, or trimmed at the ends of the group's range. The affected groups and months are listed on the Methodology page of the site and in `data/processed/coverage.json`. |
 | Brazilian exports by destination (HS 2601, 1201, 1005, 2304) | Brazil Comex Stat API (MDIC) | Monthly from 1997, kilograms and FOB value; primary source for Brazil and a cross-check against Comtrade. |
 | Port activity and chokepoint transits | IMF PortWatch (ArcGIS feature layers) | AIS-based daily estimates from 2019: dry bulk tonnage loaded and discharged by port, transits through 28 chokepoints. |
 | Bulk carrier fleet, ships built and scrapped, port time, seaborne trade | UNCTADstat bulk download (7z CSV) | Fleet as of 1 January in thousand dwt from 1980; median time in port by ship type from 2018; seaborne trade by cargo type from 2000. |
@@ -49,20 +49,22 @@ Sources that were investigated and not used: Stooq and other quote sites (bot pr
 <!-- results:start -->
 ## Results
 
-Panel: Jan 2016 to Jun 2022, 78 months, 132 routes. Built from data retrieved on 2026-10-16.
+Panel: Jan 2016 to Sep 2025, 117 months, 271 routes. Built from data retrieved on 2026-10-16.
 
-* Elasticity of the index to tonne-miles over effective fleet: 0.02 (Newey-West standard error 1.17); the levels regression explains 0% of the variance of the log index (Durbin-Watson 0.24).
-* Over rolling twelve-month windows the four measured forces have the same sign as the index move 64% of the time; the residual averages 0.42 log points against a typical move of 0.42, so about 100% of a typical move is not explained by measured demand and supply.
-* Between the first and last twelve months of the panel, tonnes on the covered routes grew +10%, tonne-miles +7% (average haul -2.7%) and the bulk carrier fleet +23% to 959 million dwt.
-* Latest window (Jun 2021 to Jun 2022): the index moved -5 percent; contributions in log points were volume +0.00, haul -0.00, fleet -0.00, port time +0.00, residual -0.05 (total -0.05).
-* The three largest routes carry 54% of covered tonne-miles. Validation: 11 checks passed, 10 warnings, 0 failures.
+* Elasticity of the index to tonne-miles over effective fleet: 3.03 (Newey-West standard error 0.74); estimated on twelve-month changes, it explains 11% of the variance of twelve-month changes in the log index (Durbin-Watson 0.52).
+* Over rolling twelve-month windows the four measured forces have the same sign as the index move 73% of the time; the residual averages 0.40 log points against a typical move of 0.45, so about 89% of a typical move is not explained by measured demand and supply.
+* Between the first and last twelve months of the panel, tonnes on the covered routes grew +15%, tonne-miles +15% (average haul +0.4%) and the bulk carrier fleet +36% to 1,057 million dwt.
+* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.07, haul +0.00, fleet -0.09, port time -0.01, residual -0.02 (total -0.04).
+* The three largest routes carry 49% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failures.
 
 | Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.00 | +0.00 | -0.00 | +0.00 | +0.35 |
-| Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.00 | -0.00 | -0.00 | -0.00 | -1.05 |
-| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.00 | +0.00 | -0.00 | +0.00 | +1.95 |
-| Latest twelve months | Jun 2021 to Jun 2022 | -0.05 | +0.00 | -0.00 | -0.00 | +0.00 | -0.05 |
+| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.12 | +0.11 | -0.08 | +0.01 | +0.20 |
+| Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.20 | +0.01 | -0.05 | -0.01 | -0.80 |
+| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.16 | +0.06 | -0.16 | +0.01 | +1.88 |
+| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.27 | -0.09 | -0.13 | -0.01 | -0.85 |
+| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.06 | -0.05 | -0.06 | +0.00 | +0.33 |
+| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.07 | +0.00 | -0.09 | -0.01 | -0.02 |
 
 Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages.
 <!-- results:end -->
