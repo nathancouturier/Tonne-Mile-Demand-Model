@@ -1,0 +1,54 @@
+2018,0000,"World",00,"All ships",0.97,,,18,,,15066,,,24210,,,3538,,,234006,,,441561,,,21413,,
+2018,0000,"World",02,"Liquid bulk carriers",0.94,,,13,,,15543,,,27014,,,,,"Not available or not separately reported",234006,,,441561,,,,,"Not available or not separately reported"
+2018,0000,"World",07,"Liquefied petroleum gas carriers",1.02,,,14,,,10662,,,12046,,,,,"Not available or not separately reported",58100,,,64220,,,,,"Not available or not separately reported"
+2018,0000,"World",08,"Liquefied natural gas carriers",1.11,,,10,,,93791,,,72964,,,,,"Not available or not separately reported",168189,,,155159,,,,,"Not available or not separately reported"
+2018,0000,"World",05,"Dry bulk carriers",2.05,,,13,,,31940,,,57181,,,,,"Not available or not separately reported",203483,,,404389,,,,,"Not available or not separately reported"
+2018,0000,"World",04,"Dry breakbulk carriers",1.11,,,19,,,5438,,,7384,,,,,"Not available or not separately reported",91784,,,138743,,,,,"Not available or not separately reported"
+2018,0000,"World",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",17,,,25368,,,10232,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2018,0000,"World",03,"Container ships",0.7,,,13,,,38520,,,,,"Not available or not separately reported",3538,,,217673,,,,,"Not available or not separately reported",21413,,
+2018,0000,"World",01,"Passenger ships",,,"Not available or not separately reported",21,,,8928,,,,,"Not available or not separately reported",,,"Not available or not separately reported",228081,,,,,"Not available or not separately reported",,,"Not available or not separately reported"
+2019,0000,"World",00,"All ships",0.966,,,18,,,14980,,,24578,,,3513,,,234006,,,441585,,,23756,,
+2019,0000,"World",02,"Liquid bulk carriers",0.9347,,,14,,,15702,,,27287,,,,,"Not available or not separately reported",234006,,,441585,,,,,"Not available or not separately reported"
+2019,0000,"World",07,"Liquefied petroleum gas carriers",1.0139,,,14,,,10300,,,11625,,,,,"Not available or not separately reported",59226,,,64220,,,,,"Not available or not separately reported"
+2019,0000,"World",08,"Liquefied natural gas carriers",1.1083,,,10,,,95469,,,74107,,,,,"Not available or not separately reported",168189,,,156000,,,,,"Not available or not separately reported"
+2019,0000,"World",05,"Dry bulk carriers",2.0062,,,15,,,32011,,,57261,,,,,"Not available or not separately reported",204014,,,404389,,,,,"Not available or not separately reported"
+2019,0000,"World",04,"Dry breakbulk carriers",1.1021,,,20,,,5476,,,7498,,,,,"Not available or not separately reported",91784,,,138743,,,,,"Not available or not separately reported"
+2019,0000,"World",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",19,,,25277,,,10101,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2019,0000,"World",03,"Container ships",0.6924,,,13,,,38172,,,,,"Not available or not separately reported",3513,,,232618,,,,,"Not available or not separately reported",23756,,
+2019,0000,"World",01,"Passenger ships",,,"Not available or not separately reported",21,,,8859,,,,,"Not available or not separately reported",,,"Not available or not separately reported",228081,,,,,"Not available or not separately reported",,,"Not available or not separately reported"
+2020,0000,"World",00,"All ships",0.9986,,,18,,,14663,,,24956,,,3543,,,237200,,,441561,,,23964,,
+2020,0000,"World",02,"Liquid bulk carriers",0.9681,,,14,,,15704,,,27242,,,,,"Not available or not separately reported",234006,,,441561,,,,,"Not available or not separately reported"
+2020,0000,"World",07,"Liquefied petroleum gas carriers",1.0417,,,15,,,10826,,,12164,,,,,"Not available or not separately reported",59229,,,64220,,,,,"Not available or not separately reported"
+2020,0000,"World",08,"Liquefied natural gas carriers",1.1194,,,12,,,95270,,,74229,,,,,"Not available or not separately reported",168189,,,156000,,,,,"Not available or not separately reported"
+2020,0000,"World",05,"Dry bulk carriers",2.066,,,14,,,32146,,,57453,,,,,"Not available or not separately reported",204014,,,404389,,,,,"Not available or not separately reported"
+2020,0000,"World",04,"Dry breakbulk carriers",1.15,,,21,,,5439,,,7405,,,,,"Not available or not separately reported",91784,,,116173,,,,,"Not available or not separately reported"
+2020,0000,"World",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",17,,,25389,,,10242,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2020,0000,"World",03,"Container ships",0.7063,,,14,,,38308,,,,,"Not available or not separately reported",3543,,,237200,,,,,"Not available or not separately reported",23964,,
+2020,0000,"World",01,"Passenger ships",,,"Not available or not separately reported",20,,,7439,,,,,"Not available or not separately reported",,,"Not available or not separately reported",228081,,,,,"Not available or not separately reported",,,"Not available or not separately reported"
+2021,0000,"World",00,"All ships",1.0465,,,18,,,14022,,,24995,,,3431,,,237200,,,404389,,,23992,,
+2021,0000,"World",02,"Liquid bulk carriers",0.9806,,,14,,,15739,,,27275,,,,,"Not available or not separately reported",170618,,,323183,,,,,"Not available or not separately reported"
+2021,0000,"World",07,"Liquefied petroleum gas carriers",1.0264,,,15,,,10541,,,11799,,,,,"Not available or not separately reported",61000,,,64220,,,,,"Not available or not separately reported"
+2021,0000,"World",08,"Liquefied natural gas carriers",1.1299,,,11,,,95356,,,74522,,,,,"Not available or not separately reported",168189,,,155159,,,,,"Not available or not separately reported"
+2021,0000,"World",05,"Dry bulk carriers",2.1132,,,14,,,32011,,,57268,,,,,"Not available or not separately reported",204014,,,404389,,,,,"Not available or not separately reported"
+2021,0000,"World",04,"Dry breakbulk carriers",1.1736,,,21,,,5463,,,7427,,,,,"Not available or not separately reported",91784,,,116173,,,,,"Not available or not separately reported"
+2021,0000,"World",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",17,,,26118,,,10412,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2021,0000,"World",03,"Container ships",0.8028,,,14,,,37223,,,,,"Not available or not separately reported",3431,,,237200,,,,,"Not available or not separately reported",23992,,
+2021,0000,"World",01,"Passenger ships",,,"Not available or not separately reported",20,,,7327,,,,,"Not available or not separately reported",,,"Not available or not separately reported",228199,,,,,"Not available or not separately reported",,,"Not available or not separately reported"
+2022,0000,"World",00,"All ships",1.0431,,,18,,,14168,,,25666,,,3420,,,236673,,,404389,,,24004,,
+2022,0000,"World",02,"Liquid bulk carriers",0.9889,,,15,,,16202,,,28313,,,,,"Not available or not separately reported",170618,,,323514,,,,,"Not available or not separately reported"
+2022,0000,"World",07,"Liquefied petroleum gas carriers",1.0326,,,16,,,10811,,,12097,,,,,"Not available or not separately reported",60784,,,64220,,,,,"Not available or not separately reported"
+2022,0000,"World",08,"Liquefied natural gas carriers",1.1187,,,12,,,96487,,,75432,,,,,"Not available or not separately reported",168189,,,155159,,,,,"Not available or not separately reported"
+2022,0000,"World",05,"Dry bulk carriers",2.1847,,,14,,,32590,,,58378,,,,,"Not available or not separately reported",204014,,,404389,,,,,"Not available or not separately reported"
+2022,0000,"World",04,"Dry breakbulk carriers",1.1382,,,21,,,5550,,,7628,,,,,"Not available or not separately reported",91784,,,138743,,,,,"Not available or not separately reported"
+2022,0000,"World",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",17,,,26062,,,10447,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2022,0000,"World",03,"Container ships",0.8042,,,15,,,37005,,,,,"Not available or not separately reported",3420,,,236673,,,,,"Not available or not separately reported",24004,,
+2022,0000,"World",01,"Passenger ships",,,"Not available or not separately reported",20,,,8192,,,,,"Not available or not separately reported",,,"Not available or not separately reported",235600,,,,,"Not available or not separately reported",,,"Not available or not separately reported"
+2023,0000,"World",00,"All ships",0.9944,,,18,,,14475,,,25662,,,3576,,,237000,,,404389,,,24116,,
+2023,0000,"World",02,"Liquid bulk carriers",0.9875,,,15,,,16122,,,28406,,,,,"Not available or not separately reported",170618,,,323514,,,,,"Not available or not separately reported"
+2023,0000,"World",07,"Liquefied petroleum gas carriers",1.0361,,,16,,,11002,,,12303,,,,,"Not available or not separately reported",60784,,,64220,,,,,"Not available or not separately reported"
+2023,0000,"World",08,"Liquefied natural gas carriers",1.1174,,,12,,,93190,,,72828,,,,,"Not available or not separately reported",168189,,,155159,,,,,"Not available or not separately reported"
+2023,0000,"World",05,"Dry bulk carriers",2.1326,,,15,,,32746,,,58623,,,,,"Not available or not separately reported",204014,,,404389,,,,,"Not available or not separately reported"
+2023,0000,"World",04,"Dry breakbulk carriers",1.0771,,,21,,,5610,,,7799,,,,,"Not available or not separately reported",149944,,,175897,,,,,"Not available or not separately reported"
+2023,0000,"World",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",18,,,26257,,,10443,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2023,0000,"World",03,"Container ships",0.7083,,,15,,,38683,,,,,"Not available or not separately reported",3576,,,237000,,,,,"Not available or not separately reported",24116,,
+2023,0000,"World",01,"Passenger ships",,,"Not available or not separately reported",20,,,8377,,,,,"Not available or not separately reported",,,"Not available or not separately reported",235600,,,,,"Not available or not separately reported",,,"Not available or not separately reported"

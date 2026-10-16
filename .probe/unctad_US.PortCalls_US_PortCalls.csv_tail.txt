@@ -1,0 +1,15 @@
+2023,926,"United Kingdom",08,"Liquefied natural gas carriers",1.191,,,8,,,89918,,,71749,,,,,"Not available or not separately reported",168189,,,154900,,,,,"Not available or not separately reported"
+2023,926,"United Kingdom",05,"Dry bulk carriers",2.5962,,,16,,,23988,,,40853,,,,,"Not available or not separately reported",94879,,,182983,,,,,"Not available or not separately reported"
+2023,926,"United Kingdom",04,"Dry breakbulk carriers",1.5056,,,19,,,3551,,,4950,,,,,"Not available or not separately reported",149944,,,175897,,,,,"Not available or not separately reported"
+2023,926,"United Kingdom",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",16,,,24214,,,9862,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2023,926,"United Kingdom",03,"Container ships",0.6812,,,17,,,38169,,,,,"Not available or not separately reported",3467,,,237000,,,,,"Not available or not separately reported",24116,,
+2023,926,"United Kingdom",01,"Passenger ships",,,"Not available or not separately reported",20,,,12890,,,,,"Not available or not separately reported",,,"Not available or not separately reported",185206,,,,,"Not available or not separately reported",,,"Not available or not separately reported"
+2023,842,"United States of America",00,"All ships",1.5431,,,27,,,18671,,,49816,,,5691,,,235600,,,323183,,,19224,,
+2023,842,"United States of America",02,"Liquid bulk carriers",1.7062,,,12,,,37291,,,64920,,,,,"Not available or not separately reported",170611,,,323183,,,,,"Not available or not separately reported"
+2023,842,"United States of America",07,"Liquefied petroleum gas carriers",1.8125,,,9,,,31394,,,35414,,,,,"Not available or not separately reported",60784,,,63770,,,,,"Not available or not separately reported"
+2023,842,"United States of America",08,"Liquefied natural gas carriers",1.3569,,,6,,,106815,,,85368,,,,,"Not available or not separately reported",149367,,,121963,,,,,"Not available or not separately reported"
+2023,842,"United States of America",05,"Dry bulk carriers",2.2493,,,19,,,29458,,,52746,,,,,"Not available or not separately reported",108901,,,209854,,,,,"Not available or not separately reported"
+2023,842,"United States of America",04,"Dry breakbulk carriers",1.8799,,,19,,,12994,,,17297,,,,,"Not available or not separately reported",91784,,,116173,,,,,"Not available or not separately reported"
+2023,842,"United States of America",06,"Roll-on/ roll-off ships",,,"Not available or not separately reported",15,,,58946,,,21502,,,,,"Not available or not separately reported",100430,,,55828,,,,,"Not available or not separately reported"
+2023,842,"United States of America",03,"Container ships",1.084,,,15,,,63680,,,,,"Not available or not separately reported",5691,,,194308,,,,,"Not available or not separately reported",19224,,
+2023,842,"United States of America",01,"Passenger ships",,,"Not available or not separately reported",31,,,9594,,,,,"Not available or not separately reported",,,"Not available or not separately reported",235600,,,,,"Not available or not separately reported",,,"Not available or not separately reported"

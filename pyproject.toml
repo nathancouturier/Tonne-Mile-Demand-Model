@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tmdm"
+version = "0.1.0"
+description = "Tonne-Mile Demand Model: decomposing dry bulk freight index moves into cargo volumes, haul distance and fleet supply"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Nathan Couturier" }]
+dependencies = [
+    "pandas==3.0.6",
+    "numpy==2.3.5",
+    "requests==2.34.2",
+    "searoute==1.6.0",
+    "networkx==3.6.1",
+    "statsmodels==0.15.0",
+    "scipy==1.17.1",
+    "matplotlib==3.11.2",
+    "reportlab==5.0.1",
+    "openpyxl==3.1.5",
+    "py7zr==1.1.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "ruff==0.17.1",
+    "mypy==2.4.0",
+    "pandas-stubs==3.0.5.260914",
+    "types-requests==2.33.0.20261006",
+    "types-openpyxl==3.1.5.20260827",
+]
+
+[project.scripts]
+tmdm = "tmdm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tmdm = ["py.typed"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "N", "D", "ANN", "RUF", "BLE"]
+ignore = ["D203", "D213", "D104", "ANN401", "RUF012"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "ANN"]
+"scripts/*" = ["D", "ANN"]
+"src/tmdm/export/report.py" = ["E501"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+files = ["src/tmdm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

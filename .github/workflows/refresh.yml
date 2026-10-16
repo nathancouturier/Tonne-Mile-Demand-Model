@@ -1,0 +1,134 @@
+name: Data refresh and site build
+
+on:
+  schedule:
+    # Every Tuesday at 06:17 UTC, after the weekly PortWatch update
+    - cron: "17 6 * * 2"
+  workflow_dispatch:
+    inputs:
+      ingest_only:
+        description: Only download data, skip the model build and deployment
+        type: boolean
+        default: false
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "scripts/refresh_trigger.txt"
+      - "scripts/build_trigger.txt"
+
+permissions:
+  contents: write
+  pages: write
+
+# A push that changes scripts/refresh_trigger.txt downloads data only. A push whose
+# commit message contains "[build]" also runs the build; "[build only]" skips the download.
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  ingest-fast:
+    name: Ingest fast sources
+    if: ${{ !(github.event_name == 'push' && contains(github.event.head_commit.message, '[build only]')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: refresh-fast-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Download
+        env:
+          TMDM_INGEST_SKIP: comtrade
+        run: python -m tmdm.cli ingest
+      - name: Commit raw data
+        if: always()
+        run: |
+          bash scripts/commit_data.sh "data: refresh fast sources" data/raw
+
+  ingest-comtrade:
+    name: Ingest UN Comtrade (shard ${{ matrix.shard }} of 3)
+    if: ${{ !(github.event_name == 'push' && contains(github.event.head_commit.message, '[build only]')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]
+    concurrency:
+      group: refresh-comtrade-${{ github.ref }}-${{ matrix.shard }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Download with periodic checkpoint commits
+        env:
+          TMDM_INGEST_ONLY: comtrade
+          TMDM_COMTRADE_SHARD: ${{ matrix.shard }}/3
+        run: |
+          set -o pipefail
+          python -m tmdm.cli ingest > comtrade.log 2>&1 &
+          pid=$!
+          while kill -0 "$pid" 2>/dev/null; do
+            sleep 900
+            tail -n 2 comtrade.log || true
+            bash scripts/commit_data.sh "data: comtrade checkpoint shard ${{ matrix.shard }}" data/raw/un_comtrade || true
+          done
+          wait "$pid"
+          status=$?
+          tail -n 40 comtrade.log || true
+          exit $status
+      - name: Commit raw data
+        if: always()
+        run: |
+          bash scripts/commit_data.sh "data: refresh UN Comtrade shard ${{ matrix.shard }}" data/raw/un_comtrade
+
+  build:
+    name: Validate, model, export and deploy
+    needs: [ingest-fast, ingest-comtrade]
+    if: ${{ always() && !inputs.ingest_only && (github.event_name != 'push' || contains(github.event.head_commit.message, '[build')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: refresh-build-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Build
+        run: |
+          python -m tmdm.cli validate
+          python -m tmdm.cli transform
+          python -m tmdm.cli model
+          python -m tmdm.cli export
+          python -m tmdm.cli report
+      - name: Commit processed data, site and report
+        run: |
+          bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
+      - name: Publish site to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_pages.sh
+      - name: Make sure GitHub Pages serves the gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/ensure_pages.sh

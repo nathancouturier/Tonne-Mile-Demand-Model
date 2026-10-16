@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.probe/
+node_modules/
+/screenshots/
+
+# copies of data/processed and docs, rebuilt by the export stage and published to gh-pages
+/site/downloads/

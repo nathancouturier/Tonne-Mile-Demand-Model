@@ -1,0 +1,23 @@
+{
+  "dataset_id": "worldbank_cmo",
+  "title": "World Bank Commodity Markets Outlook, monthly prices (Pink Sheet)",
+  "publisher": "World Bank",
+  "source_url": "https://thedocs.worldbank.org/en/doc/5d903e848db1d1b83e0ec8f744e55570-0350012021/related/CMO-Historical-Data-Monthly.xlsx",
+  "licence": "Creative Commons Attribution 4.0 (CC BY 4.0), as stated by the World Bank for its datasets",
+  "frequency": "monthly",
+  "coverage": "1960 onward, nominal US dollars",
+  "units": "US dollars per metric ton (iron ore: per dry metric ton unit)",
+  "retrieved_at": "2026-10-16T13:26:24Z",
+  "files": [
+    "CMO-Historical-Data-Monthly.xlsx"
+  ],
+  "sha256": {
+    "CMO-Historical-Data-Monthly.xlsx": "bd89b83eeceadaecb803018c104f76b316d2df3fae28ef7afde48021100c7e11"
+  },
+  "limitations": [
+    "Prices are benchmark assessments, not transaction volumes; used only as market context and a cross-check.",
+    "Series definitions change occasionally (for example the coal benchmark basis); the workbook footnotes apply."
+  ],
+  "notes": [],
+  "extra": {}
+}

@@ -1,0 +1,33 @@
+{
+  "dataset_id": "brazil_comexstat",
+  "title": "Brazil Comex Stat: monthly exports by destination country for iron ore, soybeans, maize and soybean meal",
+  "publisher": "Ministerio do Desenvolvimento, Industria, Comercio e Servicos (MDIC), Brazil",
+  "source_url": "https://comexstat.mdic.gov.br/",
+  "licence": "Open government data (Brazilian open data policy); attribution to MDIC/Comex Stat",
+  "frequency": "monthly",
+  "coverage": "1997-01 to 2026-09 (last update 2026-10-06)",
+  "units": "kilograms (metricKG) and FOB US dollars (metricFOB)",
+  "retrieved_at": "2026-10-16T13:16:51Z",
+  "files": [
+    "exports_by_country_heading.csv",
+    "countries.json"
+  ],
+  "sha256": {
+    "exports_by_country_heading.csv": "3685bb8dcd75b376684979a1fb146c3f67065ab45eb03b1f6898aed320d5d8ad",
+    "countries.json": "49429db5e47f8199f5a921df4edd36686855b58d7008d925abdde3b35d3c7f94"
+  },
+  "limitations": [
+    "Destination is the declared country of destination at export, which can differ from the final discharge port.",
+    "Figures for the latest two months are preliminary and revised in later releases; the last two years are refreshed every run."
+  ],
+  "notes": [],
+  "extra": {
+    "headings": {
+      "2601": "iron_ore",
+      "1201": "soybeans",
+      "1005": "maize",
+      "2304": "soybean_meal"
+    },
+    "api": "https://api-comexstat.mdic.gov.br/general"
+  }
+}

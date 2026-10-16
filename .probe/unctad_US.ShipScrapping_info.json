@@ -1,0 +1,10 @@
+{
+ "archive_bytes": 8908,
+ "members": [
+  "US_ShipScrapping.csv"
+ ],
+ "US_ShipScrapping.csv": {
+  "bytes": 56466,
+  "lines": 1242
+ }
+}

@@ -1,0 +1,43 @@
+{
+  "dataset_id": "imf_portwatch",
+  "title": "IMF PortWatch: daily port activity and chokepoint transits (AIS-based)",
+  "publisher": "International Monetary Fund and University of Oxford (PortWatch)",
+  "source_url": "https://portwatch.imf.org/",
+  "licence": "Free for non-commercial and research use under the IMF PortWatch terms of use; attribution required",
+  "frequency": "daily (aggregated here to months and to global daily totals)",
+  "coverage": "2019-01-01 to 2026-10-09, 2065 ports, 28 chokepoints",
+  "units": "metric tons of cargo (import and export estimates), number of port calls, number of transits",
+  "retrieved_at": "2026-10-16T13:57:52Z",
+  "files": [
+    "ports_database.csv",
+    "chokepoints_database.csv",
+    "dry_bulk_monthly_by_country.csv",
+    "dry_bulk_daily_global.csv",
+    "chokepoints_daily.csv"
+  ],
+  "sha256": {
+    "ports_database.csv": "c8c468e36c97b90f46e0c5103d149d400a780efe752e9a84a1d0feedea5d02ad",
+    "chokepoints_database.csv": "84e1a58f3c0639dc6b647fd552bb567a4b74419e233440e02566a80568134c03",
+    "dry_bulk_monthly_by_country.csv": "61549368a55118f5971b0c0e2a57c3e9798d41edbf01f5a2be1c906228c78428",
+    "dry_bulk_daily_global.csv": "bb2186d49895ebc0fb23979693e4899af1eba07b5315c303c2d6ae8b41e9b851",
+    "chokepoints_daily.csv": "b3b448a9de1373eaa3f462f1fd5240c8095439e36031b719013758fe8683766a"
+  },
+  "limitations": [
+    "Volumes are statistical estimates derived from AIS draught changes and vessel capacity, not customs data.",
+    "Export and import tonnage are estimated independently, so world exports and world imports differ.",
+    "The ports database covers roughly 2,000 ports; small terminals are not covered.",
+    "Chokepoint capacity is deadweight capacity of transiting vessels, not cargo on board.",
+    "Known reporting gaps (blackout days) and GPS interference episodes are documented on the PortWatch site."
+  ],
+  "notes": [],
+  "extra": {
+    "arcgis_layers": {
+      "Daily_Ports_Data": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Ports_Data/FeatureServer/0/query",
+      "Daily_Chokepoints_Data": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query",
+      "PortWatch_ports_database": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/PortWatch_ports_database/FeatureServer/0/query",
+      "PortWatch_chokepoints_database": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/PortWatch_chokepoints_database/FeatureServer/0/query"
+    },
+    "monthly_rows": 16920,
+    "chokepoint_rows": 79548
+  }
+}

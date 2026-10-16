@@ -1,0 +1,212 @@
+[
+ {
+  "status": 200,
+  "elapsed_s": 0.81,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ",
+  "size": 143,
+  "name": "asub_l1"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/SJ",
+  "size": 210,
+  "name": "asub_l2_SJ"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/SJ/Handelsflottan%2C%20syssels%C3%A4ttning%2C%20resande",
+  "size": 1519,
+  "name": "asub_l3_SJ_Handelsflottan, syss"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/SJ/Konjunkturstatistik%20f%C3%B6r%20sj%C3%B6farten",
+  "size": 532,
+  "name": "asub_l3_SJ_Konjunkturstatistik "
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/TU",
+  "size": 174,
+  "name": "asub_l2_TU"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/TU/Inresande",
+  "size": 259,
+  "name": "asub_l3_TU_Inresande"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/TU/Inkvartering",
+  "size": 753,
+  "name": "asub_l3_TU_Inkvartering"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/TU/G%C3%A4sthamnar",
+  "size": 293,
+  "name": "asub_l3_TU_G\u00e4sthamnar"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/TR",
+  "size": 2650,
+  "name": "asub_l2_TR"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/TR/Avslutade",
+  "size": 762,
+  "name": "asub_l3_TR_Avslutade"
+ },
+ {
+  "status": 429,
+  "elapsed_s": 0.18,
+  "url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/SJ/Konjunkturstatistik%20f%C3%B6r%20sj%C3%B6farten/SJ102.px",
+  "size": 83,
+  "name": "asub_sj102_meta"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 2.47,
+  "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?reporterCode=36&period=202401&cmdCode=2601%2C2701%2C1001%2C1003%2C1005%2C1007%2C1201&flowCode=X&partnerCode=156%2C392%2C410%2C490%2C699%2C704%2C360%2C608%2C458%2C764%2C0&partner2Code=0&customsCode=C00&motCode=0",
+  "size": 46905,
+  "name": "ct_aus_x_202401_single"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 1.43,
+  "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS?reporterCode=842&period=202401&cmdCode=1001%2C1005%2C1007%2C1201%2C2701&flowCode=X&partnerCode=156%2C392%2C410%2C490%2C818%2C608%2C170%2C704%2C566%2C360%2C528%2C699%2C0&partner2Code=0&customsCode=C00&motCode=0&includeDesc=true",
+  "size": 46450,
+  "name": "ct_usa_x_202401_single_desc"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.63,
+  "url": "https://comtradeapi.un.org/public/v1/getDa/C/M/HS?reporterCode=36%2C76%2C360%2C710%2C842%2C124%2C804%2C32%2C170%2C699%2C392%2C410%2C528%2C818%2C156&period=201001%2C201006%2C201101%2C201201",
+  "size": 25324,
+  "name": "ct_da_core_2010"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 2.57,
+  "url": "https://comtradeapi.un.org/public/v1/getDa/C/A/HS?reporterCode=36%2C76%2C360%2C710%2C842%2C124%2C804%2C32%2C170%2C699%2C392%2C410%2C528%2C818%2C156&period=2000%2C2005%2C2008%2C2009",
+  "size": 32338,
+  "name": "ct_da_core_2000s_annual"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 1.36,
+  "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=156&period=2008&cmdCode=2601%2C2701&flowCode=M&partnerCode=36%2C76%2C710%2C699%2C360%2C0&partner2Code=0&customsCode=C00&motCode=0",
+  "size": 10086,
+  "name": "ct_annual_single_chn_2008"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.74,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.PortCalls/US_PortCalls",
+  "size": 19373,
+  "name": "unctad_portcalls_full"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.86,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.MerchantFleet/US_MerchantFleet",
+  "size": 938045,
+  "name": "unctad_fleet_full"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.25,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.SeaborneTrade/US_SeaborneTrade",
+  "size": 462110,
+  "name": "unctad_seaborne_full"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.2,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.ShipBuildingType/US_ShipBuildingType",
+  "size": 95,
+  "name": "unctad_try_US.ShipBuildingType"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.2,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.ShipBuildingByType/US_ShipBuildingByType",
+  "size": 97,
+  "name": "unctad_try_US.ShipBuildingByType"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.18,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.ShipScrappingType/US_ShipScrappingType",
+  "size": 96,
+  "name": "unctad_try_US.ShipScrappingType"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.18,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.FleetAge/US_FleetAge",
+  "size": 87,
+  "name": "unctad_try_US.FleetAge"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.22,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.ShipAge/US_ShipAge",
+  "size": 86,
+  "name": "unctad_try_US.ShipAge"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.17,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.TonnageByType/US_TonnageByType",
+  "size": 92,
+  "name": "unctad_try_US.TonnageByType"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.19,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.PortCallsArrivals/US_PortCallsArrivals",
+  "size": 20304,
+  "name": "unctad_try_US.PortCallsArrivals"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 0.19,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.PortCalls_S/US_PortCalls_S",
+  "size": 36462,
+  "name": "unctad_try_US.PortCalls_S"
+ },
+ {
+  "status": 400,
+  "elapsed_s": 0.17,
+  "url": "https://unctadstat-api.unctad.org/bulkdownload/US.MerchantFleetOwnership/US_MerchantFleetOwnership",
+  "size": 101,
+  "name": "unctad_try_US.MerchantFleetOwnership"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 2.43,
+  "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=1%3D1&outStatistics=%5B%7B%22statisticType%22%3A+%22min%22%2C+%22onStatisticField%22%3A+%22date%22%2C+%22outStatisticFieldName%22%3A+%22dmin%22%7D%2C+%7B%22statisticType%22%3A+%22max%22%2C+%22onStatisticField%22%3A+%22date%22%2C+%22outStatisticFieldName%22%3A+%22dmax%22%7D%2C+%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22portid%22%2C+%22outStatisticFieldName%22%3A+%22n%22%7D%5D&f=json",
+  "size": 566,
+  "name": "pw_choke_minmax2"
+ },
+ {
+  "status": 200,
+  "elapsed_s": 8.36,
+  "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=1%3D1&groupByFieldsForStatistics=portid%2Cportname&outStatistics=%5B%7B%22statisticType%22%3A+%22min%22%2C+%22onStatisticField%22%3A+%22date%22%2C+%22outStatisticFieldName%22%3A+%22dmin%22%7D%2C+%7B%22statisticType%22%3A+%22count%22%2C+%22onStatisticField%22%3A+%22portid%22%2C+%22outStatisticFieldName%22%3A+%22n%22%7D%5D&f=json",
+  "size": 3391,
+  "name": "pw_choke_by_port_count"
+ }
+]
