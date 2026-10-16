@@ -17,6 +17,7 @@ from typing import Any
 from urllib.parse import quote
 
 import pandas as pd
+import requests
 
 from tmdm.http import get, post_json
 from tmdm.io import DatasetMetadata, raw_dir, utc_now_iso, write_metadata
@@ -50,9 +51,12 @@ MONTHS = {
 
 def _find_table() -> str:
     """Return the table URL, crawling the folder if the expected path moved."""
-    r = get(TABLE_URL)
-    if r.status_code == 200 and "variables" in r.json():
-        return TABLE_URL
+    try:
+        r = get(TABLE_URL)
+        if r.status_code == 200 and "variables" in r.json():
+            return TABLE_URL
+    except requests.HTTPError as exc:
+        log.warning("ASUB table %s not found (%s); crawling the folder", TABLE_URL, exc)
     folder = get(f"{API}/TUTRSJ/SJ").json()
     for item in folder:
         if item.get("type") == "l":

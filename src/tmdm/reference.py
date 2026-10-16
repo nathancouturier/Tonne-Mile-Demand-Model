@@ -180,6 +180,7 @@ COMEX_COUNTRY_TO_ISO3: dict[str, str] = {
     "Malaysia": "MYS",
     "Oman": "OMN",
     "Bahrain": "BHR",
+    "Bahrein": "BHR",
     "France": "FRA",
     "Italy": "ITA",
     "Spain": "ESP",

@@ -94,6 +94,17 @@ def route_port_pairs() -> dict[str, tuple[str, str, tuple[tuple[str, float], ...
     return out
 
 
+# Ports inside the Red Sea (north of Bab el-Mandeb): a route serving one cannot avoid the strait by
+# sailing round the Cape, so no Red Sea diversion is applied to it.
+RED_SEA_BOX = (12.5, 30.0, 32.0, 44.0)  # min lat, max lat, min lon, max lon
+
+
+def in_red_sea(port: Port) -> bool:
+    """True if the port lies inside the Red Sea box."""
+    lat0, lat1, lon0, lon1 = RED_SEA_BOX
+    return lat0 <= port.lat <= lat1 and lon0 <= port.lon <= lon1
+
+
 def build_route_distances(ports: dict[str, Port]) -> tuple[pd.DataFrame, dict[str, list[list[float]]]]:
     """Compute blended distances per route and variant, and keep the geometry of the main leg."""
     pairs = route_port_pairs()
@@ -137,6 +148,7 @@ def build_route_distances(ports: dict[str, Port]) -> tuple[pd.DataFrame, dict[st
                     "variant": variant,
                     "distance_nm": round(dist_nm, 1),
                     "is_baseline": variant == baseline_variant(rid),
+                    "red_sea_port": any(in_red_sea(ports[pid]) for pid, _w in (*load, *disc)),
                 }
             )
             if main_leg is not None:

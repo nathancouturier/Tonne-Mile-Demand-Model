@@ -528,7 +528,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             "Sailing speed, waiting outside ports and ballast ratios are not observable from public data and remain in the residual with bunker prices, sentiment and contract timing. Some customs records carry values without weights (United States monthly records before 2016); tonnes for those months are estimated from the reporter's annual unit values and flagged, and the Russia to Egypt grain route is left out because Egyptian records lack weights in most years. "
             "The route set covers the major bulks between the main exporters and importers; minor bulks and regional trades that drive Supramax and Handysize rates are excluded. "
             "Representative ports approximate real terminals; the error is a few percent of a voyage and constant over time, so it affects levels rather than changes. "
-            "Customs months record declarations, not sailings. The index composition changed in 2018. The freight index is republished by the Aland statistics office less often than the demand data, so the balanced panel ends earlier than the volume series. "
+            "Customs months record declarations, not sailings. Episodes shorter than twelve months compare endpoints in different seasons, and cargo volumes are seasonal, so their volume effect includes seasonal movement. The index composition changed in 2018. The freight index is republished by the Aland statistics office less often than the demand data, so the balanced panel ends earlier than the volume series. "
             "Deliveries and demolitions by ship type are not in the public UNCTAD tables; fleet growth is shown net.",
             st["body"],
         )

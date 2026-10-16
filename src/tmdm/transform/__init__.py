@@ -35,21 +35,48 @@ CANAL_DETECTION_RATIO = 1.02
 
 
 def canal_users(distances: pd.DataFrame) -> pd.DataFrame:
-    """Flag per route whether the baseline path uses the Suez or Panama canal."""
-    piv = distances.pivot_table(index="route_id", columns="variant", values="distance_nm", aggfunc="first")
-    base = distances[distances["is_baseline"]].set_index("route_id")["distance_nm"]
-    out = pd.DataFrame(index=piv.index)
-    out["baseline_nm"] = base
-    out["uses_suez"] = (piv["avoid_suez"] / piv["shortest"]) > CANAL_DETECTION_RATIO
-    out["uses_panama"] = (piv["avoid_panama"] / piv["shortest"]) > CANAL_DETECTION_RATIO
-    # where the baseline already avoids Panama (Capesize trades) no Panama diversion applies
+    """Flag per route whether the baseline path uses the Suez or Panama canal, with the alternative distance.
+
+    Canal use is judged against the route's baseline variant: for Capesize
+    trades (baseline avoids Panama) the Suez alternative is the variant that
+    avoids both canals; for the others it is the plain Suez-avoiding variant.
+    Routes serving a port inside the Red Sea cannot avoid Bab el-Mandeb by
+    sailing round the Cape, so they are never diverted.
+    """
     from tmdm.transform.route_distances import baseline_variant
 
-    capesize = [baseline_variant(str(r)) == "avoid_panama" for r in out.index]
-    out.loc[capesize, "uses_panama"] = False
-    out["suez_alt_nm"] = piv["avoid_suez"]
-    out["panama_alt_nm"] = piv["avoid_panama"]
-    return out.reset_index()
+    piv = distances.pivot_table(index="route_id", columns="variant", values="distance_nm", aggfunc="first")
+    red_sea = (
+        distances.groupby("route_id")["red_sea_port"].any()
+        if "red_sea_port" in distances.columns
+        else pd.Series(False, index=piv.index)
+    )
+    rows = []
+    for rid in piv.index:
+        base_variant = baseline_variant(str(rid))
+        base = float(piv.loc[rid, base_variant])
+        if base_variant == "avoid_panama":
+            suez_alt = float(piv.loc[rid, "avoid_suez_panama"])
+            panama_alt = float("nan")
+            uses_panama = False
+        else:
+            suez_alt = float(piv.loc[rid, "avoid_suez"])
+            panama_alt = float(piv.loc[rid, "avoid_panama"])
+            uses_panama = bool(panama_alt / base > CANAL_DETECTION_RATIO)
+        uses_suez = bool(suez_alt / base > CANAL_DETECTION_RATIO) and not bool(red_sea.get(rid, False))
+        rows.append(
+            {
+                "route_id": rid,
+                "baseline_nm": base,
+                "baseline_variant": base_variant,
+                "uses_suez": uses_suez,
+                "uses_panama": uses_panama,
+                "red_sea_port": bool(red_sea.get(rid, False)),
+                "suez_alt_nm": suez_alt if uses_suez else float("nan"),
+                "panama_alt_nm": panama_alt if uses_panama else float("nan"),
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 def monthly_route_distances(canal: pd.DataFrame, diversion: pd.DataFrame, months: pd.PeriodIndex) -> pd.DataFrame:

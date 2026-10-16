@@ -197,3 +197,43 @@ def test_complete_months_trims_leading_gaps_and_interpolates_interior_ones():
     assert out.loc[pd.Period("2013-04", "M"), "fill"] == "interpolated_no_weight"
     assert bool(out.loc[pd.Period("2013-04", "M"), "interpolated"]) is True
     assert out.loc[pd.Period("2013-02", "M"), "fill"] == "reported"
+
+
+def test_canal_use_is_judged_against_the_baseline_variant_and_red_sea_ports():
+    distances = pd.DataFrame(
+        [
+            # Capesize route whose unrestricted shortest path uses Panama but whose baseline (avoiding
+            # Panama) goes through Suez: the Suez alternative is the variant avoiding both canals
+            ("CAN-CHN-iron_ore", "shortest", 11631.0, False, False),
+            ("CAN-CHN-iron_ore", "avoid_suez", 11631.0, False, False),
+            ("CAN-CHN-iron_ore", "avoid_panama", 12335.0, True, False),
+            ("CAN-CHN-iron_ore", "avoid_suez_panama", 14820.0, False, False),
+            # grain route into the Red Sea: Suez is used but no diversion is possible
+            ("UKR-SAU-grains", "shortest", 1865.0, True, True),
+            ("UKR-SAU-grains", "avoid_suez", 12058.0, False, True),
+            ("UKR-SAU-grains", "avoid_panama", 1865.0, False, True),
+            ("UKR-SAU-grains", "avoid_suez_panama", 12058.0, False, True),
+        ],
+        columns=["route_id", "variant", "distance_nm", "is_baseline", "red_sea_port"],
+    )
+    c = canal_users(distances).set_index("route_id")
+    assert bool(c.loc["CAN-CHN-iron_ore", "uses_suez"]) is True
+    assert c.loc["CAN-CHN-iron_ore", "suez_alt_nm"] == pytest.approx(14820.0)
+    assert c.loc["CAN-CHN-iron_ore", "baseline_nm"] == pytest.approx(12335.0)
+    assert bool(c.loc["CAN-CHN-iron_ore", "uses_panama"]) is False
+    assert bool(c.loc["UKR-SAU-grains", "uses_suez"]) is False
+    assert bool(c.loc["UKR-SAU-grains", "red_sea_port"]) is True
+
+
+def test_diversion_shares_are_zero_before_the_disruption():
+    months = pd.period_range("2023-06", "2024-02", freq="M")
+    transits = [20.0, 20.0, 20.0, 20.0, 20.0, 10.0, 5.0, 4.0, 4.0]  # falls from November 2023
+    choke = pd.DataFrame(
+        {"month": list(months), "portname": ["Bab el-Mandeb Strait"] * len(months), "n_dry_bulk_per_day": transits}
+    )
+    out = diversion_shares(choke)
+    red = out[out["chokepoint"] == "red_sea"].set_index("month")["diversion_share"]
+    assert red.loc[pd.Period("2023-10", "M")] == 0.0
+    assert red.loc[pd.Period("2023-11", "M")] == pytest.approx(0.5)
+    assert red.loc[pd.Period("2024-02", "M")] == pytest.approx(0.8)
+    assert out[out["chokepoint"] == "panama"].empty

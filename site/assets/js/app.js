@@ -47,7 +47,7 @@
       { label: "Covered trades, tonnes shipped", value: mt(lt.tonnes_mt), note: `${s.routes.count} routes, latest month` },
       { label: "Tonne-miles on covered routes", value: d3.format(",.0f")(lt.tonne_miles_bn) + " bn", note: `average haul ${fmt.int(lt.avg_haul_nm)} nautical miles` },
       { label: "Bulk carrier fleet", value: d3.format(",.0f")(lt.fleet_mdwt) + " Mdwt", note: "UNCTAD, interpolated to month" },
-      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: `index moved ${signed(la.total_pct, 0)} percent; elasticity ${d3.format(".1f")(la.elasticity)}` },
+      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: explained !== null && (explained < 0 || explained > 1) ? `residual larger than the move itself; index moved ${signed(la.total_pct, 0)} percent` : `index moved ${signed(la.total_pct, 0)} percent; elasticity ${d3.format(".1f")(la.elasticity)}` },
     ];
     items.forEach((it) => {
       const t = C.el("div", "tile");
@@ -92,7 +92,15 @@
       const yoy = pw.export_mt_year_ago ? pctChange(pw.export_mt, pw.export_mt_year_ago) : null;
       parts.push(`The most recent demand signal is AIS-based: in the week starting ${pw.week}, ports worldwide loaded ${mt(pw.export_mt)} of dry bulk cargo${yoy === null ? "" : `, ${fmt.pct0(yoy)} against the same week a year earlier`} (IMF PortWatch).`);
     }
-    if (s.comex_coverage) parts.push(`Brazilian customs data run to ${s.comex_coverage.split(" to ")[1].split(" (")[0]}; the balanced route panel ends in ${fmt.month(s.panel.last)} because the freight index and some customs reporters publish with a longer lag.`);
+    const cov = s.coverage || {};
+    const groups = cov.route_groups || [];
+    const lastGroup = groups.length ? groups.reduce((a, b) => (a.last_month <= b.last_month ? a : b)) : null;
+    const bdiEnd = cov.freight_index_window ? cov.freight_index_window[1] : null;
+    let reason = "";
+    if (lastGroup && bdiEnd) {
+      reason = bdiEnd <= lastGroup.last_month ? `because the public monthly freight index ends in ${fmt.month(bdiEnd)}` : `because the customs series for ${lastGroup.group_id.replace(/_/g, " ")} ends in ${fmt.month(lastGroup.last_month)}`;
+    }
+    if (s.comex_coverage) parts.push(`Brazilian customs data run to ${s.comex_coverage.split(" to ")[1].split(" (")[0]}; the balanced route panel ends in ${fmt.month(s.panel.last)}${reason ? " " + reason : ""}.`);
     parts.forEach((t) => n.append(C.el("p", null, t)));
     n.append(C.el("p", "asof", `Built ${s.built_at.replace("T", " ").replace("Z", " UTC")}. Panel ${fmt.month(s.panel.first)} to ${fmt.month(s.panel.last)}, ${s.panel.n_months} months.`));
     text("#meta-line", `Data through ${fmt.month(s.panel.last)} for the panel. Built ${s.built_at.slice(0, 10)}. All inputs are public; every figure links to a source and a retrieval date.`);
@@ -121,8 +129,9 @@
     const data = ro.month.map((m, i) => ({ x: C.monthToDate(m), label: `${fmt.month(ro.start[i])} to ${fmt.month(m)}`, volume: ro.volume[i], distance: ro.distance[i], fleet: ro.fleet[i], effective_supply: ro.effective_supply[i], residual: ro.residual[i], total: ro.total[i] }));
     const avgAbsResid = d3.mean(ro.residual, (v) => Math.abs(v));
     const avgAbsTotal = d3.mean(ro.total, (v) => Math.abs(v));
+    const agree = d3.mean(ro.total.map((t, i) => (Math.sign(t - ro.residual[i]) === Math.sign(t) ? 1 : 0)));
     C.stackedBars("#chart-rolling", {
-      title: `Rolling twelve-month moves: the four forces explain the direction most of the time, but the residual averages ${fmt.f2(avgAbsResid)} log points against a typical move of ${fmt.f2(avgAbsTotal)}`,
+      title: `Rolling twelve-month moves: the four forces give the direction of ${fmt.pctPlain(agree)} of them, but the residual averages ${fmt.f2(avgAbsResid)} log points against a typical move of ${fmt.f2(avgAbsTotal)}`,
       subtitle: `Change in the log index over the preceding twelve months (line) and its attribution (bars), log points. Endpoints are three-month averages. Elasticity ${d3.format(".2f")(ro.elasticity)}.`,
       source: sourceLine("this project's decomposition of the series above", ["asub_baltic_dry_index", "un_comtrade", "brazil_comexstat", "unctadstat_maritime"]),
       components: COMPONENTS.map((c) => ({ key: c.key, label: c.label, color: c.color() })),
@@ -230,7 +239,7 @@
       { key: "residual", label: "Residual", num: true, format: fmt.lp }, { key: "explained_share", label: "Explained", num: true, format: (v) => (Number.isFinite(v) ? fmt.pctPlain(v) : "") },
     ], eps.map((e) => ({ ...e, window: `${fmt.month(e.start)} to ${fmt.month(e.end)}` })));
     notes.append(wrap);
-    notes.append(C.el("p", null, "Episodes before the start of the monthly panel are not shown because the customs data that build the tonne-mile series begin later than the index. The explained share can exceed 100 percent when the residual has the opposite sign to the move."));
+    notes.append(C.el("p", null, "Episodes before the start of the monthly panel are not shown because the customs data that build the tonne-mile series begin later than the index. The explained share can exceed 100 percent when the residual has the opposite sign to the move. Episodes shorter than twelve months compare endpoints in different seasons; cargo volumes are seasonal, so their volume effect includes seasonal movement."));
   }
 
   /* ---------------------------------------------------------------- routes */
@@ -287,7 +296,14 @@
     const years = A.year.map((y) => new Date(Date.UTC(y, 0, 1)));
     text("#fleet-lede", `World bulk carrier capacity reached ${d3.format(",.0f")(A.fleet_mdwt[A.fleet_mdwt.length - 1])} million deadweight tonnes on 1 January ${lastY}. Supply is the fleet adjusted for the share of time ships spend in port; speed is not observable from public data and stays in the residual.`);
     C.lineChart("#chart-fleet", {
-      title: `The bulk carrier fleet has grown every year since ${A.year[0]}; growth slowed to ${d3.format(".1f")(A.fleet_growth_pct[A.fleet_growth_pct.length - 1])} percent in ${lastY}`,
+      title: (() => {
+        const g = A.fleet_growth_pct.map((v, i) => [A.year[i], v]).filter((x) => x[1] !== null && Number.isFinite(x[1]));
+        const up = g.filter((x) => x[1] > 0).length;
+        const last = g[g.length - 1], prev = g[g.length - 2];
+        const trend = prev && last[1] < prev[1] ? "slowed to" : prev && last[1] > prev[1] ? "picked up to" : "was";
+        const every = up === g.length ? `has grown every year since ${A.year[0]}` : `has grown in ${up} of the ${g.length} years since ${A.year[0]}`;
+        return `The bulk carrier fleet ${every}; growth ${trend} ${d3.format(".1f")(last[1])} percent in the year to 1 January ${last[0]}`;
+      })(),
       subtitle: "World bulk carrier fleet as of 1 January, million deadweight tonnes (left table also lists ship numbers, average age and annual growth).",
       source: sourceLine("UNCTADstat, merchant fleet by type of ship (Clarksons Research data)", ["unctadstat_maritime"]),
       series: [{ key: "fleet", label: "Bulk carrier fleet (Mdwt)", color: p.s3, values: years.map((x, i) => ({ x, y: A.fleet_mdwt[i] })) }],
