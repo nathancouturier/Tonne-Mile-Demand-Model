@@ -7,7 +7,7 @@
   "frequency": "updated continuously; snapshot at retrieval",
   "coverage": "about 3808 ports worldwide",
   "units": "decimal degrees (WGS84)",
-  "retrieved_at": "2026-10-16T13:26:24Z",
+  "retrieved_at": "2026-10-16T14:34:53Z",
   "files": [
     "UpdatedPub150.csv"
   ],

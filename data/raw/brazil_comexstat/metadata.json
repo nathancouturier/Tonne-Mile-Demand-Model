@@ -7,13 +7,13 @@
   "frequency": "monthly",
   "coverage": "1997-01 to 2026-09 (last update 2026-10-06)",
   "units": "kilograms (metricKG) and FOB US dollars (metricFOB)",
-  "retrieved_at": "2026-10-16T13:16:51Z",
+  "retrieved_at": "2026-10-16T14:38:21Z",
   "files": [
     "exports_by_country_heading.csv",
     "countries.json"
   ],
   "sha256": {
-    "exports_by_country_heading.csv": "3685bb8dcd75b376684979a1fb146c3f67065ab45eb03b1f6898aed320d5d8ad",
+    "exports_by_country_heading.csv": "91a4b397dda84ab37e9040bc5d8dc5c7d44421946e4f8313ca23bde893b04433",
     "countries.json": "49429db5e47f8199f5a921df4edd36686855b58d7008d925abdde3b35d3c7f94"
   },
   "limitations": [
