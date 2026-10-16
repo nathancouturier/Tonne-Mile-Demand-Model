@@ -7,7 +7,7 @@
   "frequency": "monthly",
   "coverage": "2011-01 to 2025-12",
   "units": "index points, 1985 = 1,000",
-  "retrieved_at": "2026-10-16T12:38:17Z",
+  "retrieved_at": "2026-10-16T12:40:55Z",
   "files": [
     "sj102_metadata.json",
     "sj102_jsonstat2.json",
