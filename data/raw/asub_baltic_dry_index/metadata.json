@@ -3,11 +3,11 @@
   "title": "Index of international dry bulk freight (Baltic Dry Index, 1985 = 1 000) 2011-2025 by month",
   "publisher": "Statistics and Research Aland (ASUB), official statistics of Aland",
   "source_url": "https://pxweb.asub.ax/PXWeb/pxweb/en/Statistik/Statistik__TUTRSJ__SJ__Konjunkturstatistik%20f%C3%B6r%20sj%C3%B6farten/SJ102.px/",
-  "licence": "ASUB open statistics (free use with attribution); index values are produced by the Baltic Exchange",
+  "licence": "ASUB open statistics (free use with attribution); the table cites Capital Link as its source and the index itself is produced by the Baltic Exchange",
   "frequency": "monthly",
   "coverage": "2011-01 to 2025-12",
   "units": "index points, 1985 = 1,000",
-  "retrieved_at": "2026-10-16T12:40:55Z",
+  "retrieved_at": "2026-10-16T12:53:16Z",
   "files": [
     "sj102_metadata.json",
     "sj102_jsonstat2.json",
@@ -20,14 +20,16 @@
   },
   "limitations": [
     "A monthly figure for a daily index; the table documentation defines the monthly value (see metadata notes).",
-    "Secondary publication of Baltic Exchange data; the Baltic Exchange is the originator of the index."
+    "Secondary publication of Baltic Exchange data compiled by Capital Link; the Baltic Exchange is the originator of the index.",
+    "The table is updated by ASUB after each year end, so the latest month lags the demand data."
   ],
   "notes": [],
   "extra": {
     "api_url": "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik/TUTRSJ/SJ/Konjunkturstatistik%20f%C3%B6r%20sj%C3%B6farten/SJ102.px",
     "variables": [
       "year",
-      "month"
+      "month",
+      "json-stat source field: Capital Link (https://capitallinkshipping.com/); dataset updated field: 2016-01-26T22:00:00Z"
     ]
   }
 }

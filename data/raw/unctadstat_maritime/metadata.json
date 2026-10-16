@@ -1,0 +1,47 @@
+{
+  "dataset_id": "unctadstat_maritime",
+  "title": "UNCTADstat maritime transport statistics: merchant fleet, ships built and scrapped, port calls, seaborne trade",
+  "publisher": "United Nations Conference on Trade and Development (UNCTAD), UNCTADstat Data Centre",
+  "source_url": "https://unctadstat.unctad.org/datacentre/",
+  "licence": "UNCTADstat data may be freely used with attribution to UNCTAD (UNCTADstat terms of use)",
+  "frequency": "annual",
+  "coverage": "US.MerchantFleet: 1980 to 2026; US.ShipBuilding: 2014 to 2025; US.ShipScrapping: 2014 to 2025; US.PortCalls: 2018 to 2023; US.SeaborneTrade: 2000 to 2024; US.PortCalls_S: 2018S01 to 2023S02; US.PortCallsArrivals: 2018 to 2023",
+  "units": "thousand deadweight tons (fleet, 1 January), gross tons (ships built and scrapped), days (median time in port), thousand metric tons (seaborne trade)",
+  "retrieved_at": "2026-10-16T12:53:21Z",
+  "files": [
+    "US_MerchantFleet.csv",
+    "US_ShipBuilding.csv",
+    "US_ShipScrapping.csv",
+    "US_PortCalls.csv",
+    "US_SeaborneTrade.csv",
+    "US_PortCalls_S.csv",
+    "US_PortCallsArrivals.csv"
+  ],
+  "sha256": {
+    "US_MerchantFleet.csv": "a0c318d2e174e022ef8319fa08cef85cee9625ade9ca48a3dde7a15029372a62",
+    "US_ShipBuilding.csv": "97b799ceaf43f75a05b14c288e83a1e08dd29b8145b0e6b0f646500de3d0e0da",
+    "US_ShipScrapping.csv": "f7166477cecabbe3cdc834db5da0b5249c6087499c8824d994e9b2449a4955d7",
+    "US_PortCalls.csv": "43e5ec3a7cc8d9655a32c7bfb94912c44da90fceb7fb214ad87a17ca0608d547",
+    "US_SeaborneTrade.csv": "a5db84dcdf3591958b5878ca64f87328e33743a2fe76a83f4009d69fd35da5c1",
+    "US_PortCalls_S.csv": "07df2e8fbe1422620cdf416823a63943065a2313886b2f1fe41f9f0481ec671d",
+    "US_PortCallsArrivals.csv": "b1ea382a5949f83c5dba97ca3162e7656ef990285f54bc745a898d22556b29b3"
+  },
+  "limitations": [
+    "Fleet figures are stocks as of 1 January, compiled from Clarksons Research data for ships of 100 GT and above.",
+    "Ships built and scrapped are not split by ship type in the public dataset; they describe the whole fleet.",
+    "Median time in port is an annual median across all port calls in the ship type and may hide within-year swings.",
+    "Seaborne trade dry cargo includes containerised and minor bulk cargo, not only the major bulks."
+  ],
+  "notes": [],
+  "extra": {
+    "bulk_download_urls": {
+      "US.MerchantFleet": "https://unctadstat-api.unctad.org/bulkdownload/US.MerchantFleet/US_MerchantFleet",
+      "US.ShipBuilding": "https://unctadstat-api.unctad.org/bulkdownload/US.ShipBuilding/US_ShipBuilding",
+      "US.ShipScrapping": "https://unctadstat-api.unctad.org/bulkdownload/US.ShipScrapping/US_ShipScrapping",
+      "US.PortCalls": "https://unctadstat-api.unctad.org/bulkdownload/US.PortCalls/US_PortCalls",
+      "US.SeaborneTrade": "https://unctadstat-api.unctad.org/bulkdownload/US.SeaborneTrade/US_SeaborneTrade",
+      "US.PortCalls_S": "https://unctadstat-api.unctad.org/bulkdownload/US.PortCalls_S/US_PortCalls_S",
+      "US.PortCallsArrivals": "https://unctadstat-api.unctad.org/bulkdownload/US.PortCallsArrivals/US_PortCallsArrivals"
+    }
+  }
+}

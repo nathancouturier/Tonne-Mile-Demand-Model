@@ -7,7 +7,7 @@
   "frequency": "monthly",
   "coverage": "1960 onward, nominal US dollars",
   "units": "US dollars per metric ton (iron ore: per dry metric ton unit)",
-  "retrieved_at": "2026-10-16T12:40:59Z",
+  "retrieved_at": "2026-10-16T12:53:24Z",
   "files": [
     "CMO-Historical-Data-Monthly.xlsx"
   ],
