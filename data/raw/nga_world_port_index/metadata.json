@@ -1,0 +1,24 @@
+{
+  "dataset_id": "nga_world_port_index",
+  "title": "World Port Index (Pub. 150), port locations and characteristics",
+  "publisher": "US National Geospatial-Intelligence Agency (NGA), Maritime Safety Information",
+  "source_url": "https://msi.nga.mil/Publications/WPI",
+  "licence": "US government work, public domain",
+  "frequency": "updated continuously; snapshot at retrieval",
+  "coverage": "about 3808 ports worldwide",
+  "units": "decimal degrees (WGS84)",
+  "retrieved_at": "2026-10-16T12:06:12Z",
+  "files": [
+    "UpdatedPub150.csv"
+  ],
+  "sha256": {
+    "UpdatedPub150.csv": "315644f1e77966291633145fd351c2762b37702d115926b9ed074b39e8e21667"
+  },
+  "limitations": [
+    "A port coordinate is a single reference point; large export terminals can lie several miles from it."
+  ],
+  "notes": [],
+  "extra": {
+    "download_url": "https://msi.nga.mil/api/publications/download?key=16920959/SFH00000/UpdatedPub150.csv&type=download"
+  }
+}
