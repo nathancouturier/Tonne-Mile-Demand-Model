@@ -96,7 +96,7 @@ Stages can be run individually with `python -m tmdm.cli <stage>` (`ingest`, `val
 GitHub Actions:
 
 * `ci.yml` runs lint, type checks and tests on every push.
-* `refresh.yml` runs every Tuesday (after the weekly PortWatch update) and on demand: it downloads the data (three parallel Comtrade shards because the public API enforces an hourly call quota), rebuilds the processed data, the site and the research note, commits them and publishes the site to the `gh-pages` branch.
+* `refresh.yml` runs every Tuesday (after the weekly PortWatch update) and on demand: it downloads the data (three parallel Comtrade shards because the public API enforces an hourly call quota), rebuilds the processed data, the site and the research note, commits them and publishes the site to the `gh-pages` branch. GitHub only evaluates schedules and manual dispatch for workflows on the default branch, so the weekly refresh starts once this branch is merged. On a feature branch, a push that changes `scripts/refresh_trigger.txt` downloads data, and a commit message containing `[build]` (or `[build only]` to skip the download) runs the build and publishes the site.
 
 The random seed for any stochastic step is fixed in `src/tmdm/config.py`; the pipeline is deterministic given the raw data. Data versions are identified by the `retrieved_at` field of each metadata record and by the git history of `data/raw/`.
 
