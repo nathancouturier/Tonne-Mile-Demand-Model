@@ -1,0 +1,10 @@
+{
+ "archive_bytes": 938045,
+ "members": [
+  "US_MerchantFleet.csv"
+ ],
+ "US_MerchantFleet.csv": {
+  "bytes": 9461926,
+  "lines": 63897
+ }
+}

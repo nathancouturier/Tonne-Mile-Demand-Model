@@ -1,0 +1,15 @@
+Year,Economy,Economy Label,ShipType,ShipType Label,Dead weight tons in thousands,Dead weight tons in thousands Footnote,Dead weight tons in thousands Missing value,Percentage of total world,Percentage of total world Footnote,Percentage of total world Missing value,Percentage of total fleet,Percentage of total fleet Footnote,Percentage of total fleet Missing value,Number of ships,Number of ships Footnote,Number of ships Missing value,Gross Tonnage in thousands,Gross Tonnage in thousands Footnote,Gross Tonnage in thousands Missing value,Average age of vessels (years),Average age of vessels (years) Footnote,Average age of vessels (years) Missing value
+1980,0000,"World",0,"Total fleet",672192.465,,,100,,,100,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,0000,"World",1,"Oil tankers",337945.534,,,100,,,50.27511,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,0000,"World",2,"Bulk carriers",181880.282,,,100,,,27.05777,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,0000,"World",3,"General cargo",112840.897,,,100,,,16.78699,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,0000,"World",4,"Container ships",10290.114,,,100,,,1.53083,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,0000,"World",5,"Other types of ships",29235.638,,,100,,,4.3493,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5100,"Africa",0,"Total fleet",167909.445,,,24.97937,,,100,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5100,"Africa",1,"Oil tankers",108636.742,,,32.146228,,,64.6996,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5100,"Africa",2,"Bulk carriers",46923.651,,,25.799196,,,27.94581,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5100,"Africa",3,"General cargo",8241.719,,,7.30384,,,4.90843,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5100,"Africa",4,"Container ships",664.709,,,6.459685,,,0.39587,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5100,"Africa",5,"Other types of ships",3442.624,,,11.775437,,,2.05029,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5110,"Northern Africa",0,"Total fleet",4950.346,,,0.736448,,,100,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1980,5110,"Northern Africa",1,"Oil tankers",3161.677,,,0.935558,,,63.8678,,,,,"No value repor

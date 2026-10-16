@@ -1,0 +1,10 @@
+{
+ "archive_bytes": 462110,
+ "members": [
+  "US_SeaborneTrade.csv"
+ ],
+ "US_SeaborneTrade.csv": {
+  "bytes": 5108113,
+  "lines": 64425
+ }
+}
