@@ -314,7 +314,7 @@ def fetch(
     done_keys = set(zip(done["spec_id"], done["freq"], done["period"], strict=True))
     frames = [existing]
     done_rows: list[dict[str, Any]] = []
-    todo: list[tuple[CallGroup, str, str, tuple[int, ...]]] = []
+    pending: list[tuple[CallGroup, str, str, tuple[int, ...]]] = []
     for g in groups:
         for m in months:
             reps = tuple(r for r in g.reporter_codes if m in published.get(r, set()))
@@ -328,15 +328,15 @@ def fetch(
             is_recent = any(f"{m[:4]}-{m[4:6]}" >= refresh_from[r] for r in reps if r in refresh_from)
             if (g.group_id, "M", m) in done_keys and not is_recent:
                 continue
-            todo.append((g, "M", m, reps))
+            pending.append((g, "M", m, reps))
         for y in years:
             if (g.group_id, "A", y) in done_keys:
                 continue
-            todo.append((g, "A", y, g.reporter_codes))
-    log.info("comtrade shard %d/%d: %d calls planned", k, n, len(todo))
+            pending.append((g, "A", y, g.reporter_codes))
+    log.info("comtrade shard %d/%d: %d calls planned", k, n, len(pending))
     since_checkpoint = 0
     try:
-        for g, freq, period, reps in todo:
+        for g, freq, period, reps in pending:
             recs = fetch_period(client, g, reps, freq, period)
             new = _tidy(recs, utc_now_iso())
             new.insert(0, "spec_id", g.group_id)
@@ -363,7 +363,7 @@ def fetch(
                 _write_log(log_path, client)
                 _write_done(done_path, done, done_rows)
                 since_checkpoint = 0
-                log.info("comtrade shard %d/%d: %d of %d calls done", k, n, len(done_rows), len(todo))
+                log.info("comtrade shard %d/%d: %d of %d calls done", k, n, len(done_rows), len(pending))
     finally:
         out = _write_records(rec_path, frames)
         _write_log(log_path, client)

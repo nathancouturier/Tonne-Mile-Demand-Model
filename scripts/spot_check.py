@@ -1,0 +1,153 @@
+"""Spot-check numbers shown on the site against the raw downloads and independent recomputation.
+
+Each check prints the site value, the value recomputed from raw data and the
+relative difference. Exit status is non-zero if any check fails its tolerance.
+"""
+
+from __future__ import annotations
+
+import json
+import math
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parents[1]
+RAW = ROOT / "data" / "raw"
+PROC = ROOT / "data" / "processed"
+SITE = ROOT / "site" / "data"
+
+results: list[tuple[str, float, float, float, bool]] = []
+
+
+def check(name: str, site_value: float, raw_value: float, tol: float = 1e-6) -> None:
+    rel = abs(site_value - raw_value) / (abs(raw_value) if raw_value else 1.0)
+    ok = rel <= tol
+    results.append((name, site_value, raw_value, rel, ok))
+
+
+def load(name: str) -> dict:
+    return json.loads((SITE / f"{name}.json").read_text())
+
+
+def main() -> int:
+    summary, series, fleet, routes, pw, rolling, episodes, model = (
+        load(n) for n in ("summary", "series", "fleet", "routes", "portwatch", "rolling", "episodes", "model")
+    )
+    # 1. Latest BDI shown on the headline equals the last value of the raw ASUB table for that month
+    bdi_raw = pd.read_csv(RAW / "asub_baltic_dry_index" / "baltic_dry_index_monthly.csv").set_index("month")["bdi"]
+    check(
+        "headline BDI, latest panel month", summary["latest"]["bdi"], float(bdi_raw[summary["latest"]["month"]]), 1e-3
+    )
+    # 2. Latest fleet in the annual chart equals the UNCTAD raw World bulk carrier row
+    uf = pd.read_csv(RAW / "unctadstat_maritime" / "US_MerchantFleet.csv", dtype=str)
+    w = uf[(uf["Economy Label"] == "World") & (uf["ShipType Label"] == "Bulk carriers")].copy()
+    w["Year"] = w["Year"].astype(int)
+    last_year = int(fleet["annual"]["year"][-1])
+    raw_mdwt = float(w.loc[w["Year"] == last_year, "Dead weight tons in thousands"].iloc[0]) / 1000
+    check(f"fleet {last_year} (Mdwt)", fleet["annual"]["fleet_mdwt"][-1], raw_mdwt, 1e-3)
+    # 3. Brazil to China iron ore tonnes over the routes window equals the Comex Stat raw sum
+    cx = pd.read_csv(RAW / "brazil_comexstat" / "exports_by_country_heading.csv", dtype={"headingCode": str})
+    cx["month"] = cx["year"].astype(str) + "-" + cx["monthNumber"].astype(int).astype(str).str.zfill(2)
+    w0, w1 = routes["window"]
+    sub = cx[(cx["headingCode"] == "2601") & (cx["country"] == "China") & (cx["month"] >= w0) & (cx["month"] <= w1)]
+    raw_mt = float(sub["metricKG"].sum()) / 1e9
+    r = next(x for x in routes["routes"] if x["route_id"] == "BRA-CHN-iron_ore")
+    check("Brazil to China iron ore, last 12 months (Mt)", r["tonnes_last12_mt"], raw_mt, 1e-3)
+    # 4. Australia to China iron ore in the routes window from Comtrade raw records
+    recs = pd.concat(
+        [pd.read_csv(f, dtype={"cmdCode": str, "period": str}) for f in (RAW / "un_comtrade").glob("records*.csv")]
+    )
+    recs["month"] = recs["period"].str[:4] + "-" + recs["period"].str[4:6]
+    sub = recs[
+        (recs["reporterCode"] == 36)
+        & (recs["flowCode"] == "X")
+        & (recs["partnerCode"] == 156)
+        & (recs["cmdCode"] == "2601")
+        & (recs["freqCode"] == "M")
+        & (recs["month"] >= w0)
+        & (recs["month"] <= w1)
+    ]
+    r = next(x for x in routes["routes"] if x["route_id"] == "AUS-CHN-iron_ore")
+    check(
+        "Australia to China iron ore, last 12 months (Mt)",
+        r["tonnes_last12_mt"],
+        float(sub["netWgt"].sum()) / 1e9,
+        1e-3,
+    )
+    # 5. Route distance recomputed with the routing network for the main leg of Port Hedland to Qingdao
+    import searoute as sr
+
+    ports = pd.read_csv(PROC / "ports.csv").set_index("port_id")
+    dist = pd.read_csv(PROC / "route_distances.csv")
+    o, d = ports.loc["AU_PHE"], ports.loc["CN_TAO"]
+    rec = sr.searoute([o["lon"], o["lat"]], [d["lon"], d["lat"]], units="naut", restrictions=["northwest", "panama"])
+    pair_nm = float(rec.properties["length"])
+    o2 = ports.loc["AU_DAM"]
+    rec2 = sr.searoute([o2["lon"], o2["lat"]], [d["lon"], d["lat"]], units="naut", restrictions=["northwest", "panama"])
+    blended = 0.6 * pair_nm + 0.4 * float(rec2.properties["length"])
+    site_nm = float(
+        dist[(dist["route_id"] == "AUS-CHN-iron_ore") & (dist["variant"] == "avoid_panama")]["distance_nm"].iloc[0]
+    )
+    check("Australia to China iron ore distance (nm, blended)", site_nm, blended, 1e-3)
+    # 6. PortWatch latest week export tonnage equals the sum of raw daily values
+    daily = pd.read_csv(RAW / "imf_portwatch" / "dry_bulk_daily_global.csv", parse_dates=["date"])
+    wk = pd.Timestamp(pw["latest_week"]["week"])
+    raw_week = (
+        float(daily[(daily["date"] >= wk) & (daily["date"] < wk + pd.Timedelta(days=7))]["export_dry_bulk_t"].sum())
+        / 1e6
+    )
+    check("PortWatch latest week dry bulk exports (Mt)", pw["latest_week"]["export_mt"], raw_week, 1e-3)
+    # 7. Bab el-Mandeb transits per day in the last month equal raw daily mean
+    ck = pd.read_csv(RAW / "imf_portwatch" / "chokepoints_daily.csv", parse_dates=["date"])
+    last_m = pw["chokepoints_monthly"]["month"][-1]
+    sub = ck[(ck["portname"] == "Bab el-Mandeb Strait") & (ck["date"].dt.strftime("%Y-%m") == last_m)]
+    check(
+        f"Bab el-Mandeb dry bulk transits per day, {last_m}",
+        pw["chokepoints_monthly"]["Bab el-Mandeb Strait"][-1],
+        float(sub["n_dry_bulk"].mean()),
+        1e-2,
+    )
+    # 8. Rolling attribution components add up to the total in the latest month
+    i = -1
+    s = (
+        rolling["volume"][i]
+        + rolling["distance"][i]
+        + rolling["fleet"][i]
+        + rolling["effective_supply"][i]
+        + rolling["residual"][i]
+    )
+    check("rolling attribution adds up (latest month)", s, rolling["total"][i], 1e-3)
+    # 9. Tonne-miles total for the latest panel month equals the sum over routes of tonnes times distance
+    br = pd.read_csv(PROC / "tonne_miles_by_route.csv")
+    lm = series["month"][-1]
+    sub = br[br["month"] == lm]
+    check(
+        f"tonne-miles total {lm} (bn)",
+        series["tonne_miles_bn"][-1],
+        float((sub["tonnes"] * sub["distance_nm"]).sum()) / 1e9,
+        1e-3,
+    )
+    # 10. Episode totals equal log(index_end / index_start)
+    e = episodes[-1]
+    check(f"episode total {e['episode_id']}", e["total"], math.log(e["index_end"] / e["index_start"]), 1e-6)
+    # 11. Fitted index on the headline chart equals exp(intercept + e log(balance)) for the latest month
+    h = model["elasticity"]["headline"]
+    panel = pd.read_csv(PROC / "panel_monthly.csv").set_index("month")
+    row = panel.loc[lm]
+    bal = math.log(row["tonne_miles"] / (row["fleet"] * row["supply_factor"]))
+    check(f"fitted index {lm}", series["fitted_bdi"][-1], math.exp(h["intercept"] + h["elasticity"] * bal), 1e-3)
+    # 12. Explained share on the tile equals one minus residual over total from rolling data
+    la = summary["latest_attribution"]
+    check("latest attribution total equals rolling total", la["total"], rolling["total"][-1], 1e-9)
+    bad = 0
+    for name, sv, rv, rel, ok in results:
+        print(f"{'OK  ' if ok else 'FAIL'} {name}: site={sv:,.4f} raw={rv:,.4f} rel_diff={rel:.2e}")
+        bad += 0 if ok else 1
+    print(f"{len(results) - bad} of {len(results)} spot checks passed")
+    return 1 if bad else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

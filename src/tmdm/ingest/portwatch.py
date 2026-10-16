@@ -132,9 +132,9 @@ def fetch_monthly_by_country(refresh_months: int = 3) -> pd.DataFrame:
     months = pd.period_range(pd.Period(dmin, "M"), pd.Period(dmax, "M"), freq="M")
     done = set(existing["month"].astype(str)) if not existing.empty else set()
     refresh = {str(m) for m in months[-refresh_months:]}
-    todo = [m for m in months if str(m) not in done or str(m) in refresh]
-    frames = [existing[~existing["month"].astype(str).isin([str(m) for m in todo])]] if not existing.empty else []
-    for m in todo:
+    pending = [m for m in months if str(m) not in done or str(m) in refresh]
+    frames = [existing[~existing["month"].astype(str).isin([str(m) for m in pending])]] if not existing.empty else []
+    for m in pending:
         start = m.to_timestamp(how="start").date()
         end = (m + 1).to_timestamp(how="start").date()
         where = f"date >= DATE '{start}' AND date < DATE '{end}'"
