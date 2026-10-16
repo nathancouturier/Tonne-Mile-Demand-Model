@@ -7,7 +7,7 @@
   "frequency": "daily (aggregated here to months and to global daily totals)",
   "coverage": "2019-01-01 to 2026-10-09, 2065 ports, 28 chokepoints",
   "units": "metric tons of cargo (import and export estimates), number of port calls, number of transits",
-  "retrieved_at": "2026-10-16T14:38:30Z",
+  "retrieved_at": "2026-10-16T16:54:15Z",
   "files": [
     "ports_database.csv",
     "chokepoints_database.csv",
@@ -16,7 +16,7 @@
     "chokepoints_daily.csv"
   ],
   "sha256": {
-    "ports_database.csv": "a2c63e54436554af9173dd54a3fc49105af13ba0bc295cb7ecedfa72742ee0eb",
+    "ports_database.csv": "a8cdc3a1c01cb0c7fb4f7bff65b55150cf5becdb04e39ed4ab63af89180c269d",
     "chokepoints_database.csv": "84e1a58f3c0639dc6b647fd552bb567a4b74419e233440e02566a80568134c03",
     "dry_bulk_monthly_by_country.csv": "61549368a55118f5971b0c0e2a57c3e9798d41edbf01f5a2be1c906228c78428",
     "dry_bulk_daily_global.csv": "bb2186d49895ebc0fb23979693e4899af1eba07b5315c303c2d6ae8b41e9b851",

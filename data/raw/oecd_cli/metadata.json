@@ -1,0 +1,23 @@
+{
+  "dataset_id": "oecd_cli",
+  "title": "OECD Composite Leading Indicators, amplitude adjusted (long-term average = 100)",
+  "publisher": "Organisation for Economic Co-operation and Development (OECD)",
+  "source_url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.STES,DSD_STES@DF_CLI,4.1/.M.LI...AA...H?startPeriod=2005-01&format=csvfilewithlabels",
+  "licence": "OECD terms and conditions (free reuse with attribution, CC BY 4.0 for OECD data)",
+  "frequency": "monthly",
+  "coverage": "2005-01 to 2026-09, 22 areas",
+  "units": "index, long-term average = 100",
+  "retrieved_at": "2026-10-16T16:43:30Z",
+  "files": [
+    "cli_monthly.csv"
+  ],
+  "sha256": {
+    "cli_monthly.csv": "c773fef0904b8d9630a30eae2c98ef95f7fcb3da238e2858df9e9f0eff796fc9"
+  },
+  "limitations": [
+    "Recent months are revised as the cycle is re-estimated; each refresh stores the current vintage.",
+    "A leading indicator of the general business cycle, not of dry bulk trade specifically."
+  ],
+  "notes": [],
+  "extra": {}
+}

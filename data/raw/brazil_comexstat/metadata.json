@@ -1,19 +1,19 @@
 {
   "dataset_id": "brazil_comexstat",
-  "title": "Brazil Comex Stat: monthly exports by destination country for iron ore, soybeans, maize and soybean meal",
+  "title": "Brazil Comex Stat: monthly exports by destination country for iron ore, soybeans, maize, soybean meal, sugar, manganese ore, bauxite and wood chips",
   "publisher": "Ministerio do Desenvolvimento, Industria, Comercio e Servicos (MDIC), Brazil",
   "source_url": "https://comexstat.mdic.gov.br/",
   "licence": "Open government data (Brazilian open data policy); attribution to MDIC/Comex Stat",
   "frequency": "monthly",
   "coverage": "1997-01 to 2026-09 (last update 2026-10-06)",
   "units": "kilograms (metricKG) and FOB US dollars (metricFOB)",
-  "retrieved_at": "2026-10-16T14:38:21Z",
+  "retrieved_at": "2026-10-16T16:54:02Z",
   "files": [
     "exports_by_country_heading.csv",
     "countries.json"
   ],
   "sha256": {
-    "exports_by_country_heading.csv": "91a4b397dda84ab37e9040bc5d8dc5c7d44421946e4f8313ca23bde893b04433",
+    "exports_by_country_heading.csv": "f7830bc2936893936f8a25670607945de3d5eab30d4f31598918327c23f96a36",
     "countries.json": "49429db5e47f8199f5a921df4edd36686855b58d7008d925abdde3b35d3c7f94"
   },
   "limitations": [
@@ -26,7 +26,11 @@
       "2601": "iron_ore",
       "1201": "soybeans",
       "1005": "maize",
-      "2304": "soybean_meal"
+      "2304": "soybean_meal",
+      "1701": "sugar",
+      "2602": "manganese_ore",
+      "2606": "bauxite",
+      "4401": "wood_chips_pellets"
     },
     "api": "https://api-comexstat.mdic.gov.br/general"
   }
