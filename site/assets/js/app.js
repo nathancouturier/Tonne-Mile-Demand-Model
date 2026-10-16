@@ -433,7 +433,7 @@
         const detail = Object.entries(f.months || {}).map(([k, v]) => `${reasons[k] || k}: ${v.length} month${v.length === 1 ? "" : "s"} (${ranges(v)})`).join(". ");
         return { group: g.label || g.group_id, window: `${fmt.month(g.first_month)} to ${fmt.month(g.last_month)}`, proxy: f.proxy_tonnes_share, interp: f.interpolated_tonnes_share, detail: detail || "none" };
       }).filter((r) => r.proxy > 0 || r.interp > 0);
-      const gt = C.el("div");
+      const gt = C.el("div", "table-wrap");
       gap.append(gt);
       C.dataTable(gt, [{ key: "group", label: "Route group" }, { key: "window", label: "Data available" }, { key: "proxy", label: "Proxy share of tonnes", num: true, format: d3.format(".1%") }, { key: "interp", label: "Interpolated share of tonnes", num: true, format: d3.format(".1%") }, { key: "detail", label: "Affected months" }], rows);
       lim.after(gap);

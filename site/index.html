@@ -20,6 +20,18 @@
   <p class="meta" id="meta-line">Loading the latest build&hellip;</p>
 </header>
 
+<nav class="views" id="views" aria-label="Sections of the note">
+  <p class="views-label">Open a section</p>
+  <div class="view-buttons" role="tablist">
+    <button type="button" role="tab" data-view="overview" aria-selected="false" aria-controls="panel-overview">Overview</button>
+    <button type="button" role="tab" data-view="decomposition" aria-selected="false" aria-controls="panel-decomposition">Decomposition explorer</button>
+    <button type="button" role="tab" data-view="routes" aria-selected="false" aria-controls="panel-routes">Routes</button>
+    <button type="button" role="tab" data-view="fleet" aria-selected="false" aria-controls="panel-fleet">Fleet and supply</button>
+    <button type="button" role="tab" data-view="methodology" aria-selected="false" aria-controls="panel-methodology">Methodology and data</button>
+    <button type="button" role="tab" data-view="downloads" aria-selected="false" aria-controls="panel-downloads">Downloads</button>
+  </div>
+</nav>
+
 <section class="headline" aria-labelledby="headline-title">
   <h2 id="headline-title" class="visually-hidden">Latest reading</h2>
   <div class="tiles" id="tiles" aria-live="polite"></div>
@@ -37,18 +49,6 @@
   </figure>
   <div class="today" id="today"></div>
 </section>
-
-<nav class="views" id="views" aria-label="Sections of the note">
-  <p class="views-label">Open a section</p>
-  <div class="view-buttons" role="tablist">
-    <button type="button" role="tab" data-view="overview" aria-selected="false" aria-controls="panel-overview">Overview</button>
-    <button type="button" role="tab" data-view="decomposition" aria-selected="false" aria-controls="panel-decomposition">Decomposition explorer</button>
-    <button type="button" role="tab" data-view="routes" aria-selected="false" aria-controls="panel-routes">Routes</button>
-    <button type="button" role="tab" data-view="fleet" aria-selected="false" aria-controls="panel-fleet">Fleet and supply</button>
-    <button type="button" role="tab" data-view="methodology" aria-selected="false" aria-controls="panel-methodology">Methodology and data</button>
-    <button type="button" role="tab" data-view="downloads" aria-selected="false" aria-controls="panel-downloads">Downloads</button>
-  </div>
-</nav>
 
 <main id="panels">
   <section class="panel" id="panel-overview" role="tabpanel" hidden>
