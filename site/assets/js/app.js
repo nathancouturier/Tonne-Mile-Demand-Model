@@ -365,6 +365,38 @@
     S.forEach((s) => (s.limitations || []).forEach((l) => ul.append(C.el("li", null, `${s.title.split(":")[0]}: ${l}`))));
     lim.append(ul);
     st.after(lim);
+    // quantity gaps, proxies and interpolation per route group
+    const cov = D.summary.coverage || {};
+    const fs = cov.fill_summary || {};
+    const groups = (cov.route_groups || []).filter((g) => fs[g.group_id]);
+    if (groups.length) {
+      const gap = C.el("div", "prose");
+      gap.append(C.el("h3", null, "Where customs quantities are estimated or interpolated"));
+      gap.append(C.el("p", null, "Customs offices publish values for every month but not always weights. Where a reporter's monthly records carry a value and no net weight, tonnes are estimated as the value divided by that reporter's annual unit value for the same partner and commodity from the annual UN Comtrade series (flagged as a proxy). Months in which most of a group's value has no usable weight, and months the reporter did not publish, are interpolated linearly between the neighbouring months inside the group's range and trimmed at its ends. The table lists every affected group; the per-route flags are in the downloads."));
+      const ranges = (months) => {
+        if (!months || !months.length) return "";
+        const out = [];
+        let start = months[0], prev = months[0];
+        const next = (m) => { const [y, mo] = m.split("-").map(Number); return mo === 12 ? `${y + 1}-01` : `${y}-${String(mo + 1).padStart(2, "0")}`; };
+        for (let i = 1; i <= months.length; i++) {
+          const m = months[i];
+          if (m !== undefined && m === next(prev)) { prev = m; continue; }
+          out.push(start === prev ? fmt.month(start) : `${fmt.month(start)} to ${fmt.month(prev)}`);
+          if (m !== undefined) { start = m; prev = m; }
+        }
+        return out.join("; ");
+      };
+      const reasons = { proxy_unit_value: "proxy from annual unit value", interpolated_unpublished: "interpolated, month not published", interpolated_no_weight: "interpolated, weights missing" };
+      const rows = groups.map((g) => {
+        const f = fs[g.group_id];
+        const detail = Object.entries(f.months || {}).map(([k, v]) => `${reasons[k] || k}: ${v.length} month${v.length === 1 ? "" : "s"} (${ranges(v)})`).join(". ");
+        return { group: g.group_id.replace(/_/g, " "), window: `${fmt.month(g.first_month)} to ${fmt.month(g.last_month)}`, proxy: f.proxy_tonnes_share, interp: f.interpolated_tonnes_share, detail: detail || "none" };
+      }).filter((r) => r.proxy > 0 || r.interp > 0);
+      const gt = C.el("div");
+      gap.append(gt);
+      C.dataTable(gt, [{ key: "group", label: "Route group" }, { key: "window", label: "Months used" }, { key: "proxy", label: "Proxy share of tonnes", num: true, format: d3.format(".1%") }, { key: "interp", label: "Interpolated share of tonnes", num: true, format: d3.format(".1%") }, { key: "detail", label: "Affected months" }], rows);
+      lim.after(gap);
+    }
     // validation table
     const vt = $("#validation-table");
     C.dataTable(vt, [{ key: "dataset", label: "Dataset" }, { key: "check", label: "Check" }, { key: "status", label: "Status" }, { key: "message", label: "Result" }], V.checks);
@@ -372,10 +404,10 @@
     vt.before(C.el("p", "source", `${V.summary.pass} checks passed, ${V.summary.warn} warnings, ${V.summary.fail} failures. Generated ${V.generated_at.replace("T", " ").replace("Z", " UTC")}.`));
     // regression table
     const rt = $("#regression-table");
-    const rows = [{ model: "Levels: log index on log(tonne-miles / effective fleet), monthly", elasticity: m.headline.elasticity, se: m.headline.std_error, t: m.headline.t_stat, r2: m.headline.r_squared, n: m.headline.n_obs, dw: m.headline.durbin_watson }];
-    const labels = { twelve_month_changes: "Twelve-month changes", quarterly_levels: "Quarterly averages, levels", first_half: "First half of the sample, levels", second_half: "Second half of the sample, levels" };
+    const rows = [{ model: "Headline: twelve-month change in log index on twelve-month change in log(tonne-miles / effective fleet)", elasticity: m.headline.elasticity, se: m.headline.std_error, t: m.headline.t_stat, r2: m.headline.r_squared, n: m.headline.n_obs, dw: m.headline.durbin_watson }];
+    const labels = { levels_with_month_dummies: "Monthly levels with month dummies", levels_plain: "Monthly levels", quarterly_four_quarter_changes: "Quarterly averages, four-quarter changes", first_half: "First half of the sample, twelve-month changes", second_half: "Second half of the sample, twelve-month changes" };
     Object.entries(m.robustness).forEach(([k, v]) => rows.push({ model: labels[k] || k, elasticity: v.elasticity, se: v.std_error, t: v.t_stat, r2: v.r_squared, n: v.n_obs, dw: v.durbin_watson }));
-    C.dataTable(rt, [{ key: "model", label: "Specification" }, { key: "elasticity", label: "Elasticity", num: true, format: fmt.f2 }, { key: "se", label: "Std. error (HAC)", num: true, format: fmt.f2 }, { key: "t", label: "t", num: true, format: fmt.f1 }, { key: "r2", label: "R squared", num: true, format: fmt.f2 }, { key: "n", label: "Months", num: true, format: fmt.int }, { key: "dw", label: "Durbin-Watson", num: true, format: fmt.f2 }], rows);
+    C.dataTable(rt, [{ key: "model", label: "Specification" }, { key: "elasticity", label: "Elasticity", num: true, format: fmt.f2 }, { key: "se", label: "Std. error (HAC)", num: true, format: fmt.f2 }, { key: "t", label: "t", num: true, format: fmt.f1 }, { key: "r2", label: "R squared", num: true, format: fmt.f2 }, { key: "n", label: "Observations", num: true, format: fmt.int }, { key: "dw", label: "Durbin-Watson", num: true, format: fmt.f2 }], rows);
     if (dr && dr.coefficients) {
       const dp = C.el("div", "prose");
       dp.append(C.el("h3", null, "Unrestricted first-difference regression"));

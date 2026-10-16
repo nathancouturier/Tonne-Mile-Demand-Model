@@ -16,7 +16,7 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.ingest import asub_bdi, comexstat, comtrade, portwatch, unctad
-from tmdm.reference import COMEX_COUNTRY_TO_ISO3, COMTRADE_CODES
+from tmdm.reference import CODE_TO_ISO3, COMEX_COUNTRY_TO_ISO3, COMTRADE_CODES
 from tmdm.validate.checks import (
     CheckResult,
     check_missing,
@@ -80,7 +80,82 @@ def comtrade_checks(records: pd.DataFrame) -> list[CheckResult]:
                 f"un_comtrade:{spec_id}", pd.Series([f"{p[:4]}-{p[4:6]}" for p in g["period"].astype(str).unique()])
             )
         )
+    out.append(check_weightless_values(monthly))
+    out.append(check_annual_unit_values(records))
     return out
+
+
+def check_weightless_values(monthly: pd.DataFrame) -> CheckResult:
+    """Share of monthly bilateral trade value reported without a net weight, by reporter."""
+    sub = monthly[monthly["partnerCode"] != 0].copy()
+    if sub.empty:
+        return CheckResult("un_comtrade", "weightless_values", "warn", "no monthly bilateral records", {})
+    sub["val"] = pd.to_numeric(sub["primaryValue"], errors="coerce").fillna(0.0)
+    sub["noweight"] = ~(pd.to_numeric(sub["netWgt"], errors="coerce") > 0)
+    sub["reporter"] = sub["reporterCode"].map(CODE_TO_ISO3).fillna(sub["reporterCode"].astype(str))
+    sub["year"] = sub["period"].astype(str).str[:4]
+    by_rep = sub.groupby("reporter").apply(lambda d: d.loc[d["noweight"], "val"].sum() / max(d["val"].sum(), 1.0))
+    by_year = sub.groupby(["reporter", "year"]).apply(
+        lambda d: d.loc[d["noweight"], "val"].sum() / max(d["val"].sum(), 1.0)
+    )
+    affected = {str(k): round(float(v), 3) for k, v in by_rep.items() if v > 0.01}
+    years = {
+        rep: sorted(str(kk[1]) for kk, vv in by_year.items() if str(kk[0]) == rep and vv > 0.2) for rep in affected
+    }
+    worst = max(affected.values(), default=0.0)
+    msg = (
+        "every reporter publishes net weight with its monthly values"
+        if not affected
+        else "value without net weight: "
+        + "; ".join(
+            f"{k} {v:.0%} (years mostly weightless: {', '.join(years[k]) or 'none'})" for k, v in affected.items()
+        )
+        + ". Tonnes for these records are estimated from annual unit values or interpolated (see coverage.json)."
+    )
+    return CheckResult(
+        "un_comtrade",
+        "weightless_values",
+        "pass" if worst <= 0.01 else "warn",
+        msg,
+        {"share_by_reporter": affected, "years_mostly_weightless": years},
+    )
+
+
+def check_annual_unit_values(records: pd.DataFrame) -> CheckResult:
+    """Annual unit values outside the plausible range for dry bulk commodities (unit errors in the source)."""
+    from tmdm.transform.flows import UNIT_VALUE_BOUNDS
+
+    a = records[(records["freqCode"] == "A") & (records["partnerCode"] != 0)].copy()
+    if a.empty:
+        return CheckResult("un_comtrade", "annual_unit_values", "warn", "no annual records", {})
+    a["wgt"] = pd.to_numeric(a["netWgt"], errors="coerce")
+    a["val"] = pd.to_numeric(a["primaryValue"], errors="coerce")
+    a["reporter"] = a["reporterCode"].map(CODE_TO_ISO3).fillna(a["reporterCode"].astype(str))
+    g = a.groupby(["reporter", "cmdCode", "period"], as_index=False)[["wgt", "val"]].sum()
+    g = g[(g["wgt"] > 0) & (g["val"] > 0)]
+    g["unit_value"] = g["val"] / g["wgt"] * 1000.0
+    bad = g[(g["unit_value"] < UNIT_VALUE_BOUNDS[0]) | (g["unit_value"] > UNIT_VALUE_BOUNDS[1])]
+    # only sizeable flows matter: more than one million US dollars in the year
+    bad = bad[bad["val"] > 1e6]
+    listing = {
+        f"{r['reporter']} {r['cmdCode']} {r['period']}": round(float(r["unit_value"]), 1)
+        for r in bad.to_dict(orient="records")
+    }
+    msg = (
+        f"{len(g)} reporter-commodity-years checked; all unit values between {UNIT_VALUE_BOUNDS[0]:.0f} and "
+        f"{UNIT_VALUE_BOUNDS[1]:.0f} US dollars per tonne"
+        if bad.empty
+        else f"{len(bad)} of {len(g)} reporter-commodity-years have implausible unit values (US dollars per tonne) "
+        f"and are not used for proxies: {', '.join(f'{k} {v:,.0f}' for k, v in list(listing.items())[:12])}"
+        + (" and more" if len(listing) > 12 else "")
+    )
+    return CheckResult(
+        "un_comtrade",
+        "annual_unit_values",
+        "pass" if bad.empty else "warn",
+        msg,
+        {"implausible": listing, "checked": len(g)},
+    )
 
 
 def reconciliation_checks(records: pd.DataFrame, comex: pd.DataFrame) -> list[CheckResult]:
