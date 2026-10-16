@@ -119,3 +119,81 @@ def test_diversion_shares_bounded_and_relative_to_baseline():
     # more transits than baseline is clipped to zero diversion
     assert pan[pd.Period("2024-01", "M")] == 0.0
     assert d["diversion_share"].between(0, 1).all()
+
+
+def _records(rows):
+    cols = ["freqCode", "period", "reporterCode", "flowCode", "partnerCode", "cmdCode", "netWgt", "primaryValue"]
+    return pd.DataFrame(rows, columns=cols)
+
+
+def test_annual_unit_values_reject_implausible_weights():
+    from tmdm.transform.flows import annual_unit_values
+
+    recs = _records(
+        [
+            # 100 USD per tonne: 1,000,000 USD for 10,000 tonnes (10,000,000 kg)
+            ("A", "2014", 842, "X", 76, "2701", 1.0e7, 1.0e6),
+            # weight apparently in tonnes labelled as kilograms: 100,000 USD per "tonne"
+            ("A", "2004", 842, "X", 76, "2701", 1.0e4, 1.0e6),
+            # world aggregate rows are ignored
+            ("A", "2014", 842, "X", 0, "2701", 1.0e8, 1.0e7),
+        ]
+    )
+    uv = annual_unit_values(recs)
+    assert len(uv) == 1
+    assert uv.iloc[0]["year"] == 2014
+    assert uv.iloc[0]["unit_value"] == pytest.approx(100.0)
+
+
+def test_comtrade_flows_use_annual_unit_value_proxy_for_weightless_months():
+    from tmdm.reference import ROUTE_GROUPS
+    from tmdm.transform.flows import _comtrade_group_flows, annual_unit_values, missing_quantity_months
+
+    g = next(r for r in ROUTE_GROUPS if r.group_id == "USA_X_coal")
+    recs = _records(
+        [
+            ("A", "2014", 842, "X", 76, "2701", 2.0e10, 2.0e9),  # 100 USD per tonne
+            ("M", "201401", 842, "X", 76, "2701", 0.0, 5.0e7),  # value only: proxy 500,000 t
+            ("M", "201402", 842, "X", 76, "2701", 3.0e8, 3.0e7),  # weight reported: 300,000 t
+            ("M", "201403", 842, "X", 528, "2701", None, 4.0e7),  # no unit value for this partner: missing
+        ]
+    )
+    uv = annual_unit_values(recs)
+    out = _comtrade_group_flows(recs, g, uv).set_index("month")
+    jan, feb, mar = (pd.Period(m, "M") for m in ("2014-01", "2014-02", "2014-03"))
+    assert out.loc[jan, "tonnes"] == pytest.approx(500_000.0)
+    assert out.loc[jan, "proxy_tonnes"] == pytest.approx(500_000.0)
+    assert out.loc[feb, "tonnes"] == pytest.approx(300_000.0)
+    assert out.loc[feb, "proxy_tonnes"] == 0.0
+    assert out.loc[mar, "tonnes"] == 0.0
+    assert out.loc[mar, "value_missing_usd"] == pytest.approx(4.0e7)
+    missing = missing_quantity_months(out.reset_index())
+    assert missing == {"USA_X_coal": {mar}}
+
+
+def test_complete_months_trims_leading_gaps_and_interpolates_interior_ones():
+    flows = pd.DataFrame(
+        {
+            "month": pd.PeriodIndex(["2013-01", "2013-02", "2013-04", "2013-05"], freq="M"),
+            "route_id": ["USA-NLD-coal"] * 4,
+            "origin": ["USA"] * 4,
+            "destination": ["NLD"] * 4,
+            "commodity": ["coal"] * 4,
+            "tonnes": [0.0, 10.0, 0.0, 30.0],
+            "source": ["s"] * 4,
+            "group_id": ["USA_X_coal"] * 4,
+            "proxy_tonnes": [0.0, 0.0, 0.0, 0.0],
+            "value_usd": [1.0, 1.0, 1.0, 1.0],
+            "value_missing_usd": [1.0, 0.0, 1.0, 0.0],
+        }
+    )
+    published = {"USA": set(pd.period_range("2013-01", "2013-05", freq="M"))}
+    missing = {"USA_X_coal": {pd.Period("2013-01", "M"), pd.Period("2013-04", "M")}}
+    out = complete_months(flows, published, missing).set_index("month")
+    # the leading weightless month is trimmed, the interior one interpolated and flagged
+    assert out.index.min() == pd.Period("2013-02", "M")
+    assert out.loc[pd.Period("2013-03", "M"), "tonnes"] == 0.0
+    assert out.loc[pd.Period("2013-04", "M"), "tonnes"] == pytest.approx(15.0)
+    assert out.loc[pd.Period("2013-04", "M"), "fill"] == "interpolated_no_weight"
+    assert bool(out.loc[pd.Period("2013-04", "M"), "interpolated"]) is True
+    assert out.loc[pd.Period("2013-02", "M"), "fill"] == "reported"

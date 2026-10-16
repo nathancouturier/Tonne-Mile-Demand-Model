@@ -59,21 +59,23 @@
   }
 
   function renderHeadline() {
-    const se = D.series;
+    const se = D.series, c12 = se.change12;
     const p = C.palette();
-    const xs = se.month.map(C.monthToDate);
-    const actual = xs.map((x, i) => ({ x, y: se.bdi[i] }));
-    const fitted = xs.map((x, i) => ({ x, y: se.fitted_bdi[i] }));
-    const first = se.month[0], last = se.month[se.month.length - 1];
+    const xs = c12.month.map(C.monthToDate);
+    const actual = xs.map((x, i) => ({ x, y: c12.actual_pct[i] }));
+    const implied = xs.map((x, i) => ({ x, y: c12.implied_pct[i] }));
+    const n = c12.month.length - 1;
+    const first = c12.month[0], last = c12.month[n];
+    const verb = (v) => (v >= 0 ? "rise" : "fall");
     C.lineChart("#chart-headline", {
-      title: `Demand and supply alone would have put the index near ${fmt.int(se.fitted_bdi[se.fitted_bdi.length - 1])} in ${fmt.month(last)}; it printed ${fmt.int(se.bdi[se.bdi.length - 1])}`,
-      subtitle: `Monthly Baltic Dry Index (points, log scale) against the level implied by tonne-miles over effective fleet, ${fmt.month(first)} to ${fmt.month(last)}. The shaded gap is the residual.`,
-      source: sourceLine("Baltic Dry Index from Statistics and Research Aland (originator Baltic Exchange); fitted level from the levels regression in this project", ["asub_baltic_dry_index"]),
+      title: `Tonne-miles against effective fleet implied a ${fmt.int(Math.abs(c12.implied_pct[n]))} percent ${verb(c12.implied_pct[n])} in the index over the twelve months to ${fmt.month(last)}; it ${c12.actual_pct[n] >= 0 ? "rose" : "fell"} ${fmt.int(Math.abs(c12.actual_pct[n]))} percent`,
+      subtitle: `Twelve-month change in the Baltic Dry Index (percent) against the change implied by the demand/supply balance at the estimated elasticity, ${fmt.month(first)} to ${fmt.month(last)}. The shaded gap is the residual.`,
+      source: sourceLine("Baltic Dry Index from Statistics and Research Aland (originator Baltic Exchange); implied change from the twelve-month change regression in this project", ["asub_baltic_dry_index"]),
       series: [
-        { key: "bdi", label: "Baltic Dry Index", color: p.accent, values: actual, format: fmt.int },
-        { key: "fitted", label: "Implied by tonne-miles over effective fleet", color: p.fitted, dashed: true, values: fitted, format: fmt.int },
+        { key: "actual", label: "Baltic Dry Index, 12-month change", color: p.accent, values: actual, format: fmt.pctSigned },
+        { key: "implied", label: "Implied by tonne-miles over effective fleet", color: p.fitted, dashed: true, values: implied, format: fmt.pctSigned },
       ],
-      yScale: "log", yFormat: ",.0f", yLabel: "Index points (log scale)", area: true, height: 320, tableRows: 48,
+      yFormat: "+.0f", yLabel: "Percent change over 12 months", area: true, height: 320, tableRows: 48,
     });
   }
 
@@ -131,7 +133,7 @@
     notes.innerHTML = "";
     const el = D.model.elasticity.headline;
     notes.append(C.el("h3", null, "Reading the charts"));
-    notes.append(C.el("p", null, `A log point of 0.10 is roughly a ten percent move. The elasticity of ${d3.format(".2f")(el.elasticity)} (standard error ${d3.format(".2f")(el.std_error)}, Newey-West) means that a one percent rise in tonne-miles relative to effective fleet has been associated with a ${d3.format(".1f")(el.elasticity)} percent rise in the index. The levels regression explains ${fmt.pctPlain(el.r_squared)} of the variance of the log index over ${el.n_obs} months.`));
+    notes.append(C.el("p", null, `A log point of 0.10 is roughly a ten percent move. The elasticity of ${d3.format(".2f")(el.elasticity)} (standard error ${d3.format(".2f")(el.std_error)}, Newey-West) means that a one percent rise in tonne-miles relative to effective fleet has been associated with a ${d3.format(".1f")(el.elasticity)} percent rise in the index. The regression on twelve-month changes explains ${fmt.pctPlain(el.r_squared)} of the variance of the twelve-month change in the log index over ${el.n_obs} observations.`));
     notes.append(C.el("p", null, "Because freight rates respond to the balance between demand and supply, the cargo volume, haul, fleet and port-time effects are all scaled by the same elasticity. The residual collects everything else: speed changes, bunker prices, sentiment, contract timing and measurement error in the inputs."));
   }
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
+import math
 import shutil
 from pathlib import Path
 from typing import Any
@@ -42,7 +43,7 @@ DOWNLOADS = {
     "portwatch_weekly_global.csv": "Weekly global dry bulk port tonnage (PortWatch)",
     "portwatch_monthly_country.csv": "Monthly dry bulk port tonnage by country (PortWatch)",
     "decomposition_rolling.csv": "Rolling 12-month decomposition of the index",
-    "model_fitted.csv": "Fitted index from the levels regression",
+    "model_fitted.csv": "Twelve-month log change of the index, actual and implied by the demand/supply balance",
     "haul_split_rolling.csv": "Trade-mix versus rerouting split of the haul effect",
     "validation_report.json": "Validation and reconciliation report",
     "seaborne_trade_annual.csv": "World seaborne trade loaded by cargo type (UNCTAD)",
@@ -118,7 +119,7 @@ def _group_for_route(route_id: str) -> tuple[str, str]:
 
 def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, fitted: pd.DataFrame) -> None:
     """Panel series for the overview chart."""
-    f = fitted.set_index("month")["fitted_index"]
+    f = fitted.set_index("month")
     _json(
         SITE_DATA_DIR / "series.json",
         {
@@ -131,7 +132,13 @@ def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, fitted: pd.DataFrame) 
             "fleet_extrapolated": [bool(v) for v in panel["fleet_extrapolated"]],
             "supply_factor": _col(panel, "supply_factor", 4),
             "supply_extrapolated": [bool(v) for v in panel["supply_extrapolated"]],
-            "fitted_bdi": [None if pd.isna(f.get(m)) else round(_f(f.get(m)), 1) for m in panel["month"]],
+            # twelve-month changes, actual and implied by the headline regression (percent)
+            "change12": {
+                "month": [str(m) for m in f.index],
+                "actual_pct": [round((math.exp(_f(v)) - 1) * 100, 2) for v in f["actual_dlog12"]],
+                "implied_pct": [round((math.exp(_f(v)) - 1) * 100, 2) for v in f["implied_dlog12"]],
+                "residual_lp": [round(_f(v), 4) for v in f["residual"]],
+            },
             "bdi_full": {"month": _col(bdi, "month"), "bdi": _col(bdi, "bdi", 1)},
         },
     )

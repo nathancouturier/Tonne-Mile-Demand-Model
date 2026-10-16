@@ -132,12 +132,24 @@ def main() -> int:
     # 10. Episode totals equal log(index_end / index_start)
     e = episodes[-1]
     check(f"episode total {e['episode_id']}", e["total"], math.log(e["index_end"] / e["index_start"]), 1e-6)
-    # 11. Fitted index on the headline chart equals exp(intercept + e log(balance)) for the latest month
+    # 11. Implied twelve-month change on the headline chart equals intercept + e x (12-month change in log balance)
     h = model["elasticity"]["headline"]
     panel = pd.read_csv(PROC / "panel_monthly.csv").set_index("month")
-    row = panel.loc[lm]
-    bal = math.log(row["tonne_miles"] / (row["fleet"] * row["supply_factor"]))
-    check(f"fitted index {lm}", series["fitted_bdi"][-1], math.exp(h["intercept"] + h["elasticity"] * bal), 1e-3)
+    c12 = series["change12"]
+    lm12 = c12["month"][-1]
+    prev = str(pd.Period(lm12, "M") - 12)
+    bal = {
+        m: math.log(panel.loc[m, "tonne_miles"] / (panel.loc[m, "fleet"] * panel.loc[m, "supply_factor"]))
+        for m in (lm12, prev)
+    }
+    implied = h["intercept"] + h["elasticity"] * (bal[lm12] - bal[prev])
+    check(f"implied 12-month change {lm12} (pct)", c12["implied_pct"][-1], (math.exp(implied) - 1) * 100, 1e-2)
+    check(
+        f"actual 12-month change {lm12} (pct)",
+        c12["actual_pct"][-1],
+        (float(bdi_raw[lm12]) / float(bdi_raw[prev]) - 1) * 100,
+        1e-2,
+    )
     # 12. Explained share on the tile equals one minus residual over total from rolling data
     la = summary["latest_attribution"]
     check("latest attribution total equals rolling total", la["total"], rolling["total"][-1], 1e-9)

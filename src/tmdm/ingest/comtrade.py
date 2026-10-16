@@ -263,14 +263,16 @@ def fetch(
     groups: list[CallGroup],
     start_month: str,
     refresh_months: int = 15,
-    annual_years: tuple[int, int] = (2000, 2009),
+    annual_years: tuple[int, int] | None = None,
     checkpoint_every: int = 10,
 ) -> pd.DataFrame:
     """Download (incrementally) every call group for this shard and persist records, log and done list.
 
     Periods are assigned to shards round-robin so that parallel jobs, each with
     its own hourly quota, cover disjoint months. Each shard writes its own
-    files; :func:`load_records` merges them.
+    files; :func:`load_records` merges them. Annual records are fetched from
+    2000 to the last complete year (default) for the long history and for the
+    annual unit values used where monthly records lack a net weight.
     """
     d = raw_dir(DATASET_ID)
     rec_path, log_path, done_path = _files(d)
@@ -309,6 +311,8 @@ def fetch(
     now = pd.Period(datetime.now(UTC).strftime("%Y-%m"), freq="M")
     all_months = _month_periods(start_month, str(now - 1))
     months = [m for i, m in enumerate(all_months) if i % n == k]
+    if annual_years is None:
+        annual_years = (2000, now.year - 1)
     years = [str(y) for y in range(annual_years[0], annual_years[1] + 1)]
     years = [y for i, y in enumerate(years) if i % n == k]
     done_keys = set(zip(done["spec_id"], done["freq"], done["period"], strict=True))
@@ -388,7 +392,7 @@ def _metadata(start_month: str, groups: list[CallGroup], out: pd.DataFrame) -> D
         publisher="United Nations Statistics Division (UN Comtrade)",
         source_url=PORTAL,
         licence="UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",
-        frequency="monthly (annual extension for 2000 to 2009)",
+        frequency="monthly from 2010; annual from 2000 (long history and annual unit values)",
         coverage=f"{start_month} to latest published month per reporter; {len(groups)} reporter groups",
         units="kilograms (netWgt); values in current US dollars (primaryValue)",
         retrieved_at=utc_now_iso(),

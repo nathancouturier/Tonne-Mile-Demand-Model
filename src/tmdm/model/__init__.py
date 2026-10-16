@@ -2,11 +2,11 @@
 
 Reads ``data/processed/panel_monthly.csv`` and writes:
 
-* ``model_elasticity.json``: headline levels regression and robustness variants.
+* ``model_elasticity.json``: headline twelve-month change regression and robustness variants.
 * ``model_difference_regression.json``: unrestricted first-difference regression.
 * ``decomposition_rolling.csv``: 12-month attribution for every month.
 * ``decomposition_episodes.json``: attribution for each covered named episode.
-* ``model_fitted.csv``: fitted index from the levels regression and residuals.
+* ``model_fitted.csv``: twelve-month log change of the index, actual and implied by the balance, with residuals.
 * ``haul_split_rolling.csv``: trade-mix versus rerouting split of the haul effect.
 """
 

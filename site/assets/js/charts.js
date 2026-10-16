@@ -13,6 +13,7 @@
     pct0: d3.format("+.0%"),
     pct1: d3.format("+.1%"),
     pctPlain: d3.format(".0%"),
+    pctSigned: (v) => d3.format("+.0f")(v) + "%",
     lp: (v) => (v >= 0 ? "+" : "") + d3.format(".2f")(v),
     month: (m) => {
       const [y, mo] = String(m).split("-");

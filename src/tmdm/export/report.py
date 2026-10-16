@@ -184,34 +184,21 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
         }
     )
     out: dict[str, Path] = {}
-    panel, fitted, roll = res["panel"], res["fitted"], res["roll"]
-    x = pd.PeriodIndex(panel["month"], freq="M").to_timestamp()
-    # Figure 1: index versus fitted
+    fitted, roll = res["fitted"], res["roll"]
+    # Figure 1: twelve-month change in the index, actual versus implied by the balance
     fig, ax = plt.subplots(figsize=(7.0, 2.9))
-    ax.plot(x, panel["index"], color="#1f3a5f", lw=1.6, label="Baltic Dry Index")
     fx = pd.PeriodIndex(fitted["month"], freq="M").to_timestamp()
-    ax.plot(
-        fx,
-        fitted["fitted_index"],
-        color="#9a9488",
-        lw=1.3,
-        ls="--",
-        label="Implied by tonne-miles over effective fleet",
-    )
-    ax.fill_between(
-        fx,
-        fitted["fitted_index"],
-        panel.set_index("month").loc[fitted["month"], "index"].to_numpy(),
-        color="#898781",
-        alpha=0.12,
-        linewidth=0,
-    )
-    ax.set_yscale("log")
-    ax.set_ylabel("Index points (log scale)")
-    ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+    actual_pct = (np.exp(fitted["actual_dlog12"]) - 1) * 100
+    implied_pct = (np.exp(fitted["implied_dlog12"]) - 1) * 100
+    ax.axhline(0, color="#c5bfb1", lw=0.8)
+    ax.plot(fx, actual_pct, color="#1f3a5f", lw=1.6, label="Baltic Dry Index, 12-month change")
+    ax.plot(fx, implied_pct, color="#9a9488", lw=1.3, ls="--", label="Implied by tonne-miles over effective fleet")
+    ax.fill_between(fx, implied_pct, actual_pct, color="#898781", alpha=0.12, linewidth=0)
+    ax.set_ylabel("Percent change over 12 months")
+    ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:+,.0f}"))
     ax.legend(frameon=False, loc="upper left", fontsize=8)
     fig.tight_layout()
-    out["fitted"] = FIGURES_DIR / "fig1_index_vs_fitted.png"
+    out["fitted"] = FIGURES_DIR / "fig1_change12_actual_vs_implied.png"
     fig.savefig(out["fitted"], dpi=200)
     plt.close(fig)
     # Figure 2: rolling attribution
@@ -357,7 +344,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             f"This note measures both sides from public sources and attributes changes in the Baltic Dry Index to four forces: cargo volume on {n['n_routes']} major bulk routes, "
             f"the average distance that cargo sails, the size of the bulk carrier fleet, and the share of fleet time absorbed in port. "
             f"Over {n['n_months']} months a one percent rise in tonne-miles relative to effective fleet has been associated with a {n['elasticity']:.1f} percent rise in the index "
-            f"(standard error {n['se']:.1f}); the relationship explains {n['r2']:.0%} of the variance of the log index. "
+            f"(standard error {n['se']:.1f}, estimated on twelve-month changes); the relationship explains {n['r2']:.0%} of the variance of twelve-month changes in the log index. "
             f"Over rolling twelve-month windows the four forces have the same sign as the move {n['sign_agree']:.0%} of the time, but the unexplained residual averages {n['mean_abs_resid']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}, "
             f"so roughly {n['share_resid']:.0%} of a typical twelve-month move is not accounted for by measured demand and supply. "
             f"In the latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}) the index moved {n['last_pct']:+.0f} percent; the largest measured contribution was {LABELS[n['biggest']].lower()} ({_lp(n['last'][n['biggest']])} log points) and the residual was {_lp(n['last']['residual'])}.",
@@ -377,7 +364,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(Image(str(figs["fitted"]), width=width, height=width * 2.9 / 7.0))
     story.append(
         Paragraph(
-            f"Figure 1. Monthly Baltic Dry Index and the level implied by the levels regression on tonne-miles over effective fleet (elasticity {n['elasticity']:.2f}). Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat and this project's distance matrix (inputs).",
+            f"Figure 1. Twelve-month percent change in the Baltic Dry Index and the change implied by the twelve-month change in tonne-miles over effective fleet at the estimated elasticity ({n['elasticity']:.2f}). Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat and this project's distance matrix (inputs).",
             st["caption"],
         )
     )
@@ -495,11 +482,12 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(Paragraph("Robustness", st["h2"]))
     rb = n["robustness"]
     parts = [
-        f"levels, monthly: {n['elasticity']:.2f} (se {n['se']:.2f}, R squared {n['r2']:.2f}, Durbin-Watson {n['dw']:.2f})"
+        f"twelve-month changes (headline): {n['elasticity']:.2f} (se {n['se']:.2f}, R squared {n['r2']:.2f}, Durbin-Watson {n['dw']:.2f})"
     ]
     names = {
-        "twelve_month_changes": "twelve-month changes",
-        "quarterly_levels": "quarterly averages",
+        "levels_with_month_dummies": "monthly levels with month dummies",
+        "levels_plain": "monthly levels",
+        "quarterly_four_quarter_changes": "quarterly averages, four-quarter changes",
         "first_half": "first half of the sample",
         "second_half": "second half of the sample",
     }
@@ -522,7 +510,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             + "; ".join(parts)
             + "."
             + dr_text
-            + " The low Durbin-Watson statistic of the levels regression reflects persistent residuals: freight rates move with information the inputs do not carry.",
+            + " The levels regressions are reported for completeness only: both series trend and are strongly autocorrelated, so their coefficients are not reliable (low Durbin-Watson statistics); freight rates also move with information the inputs do not carry.",
             st["body"],
         )
     )
@@ -553,14 +541,14 @@ def write_deliverables(res: dict[str, Any]) -> None:
     n = _numbers(res)
     cv = (
         f"Tonne-Mile Demand Model (Python, D3, GitHub Actions): built an automated, fully documented pipeline that decomposes moves in the Baltic Dry Index into cargo volume, haul distance, fleet growth and port-time effects using only public data (UN Comtrade, Brazil Comex Stat, IMF PortWatch AIS data, UNCTADstat, NGA World Port Index), with sea distances computed on a maritime routing network for {n['n_routes']} major bulk routes.\n"
-        f"Estimated a freight rate elasticity of {n['elasticity']:.1f} to the tonne-mile over effective fleet balance (R squared {n['r2']:.2f}, {n['n_months']} months) and showed that measured demand and supply account for the direction of {n['sign_agree']:.0%} of twelve-month index moves while a residual of about {n['share_resid']:.0%} of a typical move remains unexplained.\n"
+        f"Estimated a freight rate elasticity of {n['elasticity']:.1f} to the tonne-mile over effective fleet balance (twelve-month changes, R squared {n['r2']:.2f}, {n['n_months']} months of data) and showed that measured demand and supply account for the direction of {n['sign_agree']:.0%} of twelve-month index moves while a residual of about {n['share_resid']:.0%} of a typical move remains unexplained.\n"
         f"Published the results as an interactive research-note website with weekly data refresh, validation and cross-source reconciliation checks, and a generated PDF note.\n"
     )
     (DOCS_DIR / "cv-description.txt").write_text(cv, encoding="utf-8")
     talking = (
         f"1. Question: how much of a move in the Baltic Dry Index is cargo volume, how much is average haul, how much is fleet growth and how much is port congestion, and what is left over?\n"
-        f"2. Method: a log-difference attribution identity, log(BDI1/BDI0) = e[dlog volume + dlog haul] minus e[dlog fleet + dlog at-sea share] + residual, with one elasticity e estimated by a levels regression (Newey-West errors) and checked on twelve-month changes, quarterly averages, sample halves and an unrestricted first-difference regression; tonne-miles built route by route from customs data and a maritime routing network ({n['n_routes']} routes).\n"
-        f"3. Finding: e is about {n['elasticity']:.1f} (R squared {n['r2']:.2f} over {n['n_months']} months); the four forces give the direction of {n['sign_agree']:.0%} of twelve-month moves, fleet growth is a steady drag, and the residual averages {n['mean_abs_resid']:.2f} log points against typical moves of {n['mean_abs_total']:.2f}; in the latest window the largest measured driver was {LABELS[n['biggest']].lower()}.\n"
+        f"2. Method: a log-difference attribution identity, log(BDI1/BDI0) = e[dlog volume + dlog haul] minus e[dlog fleet + dlog at-sea share] + residual, with one elasticity e estimated on twelve-month changes (Newey-West errors) and checked on levels with month dummies, quarterly four-quarter changes, sample halves and an unrestricted first-difference regression; tonne-miles built route by route from customs data and a maritime routing network ({n['n_routes']} routes).\n"
+        f"3. Finding: e is about {n['elasticity']:.1f} (twelve-month changes, R squared {n['r2']:.2f}, {n['n_months']} months of data); the four forces give the direction of {n['sign_agree']:.0%} of twelve-month moves, fleet growth is a steady drag, and the residual averages {n['mean_abs_resid']:.2f} log points against typical moves of {n['mean_abs_total']:.2f}; in the latest window the largest measured driver was {LABELS[n['biggest']].lower()}.\n"
         f"4. Limitation: speed, waiting time and bunker costs are not observable from free data and sit in the residual; the route set covers major bulks only; the public monthly index ends earlier than the demand data; representative ports and customs timing add measurement error.\n"
         f"5. Next: add minor bulks and a Capesize versus Panamax split from the Baltic sub-indices, bring in AIS-derived speed and congestion series, and estimate a time-varying elasticity to test whether the market's sensitivity to utilisation has changed since 2021.\n"
     )
@@ -589,7 +577,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
         f"Built from data retrieved on {max(m.retrieved_at for m in res['sources'])[:10]}.",
         "",
         f"* Elasticity of the index to tonne-miles over effective fleet: {n['elasticity']:.2f} (Newey-West standard error {n['se']:.2f}); "
-        f"the levels regression explains {n['r2']:.0%} of the variance of the log index (Durbin-Watson {n['dw']:.2f}).",
+        f"estimated on twelve-month changes, it explains {n['r2']:.0%} of the variance of twelve-month changes in the log index (Durbin-Watson {n['dw']:.2f}).",
         f"* Over rolling twelve-month windows the four measured forces have the same sign as the index move {n['sign_agree']:.0%} of the time; "
         f"the residual averages {n['mean_abs_resid']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}, "
         f"so about {n['share_resid']:.0%} of a typical move is not explained by measured demand and supply.",
