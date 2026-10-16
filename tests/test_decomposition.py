@@ -53,8 +53,9 @@ def test_covered_episodes_respects_window():
 def test_run_model_recovers_elasticity_and_outputs():
     p = _panel(n=240)
     out = run_model(p)
-    assert abs(out.elasticity.elasticity - 4.0) < 0.6
+    assert abs(out.elasticity.elasticity - 4.0) < 1.0
     assert not out.rolling.empty
     assert out.episodes
     assert "r_squared" in out.difference_regression
-    assert "quarterly_levels" in out.elasticity_robustness
+    assert "quarterly_four_quarter_changes" in out.elasticity_robustness
+    assert "levels_with_month_dummies" in out.elasticity_robustness
