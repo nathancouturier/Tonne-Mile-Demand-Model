@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T14:21:06Z",
+  "generated_at": "2026-10-16T14:50:34Z",
   "summary": {
     "pass": 19,
     "warn": 6,
@@ -137,24 +137,24 @@
       "dataset": "un_comtrade",
       "check": "missing_values",
       "status": "warn",
-      "message": "highest missing share 1.9%",
+      "message": "highest missing share 1.7%",
       "details": {
         "missing_share": {
-          "netWgt": 0.018513976627181673,
+          "netWgt": 0.01663055367829946,
           "period": 0.0,
           "partnerCode": 0.0
         },
-        "rows": 150859
+        "rows": 143531
       }
     },
     {
       "dataset": "un_comtrade",
       "check": "estimated_weights_share",
       "status": "warn",
-      "message": "9.4% of records carry an estimated net weight",
+      "message": "8.2% of records carry an estimated net weight",
       "details": {
-        "share_estimated": 0.09436626253654075,
-        "rows": 150859
+        "share_estimated": 0.081794176867715,
+        "rows": 143531
       }
     },
     {
@@ -219,7 +219,7 @@
       "dataset": "un_comtrade",
       "check": "annual_unit_values",
       "status": "warn",
-      "message": "55 of 2284 reporter-commodity-years have implausible unit values (US dollars per tonne) and are not used for proxies: AUS 1001 2000 4, AUS 1001 2002 4, AUS 1001 2003 4, CAN 1001 2000 132,957, CAN 1001 2001 145,037, CAN 1003 2000 125,840, CAN 1003 2001 143,471, CAN 2601 2000 25,184, CAN 2601 2001 26,140, CAN 2601 2008 9,277, CAN 2701 2000 34,700, CAN 2701 2001 38,527 and more",
+      "message": "50 of 2003 reporter-commodity-years have implausible unit values (US dollars per tonne) and are not used for proxies: AUS 1001 2000 4, AUS 1001 2002 4, AUS 1001 2003 4, CAN 1001 2000 132,957, CAN 1001 2001 145,037, CAN 1003 2000 125,840, CAN 1003 2001 143,471, CAN 2601 2000 25,184, CAN 2601 2001 26,140, CAN 2601 2008 9,277, CAN 2701 2000 34,700, CAN 2701 2001 38,527 and more",
       "details": {
         "implausible": {
           "AUS 1001 2000": 3.5,
@@ -245,11 +245,6 @@
           "COL 1005 2015": 3810.0,
           "COL 1005 2016": 6270.5,
           "COL 1005 2019": 3384.8,
-          "EGY 1001 2013": 3352.8,
-          "EGY 1001 2021": 4629.4,
-          "EGY 1003 2014": 255973.8,
-          "EGY 1005 2014": 26200.9,
-          "EGY 2701 2014": 134789.9,
           "USA 1001 2000": 121666.5,
           "USA 1001 2001": 131781.6,
           "USA 1003 2000": 114551.5,
@@ -278,7 +273,7 @@
           "USA 2702 2004": 44549.1,
           "USA 2702 2005": 47286.1
         },
-        "checked": 2284
+        "checked": 2003
       }
     },
     {
