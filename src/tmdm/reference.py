@@ -824,7 +824,8 @@ ROUTE_GROUPS: list[RouteGroup] = [
         "India reports imports; Russia and Mozambique do not report timely data",
     ),
     RouteGroup("JPN_M_coal_RUS", "JPN", "M", "coal", ("RUS",), "", "Japan reports imports of Russian coal"),
-    RouteGroup("EGY_M_grains_RUS", "EGY", "M", "grains", ("RUS",), "", "Egypt reports imports of Russian wheat"),
+    # Russian grain to Egypt is not covered: Egypt's customs records carry values without weights in most
+    # years and Russia stopped reporting to Comtrade in 2022 (see README, data sources).
     # Mirror checks only (China publishes with a lag of more than a year); not used in the panel
     RouteGroup(
         "CHN_M_mirror",
@@ -854,7 +855,6 @@ IMPORTER_ORIGIN_LOAD: dict[tuple[str, str], str] = {
     ("IND_M_coal_RUS_MOZ", "RUS"): "coal_pacific",
     ("IND_M_coal_RUS_MOZ", "MOZ"): "coal",
     ("JPN_M_coal_RUS", "RUS"): "coal_pacific",
-    ("EGY_M_grains_RUS", "RUS"): "grains",
 }
 
 MIRROR_ONLY = {"CHN_M_mirror", "BRA_X_mirror"}
@@ -863,7 +863,7 @@ MIRROR_ONLY = {"CHN_M_mirror", "BRA_X_mirror"}
 CALL_GROUPS: dict[str, tuple[str, ...]] = {
     "exporters_a": ("USA", "AUS", "IDN"),
     "exporters_b": ("BRA", "ZAF", "CAN", "UKR", "ARG", "COL"),
-    "importers_and_mirror": ("IND", "JPN", "EGY", "CHN"),
+    "importers_and_mirror": ("IND", "JPN", "CHN"),
 }
 
 

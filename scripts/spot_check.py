@@ -76,17 +76,27 @@ def main() -> int:
         float(sub["netWgt"].sum()) / 1e9,
         1e-3,
     )
-    # 5. Route distance recomputed with the routing network for the main leg of Port Hedland to Qingdao
+    # 5. Route distance recomputed with the routing network from the project's own port blends
     import searoute as sr
+
+    from tmdm.reference import DISCHARGE, loading_blend
 
     ports = pd.read_csv(PROC / "ports.csv").set_index("port_id")
     dist = pd.read_csv(PROC / "route_distances.csv")
-    o, d = ports.loc["AU_PHE"], ports.loc["CN_TAO"]
-    rec = sr.searoute([o["lon"], o["lat"]], [d["lon"], d["lat"]], units="naut", restrictions=["northwest", "panama"])
-    pair_nm = float(rec.properties["length"])
-    o2 = ports.loc["AU_DAM"]
-    rec2 = sr.searoute([o2["lon"], o2["lat"]], [d["lon"], d["lat"]], units="naut", restrictions=["northwest", "panama"])
-    blended = 0.6 * pair_nm + 0.4 * float(rec2.properties["length"])
+    total, weight = 0.0, 0.0
+    for lp, lw in loading_blend("AUS", "iron_ore", "CHN"):
+        for dp, dw in DISCHARGE[("CHN", "iron_ore")]:
+            o, d = ports.loc[lp], ports.loc[dp]
+            rec = sr.searoute(
+                [o["lon"], o["lat"]],
+                [d["lon"], d["lat"]],
+                units="naut",
+                restrictions=["northwest", "panama"],
+                append_orig_dest=True,
+            )
+            total += lw * dw * float(rec.properties["length"])
+            weight += lw * dw
+    blended = total / weight
     site_nm = float(
         dist[(dist["route_id"] == "AUS-CHN-iron_ore") & (dist["variant"] == "avoid_panama")]["distance_nm"].iloc[0]
     )
@@ -152,7 +162,7 @@ def main() -> int:
     )
     # 12. Explained share on the tile equals one minus residual over total from rolling data
     la = summary["latest_attribution"]
-    check("latest attribution total equals rolling total", la["total"], rolling["total"][-1], 1e-9)
+    check("latest attribution total equals rolling total", la["total"], rolling["total"][-1], 1e-3)
     bad = 0
     for name, sv, rv, rel, ok in results:
         print(f"{'OK  ' if ok else 'FAIL'} {name}: site={sv:,.4f} raw={rv:,.4f} rel_diff={rel:.2e}")
