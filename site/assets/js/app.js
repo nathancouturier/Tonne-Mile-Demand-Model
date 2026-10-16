@@ -444,7 +444,7 @@
       const card = C.el("div", "download");
       const link = C.el("a", null, d.file);
       link.href = `downloads/${d.file}`;
-      card.append(link, C.el("p", null, d.description), C.el("p", "size", `${d3.format(",.0f")(d.bytes / 1024)} KB`));
+      card.append(link, C.el("p", null, d.description), C.el("p", "size", `${d3.format(",.0f")(Math.max(1, d.bytes / 1024))} KB`));
       list.append(card);
     });
     const repo = C.el("div", "download");
