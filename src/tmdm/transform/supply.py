@@ -6,15 +6,18 @@ Fleet
     extrapolated at the last annual growth rate and flagged.
 
 Effective supply factor
-    The share of fleet time spent at sea, derived from UNCTAD port call
-    statistics: median time in port per call for dry bulk carriers multiplied
-    by the number of dry bulk port calls per ship gives port days per ship;
-    one minus port days over calendar days is the at-sea share. The factor is
-    the at-sea share relative to its value in the base year, so a rise in
-    port time (congestion) lowers effective supply. Semiannual observations
-    are interpolated to months and held constant beyond the last observation
-    (flagged). Speed changes are not observable from public data and remain
-    in the residual.
+    The share of fleet time spent at sea. Port days per ship in a month are
+    the dry bulk port calls observed by IMF PortWatch divided by the number of
+    bulk carriers (UNCTAD, interpolated to months), multiplied by the UNCTAD
+    median time in port per call for dry bulk carriers (semiannual,
+    interpolated to months and held at its last value beyond the last
+    observation). One minus port days over calendar days is the at-sea share,
+    and the factor is that share relative to its first observation (January
+    2019), so a rise in port time (congestion) lowers effective supply. Months
+    before PortWatch coverage take a factor of one; months after the last
+    complete PortWatch month keep the last value. Both, and months with a held
+    port time, are flagged. Speed changes are not observable from public data
+    and remain in the residual.
 
 Chokepoint diversion
     PortWatch daily dry bulk transits through Bab el-Mandeb (Red Sea) and the
@@ -141,11 +144,21 @@ def supply_factor_monthly(end_month: str, fleet_ships: pd.Series | None = None) 
     obs = pd.DataFrame(rows, columns=["month", "port_days_per_ship", "at_sea_share", "median_held"]).set_index("month")
     base_val = float(obs["at_sea_share"].iloc[0])
     out = out.set_index("month")
+    out["at_sea_share"] = np.nan
     out.loc[obs.index, "supply_factor"] = (obs["at_sea_share"] / base_val).to_numpy()
     out.loc[obs.index, "port_days_per_ship"] = obs["port_days_per_ship"].to_numpy()
     out.loc[obs.index, "supply_extrapolated"] = obs["median_held"].to_numpy()
-    out["at_sea_share"] = np.nan
     out.loc[obs.index, "at_sea_share"] = obs["at_sea_share"].to_numpy()
+    # inside the observed range, months without a complete PortWatch month are interpolated; after it the last
+    # value is held; all of them stay flagged as extrapolated
+    first_obs, last_obs = obs.index.min(), obs.index.max()
+    inside = (out.index >= first_obs) & (out.index <= last_obs) & ~out.index.isin(obs.index)
+    if inside.any():
+        sf = out["supply_factor"].where((out.index < first_obs) | out.index.isin(obs.index))
+        out.loc[inside, "supply_factor"] = sf.interpolate(method="linear").loc[inside].to_numpy()
+    after = out.index > last_obs
+    out.loc[after, "supply_factor"] = float(out.loc[last_obs, "supply_factor"])
+    out.loc[after, "supply_extrapolated"] = True
     return out.reset_index()
 
 

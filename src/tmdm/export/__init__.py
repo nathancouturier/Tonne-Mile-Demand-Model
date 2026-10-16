@@ -117,6 +117,20 @@ def _group_for_route(route_id: str) -> tuple[str, str]:
     raise KeyError(route_id)
 
 
+GROUP_COMMODITY = {"iron_ore": "iron ore", "coal": "coal", "grains": "grain and soybean"}
+
+
+def group_label(group_id: str) -> str:
+    """Readable name of a route group, for example "Ukraine grain and soybean exports"."""
+    g = next((x for x in ROUTE_GROUPS if x.group_id == group_id), None)
+    if g is None:
+        return group_id
+    reporter = g.reporter.replace("_COMEX", "")
+    name = ECONOMY_NAMES.get(reporter, reporter)
+    flow = "exports" if g.flow == "X" else "imports"
+    return f"{name} {GROUP_COMMODITY.get(g.commodity, g.commodity)} {flow}"
+
+
 def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, roll: pd.DataFrame) -> None:
     """Panel series for the overview chart.
 
@@ -425,6 +439,8 @@ def run() -> None:
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     coverage = json.loads((PROCESSED_DIR / "coverage.json").read_text())
+    for g in coverage.get("route_groups", []):
+        g["label"] = group_label(str(g["group_id"]))
     export_series(panel, bdi, roll)
     export_rolling(roll, haul)
     routes_out = export_routes(by_route, distances, canal, ports, geoms)

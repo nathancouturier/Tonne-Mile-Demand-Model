@@ -74,13 +74,21 @@ def canal_users(distances: pd.DataFrame) -> pd.DataFrame:
                 "red_sea_port": bool(red_sea.get(rid, False)),
                 "suez_alt_nm": suez_alt if uses_suez else float("nan"),
                 "panama_alt_nm": panama_alt if uses_panama else float("nan"),
+                "both_alt_nm": float(piv.loc[rid, "avoid_suez_panama"]) if uses_panama else float("nan"),
             }
         )
     return pd.DataFrame(rows)
 
 
 def monthly_route_distances(canal: pd.DataFrame, diversion: pd.DataFrame, months: pd.PeriodIndex) -> pd.DataFrame:
-    """Expand route distances to months, lengthening canal routes by the diversion share."""
+    """Expand route distances to months, lengthening canal routes by the diversion shares.
+
+    A Suez route moves towards its Suez-avoiding alternative by the Red Sea
+    share. A Panama route moves towards its Panama-avoiding alternative by the
+    Panama share; where that alternative itself goes through Suez (US Gulf and
+    Colombian coal to Asia), it is blended towards the route avoiding both
+    canals by the Red Sea share. The two effects add when a route uses both.
+    """
     sub = diversion[diversion["chokepoint"] == "red_sea"]
     red: dict[pd.Period, float] = dict(zip(sub["month"], sub["diversion_share"], strict=True))
     sub = diversion[diversion["chokepoint"] == "panama"]
@@ -89,14 +97,19 @@ def monthly_route_distances(canal: pd.DataFrame, diversion: pd.DataFrame, months
     for rec in canal.to_dict(orient="records"):
         rid = str(rec["route_id"])
         base = float(rec["baseline_nm"])
-        suez_alt = float(rec["suez_alt_nm"]) if pd.notna(rec["suez_alt_nm"]) else None
-        panama_alt = float(rec["panama_alt_nm"]) if pd.notna(rec["panama_alt_nm"]) else None
+        suez_alt = float(rec["suez_alt_nm"]) if pd.notna(rec.get("suez_alt_nm")) else None
+        panama_alt = float(rec["panama_alt_nm"]) if pd.notna(rec.get("panama_alt_nm")) else None
+        both_alt = float(rec["both_alt_nm"]) if pd.notna(rec.get("both_alt_nm")) else None
         for m in months:
             d = base
-            if bool(rec["uses_suez"]) and m in red and suez_alt is not None:
-                d = (1 - red[m]) * base + red[m] * suez_alt
-            elif bool(rec["uses_panama"]) and m in pan and panama_alt is not None:
-                d = (1 - pan[m]) * base + pan[m] * panama_alt
+            r = red.get(m, 0.0)
+            if bool(rec["uses_suez"]) and suez_alt is not None:
+                d += r * (suez_alt - base)
+            if bool(rec["uses_panama"]) and panama_alt is not None and m in pan:
+                alt = panama_alt
+                if both_alt is not None and both_alt > panama_alt * CANAL_DETECTION_RATIO:
+                    alt = (1 - r) * panama_alt + r * both_alt
+                d += pan[m] * (alt - base)
             rows.append((m, rid, d, base))
     out = pd.DataFrame(rows, columns=["month", "route_id", "distance_nm", "baseline_nm"])
     return out

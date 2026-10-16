@@ -98,7 +98,7 @@
     const bdiEnd = cov.freight_index_window ? cov.freight_index_window[1] : null;
     let reason = "";
     if (lastGroup && bdiEnd) {
-      reason = bdiEnd <= lastGroup.last_month ? `because the public monthly freight index ends in ${fmt.month(bdiEnd)}` : `because the customs series for ${lastGroup.group_id.replace(/_/g, " ")} ends in ${fmt.month(lastGroup.last_month)}`;
+      reason = bdiEnd <= lastGroup.last_month ? `because the public monthly freight index ends in ${fmt.month(bdiEnd)}` : `because the customs series for ${(lastGroup.label || lastGroup.group_id).toLowerCase()} ends in ${fmt.month(lastGroup.last_month)}`;
     }
     if (s.comex_coverage) parts.push(`Brazilian customs data run to ${s.comex_coverage.split(" to ")[1].split(" (")[0]}; the balanced route panel ends in ${fmt.month(s.panel.last)}${reason ? " " + reason : ""}.`);
     parts.forEach((t) => n.append(C.el("p", null, t)));
@@ -283,11 +283,13 @@
     });
     const RO = D.rolling;
     const hs = RO.month.map((m, i) => ({ x: C.monthToDate(m), label: `${fmt.month(RO.start[i])} to ${fmt.month(m)}`, mix: RO.haul_dlog_mix[i], rerouting: RO.haul_dlog_rerouting[i], total: RO.haul_dlog[i] })).filter((d) => d.total !== null);
+    const pctOf = (v) => `${d3.format(".1f")((Math.exp(v) - 1) * 100)} percent`;
+    const verbOf = (v) => (v >= 0 ? "added" : "took off");
     if (hs.length) {
       const lastH = hs[hs.length - 1];
       const peak = hs.reduce((a, b) => (Math.abs(b.rerouting) > Math.abs(a.rerouting) ? b : a));
       C.stackedBars("#chart-haul-split", {
-        title: `Rerouting moved the average haul by up to ${fmt.lp(peak.rerouting)} log points over twelve months (${peak.label}); in the latest window trade mix contributed ${fmt.lp(lastH.mix)} and rerouting ${fmt.lp(lastH.rerouting)}`,
+        title: `Rerouting ${peak.rerouting >= 0 ? "lengthened" : "shortened"} the average haul by up to ${pctOf(Math.abs(peak.rerouting))} over twelve months (${peak.label}); in the latest window trade mix ${verbOf(lastH.mix)} ${pctOf(Math.abs(lastH.mix))} and rerouting ${verbOf(lastH.rerouting)} ${pctOf(Math.abs(lastH.rerouting))}`,
         subtitle: "Twelve-month log change in the average haul of covered cargo (line), split into trade mix (shares shifting between routes at fixed distances) and rerouting (distances changing at fixed shares, from the Red Sea and Panama diversions). Values are changes in the haul itself, before the elasticity is applied; 0.01 is about one percent.",
         source: sourceLine("UN Comtrade, Brazil Comex Stat, IMF PortWatch chokepoint transits, this project's distance matrix", ["un_comtrade", "brazil_comexstat", "imf_portwatch"]),
         components: [{ key: "mix", label: "Trade mix", color: p.s1 }, { key: "rerouting", label: "Rerouting", color: p.s2 }],
@@ -298,7 +300,7 @@
     const notes = $("#routes-notes");
     notes.innerHTML = "";
     notes.append(C.el("h3", null, "How routes are measured"));
-    notes.append(C.el("p", null, "Each route is one origin economy, one destination economy and one commodity group, measured from the customs statistics of the reporter named in the table (the exporter wherever the exporter publishes timely monthly data, otherwise the importer). Distances are volume-weighted blends of representative loading and discharge terminals, routed on a maritime network. Iron ore and coal routes avoid the Panama Canal because Capesize tonnage cannot use it; routes that normally transit the Suez Canal are lengthened towards the Cape of Good Hope in proportion to the fall in dry bulk transits through the Red Sea observed by IMF PortWatch (from November 2023), and routes that use the Panama Canal the same way during the draught restrictions of 2023 to September 2024. Routes serving a port inside the Red Sea are never diverted."));
+    notes.append(C.el("p", null, "Each route is one origin economy, one destination economy and one commodity group, measured from the customs statistics of the reporter named in the table (the exporter wherever the exporter publishes timely monthly data, otherwise the importer). Distances are volume-weighted blends of representative loading and discharge terminals, routed on a maritime network. Iron ore routes and coal routes outside the Americas avoid the Panama Canal because Capesize tonnage cannot use it, while coal from the United States, Colombia and Canada, largely carried on Panamax ships, takes the canal; routes that normally transit the Suez Canal are lengthened towards the Cape of Good Hope in proportion to the fall in dry bulk transits through the Red Sea observed by IMF PortWatch (from November 2023), and routes that use the Panama Canal the same way during the draught restrictions of 2023 to September 2024. Routes serving a port inside the Red Sea are never diverted."));
     notes.append(C.el("p", null, "Routes between land neighbours (United States to Mexico, Russia and Mongolia to China, Argentina to Brazil and Chile, Ukraine to its European neighbours) are excluded because customs data do not separate sea from rail and truck. Minor bulks (bauxite, steel, cement, fertilisers, forest products) are not covered; the panel describes the major bulks that drive Capesize and Panamax demand."));
   }
 
@@ -362,6 +364,13 @@
     notes.innerHTML = "";
     notes.append(C.el("h3", null, "What supply means here"));
     notes.append(C.el("p", null, "Fleet supply is the world bulk carrier fleet in deadweight tonnes as of 1 January each year, interpolated between years at a constant growth rate; months after the last observation are extrapolated at the last annual rate and flagged in the downloads. Deliveries and demolitions by ship type are not published in the public UNCTAD tables, so the fleet change is shown net; world gross tonnage built and scrapped across all ship types is listed in the table for context."));
+    const SE = D.series;
+    const flagged = (key) => SE.month.filter((m, i) => SE[key][i]);
+    const fx = flagged("fleet_extrapolated"), sx = flagged("supply_extrapolated");
+    const flagText = [];
+    if (fx.length) flagText.push(`the fleet is extrapolated for ${fx.length} panel month${fx.length === 1 ? "" : "s"} (${fmt.month(fx[0])} to ${fmt.month(fx[fx.length - 1])})`);
+    if (sx.length) flagText.push(`the effective supply factor uses a held or assumed value for ${sx.length} panel months (${fmt.month(sx[0])} to ${fmt.month(sx[sx.length - 1])}), because PortWatch port calls start in January 2019 and the UNCTAD median port time was last published for the second half of 2023`);
+    if (flagText.length) notes.append(C.el("p", null, `Within the panel, ${flagText.join("; ")}. These months are flagged in the panel download.`));
     notes.append(C.el("p", null, "The effective supply factor converts port time into capacity: median days in port per call multiplied by calls per ship gives port days per ship, and one minus that share of the half-year is the at-sea share. The factor is the at-sea share relative to its first observation, so more congestion lowers effective supply and, through the elasticity, raises the implied index. Nothing in the public data measures sailing speed."));
   }
 
@@ -420,7 +429,7 @@
       const rows = groups.map((g) => {
         const f = fs[g.group_id];
         const detail = Object.entries(f.months || {}).map(([k, v]) => `${reasons[k] || k}: ${v.length} month${v.length === 1 ? "" : "s"} (${ranges(v)})`).join(". ");
-        return { group: g.group_id.replace(/_/g, " "), window: `${fmt.month(g.first_month)} to ${fmt.month(g.last_month)}`, proxy: f.proxy_tonnes_share, interp: f.interpolated_tonnes_share, detail: detail || "none" };
+        return { group: g.label || g.group_id, window: `${fmt.month(g.first_month)} to ${fmt.month(g.last_month)}`, proxy: f.proxy_tonnes_share, interp: f.interpolated_tonnes_share, detail: detail || "none" };
       }).filter((r) => r.proxy > 0 || r.interp > 0);
       const gt = C.el("div");
       gap.append(gt);

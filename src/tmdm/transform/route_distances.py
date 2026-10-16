@@ -3,9 +3,12 @@
 The distance of a route is the volume-weighted blend of the distances between
 its loading ports and discharge ports (weights in :mod:`tmdm.reference`).
 Four routing variants are computed: the shortest path, and paths avoiding the
-Suez Canal, the Panama Canal, or both. Iron ore and coal routes are assumed
-to be carried by Capesize and large Panamax tonnage that does not use the
-Panama Canal, so their baseline distance is the variant avoiding Panama.
+Suez Canal, the Panama Canal, or both. Iron ore routes, and coal routes except
+those from the United States, Colombia and Canada, are assumed to be carried by
+Capesize tonnage that cannot use the Panama Canal, so their baseline distance
+is the variant avoiding Panama. Coal from the Americas moves largely on
+Panamax ships through the canal, so its baseline is the shortest path, as for
+grains.
 """
 
 from __future__ import annotations

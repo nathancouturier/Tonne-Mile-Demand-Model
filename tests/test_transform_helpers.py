@@ -334,3 +334,50 @@ def test_fill_summary_lists_months_where_any_route_is_filled():
     assert fs["interpolated_tonnes_share"] == pytest.approx(20.0 / 3060.0, abs=1e-4)
     windowed = fill_summary(out, (pd.Period("2024-03", "M"), pd.Period("2024-03", "M")))["AUS_X_coal"]
     assert windowed["months"] == {}
+
+
+def test_supply_factor_is_held_after_the_last_portwatch_month(monkeypatch):
+    from tmdm.transform import supply
+
+    pt = pd.DataFrame({"month": ["2019-03", "2019-09"], "median_port_days": [2.0, 2.0]})
+    calls = pd.DataFrame(
+        {
+            "month": ["2019-01", "2019-02", "2019-04"],
+            "portcalls_dry_bulk": [10000.0, 12000.0, 14000.0],
+            "days": [31, 28, 30],
+        }
+    )
+    monkeypatch.setattr(supply, "port_time_semiannual", lambda: pt)
+    monkeypatch.setattr(supply, "portwatch_monthly_global", lambda: calls)
+    ships = pd.Series([10000.0, 10000.0], index=[2019, 2020])
+    out = supply.supply_factor_monthly("2019-07", ships).set_index("month")
+    jan, mar, apr, jul = (pd.Period(m, "M") for m in ("2019-01", "2019-03", "2019-04", "2019-07"))
+    assert out.loc[jan, "supply_factor"] == pytest.approx(1.0)
+    # March has no PortWatch month: interpolated between February and April, and flagged
+    feb_f, apr_f = out.loc[pd.Period("2019-02", "M"), "supply_factor"], out.loc[apr, "supply_factor"]
+    assert out.loc[mar, "supply_factor"] == pytest.approx((feb_f + apr_f) / 2)
+    # after the last PortWatch month the factor is held, not reset to one
+    assert out.loc[jul, "supply_factor"] == pytest.approx(apr_f)
+    assert bool(out.loc[jul, "supply_extrapolated"]) is True
+    assert apr_f < 1.0
+
+
+def test_panama_alternative_through_suez_follows_the_red_sea_share():
+    canal = pd.DataFrame(
+        [
+            {
+                "route_id": "USA-JPN-coal",
+                "baseline_nm": 9000.0,
+                "uses_suez": False,
+                "uses_panama": True,
+                "suez_alt_nm": float("nan"),
+                "panama_alt_nm": 14000.0,  # via Suez
+                "both_alt_nm": 16000.0,  # via the Cape
+            }
+        ]
+    )
+    m = pd.Period("2024-01", "M")
+    div = pd.DataFrame({"month": [m, m], "chokepoint": ["red_sea", "panama"], "diversion_share": [0.5, 0.4]})
+    out = monthly_route_distances(canal, div, pd.PeriodIndex([m]))
+    # Panama alternative is half Suez, half Cape: 15,000 nm; route moves 40 percent of the way there
+    assert out["distance_nm"].iloc[0] == pytest.approx(9000.0 + 0.4 * (15000.0 - 9000.0))
