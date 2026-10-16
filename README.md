@@ -55,7 +55,7 @@ Panel: Dec 2012 to Sep 2025, 154 months, 271 routes. Built from data retrieved o
 * Over rolling twelve-month windows the four measured forces have the same sign as the index move 66% of the time; the residual averages 0.39 log points against a typical move of 0.43, so about 91% of a typical move is not explained by measured demand and supply.
 * Between the first and last twelve months of the panel, tonnes on the covered routes grew +28%, tonne-miles +30% (average haul +1.4%) and the bulk carrier fleet +48% to 1,057 million dwt.
 * Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.05, haul -0.00, fleet -0.07, port time -0.01, residual -0.01 (total -0.04).
-* The three largest routes carry 48% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failure.
+* The three largest routes carry 48% of covered tonne-miles. Validation: 19 checks passed, 6 warnings, 0 failures.
 
 | Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |
 | --- | --- | --- | --- | --- | --- | --- | --- |

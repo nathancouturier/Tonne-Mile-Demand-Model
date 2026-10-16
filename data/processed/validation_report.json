@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-16T14:06:29Z",
+  "generated_at": "2026-10-16T14:15:17Z",
   "summary": {
-    "pass": 18,
+    "pass": 19,
     "warn": 6,
-    "fail": 1
+    "fail": 0
   },
   "checks": [
     {
@@ -140,21 +140,21 @@
       "message": "highest missing share 1.9%",
       "details": {
         "missing_share": {
-          "netWgt": 0.018563248025619452,
+          "netWgt": 0.018513976627181673,
           "period": 0.0,
           "partnerCode": 0.0
         },
-        "rows": 147388
+        "rows": 150859
       }
     },
     {
       "dataset": "un_comtrade",
       "check": "estimated_weights_share",
       "status": "warn",
-      "message": "9.2% of records carry an estimated net weight",
+      "message": "9.4% of records carry an estimated net weight",
       "details": {
-        "share_estimated": 0.0916628219393709,
-        "rows": 147388
+        "share_estimated": 0.09436626253654075,
+        "rows": 150859
       }
     },
     {
@@ -219,7 +219,7 @@
       "dataset": "un_comtrade",
       "check": "annual_unit_values",
       "status": "warn",
-      "message": "50 of 1793 reporter-commodity-years have implausible unit values (US dollars per tonne) and are not used for proxies: AUS 1001 2000 4, AUS 1001 2002 4, AUS 1001 2003 4, CAN 1001 2000 132,957, CAN 1001 2001 145,037, CAN 1003 2000 125,840, CAN 1003 2001 143,471, CAN 2601 2000 25,184, CAN 2601 2001 26,140, CAN 2601 2008 9,277, CAN 2701 2000 34,700, CAN 2701 2001 38,527 and more",
+      "message": "55 of 2284 reporter-commodity-years have implausible unit values (US dollars per tonne) and are not used for proxies: AUS 1001 2000 4, AUS 1001 2002 4, AUS 1001 2003 4, CAN 1001 2000 132,957, CAN 1001 2001 145,037, CAN 1003 2000 125,840, CAN 1003 2001 143,471, CAN 2601 2000 25,184, CAN 2601 2001 26,140, CAN 2601 2008 9,277, CAN 2701 2000 34,700, CAN 2701 2001 38,527 and more",
       "details": {
         "implausible": {
           "AUS 1001 2000": 3.5,
@@ -245,6 +245,11 @@
           "COL 1005 2015": 3810.0,
           "COL 1005 2016": 6270.5,
           "COL 1005 2019": 3384.8,
+          "EGY 1001 2013": 3352.8,
+          "EGY 1001 2021": 4629.4,
+          "EGY 1003 2014": 255973.8,
+          "EGY 1005 2014": 26200.9,
+          "EGY 2701 2014": 134789.9,
           "USA 1001 2000": 121666.5,
           "USA 1001 2001": 131781.6,
           "USA 1003 2000": 114551.5,
@@ -273,7 +278,7 @@
           "USA 2702 2004": 44549.1,
           "USA 2702 2005": 47286.1
         },
-        "checked": 1793
+        "checked": 2284
       }
     },
     {
@@ -339,15 +344,15 @@
     {
       "dataset": "reconciliation",
       "check": "reconcile:Indonesia coal to China",
-      "status": "fail",
-      "message": "median absolute gap 188.1%, mean gap +162.1% (IDN exports relative to CHN imports), 108 overlapping periods",
+      "status": "pass",
+      "message": "median absolute gap 2.8%, mean gap +5.4% (IDN exports relative to CHN imports), 108 overlapping periods",
       "details": {
-        "median_abs_rel_gap": 1.8810438389792463,
-        "mean_rel_gap": 1.6205317621018096,
-        "log_correlation": -0.06388097160993468,
+        "median_abs_rel_gap": 0.02791800623455438,
+        "mean_rel_gap": 0.0540190878420869,
+        "log_correlation": 0.807614059094991,
         "n_overlap": 108,
         "total_a": 15592775517.085117,
-        "total_b": 6246070501.469391,
+        "total_b": 15243458411.123842,
         "basis": "12-month rolling sums, tonnes"
       }
     },
@@ -373,11 +378,11 @@
       "message": "median absolute gap 1.1%, mean gap -2.5% (AUS exports relative to JPN imports), 189 overlapping periods",
       "details": {
         "median_abs_rel_gap": 0.010955681522549946,
-        "mean_rel_gap": -0.025242574052746828,
-        "log_correlation": 0.2654862276043385,
+        "mean_rel_gap": -0.02524265627654514,
+        "log_correlation": 0.2654864978615463,
         "n_overlap": 189,
         "total_a": 21039328851.939125,
-        "total_b": 21586342968.0,
+        "total_b": 21586344614.76251,
         "basis": "12-month rolling sums, tonnes"
       }
     }

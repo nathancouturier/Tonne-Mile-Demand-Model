@@ -194,9 +194,6 @@
       "2014-12",
       "2026-02"
     ],
-    "IND_M_coal_RUS_MOZ": [
-      "2014-01"
-    ],
     "UKR_X_grains": [
       "2015-03",
       "2015-04",
@@ -418,10 +415,10 @@
       }
     },
     "IND_M_coal_RUS_MOZ": {
-      "proxy_tonnes_share": 0.0,
-      "interpolated_tonnes_share": 0.0012,
+      "proxy_tonnes_share": 0.0019,
+      "interpolated_tonnes_share": 0.0,
       "months": {
-        "interpolated_no_weight": [
+        "proxy_unit_value": [
           "2014-01"
         ]
       }
