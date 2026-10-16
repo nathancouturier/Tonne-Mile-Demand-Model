@@ -120,9 +120,7 @@ def attribute_period(
     )
 
 
-def rolling_attribution(
-    panel: pd.DataFrame, elasticity: float, horizon: int = 12, window: int = 3
-) -> pd.DataFrame:
+def rolling_attribution(panel: pd.DataFrame, elasticity: float, horizon: int = 12, window: int = 3) -> pd.DataFrame:
     """Attribute the change over ``horizon`` months for every month in the panel."""
     p = _check_panel(panel)
     rows = []

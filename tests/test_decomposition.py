@@ -41,9 +41,7 @@ def test_episode_attribution_matches_direct_call():
     e = next(x for x in eps if x["episode_id"] == "slide_2014_2016")
     a = attribute_period(p, pd.Period("2013-12", "M"), pd.Period("2016-02", "M"), 4.0, 3)
     assert e["total"] == pytest.approx(a.total)
-    assert e["volume"] + e["distance"] + e["fleet"] + e["effective_supply"] + e["residual"] == pytest.approx(
-        e["total"]
-    )
+    assert e["volume"] + e["distance"] + e["fleet"] + e["effective_supply"] + e["residual"] == pytest.approx(e["total"])
 
 
 def test_covered_episodes_respects_window():

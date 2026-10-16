@@ -44,9 +44,7 @@ def aggregate_tonne_miles(flows: pd.DataFrame, distances: pd.DataFrame) -> tuple
     if (flows["tonnes"] < 0).any():
         raise ValueError("negative tonnes in flows")
     if "month" in distances.columns:
-        merged = flows.merge(
-            distances[["month", "route_id", "distance_nm"]], on=["month", "route_id"], how="left"
-        )
+        merged = flows.merge(distances[["month", "route_id", "distance_nm"]], on=["month", "route_id"], how="left")
     else:
         merged = flows.merge(distances[["route_id", "distance_nm"]], on="route_id", how="left")
     if merged["distance_nm"].isna().any():
@@ -60,9 +58,7 @@ def aggregate_tonne_miles(flows: pd.DataFrame, distances: pd.DataFrame) -> tuple
         .reset_index(drop=True)
     )
     totals["avg_haul_nm"] = totals["tonne_miles"] / totals["tonnes"].where(totals["tonnes"] > 0)
-    merged = merged.merge(
-        totals[["month", "tonne_miles"]].rename(columns={"tonne_miles": "_tot"}), on="month"
-    )
+    merged = merged.merge(totals[["month", "tonne_miles"]].rename(columns={"tonne_miles": "_tot"}), on="month")
     merged["share"] = merged["tonne_miles"] / merged["_tot"].where(merged["_tot"] > 0)
     by_route = merged.drop(columns="_tot").sort_values(["month", "route_id"]).reset_index(drop=True)
     return by_route, totals

@@ -55,9 +55,7 @@ def haversine_nm(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return 2 * r_nm * math.asin(math.sqrt(a))
 
 
-def sea_distance_nm(
-    origin: Port, destination: Port, variant: str = "shortest"
-) -> tuple[float, list[list[float]]]:
+def sea_distance_nm(origin: Port, destination: Port, variant: str = "shortest") -> tuple[float, list[list[float]]]:
     """Return the sea distance in nautical miles and the route geometry.
 
     Args:
@@ -103,7 +101,7 @@ def build_distance_matrix(
         for variant in RESTRICTION_SETS:
             try:
                 dist, coords = sea_distance_nm(o, d, variant)
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - a routing variant may be infeasible
                 log.warning("no %s route for %s-%s: %s", variant, o_id, d_id, exc)
                 continue
             rows.append(

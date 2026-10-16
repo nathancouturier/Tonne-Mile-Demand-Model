@@ -1,12 +1,6 @@
 name: Remote source probe
 
 on:
-  push:
-    branches: ["claude/**"]
-    paths:
-      - ".github/workflows/remote-probe.yml"
-      - "scripts/probe_sources.py"
-      - "scripts/probe_trigger.txt"
   workflow_dispatch:
     inputs:
       script:

@@ -53,9 +53,7 @@ class ElasticityEstimate:
         }
 
 
-def estimate_elasticity(
-    log_index: pd.Series, log_balance: pd.Series, hac_lags: int = 12
-) -> ElasticityEstimate:
+def estimate_elasticity(log_index: pd.Series, log_balance: pd.Series, hac_lags: int = 12) -> ElasticityEstimate:
     """OLS of log index on log balance with HAC (Newey-West) standard errors."""
     df = pd.concat([log_index.rename("y"), log_balance.rename("x")], axis=1).dropna()
     if len(df) < 24:

@@ -13,9 +13,7 @@ def test_interpolation_hits_january_values_and_grows_smoothly():
     assert jan21["value"] == pytest.approx(1100.0)
     assert not jan21["extrapolated"]
     # constant monthly log growth within the year
-    vals = m[(m["month"] >= pd.Period("2020-01", "M")) & (m["month"] <= pd.Period("2021-01", "M"))][
-        "value"
-    ].to_numpy()
+    vals = m[(m["month"] >= pd.Period("2020-01", "M")) & (m["month"] <= pd.Period("2021-01", "M"))]["value"].to_numpy()
     ratios = vals[1:] / vals[:-1]
     assert ratios.std() < 1e-9
     assert ratios[0] == pytest.approx(math.exp(math.log(1.1) / 12))

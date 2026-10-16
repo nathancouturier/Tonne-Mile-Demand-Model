@@ -1,0 +1,108 @@
+name: Data refresh and site build
+
+on:
+  schedule:
+    # Every Tuesday at 06:17 UTC, after the weekly PortWatch update
+    - cron: "17 6 * * 2"
+  workflow_dispatch:
+    inputs:
+      ingest_only:
+        description: Only download data, skip the model build and deployment
+        type: boolean
+        default: false
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "scripts/refresh_trigger.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  ingest-fast:
+    name: Ingest fast sources
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Download
+        env:
+          TMDM_INGEST_SKIP: comtrade
+        run: python -m tmdm.cli ingest
+      - name: Commit raw data
+        if: always()
+        run: bash scripts/commit_data.sh "data: refresh fast sources" data/raw
+
+  ingest-comtrade:
+    name: Ingest UN Comtrade (paced)
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Download with periodic checkpoint commits
+        env:
+          TMDM_INGEST_ONLY: comtrade
+        run: |
+          set -o pipefail
+          python -m tmdm.cli ingest > comtrade.log 2>&1 &
+          pid=$!
+          while kill -0 "$pid" 2>/dev/null; do
+            sleep 1200
+            tail -n 3 comtrade.log || true
+            bash scripts/commit_data.sh "data: comtrade checkpoint" data/raw/un_comtrade || true
+          done
+          wait "$pid"
+          status=$?
+          tail -n 40 comtrade.log || true
+          exit $status
+      - name: Commit raw data
+        if: always()
+        run: bash scripts/commit_data.sh "data: refresh UN Comtrade" data/raw/un_comtrade
+
+  build:
+    name: Validate, model, export and deploy
+    needs: [ingest-fast, ingest-comtrade]
+    if: ${{ always() && github.event_name != 'push' && !inputs.ingest_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Build
+        run: |
+          python -m tmdm.cli validate
+          python -m tmdm.cli transform
+          python -m tmdm.cli model
+          python -m tmdm.cli export
+          python -m tmdm.cli report
+      - name: Commit processed data, site and report
+        run: bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
+      - name: Publish site to gh-pages
+        run: bash scripts/publish_pages.sh

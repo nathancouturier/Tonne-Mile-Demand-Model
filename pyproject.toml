@@ -44,12 +44,13 @@ where = ["src"]
 tmdm = ["py.typed"]
 
 [tool.ruff]
-line-length = 110
+line-length = 120
 target-version = "py311"
 src = ["src", "tests", "scripts"]
+extend-exclude = ["scripts/probe_sources.py"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "W", "UP", "B", "N", "D", "ANN", "RUF"]
+select = ["E", "F", "I", "W", "UP", "B", "N", "D", "ANN", "RUF", "BLE"]
 ignore = ["D203", "D213", "D104", "ANN401", "RUF012"]
 
 [tool.ruff.lint.per-file-ignores]
