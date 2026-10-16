@@ -162,6 +162,8 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .episode-text { color: var(--ink-2); max-width: 72ch; margin: 0 0 16px; }
 
 .table-wrap { overflow: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); margin-bottom: 20px; max-height: 480px; }
+.table-wrap.full { max-height: none; }
+.table-wrap.full td:first-child { min-width: 9.5rem; }
 .downloads { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
 .download { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; font-family: var(--sans); font-size: 0.85rem; }
 .download a { font-weight: 600; word-break: break-all; }

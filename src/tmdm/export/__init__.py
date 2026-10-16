@@ -49,6 +49,10 @@ DOWNLOADS = {
     "seaborne_trade_annual.csv": "World seaborne trade loaded by cargo type (UNCTAD)",
     "signals_monthly.csv": "Monthly prices used as market signals (World Bank Pink Sheet) and OECD leading indicators",
     "model_signals.json": "Market-signal coefficients and the out-of-sample comparison with the physical model",
+    "model_extensions.json": "Extensions tested against the headline: minor bulks and OECD leading indicators",
+    "minor_bulks_monthly.csv": "Monthly tonnes and tonne-miles of the minor bulks (extension, not in the panel)",
+    "minor_bulk_routes.csv": "Minor-bulk routes: baseline distance, canal use and tonnes over the window",
+    "minor_bulk_ports.csv": "Ports and weights used for minor-bulk distances (IMF PortWatch ports table)",
 }
 
 
@@ -467,6 +471,8 @@ def run() -> None:
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
     sig_path = PROCESSED_DIR / "model_signals.json"
     signals = json.loads(sig_path.read_text()) if sig_path.exists() else {}
+    ext_path = PROCESSED_DIR / "model_extensions.json"
+    extensions = json.loads(ext_path.read_text()) if ext_path.exists() else {}
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     coverage = json.loads((PROCESSED_DIR / "coverage.json").read_text())
     for g in coverage.get("route_groups", []):
@@ -488,6 +494,7 @@ def run() -> None:
                 "fit": signals.get("fit", {}),
                 "out_of_sample": oos,
             },
+            "extensions": extensions,
         },
     )
     _json(SITE_DATA_DIR / "validation.json", validation)

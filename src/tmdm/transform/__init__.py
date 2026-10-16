@@ -13,6 +13,8 @@ Outputs (all under ``data/processed``):
 * ``panel_monthly.csv``: the balanced monthly panel used by the model.
 * ``coverage.json``: data coverage per input and the resulting panel window.
 * ``signals_monthly.csv``: monthly commodity prices and leading indicators used as market signals.
+* ``minor_bulks_monthly.csv``, ``minor_bulk_routes.csv``, ``minor_bulk_ports.csv``: tonnes and tonne-miles of
+  the minor bulks (an extension tested against the headline model, not part of the panel).
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.ingest import portwatch, unctad
+from tmdm.reference import EXTENSION_COMMODITIES
 from tmdm.transform import flows as flows_mod
 from tmdm.transform import freight, route_distances, supply
 from tmdm.transform.tonne_miles import aggregate_tonne_miles
@@ -131,6 +134,37 @@ def signals_monthly() -> pd.DataFrame:
     return out
 
 
+def minor_bulks(diversion: pd.DataFrame) -> dict[str, object]:
+    """Tonnes and tonne-miles of the minor bulks over the months every minor-bulk route group covers.
+
+    Flows are completed with the same gap rules as the panel routes; distances use the main dry bulk
+    ports of each country (see :func:`tmdm.transform.route_distances.minor_bulk_distances`) and the same
+    chokepoint diversions. Returns a coverage summary for ``coverage.json``.
+    """
+    raw = flows_mod.build_route_flows(EXTENSION_COMMODITIES)
+    flows = flows_mod.complete_months(raw, flows_mod.published_months(), flows_mod.missing_quantity_months(raw))
+    cov = flows_mod.group_coverage(flows)
+    first, last = cov["first_month"].max(), cov["last_month"].min()
+    flows = flows[(flows["month"] >= first) & (flows["month"] <= last)]
+    dist, used = route_distances.minor_bulk_distances(flows)
+    canal = canal_users(dist)
+    dist_m = monthly_route_distances(canal, diversion, pd.period_range(first, last, freq="M"))
+    _by_route, totals = aggregate_tonne_miles(flows, dist_m)
+    totals.to_csv(PROCESSED_DIR / "minor_bulks_monthly.csv", index=False)
+    canal.merge(
+        flows.groupby("route_id", as_index=False)["tonnes"].sum().rename(columns={"tonnes": "tonnes_window"}),
+        on="route_id",
+    ).to_csv(PROCESSED_DIR / "minor_bulk_routes.csv", index=False)
+    used.to_csv(PROCESSED_DIR / "minor_bulk_ports.csv", index=False)
+    log.info("minor bulks: %s to %s, %d routes", first, last, flows["route_id"].nunique())
+    return {
+        "window": [str(first), str(last)],
+        "routes": int(flows["route_id"].nunique()),
+        "route_groups": sorted(str(g) for g in cov["group_id"]),
+        "fill_summary": flows_mod.fill_summary(flows),
+    }
+
+
 def run() -> None:
     """Build all processed series."""
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
@@ -184,6 +218,8 @@ def run() -> None:
     unctad.world_seaborne_trade().to_csv(PROCESSED_DIR / "seaborne_trade_annual.csv", index=False)
     # Monthly market-signal prices (World Bank Pink Sheet) and leading indicators (OECD), when downloaded
     signals_monthly().to_csv(PROCESSED_DIR / "signals_monthly.csv")
+    # Minor bulks, an extension tested against the headline model
+    minor = minor_bulks(div)
     # Panel
     panel = (
         totals.merge(bdi.rename(columns={"bdi": "index"}), on="month", how="inner")
@@ -206,6 +242,7 @@ def run() -> None:
         "interpolated_months": flows_mod.interpolated_months(flows),
         "fill_summary": flows_mod.fill_summary(flows, (first, last)),
         "fill_summary_window": [str(first), str(last)],
+        "minor_bulks": minor,
     }
     (PROCESSED_DIR / "coverage.json").write_text(json.dumps(cov, indent=2))
     log.info(

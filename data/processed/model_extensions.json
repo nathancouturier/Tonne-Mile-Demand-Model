@@ -1,0 +1,538 @@
+{
+  "adoption_margin": 0.05,
+  "variants": [
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.4942122871950818,
+        "iron_ore": 0.8308234121671759
+      },
+      "t_stats": {
+        "oil": 2.847086550530869,
+        "iron_ore": 4.181993835387344
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.5545671269681671,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.6176504139680743,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.6161412555008647,
+      "id": "headline",
+      "label": "Headline: major bulks, oil and iron ore",
+      "oos_r2_gain": null,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.29389021709765,
+      "elasticity_se": 0.9203653446175563,
+      "r_squared_balance": 0.05930896281135345,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.5037234784214002,
+        "iron_ore": 0.8424494924696895
+      },
+      "t_stats": {
+        "oil": 2.902002986996806,
+        "iron_ore": 4.154916244798606
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.9207282117951874,
+      "unexplained_extended": 0.5543945285166825,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.04149685423715366,
+      "oos_r2_extended": 0.6159564926345807,
+      "oos_unexplained_physical": 0.9491129579031238,
+      "oos_unexplained_extended": 0.6155788892901413,
+      "id": "minor_bulks",
+      "label": "Minor bulks added to tonne-miles",
+      "minor_tonne_miles_share": 0.08702740720643587,
+      "oos_r2_gain": -0.0016939213334935532,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        },
+        {
+          "name": "cli_china",
+          "column": "cli_chn",
+          "lag": 0,
+          "label": "China leading indicator, 0 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.49676136380686586,
+        "iron_ore": 0.8129487343665782,
+        "cli_china": 0.763858484617331
+      },
+      "t_stats": {
+        "oil": 2.8838056597409714,
+        "iron_ore": 3.9890851559993514,
+        "cli_china": 0.6046232431317734
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.550931150095426,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.5612060792666637,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.6861820205245814,
+      "id": "cli_china_lead0",
+      "label": "China leading indicator added, 0 months earlier",
+      "oos_r2_gain": -0.05644433470141064,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        },
+        {
+          "name": "cli_china",
+          "column": "cli_chn",
+          "lag": 3,
+          "label": "China leading indicator, 3 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.4658512967546168,
+        "iron_ore": 0.7414587261529022,
+        "cli_china": 2.510931497605227
+      },
+      "t_stats": {
+        "oil": 2.7074350063529615,
+        "iron_ore": 3.731400841207113,
+        "cli_china": 1.65220512811067
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.5347629607446609,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.4688380262737415,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.6824711317338441,
+      "id": "cli_china_lead3",
+      "label": "China leading indicator added, 3 months earlier",
+      "oos_r2_gain": -0.1488123876943328,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        },
+        {
+          "name": "cli_china",
+          "column": "cli_chn",
+          "lag": 6,
+          "label": "China leading indicator, 6 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.4291571726155502,
+        "iron_ore": 0.6815990845203445,
+        "cli_china": 4.221401752073543
+      },
+      "t_stats": {
+        "oil": 2.7846465608848847,
+        "iron_ore": 3.8391886388004854,
+        "cli_china": 2.3426670850730478
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.5186666726283858,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.645773550286668,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.5854750603772564,
+      "id": "cli_china_lead6",
+      "label": "China leading indicator added, 6 months earlier",
+      "oos_r2_gain": 0.028123136318593756,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        },
+        {
+          "name": "cli_g20",
+          "column": "cli_g20",
+          "lag": 0,
+          "label": "G20 leading indicator, 0 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.3774964687673526,
+        "iron_ore": 0.758144029997255,
+        "cli_g20": 5.877051939076059
+      },
+      "t_stats": {
+        "oil": 2.008154879212953,
+        "iron_ore": 4.664291993004605,
+        "cli_g20": 2.711335060904882
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.5168002696825147,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.5090894135780992,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.6834168347766552,
+      "id": "cli_g20_lead0",
+      "label": "G20 leading indicator added, 0 months earlier",
+      "oos_r2_gain": -0.10856100038997507,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        },
+        {
+          "name": "cli_g20",
+          "column": "cli_g20",
+          "lag": 3,
+          "label": "G20 leading indicator, 3 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.35764327554769937,
+        "iron_ore": 0.7314821124018106,
+        "cli_g20": 6.423138626930294
+      },
+      "t_stats": {
+        "oil": 1.9806876602578944,
+        "iron_ore": 4.407446946069526,
+        "cli_g20": 1.7798425343079975
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.5163742840317693,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.42335080758963684,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.6695294821125466,
+      "id": "cli_g20_lead3",
+      "label": "G20 leading indicator added, 3 months earlier",
+      "oos_r2_gain": -0.19429960637843746,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "iron_ore",
+          "column": "iron_ore_usd_dmtu",
+          "lag": 3,
+          "label": "Iron ore price, 3 months earlier"
+        },
+        {
+          "name": "cli_g20",
+          "column": "cli_g20",
+          "lag": 6,
+          "label": "G20 leading indicator, 6 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.27369328953730876,
+        "iron_ore": 0.8335701852230424,
+        "cli_g20": 7.776933187743731
+      },
+      "t_stats": {
+        "oil": 1.4447538355680039,
+        "iron_ore": 5.410912459963721,
+        "cli_g20": 2.1486336110616264
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.5045522598498642,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.5132780976776169,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.6584873568651388,
+      "id": "cli_g20_lead6",
+      "label": "G20 leading indicator added, 6 months earlier",
+      "oos_r2_gain": -0.1043723162904574,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "cli_china",
+          "column": "cli_chn",
+          "lag": 0,
+          "label": "China leading indicator, 0 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.8759242359802237,
+        "cli_china": 2.2892527820611557
+      },
+      "t_stats": {
+        "oil": 4.369198645870645,
+        "cli_china": 1.37773539476267
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.6828262219907378,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.2669612076918697,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.8542678347843116,
+      "id": "cli_china_instead_of_ore_lead0",
+      "label": "China leading indicator instead of iron ore, 0 months earlier",
+      "oos_r2_gain": -0.3506892062762046,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "cli_china",
+          "column": "cli_chn",
+          "lag": 3,
+          "label": "China leading indicator, 3 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.7559870789132567,
+        "cli_china": 4.857898326292339
+      },
+      "t_stats": {
+        "oil": 4.592508666612192,
+        "cli_china": 2.619234649589896
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.6365439323333473,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.2241184791458376,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.8009782888432727,
+      "id": "cli_china_instead_of_ore_lead3",
+      "label": "China leading indicator instead of iron ore, 3 months earlier",
+      "oos_r2_gain": -0.3935319348222367,
+      "clears_margin": false
+    },
+    {
+      "panel_window": [
+        "2012-12",
+        "2025-09"
+      ],
+      "elasticity": 2.3609854322118187,
+      "elasticity_se": 0.789965763115915,
+      "r_squared_balance": 0.06903501408309964,
+      "signals": [
+        {
+          "name": "oil",
+          "column": "brent_usd_bbl",
+          "lag": 0,
+          "label": "Oil price (Brent)"
+        },
+        {
+          "name": "cli_china",
+          "column": "cli_chn",
+          "lag": 6,
+          "label": "China leading indicator, 6 months earlier"
+        }
+      ],
+      "coefficients": {
+        "oil": 0.6854444206518858,
+        "cli_china": 6.434268238619259
+      },
+      "t_stats": {
+        "oil": 4.715506076741481,
+        "cli_china": 3.0032190684797335
+      },
+      "n_obs": 140,
+      "unexplained_physical": 0.910328723752311,
+      "unexplained_extended": 0.6141144291282745,
+      "oos_available": true,
+      "oos_months": 69,
+      "oos_r2_physical": 0.05770463099475076,
+      "oos_r2_extended": 0.46408690398133023,
+      "oos_unexplained_physical": 0.9375166656831896,
+      "oos_unexplained_extended": 0.7377539667601554,
+      "id": "cli_china_instead_of_ore_lead6",
+      "label": "China leading indicator instead of iron ore, 6 months earlier",
+      "oos_r2_gain": -0.15356350998674406,
+      "clears_margin": false
+    }
+  ]
+}

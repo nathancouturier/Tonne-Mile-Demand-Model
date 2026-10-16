@@ -475,6 +475,24 @@
         add("p", `Gain of the signals over the physical model out of sample (R squared relative to the physical forecast): ${signed(o.extended_r2_vs_physical, 2)} overall; ${by}. Against the persistence benchmark the gain is ${signed(o.extended_r2_vs_persistence, 2)}.`);
       }
     }
+    const ext = (D.model.extensions || {}).variants || [];
+    if (ext.length > 1) {
+      const margin = D.model.extensions.adoption_margin;
+      const minor = ext.find((v) => v.id === "minor_bulks");
+      add("h3", "More data and other signals, tested and not adopted");
+      add("p", "Two further additions were scored with the same protocol as the headline, in sample and out of sample." + (minor ? ` The first adds the minor bulks (sugar, soybean meal, cement, manganese ore, bauxite, petroleum coke, potash, wood chips and pellets, ferrous scrap) exported by the eight Comtrade exporters and by Brazil to ${D.summary.coverage.minor_bulks ? D.summary.coverage.minor_bulks.routes : ""} sea routes, about ${fmt.pctPlain(minor.minor_tonne_miles_share)} more tonne-miles than the major bulks, with the same gap and proxy rules; their distances use the three ports of each country with the most dry bulk calls in the IMF PortWatch ports table, weighted by calls, because minor bulks move through many small terminals.` : "") + " The second uses the OECD composite leading indicators for China and the G20, which are built to anticipate turning points in industrial activity, either as a third signal or in place of the iron ore price, at leads of zero, three and six months.");
+      const tw = C.el("div", "table-wrap full");
+      const pc = (v) => (v === null || v === undefined ? "" : fmt.pctPlain(v));
+      C.dataTable(tw, [{ key: "label", label: "Variant" }, { key: "unexplained_extended", label: "Unexplained, in sample", num: true, format: pc }, { key: "oos_unexplained_extended", label: "Unexplained, out of sample", num: true, format: pc }, { key: "oos_r2_extended", label: "R squared, out of sample", num: true, format: (v) => (v === null ? "" : fmt.f2(v)) }, { key: "oos_r2_gain", label: "Change against headline", num: true, format: (v) => signed(v, 2) }], ext);
+      prose.append(tw);
+      const better = ext.filter((v) => v.clears_margin);
+      const cli = ext.filter((v) => v.id.startsWith("cli_") && v.oos_r2_gain !== null);
+      const worse = cli.filter((v) => v.oos_r2_gain < 0).length;
+      const mixed = ["cli_china_lead", "cli_g20_lead", "cli_china_instead_of_ore_lead"].some((k) => { const g = cli.filter((v) => v.id.startsWith(k)).map((v) => v.oos_r2_gain); return g.some((x) => x > 0) && g.some((x) => x < 0); });
+      const minorText = minor && minor.oos_r2_gain !== null ? (Math.abs(minor.oos_r2_gain) < 0.02 ? `Adding the minor bulks leaves the out-of-sample fit essentially unchanged (${signed(minor.oos_r2_gain, 2)}): they are a stable share of the trade and their twelve-month changes add little to the balance. ` : `Adding the minor bulks changes the out-of-sample R squared by ${signed(minor.oos_r2_gain, 2)}. `) : "";
+      const cliText = cli.length ? `Leading indicators lower the unexplained share in sample, as any added regressor does, but out of sample ${worse} of ${cli.length} variants do worse than the headline` + (mixed ? ", and for a given indicator the sign of the change depends on the lead." : ".") : "";
+      add("p", minorText + cliText + (better.length ? ` ${better.map((v) => v.label).join("; ")} improves the out-of-sample R squared by more than ${fmt.f2(margin)}, the margin set to cover the choice among leads; it is shown as a candidate for review, and the headline specification is unchanged.` : ` No variant improves the out-of-sample R squared by more than ${fmt.f2(margin)}, the margin set to cover the choice among several leads, so the headline keeps the major bulks and the two prices.`));
+    }
     add("h3", "Reconciliation");
     add("p", "Where two sources measure the same flow (Brazilian exports in Comex Stat and in UN Comtrade; exporter and importer records for Australia to China, Brazil to China, Indonesia to China, United States to China and Australia to Japan) the series are compared on twelve-month rolling sums and the median gap is reported below. PortWatch dry bulk port loadings are compared with UNCTAD seaborne dry cargo as a level check.");
     // sources table

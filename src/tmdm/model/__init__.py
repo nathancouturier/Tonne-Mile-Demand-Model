@@ -10,6 +10,7 @@ Reads ``data/processed/panel_monthly.csv`` and writes:
   (with the regression intercept) and residual.
 * ``haul_split_rolling.csv``: trade-mix versus rerouting split of the haul effect.
 * ``model_signals.json``: market-signal coefficients and the out-of-sample comparison.
+* ``model_extensions.json``: extensions tested against the headline (minor bulks, leading indicators).
 """
 
 from __future__ import annotations
@@ -23,6 +24,7 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.model.decomposition import run_model
+from tmdm.model.extensions import run_extensions
 from tmdm.transform.tonne_miles import haul_split
 
 log = logging.getLogger(__name__)
@@ -39,6 +41,16 @@ def load_prices() -> pd.DataFrame | None:
     df = pd.read_csv(path)
     df["month"] = pd.PeriodIndex(df["month"], freq="M")
     return df.set_index("month")
+
+
+def load_minor_bulks() -> pd.DataFrame | None:
+    """Monthly minor-bulk tonnes and tonne-miles, or None before the transform stage has written them."""
+    path = PROCESSED_DIR / "minor_bulks_monthly.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path)
+    df["month"] = pd.PeriodIndex(df["month"], freq="M")
+    return df
 
 
 def load_panel() -> pd.DataFrame:
@@ -95,6 +107,9 @@ def run() -> None:
     out = run_model(panel, window=WINDOW, horizon=HORIZON, prices=prices)
     if out.signals:
         (PROCESSED_DIR / "model_signals.json").write_text(json.dumps(_json_ready(out.signals), indent=2))
+    if prices is not None:
+        ext = run_extensions(panel, prices, load_minor_bulks(), HORIZON, WINDOW)
+        (PROCESSED_DIR / "model_extensions.json").write_text(json.dumps(_json_ready(ext), indent=2))
     (PROCESSED_DIR / "model_elasticity.json").write_text(
         json.dumps(
             {

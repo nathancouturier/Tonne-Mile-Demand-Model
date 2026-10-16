@@ -165,14 +165,14 @@ def reporter_world_totals(records: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(sub.groupby(["month", "reporter", "flowCode", "commodity"], as_index=False)["tonnes"].sum())
 
 
-def build_route_flows() -> pd.DataFrame:
-    """Assemble monthly tonnes for every covered route."""
+def build_route_flows(commodities: tuple[str, ...] = PANEL_COMMODITIES) -> pd.DataFrame:
+    """Assemble monthly tonnes for every covered route of the given commodity groups."""
     records = comtrade.load_records()
     comex = comexstat.load()
     uv = annual_unit_values(records)
     frames = []
     for g in ROUTE_GROUPS:
-        if g.group_id in MIRROR_ONLY or g.commodity not in PANEL_COMMODITIES:
+        if g.group_id in MIRROR_ONLY or g.commodity not in commodities:
             continue
         df = _comex_group_flows(comex, g) if g.reporter == "BRA_COMEX" else _comtrade_group_flows(records, g, uv)
         n_proxy = int((df["proxy_tonnes"] > 0).sum()) if not df.empty else 0

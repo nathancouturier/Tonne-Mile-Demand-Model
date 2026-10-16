@@ -154,6 +154,8 @@ def load_results() -> dict[str, Any]:
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
     sig_path = PROCESSED_DIR / "model_signals.json"
     signals = json.loads(sig_path.read_text()) if sig_path.exists() else {}
+    ext_path = PROCESSED_DIR / "model_extensions.json"
+    extensions = json.loads(ext_path.read_text()) if ext_path.exists() else {}
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     by_route = pd.read_csv(PROCESSED_DIR / "tonne_miles_by_route.csv")
     fleet = pd.read_csv(PROCESSED_DIR / "fleet_annual.csv")
@@ -168,6 +170,7 @@ def load_results() -> dict[str, Any]:
         "model": model,
         "diff_reg": diff_reg,
         "signals": signals,
+        "extensions": extensions,
         "validation": validation,
         "by_route": by_route,
         "fleet": fleet,
@@ -375,6 +378,52 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
             else float("nan")
         ),
     }
+
+
+def _extensions_text(ext: dict[str, Any]) -> str:
+    """One paragraph on the extensions tested against the headline (more data, other signals)."""
+    rows = {v["id"]: v for v in ext.get("variants", [])}
+    head = rows.get("headline")
+    if head is None or head.get("oos_r2_extended") is None or len(rows) < 2:
+        return ""
+    minor = rows.get("minor_bulks")
+    cli = [v for k, v in rows.items() if k.startswith("cli_") and v.get("oos_r2_gain") is not None]
+    margin = float(ext.get("adoption_margin", 0.05))
+    parts = [
+        f"Further additions were scored with the same protocol (headline out-of-sample R squared {head['oos_r2_extended']:.2f})."
+    ]
+    if minor is not None and minor.get("oos_r2_extended") is not None:
+        parts.append(
+            f" Adding the minor bulks (sugar, soybean meal, cement, manganese and bauxite ores, petroleum coke, potash, wood, scrap), about {minor['minor_tonne_miles_share']:.0%} more tonne-miles, gives {minor['oos_r2_extended']:.2f}"
+            f" (unexplained share {minor['oos_unexplained_extended']:.0%} out of sample against {head['oos_unexplained_extended']:.0%})."
+        )
+    if cli:
+        gains = [float(v["oos_r2_gain"]) for v in cli]
+        best = max(cli, key=lambda v: float(v["oos_r2_gain"]))
+        parts.append(
+            f" The OECD leading indicators for China and the G20, added as a third signal or in place of iron ore at leads of zero, three and six months ({len(cli)} variants), change the out-of-sample R squared by {min(gains):+.2f} to {max(gains):+.2f}; the best variant ({best['label']}) gains {float(best['oos_r2_gain']):+.2f}."
+        )
+    cleared = [v for v in rows.values() if v.get("clears_margin")]
+    if cleared:
+        parts.append(
+            f" {len(cleared)} variant(s) clear the margin of {margin:.2f} set to cover the choice of lead; they are reported as candidates and the headline is unchanged."
+        )
+    else:
+        parts.append(
+            f" None clears the margin of {margin:.2f} set to cover the choice of lead, so the headline keeps the major bulks and the two prices."
+        )
+    return "".join(parts)
+
+
+def _ext_note(res: dict[str, Any]) -> str:
+    """Short clause on the extensions for the talking points, empty if none was scored."""
+    rows = res.get("extensions", {}).get("variants", [])
+    if len(rows) < 2:
+        return ""
+    if any(v.get("clears_margin") for v in rows):
+        return "; one tested extension clears the out-of-sample margin and is under review"
+    margin = float(res["extensions"].get("adoption_margin", 0.05))
+    return f"; adding the minor bulks or OECD leading indicators did not raise the out-of-sample R squared by more than {margin:.2f}"
 
 
 def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> None:
@@ -598,6 +647,9 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
                 st["body"],
             )
         )
+        ext_text = _extensions_text(res.get("extensions", {}))
+        if ext_text:
+            story.append(Paragraph(ext_text, st["body"]))
     story.append(Paragraph("Robustness", st["h2"]))
     rb = n["robustness"]
     parts = [
@@ -637,7 +689,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(
         Paragraph(
             "Sailing speed, waiting outside ports and ballast ratios are not observable from public data and remain in the residual with bunker prices, sentiment and contract timing. Some customs records carry values without weights (United States monthly records before 2016); tonnes for those months are estimated from the reporter's annual unit values and flagged, and the Russia to Egypt grain route is left out because Egyptian records lack weights in most years. "
-            "The route set covers the major bulks between the main exporters and importers; minor bulks and regional trades that drive Supramax and Handysize rates are excluded. "
+            "The route set covers the major bulks between the main exporters and importers; minor bulks are tested as an extension only, and regional trades that drive Supramax and Handysize rates are excluded. "
             "Representative ports approximate real terminals; the error is a few percent of a voyage and constant over time, so it affects levels rather than changes. "
             "Customs months record declarations, not sailings. Episodes shorter than twelve months compare endpoints in different seasons, and cargo volumes are seasonal, so their volume effect includes seasonal movement. The index composition changed in 2018. The freight index is republished by the Aland statistics office less often than the demand data, so the balanced panel ends earlier than the volume series. "
             "Deliveries and demolitions by ship type are not in the public UNCTAD tables; fleet growth is shown net.",
@@ -683,7 +735,7 @@ def write_deliverables(res: dict[str, Any]) -> None:
             else ""
         )
         + f"; in the latest window the largest physical driver was {LABELS[n['biggest']].lower()}.\n"
-        f"4. Limitation: speed and anchorage waiting are not observable from free data and sit in the residual; the price signals are market correlates, not causes, and were chosen on the same sample; the public monthly index ends earlier than the demand data; representative ports and customs timing add measurement error.\n"
+        f"4. Limitation: speed and anchorage waiting are not observable from free data and sit in the residual; the price signals are market correlates, not causes, and were chosen on the same sample{_ext_note(res)}; the public monthly index ends earlier than the demand data; representative ports and customs timing add measurement error.\n"
         f"5. Next: replace the price signals with physical cycle measures (China steel output, monthly ship deliveries, berth waiting times), add a Capesize versus Panamax split if sub-index history becomes available, and estimate a time-varying elasticity to test whether the market's sensitivity to utilisation has changed since 2021.\n"
     )
     (DOCS_DIR / "interview-talking-points.txt").write_text(talking, encoding="utf-8")
@@ -729,6 +781,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
             if n["has_signals"]
             else []
         ),
+        *([f"* {_extensions_text(res.get('extensions', {}))}"] if _extensions_text(res.get("extensions", {})) else []),
         f"* Between the first and last twelve months of the panel, tonnes on the covered routes grew {n['t_growth']:+.0%}, tonne-miles {n['tm_growth']:+.0%} "
         f"(average haul {n['haul_growth']:+.1%}) and the bulk carrier fleet {n['fleet_growth']:+.0%} to {n['fleet_last_mdwt']:,.0f} million dwt.",
         f"* Latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}): the index moved {n['last_pct']:+.0f} percent; "

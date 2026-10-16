@@ -180,8 +180,9 @@ def out_of_sample(
     twelve-month change on the window ending three months earlier, scaled by
     its own coefficient) is reported for context.
     """
-    full_e = float(estimate_e(panel))
-    w_full = build_windows(panel, prices, full_e, signals, horizon, window)
+    # a window ending at t uses data up to t only, and its physical part is e times the balance change,
+    # so the windows are built once and rescaled by each refitted e
+    w_full = build_windows(panel, prices, 1.0, signals, horizon, window)
     months = list(w_full.index)
     if len(months) <= min_train + gap:
         return {"available": False, "reason": "too few windows for an out-of-sample test"}
@@ -192,7 +193,8 @@ def out_of_sample(
             continue
         cutoff = t - gap
         e_t = float(estimate_e(panel.loc[:cutoff]))
-        w = build_windows(panel.loc[:t], prices, e_t, signals, horizon, window)
+        w = w_full.loc[:t].copy()
+        w["physical"] = e_t * w["d_balance"]
         train = w.loc[:cutoff]
         if len(train) < min_train:
             continue

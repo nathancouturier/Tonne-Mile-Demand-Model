@@ -209,6 +209,25 @@ def main() -> int:
             d["coefficient"] * price_change(cols[name], start, end_, d["lag"]),
             1e-6,
         )
+    # 14. Extensions table: the headline row reproduces the out-of-sample test shown above it, and the minor-bulk
+    #     share of tonne-miles is recomputed from the processed minor-bulk and panel files
+    ext = {v["id"]: v for v in model.get("extensions", {}).get("variants", [])}
+    oos = model.get("signals", {}).get("out_of_sample", {})
+    if "headline" in ext and oos.get("available"):
+        check(
+            "extensions headline, out-of-sample R squared",
+            ext["headline"]["oos_r2_extended"],
+            oos["r2_vs_zero"]["extended"],
+            1e-9,
+        )
+    if "minor_bulks" in ext:
+        minor = pd.read_csv(ROOT / "data" / "processed" / "minor_bulks_monthly.csv").set_index("month")
+        pnl = pd.read_csv(ROOT / "data" / "processed" / "panel_monthly.csv").set_index("month")
+        common = pnl.index.intersection(minor.index)
+        share = float((minor.loc[common, "tonne_miles"] / pnl.loc[common, "tonne_miles"]).mean())
+        check(
+            "minor bulks, tonne-miles relative to the major bulks", ext["minor_bulks"]["minor_tonne_miles_share"], share
+        )
     bad = 0
     for name, sv, rv, rel, ok in results:
         print(f"{'OK  ' if ok else 'FAIL'} {name}: site={sv:,.4f} raw={rv:,.4f} rel_diff={rel:.2e}")

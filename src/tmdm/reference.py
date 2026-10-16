@@ -894,9 +894,11 @@ ROUTE_GROUPS.append(
     RouteGroup("BRA_COMEX_X_minor_bulks", "BRA_COMEX", "X", "minor_bulks", _minor_partners("BRA"), "minor_bulks")
 )
 
-# Commodity groups that enter the tonne-mile panel. The minor bulks are downloaded and reconciled, and
-# enter the panel once their route distances are in place (see tmdm.transform.route_distances).
+# Commodity groups that enter the tonne-mile panel. The minor bulks are downloaded and carried as an
+# extension: their tonne-miles, with distances between the main dry bulk ports of each country rather than
+# documented terminals, are added to the panel in a robustness variant (see tmdm.model.extensions).
 PANEL_COMMODITIES: tuple[str, ...] = ("iron_ore", "coal", "grains")
+EXTENSION_COMMODITIES: tuple[str, ...] = ("minor_bulks",)
 
 IMPORTER_ORIGIN_LOAD: dict[tuple[str, str], str] = {
     ("IND_M_coal_RUS_MOZ", "RUS"): "coal_pacific",
