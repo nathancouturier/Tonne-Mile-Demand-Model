@@ -9,6 +9,7 @@ Reads ``data/processed/panel_monthly.csv`` and writes:
 * ``model_fitted.csv``: twelve-month log changes of single months: actual, implied by the balance, fitted
   (with the regression intercept) and residual.
 * ``haul_split_rolling.csv``: trade-mix versus rerouting split of the haul effect.
+* ``model_signals.json``: market-signal coefficients and the out-of-sample comparison.
 """
 
 from __future__ import annotations
@@ -28,6 +29,16 @@ log = logging.getLogger(__name__)
 
 WINDOW = 3
 HORIZON = 12
+
+
+def load_prices() -> pd.DataFrame | None:
+    """Monthly market-signal prices, or None before the transform stage has written them."""
+    path = PROCESSED_DIR / "signals_monthly.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path)
+    df["month"] = pd.PeriodIndex(df["month"], freq="M")
+    return df.set_index("month")
 
 
 def load_panel() -> pd.DataFrame:
@@ -80,7 +91,10 @@ def rolling_haul_split(horizon: int, window: int) -> pd.DataFrame:
 def run() -> None:
     """Fit the model and write every output."""
     panel = load_panel()
-    out = run_model(panel, window=WINDOW, horizon=HORIZON)
+    prices = load_prices()
+    out = run_model(panel, window=WINDOW, horizon=HORIZON, prices=prices)
+    if out.signals:
+        (PROCESSED_DIR / "model_signals.json").write_text(json.dumps(_json_ready(out.signals), indent=2))
     (PROCESSED_DIR / "model_elasticity.json").write_text(
         json.dumps(
             {

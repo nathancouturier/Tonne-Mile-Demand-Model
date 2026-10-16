@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-16T15:01:25Z",
+  "generated_at": "2026-10-16T17:03:59Z",
   "summary": {
-    "pass": 19,
+    "pass": 20,
     "warn": 6,
     "fail": 0
   },
@@ -137,24 +137,24 @@
       "dataset": "un_comtrade",
       "check": "missing_values",
       "status": "warn",
-      "message": "highest missing share 1.7%",
+      "message": "highest missing share 2.1%",
       "details": {
         "missing_share": {
-          "netWgt": 0.01663055367829946,
+          "netWgt": 0.02073341634919265,
           "period": 0.0,
           "partnerCode": 0.0
         },
-        "rows": 143531
+        "rows": 243327
       }
     },
     {
       "dataset": "un_comtrade",
       "check": "estimated_weights_share",
       "status": "warn",
-      "message": "8.2% of records carry an estimated net weight",
+      "message": "7.3% of records carry an estimated net weight",
       "details": {
-        "share_estimated": 0.081794176867715,
-        "rows": 143531
+        "share_estimated": 0.07328409917518401,
+        "rows": 243327
       }
     },
     {
@@ -191,6 +191,17 @@
       }
     },
     {
+      "dataset": "un_comtrade:minor_bulks",
+      "check": "monthly_continuity",
+      "status": "pass",
+      "message": "0 missing months between 2010-01 and 2026-08",
+      "details": {
+        "first": "2010-01",
+        "last": "2026-08",
+        "gaps": []
+      }
+    },
+    {
       "dataset": "un_comtrade",
       "check": "weightless_values",
       "status": "warn",
@@ -198,8 +209,8 @@
       "details": {
         "share_by_reporter": {
           "BRA": 0.013,
-          "USA": 0.358,
-          "ZAF": 0.012
+          "USA": 0.361,
+          "ZAF": 0.01
         },
         "years_mostly_weightless": {
           "BRA": [],
@@ -219,22 +230,39 @@
       "dataset": "un_comtrade",
       "check": "annual_unit_values",
       "status": "warn",
-      "message": "50 of 2003 reporter-commodity-years have implausible unit values (US dollars per tonne) and are not used for proxies: AUS 1001 2000 4, AUS 1001 2002 4, AUS 1001 2003 4, CAN 1001 2000 132,957, CAN 1001 2001 145,037, CAN 1003 2000 125,840, CAN 1003 2001 143,471, CAN 2601 2000 25,184, CAN 2601 2001 26,140, CAN 2601 2008 9,277, CAN 2701 2000 34,700, CAN 2701 2001 38,527 and more",
+      "message": "100 of 3610 reporter-commodity-years have implausible unit values (US dollars per tonne) and are not used for proxies: AUS 1001 2000 4, AUS 1001 2002 4, AUS 1001 2003 4, AUS 2713 2007 12,717, AUS 2713 2008 8,196, CAN 1001 2000 132,957, CAN 1001 2001 145,037, CAN 1003 2000 125,840, CAN 1003 2001 143,471, CAN 1701 2000 566,502, CAN 1701 2001 408,354, CAN 1701 2002 548,390 and more",
       "details": {
         "implausible": {
           "AUS 1001 2000": 3.5,
           "AUS 1001 2002": 3.6,
           "AUS 1001 2003": 4.3,
+          "AUS 2713 2007": 12716.7,
+          "AUS 2713 2008": 8196.4,
           "CAN 1001 2000": 132957.1,
           "CAN 1001 2001": 145036.8,
           "CAN 1003 2000": 125839.8,
           "CAN 1003 2001": 143470.7,
+          "CAN 1701 2000": 566501.8,
+          "CAN 1701 2001": 408353.9,
+          "CAN 1701 2002": 548389.6,
+          "CAN 2523 2000": 55993.1,
+          "CAN 2523 2001": 57406.7,
+          "CAN 2523 2002": 59866.8,
+          "CAN 2523 2008": 34092.2,
           "CAN 2601 2000": 25184.5,
           "CAN 2601 2001": 26140.5,
           "CAN 2601 2008": 9277.2,
           "CAN 2701 2000": 34700.0,
           "CAN 2701 2001": 38526.9,
           "CAN 2701 2002": 35714.2,
+          "CAN 4401 2000": 46748.9,
+          "CAN 4401 2001": 18195.4,
+          "CAN 4401 2005": 4496.4,
+          "CAN 4401 2008": 477589.9,
+          "CAN 7204 2000": 122744.6,
+          "CAN 7204 2001": 107307.0,
+          "CAN 7204 2002": 4336.0,
+          "CAN 7204 2008": 28916.1,
           "COL 1005 2006": 3755.2,
           "COL 1005 2008": 3061.9,
           "COL 1005 2010": 5196.2,
@@ -255,11 +283,25 @@
           "USA 1007 2001": 99179.7,
           "USA 1201 2000": 195821.8,
           "USA 1201 2001": 187995.8,
+          "USA 2523 2000": 191027.4,
+          "USA 2523 2001": 118401.1,
+          "USA 2523 2002": 100226.9,
+          "USA 2523 2003": 98338.3,
+          "USA 2523 2004": 113701.7,
+          "USA 2523 2005": 131443.8,
           "USA 2601 2000": 94337.3,
           "USA 2601 2001": 31139.8,
           "USA 2601 2003": 77499.3,
           "USA 2601 2004": 46643.7,
           "USA 2601 2005": 54218.6,
+          "USA 2602 2014": 3267.7,
+          "USA 2602 2016": 3357.1,
+          "USA 2606 2000": 374260.1,
+          "USA 2606 2001": 74667.3,
+          "USA 2606 2002": 176336.6,
+          "USA 2606 2003": 146619.5,
+          "USA 2606 2004": 184672.1,
+          "USA 2606 2005": 233260.3,
           "USA 2701 2000": 31864.4,
           "USA 2701 2001": 34230.5,
           "USA 2701 2002": 37624.7,
@@ -271,9 +313,28 @@
           "USA 2702 2002": 46656.6,
           "USA 2702 2003": 46079.3,
           "USA 2702 2004": 44549.1,
-          "USA 2702 2005": 47286.1
+          "USA 2702 2005": 47286.1,
+          "USA 2713 2000": 42676.1,
+          "USA 2713 2001": 43476.5,
+          "USA 2713 2002": 31991.4,
+          "USA 2713 2003": 35289.6,
+          "USA 2713 2004": 37478.7,
+          "USA 2713 2005": 46989.8,
+          "USA 4401 2000": 16068492.3,
+          "USA 4401 2001": 33898284.4,
+          "USA 4401 2002": 62920735.9,
+          "USA 4401 2003": 134697530.0,
+          "USA 4401 2004": 188400393.4,
+          "USA 4401 2005": 127725258.1,
+          "USA 4401 2014": 256947.9,
+          "USA 7204 2000": 182195.0,
+          "USA 7204 2001": 157126.2,
+          "USA 7204 2002": 146316.2,
+          "USA 7204 2003": 180480.1,
+          "USA 7204 2004": 267161.8,
+          "USA 7204 2005": 288863.9
         },
-        "checked": 2003
+        "checked": 3610
       }
     },
     {

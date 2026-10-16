@@ -47,6 +47,8 @@ DOWNLOADS = {
     "haul_split_rolling.csv": "Trade-mix versus rerouting split of the haul effect",
     "validation_report.json": "Validation and reconciliation report",
     "seaborne_trade_annual.csv": "World seaborne trade loaded by cargo type (UNCTAD)",
+    "signals_monthly.csv": "Monthly prices used as market signals (World Bank Pink Sheet) and OECD leading indicators",
+    "model_signals.json": "Market-signal coefficients and the out-of-sample comparison with the physical model",
 }
 
 
@@ -160,18 +162,41 @@ def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, roll: pd.DataFrame) ->
                     for t, r in zip(roll["total"], roll["residual"], strict=True)
                 ],
                 "residual_lp": [round(_f(v), 4) for v in roll["residual"]],
+                "physical_pct": [
+                    round((math.exp(_f(t) - _f(r)) - 1) * 100, 2)
+                    for t, r in zip(roll["total"], roll.get("residual_physical", roll["residual"]), strict=True)
+                ],
             },
             "bdi_full": {"month": _col(bdi, "month"), "bdi": _col(bdi, "bdi", 1)},
+            "prices": _signal_prices(panel),
         },
     )
 
 
-def export_rolling(roll: pd.DataFrame, haul: pd.DataFrame) -> None:
-    """Rolling attribution with the mix and rerouting split."""
+def _signal_prices(panel: pd.DataFrame) -> dict[str, list[Any]]:
+    """Monthly signal prices from six months before the panel to its end, for windows chosen on the site."""
+    path = PROCESSED_DIR / "signals_monthly.csv"
+    if not path.exists():
+        return {}
+    pr = pd.read_csv(path)
+    first = str(pd.Period(str(panel["month"].iloc[0]), "M") - 6)
+    last = str(panel["month"].iloc[-1])
+    pr = pr[(pr["month"] >= first) & (pr["month"] <= last)]
+    cols = [c for c in ("brent_usd_bbl", "iron_ore_usd_dmtu") if c in pr.columns]
+    return {"month": pr["month"].astype(str).tolist(), **{c: [round(_f(v), 3) for v in pr[c]] for c in cols}}
+
+
+def export_rolling(roll: pd.DataFrame, haul: pd.DataFrame, signals: dict[str, Any] | None = None) -> None:
+    """Rolling attribution with the market signals and the mix and rerouting split."""
     h = haul.set_index("month")
+    sig = signals or {}
     _json(
         SITE_DATA_DIR / "rolling.json",
         {
+            "signals": [
+                d | {"coefficient": sig.get("fit", {}).get("coefficients", {}).get(d["name"])}
+                for d in sig.get("definitions", [])
+            ],
             "month": _col(roll, "month"),
             "start": _col(roll, "start"),
             "total": _col(roll, "total", 4),
@@ -180,6 +205,7 @@ def export_rolling(roll: pd.DataFrame, haul: pd.DataFrame) -> None:
             "fleet": _col(roll, "fleet", 4),
             "effective_supply": _col(roll, "effective_supply", 4),
             "residual": _col(roll, "residual", 4),
+            **{c: _col(roll, c, 4) for c in roll.columns if c.startswith("signal_") or c == "residual_physical"},
             # twelve-month log change of the average haul itself (not multiplied by the elasticity), split into
             # trade mix (shares shifting at fixed distances) and rerouting (distances changing at fixed shares)
             "haul_dlog": [None if m not in h.index else round(float(h.loc[m, "dlog_haul"]), 4) for m in roll["month"]],
@@ -439,17 +465,31 @@ def run() -> None:
     episodes = json.loads((PROCESSED_DIR / "decomposition_episodes.json").read_text())
     model = json.loads((PROCESSED_DIR / "model_elasticity.json").read_text())
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
+    sig_path = PROCESSED_DIR / "model_signals.json"
+    signals = json.loads(sig_path.read_text()) if sig_path.exists() else {}
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     coverage = json.loads((PROCESSED_DIR / "coverage.json").read_text())
     for g in coverage.get("route_groups", []):
         g["label"] = group_label(str(g["group_id"]))
     export_series(panel, bdi, roll)
-    export_rolling(roll, haul)
+    export_rolling(roll, haul, signals)
     routes_out = export_routes(by_route, distances, canal, ports, geoms)
     export_fleet()
     pw = export_chokepoints_and_portwatch()
     _json(SITE_DATA_DIR / "episodes.json", episodes)
-    _json(SITE_DATA_DIR / "model.json", {"elasticity": model, "difference_regression": diff_reg})
+    oos = {k: v for k, v in signals.get("out_of_sample", {}).items() if k != "predictions"}
+    _json(
+        SITE_DATA_DIR / "model.json",
+        {
+            "elasticity": model,
+            "difference_regression": diff_reg,
+            "signals": {
+                "definitions": signals.get("definitions", []),
+                "fit": signals.get("fit", {}),
+                "out_of_sample": oos,
+            },
+        },
+    )
     _json(SITE_DATA_DIR / "validation.json", validation)
     sources = [m.__dict__ for m in all_metadata()]
     for s in sources:
@@ -475,7 +515,16 @@ def run() -> None:
         },
         "latest_attribution": {
             k: float(latest_roll[k])
-            for k in ("total", "volume", "distance", "fleet", "effective_supply", "residual", "elasticity")
+            for k in (
+                "total",
+                "volume",
+                "distance",
+                "fleet",
+                "effective_supply",
+                "residual",
+                "elasticity",
+                *[c for c in roll.columns if c.startswith("signal_") or c == "residual_physical"],
+            )
         }
         | {
             "start": str(latest_roll["start"]),

@@ -7,13 +7,18 @@
   const D = {}; // loaded data
   const state = { view: null, rendered: new Set() };
 
-  const COMPONENTS = [
+  const PHYSICAL = [
     { key: "volume", label: "Cargo volume", color: () => C.palette().s1 },
     { key: "distance", label: "Average haul", color: () => C.palette().s2 },
     { key: "fleet", label: "Fleet growth", color: () => C.palette().s3 },
     { key: "effective_supply", label: "Effective supply (port time)", color: () => C.palette().s4 },
-    { key: "residual", label: "Residual (unexplained)", color: () => C.palette().neutral },
   ];
+  const RESIDUAL = { key: "residual", label: "Residual (unexplained)", color: () => C.palette().neutral };
+  const SIGNAL_SLOTS = ["s5", "s6", "s7", "s8"];
+  // market signals as listed by the model (rolling.json), each a distinct bar after the physical forces
+  const SIGNALS = () => ((D.rolling && D.rolling.signals) || []).map((sg, i) => ({ key: `signal_${sg.name}`, name: sg.name, label: `${sg.label} (market signal)`, short: sg.label, column: sg.column, lag: sg.lag, coefficient: sg.coefficient, color: () => C.palette()[SIGNAL_SLOTS[i % SIGNAL_SLOTS.length]] }));
+  const COMPONENTS = () => [...PHYSICAL, ...SIGNALS(), RESIDUAL];
+  const hasSignals = () => SIGNALS().length > 0;
   const COMMODITY_LABEL = { iron_ore: "Iron ore", coal: "Coal", grains: "Grains and soybeans" };
   const COMMODITY_COLOR = { iron_ore: () => C.palette().s1, coal: () => C.palette().s2, grains: () => C.palette().s3 };
   // "2019-01","2019-02","2019-05" -> "Jan 2019 to Feb 2019; May 2019"
@@ -36,6 +41,9 @@
   const pctChange = (a, b) => (b && a ? (a / b - 1) : null);
   const signed = (v, digits) => (v >= 0 ? "+" : "") + d3.format(`.${digits}f`)(v);
   const mt = (v) => fmt.f1(v) + " Mt";
+  const lcFirst = (t) => t.charAt(0).toLowerCase() + t.slice(1);
+  const SMALL_MOVE = 0.1; // log points: below this an explained share is not meaningful
+  const shareText = (share, total) => (Math.abs(total) < SMALL_MOVE || !Number.isFinite(share) ? "n/m" : fmt.pctPlain(share));
 
   async function loadJSON(name) {
     const r = await fetch(`data/${name}.json`, { cache: "no-cache" });
@@ -55,13 +63,22 @@
     const tiles = $("#tiles");
     tiles.innerHTML = "";
     const chg = pctChange(lt.bdi, lt.bdi_12m_ago);
-    const explained = la.total ? 1 - la.residual / la.total : null;
     const items = [
       { label: `Baltic Dry Index, ${fmt.month(lt.month)}`, value: fmt.int(lt.bdi), delta: `three-month average ${signed(la.total_pct, 0)} percent on a year earlier`, dir: la.total_pct, note: chg === null ? null : `single month ${signed(chg * 100, 0)} percent on ${fmt.month(lt.month).slice(0, 3)} a year earlier` },
       { label: "Covered trades, tonnes shipped", value: mt(lt.tonnes_mt), note: `${s.routes.count} routes, latest month` },
       { label: "Tonne-miles on covered routes", value: d3.format(",.0f")(lt.tonne_miles_bn) + " bn", note: `average haul ${fmt.int(lt.avg_haul_nm)} nautical miles` },
       { label: "Bulk carrier fleet", value: d3.format(",.0f")(lt.fleet_mdwt) + " Mdwt", note: "UNCTAD, interpolated to month" },
-      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: explained !== null && explained > 1 ? `the four forces implied a larger move than the ${signed(la.total_pct, 0)} percent that occurred` : explained !== null && explained < 0 ? `the four forces pointed the other way; the index moved ${signed(la.total_pct, 0)} percent` : `index moved ${signed(la.total_pct, 0)} percent (three-month averages); elasticity ${d3.format(".1f")(la.elasticity)}` },
+      (() => {
+        const R = D.rolling;
+        const meanAbs = (arr) => d3.mean(arr, (v) => Math.abs(v));
+        const ext = 1 - meanAbs(R.residual) / meanAbs(R.total);
+        const phys = R.residual_physical ? 1 - meanAbs(R.residual_physical) / meanAbs(R.total) : null;
+        const o = (D.model.signals || {}).out_of_sample || {};
+        const what = hasSignals() ? "forces and market signals" : "the four forces";
+        let note = `mean over ${R.total.length} twelve-month windows, ${fmt.month(R.month[0])} to ${fmt.month(R.month[R.month.length - 1])}`;
+        if (hasSignals() && phys !== null) note = `physical forces alone ${fmt.pctPlain(phys)}` + (o.available ? `; out of sample ${fmt.pctPlain(1 - o.unexplained.extended)}` : "") + `; ${note}`;
+        return { label: `Share of a typical 12-month move explained by ${what}`, value: fmt.pctPlain(ext), note };
+      })(),
     ];
     items.forEach((it) => {
       const t = C.el("div", "tile");
@@ -78,17 +95,22 @@
     const xs = c12.month.map(C.monthToDate);
     const actual = xs.map((x, i) => ({ x, y: c12.actual_pct[i] }));
     const implied = xs.map((x, i) => ({ x, y: c12.implied_pct[i] }));
+    const physical = c12.physical_pct ? xs.map((x, i) => ({ x, y: c12.physical_pct[i] })) : null;
     const n = c12.month.length - 1;
     const first = c12.month[0], last = c12.month[n];
     const move = (v, rise, fall) => `${v >= 0 ? rise : fall} ${fmt.int(Math.abs(v))} percent`;
+    const sig = hasSignals();
+    const what = sig ? "the four forces and two market signals" : "the four forces";
+    const series = [
+      { key: "actual", label: "Baltic Dry Index, 12-month change", color: p.accent, values: actual, format: fmt.pctSigned },
+      { key: "implied", label: sig ? "Attributed to forces and market signals" : "Attributed to the four forces", color: p.fitted, dashed: true, values: implied, format: fmt.pctSigned },
+    ];
+    if (sig && physical) series.push({ key: "physical", label: "Physical forces only", color: p.s1, width: 1.5, values: physical, format: fmt.pctSigned });
     C.lineChart("#chart-headline", {
-      title: `Over the twelve months to ${fmt.month(last)} the four forces pointed to a ${move(c12.implied_pct[n], "rise of", "fall of")} in the index; it ${move(c12.actual_pct[n], "rose", "fell")}`,
-      subtitle: `Twelve-month change in the Baltic Dry Index against the change attributed to cargo volume, haul, fleet and port time at the estimated elasticity, percent, ${fmt.month(first)} to ${fmt.month(last)}. Endpoints are three-month averages, as in the decomposition. The shaded gap is the residual.`,
-      source: sourceLine("Baltic Dry Index from Statistics and Research Aland (originator Baltic Exchange); attribution from this project's decomposition", ["asub_baltic_dry_index", "un_comtrade", "brazil_comexstat", "unctadstat_maritime"]),
-      series: [
-        { key: "actual", label: "Baltic Dry Index, 12-month change", color: p.accent, values: actual, format: fmt.pctSigned },
-        { key: "implied", label: "Attributed to the four forces", color: p.fitted, dashed: true, values: implied, format: fmt.pctSigned },
-      ],
+      title: `Over the twelve months to ${fmt.month(last)} ${what} pointed to a ${move(c12.implied_pct[n], "rise of", "fall of")} in the index; it ${move(c12.actual_pct[n], "rose", "fell")}`,
+      subtitle: `Twelve-month change in the Baltic Dry Index against the change attributed to cargo volume, haul, fleet and port time at the estimated elasticity${sig ? ", plus two market-price signals (Brent crude and iron ore)" : ""}, percent, ${fmt.month(first)} to ${fmt.month(last)}. Endpoints are three-month averages, as in the decomposition. The shaded gap is the residual.`,
+      source: sourceLine("Baltic Dry Index from Statistics and Research Aland (originator Baltic Exchange); attribution from this project's decomposition" + (sig ? "; prices from the World Bank Pink Sheet" : ""), ["asub_baltic_dry_index", "un_comtrade", "brazil_comexstat", "unctadstat_maritime", ...(sig ? ["worldbank_cmo"] : [])]),
+      series,
       yFormat: "+.0f", yLabel: "Percent change over 12 months", area: true, height: 320, tableRows: 48,
     });
   }
@@ -99,9 +121,16 @@
     n.innerHTML = "";
     n.append(C.el("h3", null, "What the data says today"));
     const parts = [];
-    const comps = COMPONENTS.slice(0, 4).map((c) => ({ ...c, v: la[c.key] })).sort((a, b) => Math.abs(b.v) - Math.abs(a.v));
+    const comps = PHYSICAL.map((c) => ({ ...c, v: la[c.key] })).sort((a, b) => Math.abs(b.v) - Math.abs(a.v));
     const lead = comps[0];
-    parts.push(`Over the twelve months to ${fmt.month(la.end)} the index moved ${signed(la.total_pct, 0)} percent. The largest measured force was ${lead.label.toLowerCase()} (${fmt.lp(lead.v)} log points), followed by ${comps[1].label.toLowerCase()} (${fmt.lp(comps[1].v)}). The residual, the part the four forces do not explain, was ${fmt.lp(la.residual)} log points against a total move of ${fmt.lp(la.total)}.`);
+    let t1 = `Over the twelve months to ${fmt.month(la.end)} the index moved ${signed(la.total_pct, 0)} percent. The largest physical force was ${lead.label.toLowerCase()} (${fmt.lp(lead.v)} log points), followed by ${comps[1].label.toLowerCase()} (${fmt.lp(comps[1].v)}).`;
+    if (hasSignals()) {
+      const sg = SIGNALS().map((c) => `${lcFirst(c.short)} ${fmt.lp(la[c.key])}`).join(", ");
+      t1 += ` The market signals added ${sg}. The residual, the part neither explains, was ${fmt.lp(la.residual)} log points against a total move of ${fmt.lp(la.total)} (${fmt.lp(la.residual_physical)} with the physical forces alone).`;
+    } else {
+      t1 += ` The residual, the part the four forces do not explain, was ${fmt.lp(la.residual)} log points against a total move of ${fmt.lp(la.total)}.`;
+    }
+    parts.push(t1);
     if (pw && pw.export_mt) {
       const yoy = pw.export_mt_year_ago ? pctChange(pw.export_mt, pw.export_mt_year_ago) : null;
       parts.push(`The most recent demand signal is AIS-based: in the week starting ${pw.week}, ports worldwide loaded ${mt(pw.export_mt)} of dry bulk cargo${yoy === null ? "" : `, ${fmt.pct0(yoy)} against the same week a year earlier`} (IMF PortWatch).`);
@@ -146,10 +175,10 @@
     const avgAbsTotal = d3.mean(ro.total, (v) => Math.abs(v));
     const agree = d3.mean(ro.total.map((t, i) => (Math.sign(t - ro.residual[i]) === Math.sign(t) ? 1 : 0)));
     C.stackedBars("#chart-rolling", {
-      title: `Rolling twelve-month moves: the four forces give the direction of ${fmt.pctPlain(agree)} of them, but the residual averages ${fmt.f2(avgAbsResid)} log points against a typical move of ${fmt.f2(avgAbsTotal)}`,
+      title: `Rolling twelve-month moves: ${hasSignals() ? "forces and market signals" : "the four forces"} give the direction of ${fmt.pctPlain(agree)} of them, but the residual averages ${fmt.f2(avgAbsResid)} log points against a typical move of ${fmt.f2(avgAbsTotal)}`,
       subtitle: `Change in the log index over the preceding twelve months (line) and its attribution (bars), log points. Endpoints are three-month averages. Elasticity ${d3.format(".2f")(ro.elasticity)}.`,
       source: sourceLine("this project's decomposition of the series above", ["asub_baltic_dry_index", "un_comtrade", "brazil_comexstat", "unctadstat_maritime"]),
-      components: COMPONENTS.map((c) => ({ key: c.key, label: c.label, color: c.color() })),
+      components: COMPONENTS().map((c) => ({ key: c.key, label: c.label, color: c.color() })),
       total: { key: "total", label: "Total change in log index", color: p.ink },
       data, yLabel: "Log points", height: 340,
     });
@@ -175,8 +204,18 @@
     const distance = e * Math.log((b.tm / b.t) / (a.tm / a.t));
     const fleet = -e * Math.log(b.f / a.f);
     const eff = -e * Math.log(b.s / a.s);
-    const residual = total - volume - distance - fleet - eff;
-    return { total, volume, distance, fleet, effective_supply: eff, residual, index_start: a.index, index_end: b.index, elasticity: e };
+    const residualPhysical = total - volume - distance - fleet - eff;
+    const out = { total, volume, distance, fleet, effective_supply: eff, residual: residualPhysical, residual_physical: residualPhysical, index_start: a.index, index_end: b.index, elasticity: e };
+    const P = se.prices || {};
+    for (const sg of SIGNALS()) {
+      const arr = P[sg.column], pm = P.month || [];
+      const j0 = pm.indexOf(startM) - sg.lag, j1 = pm.indexOf(endM) - sg.lag;
+      if (!arr || j0 < 2 || j1 < 2 || pm.indexOf(startM) < 0 || pm.indexOf(endM) < 0) return null;
+      const contrib = sg.coefficient * Math.log(avg(arr, j1) / avg(arr, j0));
+      out[sg.key] = contrib;
+      out.residual -= contrib;
+    }
+    return out;
   }
 
   function renderWaterfall(att, title, sub) {
@@ -184,7 +223,7 @@
     const share = (v) => (att.total ? v / att.total : NaN);
     const steps = [
       { label: `Index, ${fmt.month(att.start)}`, value: att.index_start, kind: "start", color: p.fitted },
-      ...COMPONENTS.map((c) => ({ label: c.label, value: att[c.key], share: share(att[c.key]), kind: "step", color: c.color() })),
+      ...COMPONENTS().map((c) => ({ label: c.label, value: att[c.key], share: share(att[c.key]), kind: "step", color: c.color() })),
       { label: `Index, ${fmt.month(att.end)}`, value: att.index_end, kind: "end", color: p.accent },
     ];
     C.waterfall("#chart-waterfall", {
@@ -195,15 +234,22 @@
   }
 
   function describe(att) {
-    const comps = COMPONENTS.slice(0, 4).map((c) => ({ ...c, v: att[c.key] }));
+    const comps = PHYSICAL.map((c) => ({ ...c, v: att[c.key] }));
     const explained = att.total ? 1 - att.residual / att.total : null;
     const dir = att.total >= 0 ? "rose" : "fell";
     const biggest = comps.slice().sort((a, b) => Math.abs(b.v) - Math.abs(a.v))[0];
     const same = comps.filter((c) => Math.sign(c.v) === Math.sign(att.total) && c.v !== 0).map((c) => c.label.toLowerCase());
     let s = `The index ${dir} from ${fmt.int(att.index_start)} to ${fmt.int(att.index_end)} (${fmt.lp(att.total)} log points, ${signed((Math.exp(att.total) - 1) * 100, 0)} percent). `;
-    s += `The largest measured contribution came from ${biggest.label.toLowerCase()} (${fmt.lp(biggest.v)}). `;
-    s += same.length ? `Forces pushing in the same direction as the move: ${same.join(", ")}. ` : "No measured force pushed in the direction of the move. ";
-    s += explained === null ? "" : `Together the four forces account for ${fmt.pctPlain(explained)} of the move; the residual is ${fmt.lp(att.residual)} log points.`;
+    s += `The largest physical contribution came from ${biggest.label.toLowerCase()} (${fmt.lp(biggest.v)}). `;
+    s += same.length ? `Physical forces pushing in the same direction as the move: ${same.join(", ")}. ` : "No physical force pushed in the direction of the move. ";
+    if (hasSignals() && att.residual_physical !== undefined) {
+      const sg = SIGNALS().filter((c) => att[c.key] !== undefined).map((c) => `${lcFirst(c.short)} ${fmt.lp(att[c.key])}`).join(", ");
+      const phys = att.total ? 1 - att.residual_physical / att.total : null;
+      s += `The market signals add ${sg}. `;
+      s += Math.abs(att.total) < SMALL_MOVE ? `The move is too small for a meaningful explained share; the residual is ${fmt.lp(att.residual)} log points (${fmt.lp(att.residual_physical)} with the physical forces alone).` : `Forces and signals together account for ${fmt.pctPlain(explained)} of the move (physical forces alone ${phys === null ? "n/a" : fmt.pctPlain(phys)}); the residual is ${fmt.lp(att.residual)} log points.`;
+    } else {
+      s += Math.abs(att.total) < SMALL_MOVE ? `The move is too small for a meaningful explained share; the residual is ${fmt.lp(att.residual)} log points.` : `Together the four forces account for ${fmt.pctPlain(explained)} of the move; the residual is ${fmt.lp(att.residual)} log points.`;
+    }
     return s;
   }
 
@@ -251,10 +297,12 @@
       { key: "total", label: "Total (log points)", num: true, format: fmt.lp },
       { key: "volume", label: "Volume", num: true, format: fmt.lp }, { key: "distance", label: "Haul", num: true, format: fmt.lp },
       { key: "fleet", label: "Fleet", num: true, format: fmt.lp }, { key: "effective_supply", label: "Port time", num: true, format: fmt.lp },
-      { key: "residual", label: "Residual", num: true, format: fmt.lp }, { key: "explained_share", label: "Explained", num: true, format: (v) => (Number.isFinite(v) ? fmt.pctPlain(v) : "") },
-    ], eps.map((e) => ({ ...e, window: `${fmt.month(e.start)} to ${fmt.month(e.end)}` })));
+      ...SIGNALS().map((c) => ({ key: c.key, label: `${c.short} (signal)`, num: true, format: fmt.lp })),
+      { key: "residual", label: "Residual", num: true, format: fmt.lp }, { key: "explained_txt", label: "Explained", num: true },
+      ...(hasSignals() ? [{ key: "explained_physical_txt", label: "Physical only", num: true }] : []),
+    ], eps.map((e) => ({ ...e, window: `${fmt.month(e.start)} to ${fmt.month(e.end)}`, explained_txt: shareText(e.explained_share, e.total), explained_physical_txt: shareText(e.explained_share_physical, e.total) })));
     notes.append(wrap);
-    notes.append(C.el("p", null, "Episodes before the start of the monthly panel are not shown because the customs data that build the tonne-mile series begin later than the index. The explained share can exceed 100 percent when the residual has the opposite sign to the move. Episodes shorter than twelve months compare endpoints in different seasons; cargo volumes are seasonal, so their volume effect includes seasonal movement."));
+    notes.append(C.el("p", null, "Episodes before the start of the monthly panel are not shown because the customs data that build the tonne-mile series begin later than the index. The explained share can exceed 100 percent when the residual has the opposite sign to the move; it is shown as n/m (not meaningful) when the move is smaller than 0.10 log points. Episodes shorter than twelve months compare endpoints in different seasons; cargo volumes are seasonal, so their volume effect includes seasonal movement."));
   }
 
   /* ---------------------------------------------------------------- routes */
@@ -407,6 +455,26 @@
     add("p", `The elasticity e is estimated once, by regressing the twelve-month change in the log index on the twelve-month change in the log of tonne-miles over effective fleet (${fmt.month(m.panel_window[0])} to ${fmt.month(m.panel_window[1])}, ${m.headline.n_obs} overlapping twelve-month changes) with Newey-West standard errors over twelve lags. Twelve-month changes remove the seasonal pattern and the slow trends that dominate the levels of both series. The regression intercept (${fmt.lp(m.headline.intercept)} log points a year) is a drift the four forces do not account for; the decomposition leaves it in the residual. Each contribution is e multiplied by the log change of its input; the four contributions and the residual sum exactly to the observed change.`);
     add("h3", "Cross-checks");
     add("p", `Robustness variants re-estimate the elasticity on monthly levels (with and without month dummies), on four-quarter changes of quarterly averages and on each half of the sample. The levels regressions are shown for completeness: both series trend and their residuals are strongly autocorrelated, so their coefficients are not reliable. An unrestricted regression of monthly changes in the log index on the four component changes, with lags for volume and haul, tests whether the data accept one common elasticity (Wald test of equal absolute coefficients with the signs implied by the identity).`);
+    const sgm = D.model.signals || {};
+    if (sgm.fit && sgm.fit.coefficients) {
+      const f = sgm.fit, o = sgm.out_of_sample || {};
+      add("h3", "Market signals");
+      add("p", `The physical balance moves a few percent a year while the index moves by tens of percent, so most of a typical move is missing from the identity above. Two public World Bank prices carry much of that missing variation and are added as separate, named bars after the four physical forces: the Brent crude price over the same window (bunker cost and the global commodity cycle) and the iron ore price, CFR China, over the window ending three months earlier (China steel demand and restocking; the lead keeps the freight that a delivered price contains out of the same window). The elasticity of the physical identity is left unchanged. The two coefficients come from a regression without intercept of the physical residual on the two price changes over every rolling twelve-month window (${f.n_obs} windows, Newey-West errors): ${d3.format(".2f")(f.coefficients.oil)} for oil (t ${d3.format(".1f")(f.t_stats.oil)}) and ${d3.format(".2f")(f.coefficients.iron_ore)} for iron ore (t ${d3.format(".1f")(f.t_stats.iron_ore)}).`);
+      add("p", `In sample, the unexplained share of a typical twelve-month move falls from ${fmt.pctPlain(f.unexplained_physical)} with the physical forces alone to ${fmt.pctPlain(f.unexplained_extended)} with the signals, and the explained part has the sign of the move in ${fmt.pctPlain(f.sign_agreement_extended)} of windows instead of ${fmt.pctPlain(f.sign_agreement_physical)}.` + (o.available ? ` Out of sample, refitting every coefficient each month with data that ended at least twelve months earlier (${o.n_months} months from ${fmt.month(o.first_month)} to ${fmt.month(o.last_month)}), the unexplained share falls from ${fmt.pctPlain(o.unexplained.physical)} to ${fmt.pctPlain(o.unexplained.extended)}, and the signals improve on the physical model in every sub-period shown in the table.` : ""));
+      add("p", "These are market signals, not physical forces. Oil and iron ore prices react to the same global and Chinese demand shocks as freight, and other industrial commodity prices carry similar information, so the bars measure a commodity and industrial cycle that the customs-based balance misses rather than a causal channel. The two series were chosen after testing several candidate prices and leads on the same sample, which flatters the out-of-sample gain. A benchmark with no fundamentals at all, the index's own twelve-month change three months earlier, already forecasts part of the move; the table reports it so the gain can be judged against it.");
+      if (o.available) {
+        const st = C.el("div", "table-wrap");
+        const rows = [
+          { model: "Physical forces only", r2: o.r2_vs_zero.physical, unexpl: o.unexplained.physical, sign: o.sign_agreement.physical },
+          { model: "Physical forces and market signals", r2: o.r2_vs_zero.extended, unexpl: o.unexplained.extended, sign: o.sign_agreement.extended },
+          { model: "Benchmark: the index's own change three months earlier", r2: o.r2_vs_zero.persistence, unexpl: null, sign: null },
+        ];
+        C.dataTable(st, [{ key: "model", label: `Out of sample, ${fmt.month(o.first_month)} to ${fmt.month(o.last_month)}` }, { key: "r2", label: "R squared", num: true, format: fmt.f2 }, { key: "unexpl", label: "Unexplained share", num: true, format: (v) => (v === null ? "" : fmt.pctPlain(v)) }, { key: "sign", label: "Right sign", num: true, format: (v) => (v === null ? "" : fmt.pctPlain(v)) }], rows);
+        prose.append(st);
+        const by = Object.entries(o.extended_r2_vs_physical_by_period || {}).map(([k, v]) => `${k} ${signed(v, 2)}`).join("; ");
+        add("p", `Gain of the signals over the physical model out of sample (R squared relative to the physical forecast): ${signed(o.extended_r2_vs_physical, 2)} overall; ${by}. Against the persistence benchmark the gain is ${signed(o.extended_r2_vs_persistence, 2)}.`);
+      }
+    }
     add("h3", "Reconciliation");
     add("p", "Where two sources measure the same flow (Brazilian exports in Comex Stat and in UN Comtrade; exporter and importer records for Australia to China, Brazil to China, Indonesia to China, United States to China and Australia to Japan) the series are compared on twelve-month rolling sums and the median gap is reported below. PortWatch dry bulk port loadings are compared with UNCTAD seaborne dry cargo as a level check.");
     // sources table

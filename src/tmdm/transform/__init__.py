@@ -12,6 +12,7 @@ Outputs (all under ``data/processed``):
 * ``portwatch_monthly_global.csv``, ``portwatch_weekly_global.csv``, ``portwatch_monthly_country.csv``.
 * ``panel_monthly.csv``: the balanced monthly panel used by the model.
 * ``coverage.json``: data coverage per input and the resulting panel window.
+* ``signals_monthly.csv``: monthly commodity prices and leading indicators used as market signals.
 """
 
 from __future__ import annotations
@@ -115,6 +116,21 @@ def monthly_route_distances(canal: pd.DataFrame, diversion: pd.DataFrame, months
     return out
 
 
+def signals_monthly() -> pd.DataFrame:
+    """Monthly prices and indicators used as market signals, from 2005, indexed by month."""
+    from tmdm.ingest import oecd_cli, worldbank
+
+    frames = [worldbank.load()]
+    try:
+        frames.append(oecd_cli.load())
+    except FileNotFoundError:
+        log.info("OECD leading indicators not downloaded yet; signals use World Bank prices only")
+    out = pd.concat(frames, axis=1).sort_index()
+    out = out[out.index >= pd.Period("2005-01", "M")]
+    out.index.name = "month"
+    return out
+
+
 def run() -> None:
     """Build all processed series."""
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
@@ -166,6 +182,8 @@ def run() -> None:
     sf = supply.supply_factor_monthly(end_month, ships)
     sf.to_csv(PROCESSED_DIR / "supply_factor_monthly.csv", index=False)
     unctad.world_seaborne_trade().to_csv(PROCESSED_DIR / "seaborne_trade_annual.csv", index=False)
+    # Monthly market-signal prices (World Bank Pink Sheet) and leading indicators (OECD), when downloaded
+    signals_monthly().to_csv(PROCESSED_DIR / "signals_monthly.csv")
     # Panel
     panel = (
         totals.merge(bdi.rename(columns={"bdi": "index"}), on="month", how="inner")

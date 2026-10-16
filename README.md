@@ -52,23 +52,24 @@ Sources that were investigated and not used: Stooq and other quote sites (bot pr
 Panel: Dec 2012 to Sep 2025, 154 months, 271 routes. Built from data retrieved on 2026-10-16.
 
 * Elasticity of the index to tonne-miles over effective fleet: 2.36 (Newey-West standard error 0.79); estimated on twelve-month changes, it explains 7% of the variance of twelve-month changes in the log index (Durbin-Watson 0.53).
-* Over rolling twelve-month windows the four measured forces have the same sign as the index move 66% of the time; the residual averages 0.39 log points against a typical move of 0.43, so about 91% of a typical move is not explained by measured demand and supply.
+* Over rolling twelve-month windows the four physical forces leave about 91% of a typical move unexplained (mean residual 0.39 log points against a typical move of 0.43) and have the sign of the move 66% of the time.
+* Adding two public market-price signals (Brent crude over the same window, coefficient 0.49; iron ore three months earlier, 0.83) cuts the unexplained share to 55% in sample and from 94% to 62% out of sample (69 months, every coefficient refitted on data ending twelve months earlier). They are market correlates of the commodity cycle, shown as separate bars, not physical forces.
 * Between the first and last twelve months of the panel, tonnes on the covered routes grew +28%, tonne-miles +30% (average haul +1.4%) and the bulk carrier fleet +48% to 1,057 million dwt.
-* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.05, haul -0.00, fleet -0.07, port time -0.01, residual -0.01 (total -0.04).
-* The three largest routes carry 48% of covered tonne-miles. Validation: 19 checks passed, 6 warnings, 0 failures.
+* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.05, haul -0.00, fleet -0.07, port time -0.01, oil signal -0.07, iron ore signal -0.14, residual +0.20 (total -0.04).
+* The three largest routes carry 48% of covered tonne-miles. Validation: 20 checks passed, 6 warnings, 0 failures.
 
-| Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Slide to the 2016 trough | Dec 2013 to Feb 2016 | -1.34 | -0.20 | +0.07 | -0.18 | -0.00 | -1.04 |
-| Recovery from the trough | Feb 2016 to Aug 2018 | +1.14 | +0.54 | -0.04 | -0.16 | -0.00 | +0.81 |
-| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.09 | +0.07 | -0.06 | +0.01 | +0.24 |
-| Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.15 | +0.00 | -0.04 | -0.01 | -0.86 |
-| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.14 | +0.05 | -0.12 | +0.01 | +1.88 |
-| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.17 | -0.09 | -0.10 | -0.01 | -0.98 |
-| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.05 | -0.03 | -0.05 | +0.00 | +0.30 |
-| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.05 | -0.00 | -0.07 | -0.01 | -0.01 |
+| Episode | Window | Total | Volume | Haul | Fleet | Port time | Oil signal | Iron ore signal | Residual |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Slide to the 2016 trough | Dec 2013 to Feb 2016 | -1.34 | -0.20 | +0.07 | -0.18 | -0.00 | -0.58 | -0.77 | +0.32 |
+| Recovery from the trough | Feb 2016 to Aug 2018 | +1.14 | +0.54 | -0.04 | -0.16 | -0.00 | +0.39 | +0.21 | +0.21 |
+| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.09 | +0.07 | -0.06 | +0.01 | +0.01 | +0.31 | -0.08 |
+| Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.15 | +0.00 | -0.04 | -0.01 | -0.38 | -0.09 | -0.39 |
+| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.14 | +0.05 | -0.12 | +0.01 | +0.48 | +0.69 | +0.71 |
+| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.17 | -0.09 | -0.10 | -0.01 | +0.04 | -0.67 | -0.36 |
+| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.05 | -0.03 | -0.05 | +0.00 | -0.03 | +0.09 | +0.25 |
+| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.05 | -0.00 | -0.07 | -0.01 | -0.07 | -0.14 | +0.20 |
 
-Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages.
+Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages. The oil and iron ore columns are market signals, not physical forces.
 <!-- results:end -->
 
 ## Limitations
