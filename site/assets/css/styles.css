@@ -136,9 +136,11 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .today p { margin: 0 0 8px; color: var(--ink-2); }
 .today .asof { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); }
 
-.views { padding: 10px 0 18px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.views-label { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin: 8px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+/* section buttons: right under the title, and kept at the top of the screen while scrolling */
+.views { position: sticky; top: 0; z-index: 20; background: var(--paper); padding: 10px 0 12px; margin-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.views-label { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin: 4px 0 8px; text-transform: uppercase; letter-spacing: 0.08em; }
 .view-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.panel { scroll-margin-top: 96px; }
 .view-buttons button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 .panel { padding: 28px 0 8px; }
@@ -155,7 +157,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .prose dd { margin: 0; }
 
 .controls { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-family: var(--sans); font-size: 0.85rem; margin-bottom: 10px; }
-.controls label { display: flex; gap: 8px; align-items: center; }
+.controls label { display: flex; gap: 8px; align-items: center; min-width: 0; max-width: 100%; }
 .controls select { padding: 6px 10px; border-radius: var(--radius); background: var(--surface); max-width: 60vw; }
 .episode-text { color: var(--ink-2); max-width: 72ch; margin: 0 0 16px; }
 
@@ -202,6 +204,14 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .masthead { padding-top: 28px; }
   .chart-card { padding: 14px 12px 10px; }
   .tile .value { font-size: 1.45rem; }
-  .controls select { max-width: 100%; }
+  .controls label { width: 100%; }
+  .controls select { max-width: none; min-width: 0; flex: 1 1 auto; width: 100%; }
   .prose dl { grid-template-columns: 1fr; }
+  /* one scrollable row of buttons on phones so the sticky bar stays short */
+  .views-label { display: none; }
+  .view-buttons { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+  .view-buttons::-webkit-scrollbar { display: none; }
+  .view-buttons button { flex: 0 0 auto; }
+  .panel { scroll-margin-top: 64px; }
+  .map-card .chart-body { min-height: 0; }
 }
