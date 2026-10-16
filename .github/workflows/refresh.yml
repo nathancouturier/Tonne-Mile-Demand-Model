@@ -49,9 +49,13 @@ jobs:
           bash scripts/commit_data.sh "data: refresh fast sources" data/raw
 
   ingest-comtrade:
-    name: Ingest UN Comtrade (paced)
+    name: Ingest UN Comtrade (shard ${{ matrix.shard }} of 3)
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -64,14 +68,15 @@ jobs:
       - name: Download with periodic checkpoint commits
         env:
           TMDM_INGEST_ONLY: comtrade
+          TMDM_COMTRADE_SHARD: ${{ matrix.shard }}/3
         run: |
           set -o pipefail
           python -m tmdm.cli ingest > comtrade.log 2>&1 &
           pid=$!
           while kill -0 "$pid" 2>/dev/null; do
-            sleep 1200
-            tail -n 3 comtrade.log || true
-            bash scripts/commit_data.sh "data: comtrade checkpoint" data/raw/un_comtrade || true
+            sleep 900
+            tail -n 2 comtrade.log || true
+            bash scripts/commit_data.sh "data: comtrade checkpoint shard ${{ matrix.shard }}" data/raw/un_comtrade || true
           done
           wait "$pid"
           status=$?
@@ -80,7 +85,7 @@ jobs:
       - name: Commit raw data
         if: always()
         run: |
-          bash scripts/commit_data.sh "data: refresh UN Comtrade" data/raw/un_comtrade
+          bash scripts/commit_data.sh "data: refresh UN Comtrade shard ${{ matrix.shard }}" data/raw/un_comtrade
 
   build:
     name: Validate, model, export and deploy

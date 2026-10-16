@@ -23,16 +23,10 @@ log = logging.getLogger(__name__)
 
 def _ingest_comtrade() -> None:
     from tmdm.ingest import comtrade
-    from tmdm.reference import comtrade_specs
+    from tmdm.reference import comtrade_call_groups
 
-    specs = [comtrade.QuerySpec(*s) for s in comtrade_specs()]
-    annual = [s for s in specs if s.spec_id != "CHN_M_mirror"]
-    comtrade.fetch(
-        specs,
-        MONTHLY_START,
-        refresh_months=int(os.environ.get("TMDM_COMTRADE_REFRESH_MONTHS", "15")),
-        annual_specs=annual,
-    )
+    groups = [comtrade.CallGroup(*g) for g in comtrade_call_groups()]
+    comtrade.fetch(groups, MONTHLY_START, refresh_months=int(os.environ.get("TMDM_COMTRADE_REFRESH_MONTHS", "15")))
 
 
 def _ingest_portwatch() -> None:

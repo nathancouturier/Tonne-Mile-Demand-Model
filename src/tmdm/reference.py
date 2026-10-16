@@ -805,59 +805,45 @@ IMPORTER_ORIGIN_LOAD: dict[tuple[str, str], str] = {
 MIRROR_ONLY = {"CHN_M_mirror", "BRA_X_mirror"}
 
 
-SPEC_ORDER = [
-    "USA_X",
-    "AUS_X",
-    "IDN_X",
-    "BRA_X",
-    "ZAF_X",
-    "CAN_X",
-    "UKR_X",
-    "ARG_X",
-    "COL_X",
-    "IND_M",
-    "JPN_M",
-    "EGY_M",
-    "CHN_M",
-]
+CALL_GROUPS: dict[str, tuple[str, ...]] = {
+    "exporters_a": ("USA", "AUS", "IDN"),
+    "exporters_b": ("BRA", "ZAF", "CAN", "UKR", "ARG", "COL"),
+    "importers_and_mirror": ("IND", "JPN", "EGY", "CHN"),
+}
 
 
-@dataclass
-class _MergedSpec:
-    reporter: int
-    flow: str
-    cmds: set[str] = field(default_factory=set)
-    partners: set[int] = field(default_factory=set)
-    notes: list[str] = field(default_factory=list)
+def comtrade_call_groups() -> list[tuple[str, tuple[int, ...], str, tuple[str, ...], tuple[int, ...], str]]:
+    """Translate route groups into multi-reporter Comtrade call groups.
 
-
-def comtrade_specs() -> list[tuple[str, int, str, tuple[str, ...], tuple[int, ...], str]]:
-    """Translate route groups into one Comtrade query specification per reporter and flow.
-
-    Merging the commodity groups of a reporter into one specification keeps the
-    number of paced calls to one per reporter, flow and month. Returns tuples
-    ``(spec_id, reporter_code, flow, cmd_codes, partner_codes, note)`` ordered so
-    that the most important exporters are downloaded first.
+    Each call group queries several reporters at once with the union of their
+    commodity codes and partners, which keeps the number of paced calls to a few
+    per month. Returns ``(group_id, reporter_codes, flow, cmd_codes, partner_codes, note)``.
     """
-    merged: dict[str, _MergedSpec] = {}
-    for g in ROUTE_GROUPS:
-        if g.reporter == "BRA_COMEX":
-            continue
-        key = f"{g.reporter}_{g.flow}"
-        entry = merged.setdefault(key, _MergedSpec(COMTRADE_CODES[g.reporter], g.flow))
-        entry.cmds.update(COMMODITY_GROUPS[g.commodity])
-        entry.cmds.update(g.extra_cmds)
-        entry.partners.update(COMTRADE_CODES[p] for p in g.partners)
-        if g.note:
-            entry.notes.append(g.note)
-    specs: list[tuple[str, int, str, tuple[str, ...], tuple[int, ...], str]] = []
-    for key in SPEC_ORDER + [k for k in merged if k not in SPEC_ORDER]:
-        if key not in merged:
-            continue
-        e = merged[key]
-        cmds = tuple(sorted(e.cmds))
-        partners = (*sorted(e.partners), 0)
-        if len(cmds) * len(partners) > 450:
-            raise ValueError(f"spec {key} could exceed the Comtrade record cap ({len(cmds) * len(partners)} rows)")
-        specs.append((key, e.reporter, e.flow, cmds, partners, "; ".join(e.notes)))
-    return specs
+    out = []
+    for gid, reporters in CALL_GROUPS.items():
+        cmds: set[str] = set()
+        partners: set[int] = set()
+        notes: list[str] = []
+        flows: set[str] = set()
+        for g in ROUTE_GROUPS:
+            if g.reporter not in reporters:
+                continue
+            flows.add(g.flow)
+            cmds.update(COMMODITY_GROUPS[g.commodity])
+            cmds.update(g.extra_cmds)
+            partners.update(COMTRADE_CODES[p] for p in g.partners)
+            if g.note:
+                notes.append(g.note)
+        if len(flows) != 1:
+            raise ValueError(f"call group {gid} mixes flows {flows}")
+        out.append(
+            (
+                gid,
+                tuple(COMTRADE_CODES[r] for r in reporters),
+                flows.pop(),
+                tuple(sorted(cmds)),
+                (*sorted(partners), 0),
+                "; ".join(notes),
+            )
+        )
+    return out
