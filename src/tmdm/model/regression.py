@@ -2,10 +2,12 @@
 
 Two complementary estimates are produced.
 
-1. A levels regression of the log freight index on the log demand/supply
-   balance (tonne-miles over effective fleet), which gives the single
-   elasticity ``e`` used by the attribution identity, with Newey-West
-   standard errors.
+1. An OLS regression of the log freight index on the log demand/supply
+   balance (tonne-miles over effective fleet) with Newey-West standard
+   errors. Applied to twelve-month changes it gives the single elasticity
+   ``e`` used by the attribution identity; applied to levels (with or
+   without month dummies) and to quarterly changes it gives the robustness
+   variants.
 2. An unrestricted first-difference regression of the change in the log index
    on the separate changes in volume, haul, fleet and effective supply,
    including lags, which checks whether the data support treating the
@@ -26,7 +28,7 @@ from statsmodels.stats.stattools import durbin_watson
 
 @dataclass
 class ElasticityEstimate:
-    """Result of the levels regression log(index) on log(balance)."""
+    """Result of an OLS regression of the (changes in the) log index on the log balance."""
 
     elasticity: float
     std_error: float

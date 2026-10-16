@@ -57,11 +57,11 @@
     const chg = pctChange(lt.bdi, lt.bdi_12m_ago);
     const explained = la.total ? 1 - la.residual / la.total : null;
     const items = [
-      { label: `Baltic Dry Index, ${fmt.month(lt.month)}`, value: fmt.int(lt.bdi), delta: chg === null ? null : `${fmt.pct0(chg)} versus ${fmt.month(s.latest.month).slice(0, 3)} a year earlier`, dir: chg },
+      { label: `Baltic Dry Index, ${fmt.month(lt.month)}`, value: fmt.int(lt.bdi), delta: `three-month average ${signed(la.total_pct, 0)} percent on a year earlier`, dir: la.total_pct, note: chg === null ? null : `single month ${signed(chg * 100, 0)} percent on ${fmt.month(lt.month).slice(0, 3)} a year earlier` },
       { label: "Covered trades, tonnes shipped", value: mt(lt.tonnes_mt), note: `${s.routes.count} routes, latest month` },
       { label: "Tonne-miles on covered routes", value: d3.format(",.0f")(lt.tonne_miles_bn) + " bn", note: `average haul ${fmt.int(lt.avg_haul_nm)} nautical miles` },
       { label: "Bulk carrier fleet", value: d3.format(",.0f")(lt.fleet_mdwt) + " Mdwt", note: "UNCTAD, interpolated to month" },
-      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: explained !== null && (explained < 0 || explained > 1) ? `residual larger than the move itself; index moved ${signed(la.total_pct, 0)} percent` : `index moved ${signed(la.total_pct, 0)} percent (three-month averages); elasticity ${d3.format(".1f")(la.elasticity)}` },
+      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: explained !== null && explained > 1 ? `the four forces implied a larger move than the ${signed(la.total_pct, 0)} percent that occurred` : explained !== null && explained < 0 ? `the four forces pointed the other way; the index moved ${signed(la.total_pct, 0)} percent` : `index moved ${signed(la.total_pct, 0)} percent (three-month averages); elasticity ${d3.format(".1f")(la.elasticity)}` },
     ];
     items.forEach((it) => {
       const t = C.el("div", "tile");
@@ -126,9 +126,10 @@
     const xs = se.month.map(C.monthToDate);
     const idx = (arr) => { const b = arr.find((v) => v !== null); return arr.map((v) => (v === null ? null : (v / b) * 100)); };
     const first = se.month[0], last = se.month[se.month.length - 1];
+    const growth12 = (arr) => d3.mean(arr.slice(-12)) / d3.mean(arr.slice(0, 12)) - 1;
     text("#overview-lede", `Four series drive the decomposition: the freight index, tonnes on the covered routes, the tonne-miles they generate, and the bulk carrier fleet adjusted for port time. Indexed to ${fmt.month(first)} = 100 so their relative movements can be compared on one axis.`);
     C.lineChart("#chart-levels", {
-      title: `Tonne-miles grew ${signed((se.tonne_miles_bn[se.tonne_miles_bn.length - 1] / se.tonne_miles_bn[0] - 1) * 100, 0)} percent since ${fmt.month(first)} while the fleet grew ${signed((se.fleet_mdwt[se.fleet_mdwt.length - 1] / se.fleet_mdwt[0] - 1) * 100, 0)} percent; the index swung far more`,
+      title: `Between the first and last twelve months of the panel, tonne-miles grew ${signed(growth12(se.tonne_miles_bn) * 100, 0)} percent and the fleet ${signed(growth12(se.fleet_mdwt) * 100, 0)} percent; the index swung far more`,
       subtitle: `Index, ${fmt.month(first)} = 100. Tonnes and tonne-miles cover the ${D.summary.routes.count} routes in this project; fleet is world bulk carrier deadweight; effective supply is the at-sea share factor.`,
       source: sourceLine("ASUB (index), UN Comtrade and Brazil Comex Stat (tonnes), this project (distances), UNCTADstat (fleet, port time)", ["asub_baltic_dry_index", "un_comtrade", "brazil_comexstat", "unctadstat_maritime"]),
       series: [
@@ -385,7 +386,7 @@
     if (fx.length) flagText.push(`the fleet is extrapolated for ${fx.length} panel month${fx.length === 1 ? "" : "s"} (${ranges(fx)})`);
     if (sx.length) flagText.push(`the effective supply factor uses an assumed or held value for ${sx.length} panel months (${ranges(sx)}): it is set to one before PortWatch port calls start in January 2019, and the UNCTAD median port time is held at its last published value (second half of 2023) afterwards`);
     if (flagText.length) notes.append(C.el("p", null, `Within the panel, ${flagText.join("; ")}. These months are flagged in the panel download.`));
-    notes.append(C.el("p", null, "The effective supply factor converts port time into capacity: median days in port per call multiplied by calls per ship gives port days per ship, and one minus that share of the half-year is the at-sea share. The factor is the at-sea share relative to its first observation, so more congestion lowers effective supply and, through the elasticity, raises the implied index. Nothing in the public data measures sailing speed."));
+    notes.append(C.el("p", null, "The effective supply factor converts port time into capacity: the dry bulk port calls observed by IMF PortWatch in a month, divided by the number of bulk carriers (UNCTAD), multiplied by the UNCTAD median days in port per call, give port days per ship; one minus port days over the days in the month is the at-sea share. The factor is the at-sea share relative to January 2019, so more congestion lowers effective supply and, through the elasticity, raises the implied index. Nothing in the public data measures sailing speed."));
   }
 
   /* ---------------------------------------------------------------- methodology */
@@ -398,7 +399,7 @@
     add("p", "Over a given period, how much of the move in the Baltic Dry Index is explained by cargo volumes, by average haul distance, by fleet growth and by effective supply effects such as port congestion, and how much is left unexplained?");
     add("h3", "Definitions");
     const dl = C.el("dl");
-    [["Tonne-miles", "Sum over routes of tonnes shipped multiplied by the sailing distance in nautical miles between representative loading and discharge ports."], ["Average haul", "Total tonne-miles divided by total tonnes, so that the change in tonne-miles is exactly the change in tonnes plus the change in haul. The haul change is split further into trade mix (shares shifting at fixed distances) and rerouting (distances changing at fixed shares)."], ["Fleet", "World bulk carrier capacity in deadweight tonnes as of 1 January (UNCTAD), interpolated to months."], ["Effective supply factor", "Share of fleet time at sea derived from UNCTAD median port time and port calls for dry bulk carriers, relative to its first observation."], ["Residual", "The part of the change in the log index not accounted for by the four forces. It is reported, never redistributed."]].forEach(([k, v]) => { dl.append(C.el("dt", null, k), C.el("dd", null, v)); });
+    [["Tonne-miles", "Sum over routes of tonnes shipped multiplied by the sailing distance in nautical miles between representative loading and discharge ports."], ["Average haul", "Total tonne-miles divided by total tonnes, so that the change in tonne-miles is exactly the change in tonnes plus the change in haul. The haul change is split further into trade mix (shares shifting at fixed distances) and rerouting (distances changing at fixed shares)."], ["Fleet", "World bulk carrier capacity in deadweight tonnes as of 1 January (UNCTAD), interpolated to months."], ["Effective supply factor", "Share of fleet time at sea: dry bulk port calls observed by IMF PortWatch per bulk carrier (UNCTAD fleet count), multiplied by the UNCTAD median time in port per call, gives port days per ship; the factor is the at-sea share relative to January 2019."], ["Residual", "The part of the change in the log index not accounted for by the four forces. It is reported, never redistributed."]].forEach(([k, v]) => { dl.append(C.el("dt", null, k), C.el("dd", null, v)); });
     prose.append(dl);
     add("h3", "The attribution identity");
     add("p", "For any two months, with endpoint values averaged over three months:", null);

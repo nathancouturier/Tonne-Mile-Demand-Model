@@ -162,9 +162,15 @@ def main() -> int:
 
     implied = h["elasticity"] * (balance(win1) - balance(win0))
     check(f"attributed change, 12 months to {lm12} (pct)", c12["implied_pct"][-1], (math.exp(implied) - 1) * 100, 1e-2)
-    # 12. Explained share on the tile equals one minus residual over total from rolling data
+    # 12. Explained share on the tile: total and residual recomputed from raw index averages and the panel
     la = summary["latest_attribution"]
-    check("latest attribution total equals rolling total", la["total"], rolling["total"][-1], 1e-3)
+    end = pd.Period(la["end"], "M")
+    w1 = [str(end - k) for k in range(3)]
+    w0 = [str(end - 12 - k) for k in range(3)]
+    total = math.log(float(bdi_raw[w1].mean()) / float(bdi_raw[w0].mean()))
+    resid = total - h["elasticity"] * (balance(w1) - balance(w0))
+    check("latest attribution total (log points)", la["total"], total, 1e-3)
+    check("explained share on the tile", 1 - la["residual"] / la["total"], 1 - resid / total, 1e-2)
     bad = 0
     for name, sv, rv, rel, ok in results:
         print(f"{'OK  ' if ok else 'FAIL'} {name}: site={sv:,.4f} raw={rv:,.4f} rel_diff={rel:.2e}")

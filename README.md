@@ -17,7 +17,7 @@ Definitions used throughout:
 * Tonne-miles: sum over routes of tonnes shipped multiplied by the sailing distance in nautical miles between representative loading and discharge ports.
 * Average haul: tonne-miles divided by tonnes. By construction the change in log tonne-miles equals the change in log tonnes plus the change in log haul. The haul change is split further into trade mix (shares shifting at fixed distances) and rerouting (distances changing at fixed shares).
 * Fleet: world bulk carrier capacity in deadweight tonnes as of 1 January (UNCTAD), interpolated log-linearly to months; months beyond the last observation are extrapolated at the last annual growth rate and flagged.
-* Effective supply factor: share of fleet time at sea, derived from UNCTAD median time in port and port calls for dry bulk carriers, relative to its first observation. Speed is not observable from public data and stays in the residual.
+* Effective supply factor: share of fleet time at sea. Dry bulk port calls observed by IMF PortWatch per bulk carrier (UNCTAD fleet count), multiplied by the UNCTAD median time in port per call, give port days per ship; the factor is the at-sea share relative to January 2019. Before PortWatch coverage the factor is one, and after the last published median port time (second half of 2023) that value is held; both are flagged. Speed is not observable from public data and stays in the residual.
 * Residual: whatever the four forces do not account for. It is reported as a fifth component and never redistributed.
 
 The attribution identity for two months (endpoints averaged over three months):
@@ -49,22 +49,24 @@ Sources that were investigated and not used: Stooq and other quote sites (bot pr
 <!-- results:start -->
 ## Results
 
-Panel: Jan 2016 to Sep 2025, 117 months, 271 routes. Built from data retrieved on 2026-10-16.
+Panel: Dec 2012 to Sep 2025, 154 months, 271 routes. Built from data retrieved on 2026-10-16.
 
-* Elasticity of the index to tonne-miles over effective fleet: 3.23 (Newey-West standard error 0.71); estimated on twelve-month changes, it explains 12% of the variance of twelve-month changes in the log index (Durbin-Watson 0.55).
-* Over rolling twelve-month windows the four measured forces have the same sign as the index move 70% of the time; the residual averages 0.40 log points against a typical move of 0.45, so about 89% of a typical move is not explained by measured demand and supply.
-* Between the first and last twelve months of the panel, tonnes on the covered routes grew +14%, tonne-miles +14% (average haul -0.1%) and the bulk carrier fleet +33% to 1,057 million dwt.
-* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.08, haul -0.01, fleet -0.09, port time -0.01, residual -0.01 (total -0.04).
-* The three largest routes carry 49% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failure.
+* Elasticity of the index to tonne-miles over effective fleet: 2.36 (Newey-West standard error 0.79); estimated on twelve-month changes, it explains 7% of the variance of twelve-month changes in the log index (Durbin-Watson 0.53).
+* Over rolling twelve-month windows the four measured forces have the same sign as the index move 66% of the time; the residual averages 0.39 log points against a typical move of 0.43, so about 91% of a typical move is not explained by measured demand and supply.
+* Between the first and last twelve months of the panel, tonnes on the covered routes grew +28%, tonne-miles +30% (average haul +1.4%) and the bulk carrier fleet +48% to 1,057 million dwt.
+* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.05, haul -0.00, fleet -0.07, port time -0.01, residual -0.01 (total -0.04).
+* The three largest routes carry 48% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failure.
 
 | Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.12 | +0.09 | -0.08 | +0.01 | +0.22 |
-| Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.20 | +0.01 | -0.05 | -0.01 | -0.80 |
-| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.17 | +0.08 | -0.17 | +0.01 | +1.86 |
-| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.29 | -0.09 | -0.14 | -0.01 | -0.82 |
-| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.06 | -0.05 | -0.06 | +0.01 | +0.32 |
-| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.08 | -0.01 | -0.09 | -0.01 | -0.01 |
+| Slide to the 2016 trough | Dec 2013 to Feb 2016 | -1.34 | -0.20 | +0.07 | -0.18 | -0.00 | -1.04 |
+| Recovery from the trough | Feb 2016 to Aug 2018 | +1.14 | +0.54 | -0.04 | -0.16 | -0.00 | +0.81 |
+| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.09 | +0.07 | -0.06 | +0.01 | +0.24 |
+| Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.15 | +0.00 | -0.04 | -0.01 | -0.86 |
+| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.14 | +0.05 | -0.12 | +0.01 | +1.88 |
+| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.17 | -0.09 | -0.10 | -0.01 | -0.98 |
+| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.05 | -0.03 | -0.05 | +0.00 | +0.30 |
+| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.05 | -0.00 | -0.07 | -0.01 | -0.01 |
 
 Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages.
 <!-- results:end -->
