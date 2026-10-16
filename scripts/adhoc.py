@@ -1,171 +1,53 @@
-"""Ad hoc remote check: lignite (HS 2702) volumes and Egyptian annual weights in UN Comtrade."""
+"""Ad hoc remote check: load the published GitHub Pages site in a headless browser and record what it serves."""
 
 from __future__ import annotations
 
 import json
-import time
+import subprocess
+import sys
 from pathlib import Path
 
 import requests
 
 OUT = Path(".adhoc")
 OUT.mkdir(exist_ok=True)
-S = requests.Session()
-S.headers.update({"User-Agent": "tonne-mile-demand-model/0.1 (research)"})
-BASE = "https://comtradeapi.un.org/public/v1/preview/C/{freq}/HS"
-results = {}
-queries = {
-    # lignite (HS 2702): how much do Indonesia, China and India report, and with weights?
-    "idn_x_2702_2024": (
-        "A",
-        {
-            "reporterCode": 360,
-            "period": "2024",
-            "cmdCode": "2701,2702",
-            "flowCode": "X",
-            "partnerCode": "0,156,699,392,608",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "idn_x_2702_2019": (
-        "A",
-        {
-            "reporterCode": 360,
-            "period": "2019",
-            "cmdCode": "2701,2702",
-            "flowCode": "X",
-            "partnerCode": "0,156,699,392,608",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "chn_m_2702_2024": (
-        "A",
-        {
-            "reporterCode": 156,
-            "period": "2024",
-            "cmdCode": "2701,2702",
-            "flowCode": "M",
-            "partnerCode": "0,360,36,643",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "ind_m_2702_2024": (
-        "A",
-        {
-            "reporterCode": 699,
-            "period": "2024",
-            "cmdCode": "2701,2702",
-            "flowCode": "M",
-            "partnerCode": "0,360,36,643,508",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "idn_x_2702_m_202401": (
-        "M",
-        {
-            "reporterCode": 360,
-            "period": "202401",
-            "cmdCode": "2701,2702",
-            "flowCode": "X",
-            "partnerCode": "0,156,699",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    # Egypt annual: do annual import records carry weights?
-    "egy_m_annual_2015": (
-        "A",
-        {
-            "reporterCode": 818,
-            "period": "2015",
-            "cmdCode": "1001,1003,1005,1201",
-            "flowCode": "M",
-            "partnerCode": "0,643,804,826",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "egy_m_annual_2019": (
-        "A",
-        {
-            "reporterCode": 818,
-            "period": "2019",
-            "cmdCode": "1001,1003,1005,1201",
-            "flowCode": "M",
-            "partnerCode": "0,643,804,826",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    # Russia as a reporter: when do its exports to Egypt stop?
-    "rus_x_1001_2019": (
-        "A",
-        {
-            "reporterCode": 643,
-            "period": "2019",
-            "cmdCode": "1001",
-            "flowCode": "X",
-            "partnerCode": "0,818",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-    "rus_x_1001_2022": (
-        "A",
-        {
-            "reporterCode": 643,
-            "period": "2022",
-            "cmdCode": "1001",
-            "flowCode": "X",
-            "partnerCode": "0,818",
-            "partner2Code": 0,
-            "customsCode": "C00",
-            "motCode": 0,
-        },
-    ),
-}
-for name, (freq, params) in queries.items():
-    time.sleep(4)
-    r = S.get(BASE.format(freq=freq), params=params, timeout=120)
-    try:
-        data = r.json()
-    except ValueError:
-        data = {"text": r.text[:500]}
-    results[name] = {
-        "status": r.status_code,
-        "count": data.get("count"),
-        "rows": [
-            {
-                k: row.get(k)
-                for k in (
-                    "period",
-                    "cmdCode",
-                    "partnerCode",
-                    "netWgt",
-                    "isNetWgtEstimated",
-                    "qty",
-                    "qtyUnitAbbr",
-                    "altQty",
-                    "altQtyUnitAbbr",
-                    "primaryValue",
-                    "isAggregate",
-                    "isReported",
-                )
-            }
-            for row in data.get("data", [])[:40]
-        ],
-    }
-    print(name, r.status_code, data.get("count"))
-(OUT / "comtrade_lignite_egypt_check.json").write_text(json.dumps(results, indent=1))
+URL = "https://nathancouturier.github.io/Tonne-Mile-Demand-Model/"
+result: dict[str, object] = {"url": URL}
+r = requests.get(URL, timeout=60)
+result["status"] = r.status_code
+result["bytes"] = len(r.content)
+result["has_title"] = "Tonne-Mile Demand Model" in r.text
+s = requests.get(URL + "data/summary.json", timeout=60)
+result["summary_status"] = s.status_code
+if s.status_code == 200:
+    summary = s.json()
+    result["built_at"] = summary.get("built_at")
+    result["panel"] = summary.get("panel")
+    result["latest"] = summary.get("latest")
+print(json.dumps(result, indent=1))
+(OUT / "live_site_check.json").write_text(json.dumps(result, indent=1))
+if r.status_code != 200:
+    sys.exit(0)
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "playwright"], check=True)
+subprocess.run([sys.executable, "-m", "playwright", "install", "--with-deps", "chromium"], check=True)
+from playwright.sync_api import sync_playwright  # noqa: E402
+
+errors: list[str] = []
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    for name, width, height in (("desktop", 1366, 900), ("mobile", 390, 844)):
+        page = browser.new_page(viewport={"width": width, "height": height})
+        page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.goto(URL, wait_until="networkidle", timeout=120000)
+        page.wait_for_timeout(1500)
+        page.screenshot(path=str(OUT / f"live_{name}.png"), full_page=True)
+        for view in ("overview", "decomposition", "routes", "fleet", "methodology", "downloads"):
+            page.click(f"button[data-view={view}]")
+            page.wait_for_timeout(1200)
+            page.screenshot(path=str(OUT / f"live_{name}_{view}.png"), full_page=True)
+        page.close()
+    browser.close()
+result["console_errors"] = errors
+(OUT / "live_site_check.json").write_text(json.dumps(result, indent=1))
+print("console errors:", errors)
