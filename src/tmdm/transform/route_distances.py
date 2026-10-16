@@ -18,12 +18,22 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.ingest import wpi
-from tmdm.reference import DISCHARGE, IMPORTER_ORIGIN_LOAD, LOADING, PORTS, ROUTE_GROUPS, PortSpec
+from tmdm.reference import DISCHARGE, IMPORTER_ORIGIN_LOAD, PORTS, ROUTE_GROUPS, PortSpec, loading_blend
 from tmdm.transform.distances import RESTRICTION_SETS, Port, sea_distance_nm
 
 log = logging.getLogger(__name__)
 
 BASELINE_VARIANT = {"iron_ore": "avoid_panama", "coal": "avoid_panama", "grains": "shortest"}
+# Coal from the Americas to Pacific destinations moves largely in Panamax tonnage through the canal.
+PANAMAX_COAL_ORIGINS = {"USA", "COL", "CAN"}
+
+
+def baseline_variant(route_id: str) -> str:
+    """Routing variant used as the baseline distance of a route."""
+    origin, _dest, commodity = route_id.split("-", 2)
+    if commodity == "coal" and origin in PANAMAX_COAL_ORIGINS:
+        return "shortest"
+    return BASELINE_VARIANT[commodity]
 
 
 def _norm(s: str) -> str:
@@ -73,10 +83,10 @@ def route_port_pairs() -> dict[str, tuple[str, str, tuple[tuple[str, float], ...
         for p in g.partners:
             if g.flow == "X":
                 origin, dest = origin_iso or "", p
-                load = LOADING[(origin, g.load_key)]
+                load = loading_blend(origin, g.load_key, dest)
             else:
                 origin, dest = p, g.reporter
-                load = LOADING[(origin, IMPORTER_ORIGIN_LOAD[(g.group_id, origin)])]
+                load = loading_blend(origin, IMPORTER_ORIGIN_LOAD[(g.group_id, origin)], dest)
             disc = DISCHARGE.get((dest, g.commodity))
             if disc is None:
                 raise KeyError(f"no discharge port for {dest} {g.commodity} (group {g.group_id})")
@@ -126,7 +136,7 @@ def build_route_distances(ports: dict[str, Port]) -> tuple[pd.DataFrame, dict[st
                     "commodity": commodity,
                     "variant": variant,
                     "distance_nm": round(dist_nm, 1),
-                    "is_baseline": variant == BASELINE_VARIANT[commodity],
+                    "is_baseline": variant == baseline_variant(rid),
                 }
             )
             if main_leg is not None:

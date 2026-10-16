@@ -20,7 +20,7 @@ from tmdm import __version__
 from tmdm.config import PROCESSED_DIR, SITE_DATA_DIR, SITE_DIR
 from tmdm.io import all_metadata, utc_now_iso
 from tmdm.model.attribution import log_points_to_pct
-from tmdm.reference import DISCHARGE, ECONOMY_NAMES, IMPORTER_ORIGIN_LOAD, LOADING, ROUTE_GROUPS
+from tmdm.reference import DISCHARGE, ECONOMY_NAMES, IMPORTER_ORIGIN_LOAD, ROUTE_GROUPS, loading_blend
 
 log = logging.getLogger(__name__)
 
@@ -173,7 +173,7 @@ def export_routes(
         origin, dest, commodity = rid.split("-", 2)
         gid, load_key = _group_for_route(rid)
         g = next(x for x in ROUTE_GROUPS if x.group_id == gid)
-        load = LOADING[(origin, load_key)]
+        load = loading_blend(origin, load_key, dest)
         disc = DISCHARGE[(dest, commodity)]
         variant = str(base.loc[rid, "variant"])
         routes.append(

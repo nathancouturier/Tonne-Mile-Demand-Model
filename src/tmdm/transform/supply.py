@@ -55,16 +55,15 @@ def fleet_monthly(end_month: str) -> pd.DataFrame:
 
 
 def port_time_semiannual() -> pd.DataFrame:
-    """Dry bulk median time in port and number of port calls per half-year, world."""
+    """Dry bulk median time in port per call, world, per half-year (UNCTAD, from 2018)."""
     df = unctad._read("US_PortCalls_S.csv")
     mask = (df["Economy Label"] == "World") & df["CommercialMarket Label"].str.contains(
         "dry bulk", case=False, na=False
     )
     w = df[mask].copy()
-    # Period labels look like "2018S1" or "2018-S1"; keep the year and the half.
-    per = w["Period Label"] if "Period Label" in w.columns else w["Period"].astype(str)
-    w["year"] = per.astype(str).str.extract(r"(\d{4})")[0].astype(int)
-    w["half"] = per.astype(str).str.extract(r"S\s?(\d)")[0].astype(int)
+    per = w["Period"].astype(str)
+    w["year"] = per.str.extract(r"(\d{4})")[0].astype(int)
+    w["half"] = per.str.extract(r"S0?(\d)")[0].astype(int)
     out = pd.DataFrame(
         {
             "year": w["year"],
@@ -72,16 +71,6 @@ def port_time_semiannual() -> pd.DataFrame:
             "median_port_days": pd.to_numeric(w["Median time in port (days)"], errors="coerce"),
         }
     )
-    calls_col = next(
-        (
-            c
-            for c in w.columns
-            if c.lower().startswith("number of port calls") and "Footnote" not in c and "Missing" not in c
-        ),
-        None,
-    )
-    if calls_col:
-        out["port_calls"] = pd.to_numeric(w[calls_col], errors="coerce")
     # Place each half-year observation at its middle month (March or September).
     out["month"] = pd.PeriodIndex(
         [f"{y}-{3 if h == 1 else 9:02d}" for y, h in zip(out["year"].tolist(), out["half"].tolist(), strict=True)],
@@ -90,34 +79,68 @@ def port_time_semiannual() -> pd.DataFrame:
     return out.dropna(subset=["median_port_days"]).sort_values("month").reset_index(drop=True)
 
 
+def _interp_months(obs: pd.Series, months: pd.PeriodIndex) -> tuple[np.ndarray, np.ndarray]:
+    """Linear interpolation of a Period-indexed series to months; flat outside the observed range."""
+    base = obs.index[0]
+    x = np.array([(m.year - base.year) * 12 + (m.month - base.month) for m in months], dtype=float)
+    kx = np.array([(m.year - base.year) * 12 + (m.month - base.month) for m in obs.index], dtype=float)
+    vals = np.interp(x, kx, obs.to_numpy(dtype=float))
+    outside = (x < kx[0]) | (x > kx[-1])
+    return vals, outside
+
+
 def supply_factor_monthly(end_month: str, fleet_ships: pd.Series | None = None) -> pd.DataFrame:
-    """Effective supply factor (at-sea share relative to the first observation)."""
+    """Effective supply factor: share of fleet time at sea, relative to the first observed month.
+
+    Port days per ship in a month are the dry bulk port calls observed by PortWatch
+    divided by the number of bulk carriers (UNCTAD), multiplied by the UNCTAD
+    median time in port per call. One minus port days over calendar days is the
+    at-sea share. Months before the first PortWatch observation take a factor of
+    one and are flagged, as are months where the median port time is held at its
+    last published value.
+    """
+    months = pd.period_range("2000-01", end_month, freq="M")
+    out = pd.DataFrame(
+        {"month": months, "supply_factor": 1.0, "supply_extrapolated": True, "port_days_per_ship": np.nan}
+    )
     try:
         pt = port_time_semiannual()
+        calls = portwatch_monthly_global()
     except (FileNotFoundError, KeyError, ValueError) as exc:
-        log.warning("port time data unavailable (%s); supply factor set to 1", exc)
-        months = pd.period_range("2010-01", end_month, freq="M")
-        return pd.DataFrame(
-            {"month": months, "supply_factor": 1.0, "supply_extrapolated": True, "port_days_per_ship": np.nan}
-        )
-    if "port_calls" in pt.columns and fleet_ships is not None:
-        ships = fleet_ships.reindex(pt["year"]).to_numpy()
-        port_days = pt["median_port_days"].to_numpy() * pt["port_calls"].to_numpy() / ships
-        at_sea = 1.0 - port_days / 182.5
-    else:
-        # Without call counts, scale port time by the median call count of the sample
-        port_days = pt["median_port_days"].to_numpy()
-        at_sea = 1.0 - port_days / pt["median_port_days"].iloc[0] * 0.25
-    factor = at_sea / at_sea[0]
-    obs = pd.Series(factor, index=pd.PeriodIndex(pt["month"], freq="M"))
-    months = pd.period_range(min(pd.Period("2010-01", freq="M"), obs.index[0]), end_month, freq="M")
-    x = np.array([(m.year - obs.index[0].year) * 12 + (m.month - obs.index[0].month) for m in months], dtype=float)
-    kx = np.array([(m.year - obs.index[0].year) * 12 + (m.month - obs.index[0].month) for m in obs.index], dtype=float)
-    interp = np.interp(x, kx, np.log(obs.to_numpy()))
-    out = pd.DataFrame({"month": months, "supply_factor": np.exp(interp)})
-    out["supply_extrapolated"] = (x < kx[0]) | (x > kx[-1])
-    out["port_days_per_ship"] = np.interp(x, kx, port_days, left=np.nan, right=np.nan)
-    return out
+        log.warning("port time or port call data unavailable (%s); supply factor set to 1", exc)
+        return out
+    if fleet_ships is None or pt.empty or calls.empty:
+        log.warning("fleet count missing; supply factor set to 1")
+        return out
+    calls = calls[calls["days"] >= 28].copy()
+    calls["month"] = pd.PeriodIndex(calls["month"], freq="M")
+    calls_by_month: dict[pd.Period, float] = dict(
+        zip(calls["month"].tolist(), calls["portcalls_dry_bulk"].astype(float).tolist(), strict=True)
+    )
+    ships_df = annual_to_monthly_loglinear(fleet_ships.dropna(), end_month)
+    ships_by_month: dict[pd.Period, float] = dict(
+        zip(ships_df["month"].tolist(), ships_df["value"].astype(float).tolist(), strict=True)
+    )
+    med_obs = pd.Series(pt["median_port_days"].to_numpy(), index=pd.PeriodIndex(pt["month"], freq="M"))
+    med_vals, med_outside = _interp_months(med_obs, months)
+    rows = []
+    for i, m in enumerate(months):
+        if m not in calls_by_month or m not in ships_by_month:
+            continue
+        port_days = calls_by_month[m] / ships_by_month[m] * float(med_vals[i])
+        at_sea = 1.0 - port_days / m.days_in_month
+        rows.append((m, port_days, at_sea, bool(med_outside[i])))
+    if not rows:
+        return out
+    obs = pd.DataFrame(rows, columns=["month", "port_days_per_ship", "at_sea_share", "median_held"]).set_index("month")
+    base_val = float(obs["at_sea_share"].iloc[0])
+    out = out.set_index("month")
+    out.loc[obs.index, "supply_factor"] = (obs["at_sea_share"] / base_val).to_numpy()
+    out.loc[obs.index, "port_days_per_ship"] = obs["port_days_per_ship"].to_numpy()
+    out.loc[obs.index, "supply_extrapolated"] = obs["median_held"].to_numpy()
+    out["at_sea_share"] = np.nan
+    out.loc[obs.index, "at_sea_share"] = obs["at_sea_share"].to_numpy()
+    return out.reset_index()
 
 
 def chokepoint_monthly() -> pd.DataFrame:

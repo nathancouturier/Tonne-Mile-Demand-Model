@@ -42,8 +42,11 @@ def canal_users(distances: pd.DataFrame) -> pd.DataFrame:
     out["baseline_nm"] = base
     out["uses_suez"] = (piv["avoid_suez"] / piv["shortest"]) > CANAL_DETECTION_RATIO
     out["uses_panama"] = (piv["avoid_panama"] / piv["shortest"]) > CANAL_DETECTION_RATIO
-    # for iron ore and coal the baseline already avoids Panama
-    out.loc[base.index.str.endswith(("iron_ore", "coal")), "uses_panama"] = False
+    # where the baseline already avoids Panama (Capesize trades) no Panama diversion applies
+    from tmdm.transform.route_distances import baseline_variant
+
+    capesize = [baseline_variant(str(r)) == "avoid_panama" for r in out.index]
+    out.loc[capesize, "uses_panama"] = False
     out["suez_alt_nm"] = piv["avoid_suez"]
     out["panama_alt_nm"] = piv["avoid_panama"]
     return out.reset_index()
@@ -113,7 +116,7 @@ def run() -> None:
     fleet_m.to_csv(PROCESSED_DIR / "fleet_monthly.csv", index=False)
     fleet_a = unctad.world_bulk_fleet().merge(unctad.world_built_and_scrapped(), on="year", how="left")
     fleet_a.to_csv(PROCESSED_DIR / "fleet_annual.csv", index=False)
-    ships = pd.Series(fleet_a["number_of_ships"].to_numpy(), index=fleet_a["year"].to_numpy())
+    ships = pd.Series(fleet_a["number_of_ships"].to_numpy(dtype=float), index=fleet_a["year"].to_numpy())
     try:
         pt = supply.port_time_semiannual()
         pt.to_csv(PROCESSED_DIR / "port_time_semiannual.csv", index=False)

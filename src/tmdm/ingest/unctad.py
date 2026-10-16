@@ -60,8 +60,10 @@ def fetch() -> None:
             z.extractall(path=tmp)
             content = (Path(tmp) / csv_name).read_bytes()
         (d / csv_name).write_bytes(content)
-        years = pd.read_csv(io.BytesIO(content), usecols=["Year"])["Year"]
-        coverage[ds] = f"{int(years.min())} to {int(years.max())}"
+        head = pd.read_csv(io.BytesIO(content), dtype=str)
+        period_col = "Year" if "Year" in head.columns else "Period"
+        periods = head[period_col].dropna().astype(str)
+        coverage[ds] = f"{periods.min()} to {periods.max()}"
         log.info("unctad %s: %d bytes, %s", ds, len(content), coverage[ds])
     meta = DatasetMetadata(
         dataset_id=DATASET_ID,

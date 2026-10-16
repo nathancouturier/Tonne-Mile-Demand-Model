@@ -459,6 +459,51 @@ LOADING: dict[tuple[str, str], tuple[tuple[str, float], ...]] = {
 }
 
 
+# Destinations reached across the Pacific from North American west coast ports.
+PACIFIC_DESTINATIONS: frozenset[str] = frozenset(
+    {
+        "CHN",
+        "JPN",
+        "KOR",
+        "TWN",
+        "PHL",
+        "VNM",
+        "IDN",
+        "THA",
+        "MYS",
+        "SGP",
+        "HKG",
+        "BGD",
+        "PAK",
+        "IND",
+        "PER",
+        "ECU",
+        "CHL",
+        "GTM",
+    }
+)
+
+# Loading blends that depend on the destination (west coast versus Gulf and Atlantic terminals).
+LOADING_BY_DESTINATION: dict[tuple[str, str], tuple[tuple[tuple[str, float], ...], tuple[tuple[str, float], ...]]] = {
+    # (origin, load_key): (blend for Pacific destinations, blend for all other destinations)
+    ("USA", "grains"): ((("US_MSY", 0.55), ("US_PDX", 0.45)), (("US_MSY", 0.9), ("US_ORF", 0.1))),
+    ("CAN", "grains"): ((("CA_VAN", 1.0),), (("CA_MTR", 1.0),)),
+    ("USA", "coal"): (
+        (("US_ORF", 0.55), ("US_BAL", 0.15), ("US_MSY", 0.3)),
+        (("US_ORF", 0.6), ("US_MSY", 0.25), ("US_BAL", 0.15)),
+    ),
+}
+
+
+def loading_blend(origin: str, load_key: str, destination: str) -> tuple[tuple[str, float], ...]:
+    """Loading ports and weights for a route, taking the destination into account where it matters."""
+    override = LOADING_BY_DESTINATION.get((origin, load_key))
+    if override is not None:
+        pacific, other = override
+        return pacific if destination in PACIFIC_DESTINATIONS else other
+    return LOADING[(origin, load_key)]
+
+
 @dataclass(frozen=True)
 class RouteGroup:
     """A reporter, flow and commodity group with the destination (or origin) economies covered."""
