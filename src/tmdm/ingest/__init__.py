@@ -53,6 +53,12 @@ def _ingest_wpi() -> None:
     wpi.fetch()
 
 
+def _ingest_oecd_cli() -> None:
+    from tmdm.ingest import oecd_cli
+
+    oecd_cli.fetch()
+
+
 def _ingest_worldbank() -> None:
     from tmdm.ingest import worldbank
 
@@ -70,6 +76,7 @@ SOURCES: dict[str, Callable[[], None]] = {
     "unctad": _ingest_unctad,
     "wpi": _ingest_wpi,
     "worldbank": _ingest_worldbank,
+    "oecd_cli": _ingest_oecd_cli,
     "comexstat": _ingest_comexstat,
     "portwatch": _ingest_portwatch,
     "comtrade": _ingest_comtrade,

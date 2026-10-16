@@ -33,6 +33,7 @@ from tmdm.reference import (
     COMMODITY_GROUPS,
     COMTRADE_CODES,
     MIRROR_ONLY,
+    PANEL_COMMODITIES,
     ROUTE_GROUPS,
     RouteGroup,
 )
@@ -171,7 +172,7 @@ def build_route_flows() -> pd.DataFrame:
     uv = annual_unit_values(records)
     frames = []
     for g in ROUTE_GROUPS:
-        if g.group_id in MIRROR_ONLY:
+        if g.group_id in MIRROR_ONLY or g.commodity not in PANEL_COMMODITIES:
             continue
         df = _comex_group_flows(comex, g) if g.reporter == "BRA_COMEX" else _comtrade_group_flows(records, g, uv)
         n_proxy = int((df["proxy_tonnes"] > 0).sum()) if not df.empty else 0

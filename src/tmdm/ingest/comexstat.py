@@ -23,7 +23,16 @@ log = logging.getLogger(__name__)
 DATASET_ID = "brazil_comexstat"
 API = "https://api-comexstat.mdic.gov.br"
 PORTAL = "https://comexstat.mdic.gov.br/"
-HEADINGS = {"2601": "iron_ore", "1201": "soybeans", "1005": "maize", "2304": "soybean_meal"}
+HEADINGS = {
+    "2601": "iron_ore",
+    "1201": "soybeans",
+    "1005": "maize",
+    "2304": "soybean_meal",
+    "1701": "sugar",
+    "2602": "manganese_ore",
+    "2606": "bauxite",
+    "4401": "wood_chips_pellets",
+}
 RECORDS_FILE = "exports_by_country_heading.csv"
 COUNTRIES_FILE = "countries.json"
 # The API rate-limits bursts of requests, so calls are spaced out and 429 responses wait a long time.
@@ -61,6 +70,11 @@ def fetch(start_year: int = 1997, refresh_years: int = 2) -> pd.DataFrame:
     last_year, last_month = int(upd["year"]), int(upd["monthNumber"])
     log.info("comexstat: data updated %s through %s-%02d", upd.get("updated"), last_year, last_month)
     have_years = set(existing["year"].astype(int)) if not existing.empty else set()
+    have_headings = set(existing["headingCode"].astype(str)) if not existing.empty else set()
+    if set(HEADINGS) - have_headings:
+        # a heading was added since the last download: fetch every year again with the full list
+        log.info("comexstat: new headings %s, refetching all years", sorted(set(HEADINGS) - have_headings))
+        have_years = set()
     years = [y for y in range(start_year, last_year + 1) if y not in have_years or y >= last_year - refresh_years + 1]
     frames = [existing[~existing["year"].astype(int).isin(years)]] if not existing.empty else []
     chunks = [years[i : i + YEARS_PER_CALL] for i in range(0, len(years), YEARS_PER_CALL)]
@@ -82,8 +96,8 @@ def fetch(start_year: int = 1997, refresh_years: int = 2) -> pd.DataFrame:
     out.to_csv(path, index=False)
     meta = DatasetMetadata(
         dataset_id=DATASET_ID,
-        title="Brazil Comex Stat: monthly exports by destination country for iron ore, soybeans, maize "
-        "and soybean meal",
+        title="Brazil Comex Stat: monthly exports by destination country for iron ore, soybeans, maize, "
+        "soybean meal, sugar, manganese ore, bauxite and wood chips",
         publisher="Ministerio do Desenvolvimento, Industria, Comercio e Servicos (MDIC), Brazil",
         source_url=PORTAL,
         licence="Open government data (Brazilian open data policy); attribution to MDIC/Comex Stat",

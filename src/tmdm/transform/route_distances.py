@@ -21,7 +21,15 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.ingest import wpi
-from tmdm.reference import DISCHARGE, IMPORTER_ORIGIN_LOAD, PORTS, ROUTE_GROUPS, PortSpec, loading_blend
+from tmdm.reference import (
+    DISCHARGE,
+    IMPORTER_ORIGIN_LOAD,
+    PANEL_COMMODITIES,
+    PORTS,
+    ROUTE_GROUPS,
+    PortSpec,
+    loading_blend,
+)
 from tmdm.transform.distances import RESTRICTION_SETS, Port, sea_distance_nm
 
 log = logging.getLogger(__name__)
@@ -80,7 +88,7 @@ def route_port_pairs() -> dict[str, tuple[str, str, tuple[tuple[str, float], ...
     """Map route_id to (origin, destination, loading blend, discharge blend)."""
     out = {}
     for g in ROUTE_GROUPS:
-        if g.group_id.endswith("_mirror"):
+        if g.group_id.endswith("_mirror") or g.commodity not in PANEL_COMMODITIES:
             continue
         origin_iso = g.reporter.replace("_COMEX", "") if g.flow == "X" else None
         for p in g.partners:
