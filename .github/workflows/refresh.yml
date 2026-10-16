@@ -14,9 +14,14 @@ on:
     branches: ["claude/**"]
     paths:
       - "scripts/refresh_trigger.txt"
+      - "scripts/build_trigger.txt"
 
 permissions:
   contents: write
+  pages: write
+
+# A push that changes scripts/refresh_trigger.txt downloads data only. A push whose
+# commit message contains "[build]" also runs the build; "[build only]" skips the download.
 
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: "1"
@@ -24,6 +29,7 @@ env:
 jobs:
   ingest-fast:
     name: Ingest fast sources
+    if: ${{ !(github.event_name == 'push' && contains(github.event.head_commit.message, '[build only]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     concurrency:
@@ -49,6 +55,7 @@ jobs:
 
   ingest-comtrade:
     name: Ingest UN Comtrade (shard ${{ matrix.shard }} of 3)
+    if: ${{ !(github.event_name == 'push' && contains(github.event.head_commit.message, '[build only]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 350
     strategy:
@@ -92,7 +99,7 @@ jobs:
   build:
     name: Validate, model, export and deploy
     needs: [ingest-fast, ingest-comtrade]
-    if: ${{ always() && github.event_name != 'push' && !inputs.ingest_only }}
+    if: ${{ always() && !inputs.ingest_only && (github.event_name != 'push' || contains(github.event.head_commit.message, '[build]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     concurrency:
@@ -121,3 +128,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash scripts/publish_pages.sh
+      - name: Make sure GitHub Pages serves the gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/ensure_pages.sh
