@@ -80,7 +80,7 @@ def run() -> None:
     bdi.to_csv(PROCESSED_DIR / "freight_monthly.csv", index=False)
     # Route flows
     raw_flows = flows_mod.build_route_flows()
-    flows = flows_mod.complete_months(raw_flows)
+    flows = flows_mod.complete_months(raw_flows, flows_mod.published_months())
     flows.to_csv(PROCESSED_DIR / "route_flows_monthly.csv", index=False)
     coverage = flows_mod.group_coverage(flows)
     coverage.to_csv(PROCESSED_DIR / "group_coverage.csv", index=False)
@@ -141,6 +141,7 @@ def run() -> None:
             first_month=coverage["first_month"].astype(str), last_month=coverage["last_month"].astype(str)
         ).to_dict(orient="records"),
         "routes": int(flows["route_id"].nunique()),
+        "interpolated_months": flows_mod.interpolated_months(flows),
     }
     (PROCESSED_DIR / "coverage.json").write_text(json.dumps(cov, indent=2))
     log.info(

@@ -329,6 +329,11 @@ def load_records() -> pd.DataFrame:
     return pd.read_csv(raw_dir(DATASET_ID) / RECORDS_FILE, dtype={"cmdCode": str, "period": str, "freqCode": str})
 
 
+def load_availability() -> pd.DataFrame:
+    """Load the published-periods table saved during the last ingest."""
+    return pd.read_csv(raw_dir(DATASET_ID) / AVAIL_FILE, dtype={"period": str})
+
+
 def load_partner_names() -> dict[int, str]:
     """Map partner codes to names from the cached reference table."""
     p = raw_dir(DATASET_ID) / "partnerAreas.json"

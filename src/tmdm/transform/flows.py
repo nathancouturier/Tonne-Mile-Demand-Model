@@ -111,23 +111,58 @@ def build_route_flows() -> pd.DataFrame:
     return flows
 
 
-def complete_months(flows: pd.DataFrame) -> pd.DataFrame:
-    """Fill route-months without a record with zero tonnes inside each group's reported range.
+def published_months() -> dict[str, set[pd.Period]]:
+    """Months for which each Comtrade reporter has published data (from the availability table)."""
+    av = comtrade.load_availability()
+    out: dict[str, set[pd.Period]] = {}
+    for code, grp in av.groupby("reporterCode"):
+        iso = CODE_TO_ISO3.get(int(str(code)))
+        if iso is None:
+            continue
+        out[iso] = {pd.Period(f"{str(p)[:4]}-{str(p)[4:6]}", freq="M") for p in grp["period"]}
+    return out
 
-    Customs data omit a partner in a month with no trade, so a missing
-    route-month inside the reporter's published range is a true zero, not a
-    gap. Months outside the reporter's published range stay missing.
+
+def complete_months(flows: pd.DataFrame, published: dict[str, set[pd.Period]] | None = None) -> pd.DataFrame:
+    """Fill route-months without a record inside each group's published range.
+
+    Customs data omit a partner in a month with no trade, so a route-month
+    without a record in a month the reporter published is a true zero. A month
+    the reporter did not publish at all (listed in the availability table) is
+    a gap: it is filled by linear interpolation between the neighbouring
+    published months and flagged in the ``interpolated`` column so that the
+    validation report and the site can list it.
     """
     out = []
     for gid, g in flows.groupby("group_id"):
+        reporter = str(gid).split("_")[0]
         months = pd.period_range(g["month"].min(), g["month"].max(), freq="M")
+        pub = published.get(reporter) if published and reporter in published else None
         routes = g[["route_id", "origin", "destination", "commodity", "source"]].drop_duplicates()
         grid = routes.merge(pd.DataFrame({"month": months}), how="cross")
         merged = grid.merge(g[["month", "route_id", "tonnes"]], on=["month", "route_id"], how="left")
-        merged["tonnes"] = merged["tonnes"].fillna(0.0)
+        if pub is None:
+            merged["tonnes"] = merged["tonnes"].fillna(0.0)
+            merged["interpolated"] = False
+        else:
+            is_pub = merged["month"].isin(pub)
+            merged.loc[is_pub, "tonnes"] = merged.loc[is_pub, "tonnes"].fillna(0.0)
+            merged["interpolated"] = ~is_pub
+            merged = merged.sort_values(["route_id", "month"])
+            merged["tonnes"] = merged.groupby("route_id")["tonnes"].transform(
+                lambda s: s.interpolate(method="linear", limit_direction="both")
+            )
         merged["group_id"] = gid
-        out.append(merged[FLOW_COLUMNS])
+        out.append(merged[[*FLOW_COLUMNS, "interpolated"]])
     return pd.concat(out, ignore_index=True).sort_values(["route_id", "month"]).reset_index(drop=True)
+
+
+def interpolated_months(flows: pd.DataFrame) -> dict[str, list[str]]:
+    """Unpublished months filled by interpolation, per route group."""
+    if "interpolated" not in flows.columns:
+        return {}
+    sub = flows[flows["interpolated"]]
+    return {str(g): sorted({str(m) for m in grp["month"]}) for g, grp in sub.groupby("group_id")}
 
 
 def group_coverage(flows: pd.DataFrame) -> pd.DataFrame:

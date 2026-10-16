@@ -19,13 +19,35 @@ def test_complete_months_fills_true_zeros_inside_group_range():
             "group_id": ["AUS_X_coal", "AUS_X_coal", "AUS_X_coal"],
         }
     )
-    out = complete_months(flows)
+    published = {"AUS": set(pd.period_range("2024-01", "2024-03", freq="M"))}
+    out = complete_months(flows, published)
     # two routes x three months
     assert len(out) == 6
     feb = out[(out["route_id"] == "AUS-CHN-coal") & (out["month"] == pd.Period("2024-02", "M"))]
     assert feb["tonnes"].iloc[0] == 0.0
+    assert not out["interpolated"].any()
     cov = group_coverage(out)
     assert cov.loc[0, "n_months"] == 3
+
+
+def test_complete_months_interpolates_unpublished_months():
+    flows = pd.DataFrame(
+        {
+            "month": pd.PeriodIndex(["2024-01", "2024-03"], freq="M"),
+            "route_id": ["UKR-EGY-grains", "UKR-EGY-grains"],
+            "origin": ["UKR", "UKR"],
+            "destination": ["EGY", "EGY"],
+            "commodity": ["grains", "grains"],
+            "tonnes": [10.0, 30.0],
+            "source": ["s", "s"],
+            "group_id": ["UKR_X_grains", "UKR_X_grains"],
+        }
+    )
+    published = {"UKR": {pd.Period("2024-01", "M"), pd.Period("2024-03", "M")}}
+    out = complete_months(flows, published).set_index("month")
+    assert out.loc[pd.Period("2024-02", "M"), "tonnes"] == pytest.approx(20.0)
+    assert bool(out.loc[pd.Period("2024-02", "M"), "interpolated"]) is True
+    assert out["interpolated"].sum() == 1
 
 
 def test_canal_detection_and_monthly_distances():
