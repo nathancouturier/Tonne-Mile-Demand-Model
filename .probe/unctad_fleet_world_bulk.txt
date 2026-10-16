@@ -1,0 +1,48 @@
+Year,Economy,Economy Label,ShipType,ShipType Label,Dead weight tons in thousands,Dead weight tons in thousands Footnote,Dead weight tons in thousands Missing value,Percentage of total world,Percentage of total world Footnote,Percentage of total world Missing value,Percentage of total fleet,Percentage of total fleet Footnote,Percentage of total fleet Missing value,Number of ships,Number of ships Footnote,Number of ships Missing value,Gross Tonnage in thousands,Gross Tonnage in thousands Footnote,Gross Tonnage in thousands Missing value,Average age of vessels (years),Average age of vessels (years) Footnote,Average age of vessels (years) Missing value
+1980,0000,"World",2,"Bulk carriers",181880.282,,,100,,,27.05777,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1981,0000,"World",2,"Bulk carriers",184501.243,,,100,,,27.14232,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1982,0000,"World",2,"Bulk carriers",193217.208,,,100,,,28.16351,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1983,0000,"World",2,"Bulk carriers",204630.713,,,100,,,29.65241,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1984,0000,"World",2,"Bulk carriers",212915.21,,,100,,,31.23916,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1985,0000,"World",2,"Bulk carriers",218518.136,,,100,,,32.70519,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1986,0000,"World",2,"Bulk carriers",227550.78,,,100,,,34.77602,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1987,0000,"World",2,"Bulk carriers",226967.377,,,100,,,35.89905,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1988,0000,"World",2,"Bulk carriers",223659.13,,,100,,,35.78284,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1989,0000,"World",2,"Bulk carriers",222432.047,,,100,,,35.8337,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1990,0000,"World",2,"Bulk carriers",223619,,,100,,,35.49643,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1991,0000,"World",2,"Bulk carriers",230028,,,100,,,35.31926,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1992,0000,"World",2,"Bulk carriers",236143.08,,,100,,,35.01419,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1993,0000,"World",2,"Bulk carriers",234696.615,,,100,,,34.33049,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1994,0000,"World",2,"Bulk carriers",236843.255,,,100,,,33.8471,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1995,0000,"World",2,"Bulk carriers",250142.436,,,100,,,34.77987,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1996,0000,"World",2,"Bulk carriers",261168.634,,,100,,,35.68509,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1997,0000,"World",2,"Bulk carriers",271702.29,,,100,,,35.97286,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1998,0000,"World",2,"Bulk carriers",280055.18,,,100,,,36.23897,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+1999,0000,"World",2,"Bulk carriers",274689.582,,,100,,,34.97755,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2000,0000,"World",2,"Bulk carriers",274445.412,,,100,,,34.57489,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2001,0000,"World",2,"Bulk carriers",280323.408,,,100,,,34.91945,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2002,0000,"World",2,"Bulk carriers",294779.972,,,100,,,35.86081,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2003,0000,"World",2,"Bulk carriers",296140.235,,,100,,,35.18212,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2004,0000,"World",2,"Bulk carriers",308935.209,,,100,,,35.77016,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2005,0000,"World",2,"Bulk carriers",325665.804,,,100,,,35.88706,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2006,0000,"World",2,"Bulk carriers",349720.569,,,100,,,36.24024,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2007,0000,"World",2,"Bulk carriers",367542.469,,,100,,,35.2617,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2008,0000,"World",2,"Bulk carriers",391126.986,,,100,,,34.99145,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2009,0000,"World",2,"Bulk carriers",418356.026,,,100,,,35.08764,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2010,0000,"World",2,"Bulk carriers",456623.242,,,100,,,35.78167,,,,,"No value reported or collected",,,"No value reported or collected",,,"No value reported or collected"
+2011,0000,"World",2,"Bulk carriers",547191.632,,,100,,,38.57871,,,8228,,,303826.523,,,13.327,,
+2012,0000,"World",2,"Bulk carriers",624021.922,,,100,,,40.58724,,,9001,,,345694.923,,,11.515,,
+2013,0000,"World",2,"Bulk carriers",689743.16,,,100,,,42.21119,,,9688,,,381385.175,,,9.755,,
+2014,0000,"World",2,"Bulk carriers",730295.568,,,100,,,43.09753,,,10162,,,403728.456,,,9.134,,
+2015,0000,"World",2,"Bulk carriers",762322.448,,,100,,,43.48447,,,10509,,,421346.297,,,9.019,,
+2016,0000,"World",2,"Bulk carriers",779289.319,,,100,,,43.0258,,,10729,,,431024.362,,,8.805,,
+2017,0000,"World",2,"Bulk carriers",795585.722,,,100,,,42.58451,,,10895,,,440039.717,,,8.764,,
+2018,0000,"World",2,"Bulk carriers",822905.785,,,100,,,42.46649,,,11384,,,455358.333,,,9.043,,
+2019,0000,"World",2,"Bulk carriers",846461.296,,,100,,,42.53737,,,11623,,,468192.068,,,9.69,,
+2020,0000,"World",2,"Bulk carriers",879826.009,,,100,,,42.4358,,,11987,,,486311.765,,,10.169,,
+2021,0000,"World",2,"Bulk carriers",913975.695,,,100,,,42.73222,,,12379,,,504802.807,,,10.553,,
+2022,0000,"World",2,"Bulk carriers",947424.971,,,100,,,42.94189,,,12783,,,523390.175,,,11.069,,
+2023,0000,"World",2,"Bulk carriers",976438.962,,,100,,,42.76488,,,13316,,,539977.298,,,11.538,,
+2024,0000,"World",2,"Bulk carriers",1006857.021,,,100,,,42.60673,,,13792,,,557115.242,,,11.932,,
+2025,0000,"World",2,"Bulk carriers",1036614.116,,,100,,,42.42213,,,14211,,,573903.638,,,12.429,,
+2026,0000,"World",2,"Bulk carriers",1067305.758,,,100,,,42.20622,,,14630,,,591237.394,,,12.879,,
