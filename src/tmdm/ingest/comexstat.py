@@ -26,19 +26,21 @@ PORTAL = "https://comexstat.mdic.gov.br/"
 HEADINGS = {"2601": "iron_ore", "1201": "soybeans", "1005": "maize", "2304": "soybean_meal"}
 RECORDS_FILE = "exports_by_country_heading.csv"
 COUNTRIES_FILE = "countries.json"
-PAUSE_S = 1.0
+# The API rate-limits bursts of requests, so calls are spaced out and 429 responses wait a long time.
+PAUSE_S = 8.0
+YEARS_PER_CALL = 3
 
 
-def _year_query(year: int, headings: list[int]) -> list[dict[str, str]]:
+def _period_query(year_from: int, year_to: int, headings: list[int]) -> list[dict[str, str]]:
     body = {
         "flow": "export",
         "monthDetail": True,
-        "period": {"from": f"{year}-01", "to": f"{year}-12"},
+        "period": {"from": f"{year_from}-01", "to": f"{year_to}-12"},
         "filters": [{"filter": "heading", "values": headings}],
         "details": ["country", "heading"],
         "metrics": ["metricKG", "metricFOB"],
     }
-    r = post_json(f"{API}/general", body, params={"language": "en"})
+    r = post_json(f"{API}/general", body, params={"language": "en"}, backoff=60.0, retries=5)
     data = r.json()
     if not data.get("success", True):
         raise RuntimeError(f"comexstat error: {data.get('message')}")
@@ -53,14 +55,17 @@ def fetch(start_year: int = 1997, refresh_years: int = 2) -> pd.DataFrame:
     existing = pd.read_csv(path, dtype={"headingCode": str}) if path.exists() else pd.DataFrame()
     r = get(f"{API}/tables/countries", params={"language": "en"})
     (d / COUNTRIES_FILE).write_bytes(r.content)
+    time.sleep(PAUSE_S)
     upd = get(f"{API}/general/dates/updated", params={"language": "en"}).json()["data"]
+    time.sleep(PAUSE_S)
     last_year, last_month = int(upd["year"]), int(upd["monthNumber"])
     log.info("comexstat: data updated %s through %s-%02d", upd.get("updated"), last_year, last_month)
     have_years = set(existing["year"].astype(int)) if not existing.empty else set()
     years = [y for y in range(start_year, last_year + 1) if y not in have_years or y >= last_year - refresh_years + 1]
     frames = [existing[~existing["year"].astype(int).isin(years)]] if not existing.empty else []
-    for y in years:
-        rows = _year_query(y, [int(h) for h in HEADINGS])
+    chunks = [years[i : i + YEARS_PER_CALL] for i in range(0, len(years), YEARS_PER_CALL)]
+    for chunk in chunks:
+        rows = _period_query(chunk[0], chunk[-1], [int(h) for h in HEADINGS])
         df = pd.DataFrame(rows)
         if df.empty:
             continue
@@ -70,7 +75,7 @@ def fetch(start_year: int = 1997, refresh_years: int = 2) -> pd.DataFrame:
         df["metricFOB"] = pd.to_numeric(df["metricFOB"], errors="coerce")
         df["retrieved_at"] = utc_now_iso()
         frames.append(df)
-        log.info("comexstat %d: %d rows", y, len(df))
+        log.info("comexstat %d to %d: %d rows", chunk[0], chunk[-1], len(df))
         time.sleep(PAUSE_S)
     out = pd.concat(frames, ignore_index=True)
     out = out.sort_values(["year", "monthNumber", "headingCode", "country"]).reset_index(drop=True)

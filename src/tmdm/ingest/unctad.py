@@ -21,6 +21,8 @@ from __future__ import annotations
 
 import io
 import logging
+import tempfile
+from pathlib import Path
 
 import pandas as pd
 import py7zr
@@ -51,11 +53,12 @@ def fetch() -> None:
     for ds, csv_name in DATASETS.items():
         url = BULK.format(ds=ds, name=csv_name.removesuffix(".csv"))
         r = get(url, timeout=300)
-        with py7zr.SevenZipFile(io.BytesIO(r.content), mode="r") as z:
-            members = z.readall()
-        if csv_name not in members:
-            raise RuntimeError(f"unctad {ds}: expected {csv_name} in archive, found {list(members)}")
-        content = members[csv_name].read()
+        with tempfile.TemporaryDirectory() as tmp, py7zr.SevenZipFile(io.BytesIO(r.content), mode="r") as z:
+            names = z.getnames()
+            if csv_name not in names:
+                raise RuntimeError(f"unctad {ds}: expected {csv_name} in archive, found {names}")
+            z.extractall(path=tmp)
+            content = (Path(tmp) / csv_name).read_bytes()
         (d / csv_name).write_bytes(content)
         years = pd.read_csv(io.BytesIO(content), usecols=["Year"])["Year"]
         coverage[ds] = f"{int(years.min())} to {int(years.max())}"

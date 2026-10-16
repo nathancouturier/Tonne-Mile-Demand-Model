@@ -77,6 +77,9 @@ def post_json(
             r = s.post(url, json=body, params=params, timeout=timeout)
             if r.status_code in RETRY_STATUSES:
                 wait = backoff * (2**attempt)
+                retry_after = r.headers.get("Retry-After")
+                if retry_after and retry_after.isdigit():
+                    wait = max(wait, float(retry_after))
                 log.warning("HTTP %s for %s, retrying in %.0fs", r.status_code, r.url, wait)
                 time.sleep(wait)
                 continue
