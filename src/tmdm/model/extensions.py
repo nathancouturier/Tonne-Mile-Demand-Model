@@ -139,8 +139,11 @@ def run_extensions(
             continue
         res.update({"id": v["id"], "label": v["label"]})
         if v["minor"] and minor is not None:
-            m = minor.set_index("month")["tonne_miles"].reindex(p.index)
-            res["minor_tonne_miles_share"] = float((m / panel.loc[p.index, "tonne_miles"]).mean())
+            m = minor.set_index("month").reindex(p.index)
+            share = m["tonne_miles"] / panel.loc[p.index, "tonne_miles"]
+            res["minor_tonne_miles_share"] = float(share.mean())
+            res["minor_tonne_miles_share_range"] = [float(share.min()), float(share.max())]
+            res["minor_tonnes_share"] = float((m["tonnes"] / panel.loc[p.index, "tonnes"]).mean())
         if base is None:
             base = res
         if res is not base and base["oos_r2_extended"] is not None and res["oos_r2_extended"] is not None:

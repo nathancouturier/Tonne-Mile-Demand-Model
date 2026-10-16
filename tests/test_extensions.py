@@ -119,3 +119,50 @@ def test_minor_route_ports_pick_the_coast_by_trade():
     assert load_atlantic == {"PW_p1", "PW_p2"}
     assert disc_from_aus == {"PW_p3", "PW_p4"}
     assert set(ports) >= load_pacific | load_atlantic | {"PW_p6", "PW_p7", "PW_p8"}
+
+
+def test_out_of_sample_matches_windows_rebuilt_per_month():
+    from tmdm.model.decomposition import headline_elasticity
+    from tmdm.model.signals import build_windows, fit_signals
+
+    panel, prices = _synthetic()
+    sig = (Signal("oil", "brent_usd_bbl", 0, ""), Signal("iron_ore", "iron_ore_usd_dmtu", 3, ""))
+    out = out_of_sample(panel, prices, headline_elasticity, sig)
+    pred = {p["month"]: p for p in out["predictions"]}
+    for t in (pd.Period(out["first_month"], "M"), pd.Period(out["last_month"], "M")):
+        cutoff = t - 12
+        w = build_windows(panel.loc[:t], prices, headline_elasticity(panel.loc[:cutoff]), sig)
+        fit = fit_signals(w.loc[:cutoff], sig)
+        phys = float(w.loc[t, "physical"])
+        ext = phys + sum(fit.coefficients[s.name] * float(w.loc[t, f"x_{s.name}"]) for s in sig)
+        assert pred[str(t)]["physical"] == pytest.approx(phys, rel=1e-12)
+        assert pred[str(t)]["extended"] == pytest.approx(ext, rel=1e-12)
+
+
+def test_minor_bulks_variant_scores_the_augmented_panel():
+    panel, prices = _synthetic()
+    rng = np.random.default_rng(1)
+    noise = np.exp(np.cumsum(rng.normal(0, 0.05, len(panel))))
+    minor = pd.DataFrame(
+        {"month": panel.index, "tonnes": 1e6, "tonne_miles": panel["tonne_miles"].to_numpy() * 0.1 * noise}
+    )
+    rows = {v["id"]: v for v in run_extensions(panel, prices, minor)["variants"]}
+    assert rows["minor_bulks"]["elasticity"] != pytest.approx(rows["headline"]["elasticity"], rel=1e-6)
+    lo, hi = rows["minor_bulks"]["minor_tonne_miles_share_range"]
+    assert lo < rows["minor_bulks"]["minor_tonne_miles_share"] < hi
+
+
+def test_minor_bulk_failure_removes_stale_files(tmp_path, monkeypatch):
+    import tmdm.transform as tr
+
+    monkeypatch.setattr(tr, "PROCESSED_DIR", tmp_path)
+    for name in tr.MINOR_FILES:
+        (tmp_path / name).write_text("stale")
+
+    def boom(_div):
+        raise LookupError("no dry bulk port for XYZ")
+
+    monkeypatch.setattr(tr, "minor_bulks", boom)
+    out = tr.minor_bulks_or_skip(pd.DataFrame())
+    assert out == {"error": "no dry bulk port for XYZ"}
+    assert not any((tmp_path / name).exists() for name in tr.MINOR_FILES)

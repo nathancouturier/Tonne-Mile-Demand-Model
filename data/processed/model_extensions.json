@@ -87,6 +87,11 @@
       "id": "minor_bulks",
       "label": "Minor bulks added to tonne-miles",
       "minor_tonne_miles_share": 0.08702740720643587,
+      "minor_tonne_miles_share_range": [
+        0.0688982589971231,
+        0.1090042181038976
+      ],
+      "minor_tonnes_share": 0.0768097278440378,
       "oos_r2_gain": -0.0016939213334935532,
       "clears_margin": false
     },

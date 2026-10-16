@@ -1,6 +1,6 @@
 {
   "dataset_id": "un_comtrade",
-  "title": "UN Comtrade: monthly bilateral trade in iron ore, coal and lignite, grains and soybeans (net weight)",
+  "title": "UN Comtrade: monthly bilateral trade in iron ore, coal and lignite, grains and soybeans, and minor bulks (net weight)",
   "publisher": "United Nations Statistics Division (UN Comtrade)",
   "source_url": "https://comtradeplus.un.org/",
   "licence": "UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",

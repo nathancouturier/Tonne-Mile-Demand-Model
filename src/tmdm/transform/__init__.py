@@ -13,8 +13,8 @@ Outputs (all under ``data/processed``):
 * ``panel_monthly.csv``: the balanced monthly panel used by the model.
 * ``coverage.json``: data coverage per input and the resulting panel window.
 * ``signals_monthly.csv``: monthly commodity prices and leading indicators used as market signals.
-* ``minor_bulks_monthly.csv``, ``minor_bulk_routes.csv``, ``minor_bulk_ports.csv``: tonnes and tonne-miles of
-  the minor bulks (an extension tested against the headline model, not part of the panel).
+* ``minor_bulks_monthly.csv``, ``minor_bulk_flows_monthly.csv``, ``minor_bulk_routes.csv``, ``minor_bulk_ports.csv``:
+  tonnes and tonne-miles of the minor bulks (an extension tested against the headline model, not part of the panel).
 """
 
 from __future__ import annotations
@@ -25,8 +25,8 @@ import logging
 import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
-from tmdm.ingest import portwatch, unctad
-from tmdm.reference import EXTENSION_COMMODITIES
+from tmdm.ingest import comexstat, portwatch, unctad
+from tmdm.reference import COMMODITY_GROUPS, ECONOMY_NAMES, EXTENSION_COMMODITIES, MINOR_BULK_NAMES
 from tmdm.transform import flows as flows_mod
 from tmdm.transform import freight, route_distances, supply
 from tmdm.transform.tonne_miles import aggregate_tonne_miles
@@ -134,6 +134,14 @@ def signals_monthly() -> pd.DataFrame:
     return out
 
 
+MINOR_FILES = (
+    "minor_bulks_monthly.csv",
+    "minor_bulk_flows_monthly.csv",
+    "minor_bulk_routes.csv",
+    "minor_bulk_ports.csv",
+)
+
+
 def minor_bulks(diversion: pd.DataFrame) -> dict[str, object]:
     """Tonnes and tonne-miles of the minor bulks over the months every minor-bulk route group covers.
 
@@ -146,6 +154,7 @@ def minor_bulks(diversion: pd.DataFrame) -> dict[str, object]:
     cov = flows_mod.group_coverage(flows)
     first, last = cov["first_month"].max(), cov["last_month"].min()
     flows = flows[(flows["month"] >= first) & (flows["month"] <= last)]
+    flows.to_csv(PROCESSED_DIR / "minor_bulk_flows_monthly.csv", index=False)
     dist, used = route_distances.minor_bulk_distances(flows)
     canal = canal_users(dist)
     dist_m = monthly_route_distances(canal, diversion, pd.period_range(first, last, freq="M"))
@@ -157,12 +166,41 @@ def minor_bulks(diversion: pd.DataFrame) -> dict[str, object]:
     ).to_csv(PROCESSED_DIR / "minor_bulk_routes.csv", index=False)
     used.to_csv(PROCESSED_DIR / "minor_bulk_ports.csv", index=False)
     log.info("minor bulks: %s to %s, %d routes", first, last, flows["route_id"].nunique())
+    total = float(flows["tonnes"].sum())
+    proxy = flows.groupby("origin")["proxy_tonnes"].sum()
+    minor_codes = COMMODITY_GROUPS["minor_bulks"]
     return {
         "window": [str(first), str(last)],
         "routes": int(flows["route_id"].nunique()),
-        "route_groups": sorted(str(g) for g in cov["group_id"]),
+        "route_groups": cov.assign(
+            first_month=cov["first_month"].astype(str), last_month=cov["last_month"].astype(str)
+        ).to_dict(orient="records"),
+        "exporters": sorted(ECONOMY_NAMES.get(str(o), str(o)) for o in flows["origin"].unique()),
+        "commodities": [MINOR_BULK_NAMES.get(h, minor_codes[h]) for h in minor_codes],
+        "brazil_headings": [MINOR_BULK_NAMES.get(h, minor_codes[h]) for h in comexstat.HEADINGS if h in minor_codes],
+        "tonnes_per_year_mt": float(totals["tonnes"].mean()) * 12 / 1e6,
+        "proxy_tonnes_share": float(flows["proxy_tonnes"].sum()) / total if total else 0.0,
+        "interpolated_tonnes_share": float(flows.loc[flows["interpolated"], "tonnes"].sum()) / total if total else 0.0,
+        "largest_proxy_exporter": ECONOMY_NAMES.get(str(proxy.idxmax()), str(proxy.idxmax()))
+        if proxy.max() > 0
+        else None,
         "fill_summary": flows_mod.fill_summary(flows),
     }
+
+
+def minor_bulks_or_skip(diversion: pd.DataFrame) -> dict[str, object]:
+    """Run the minor-bulk extension without letting a failure stop the headline build.
+
+    On failure the extension's files are removed, so the model stage does not score stale data, and the
+    error is recorded in ``coverage.json``.
+    """
+    try:
+        return minor_bulks(diversion)
+    except (LookupError, ValueError, FileNotFoundError) as exc:
+        log.warning("minor-bulk extension skipped: %s", exc)
+        for name in MINOR_FILES:
+            (PROCESSED_DIR / name).unlink(missing_ok=True)
+        return {"error": str(exc)}
 
 
 def run() -> None:
@@ -219,7 +257,7 @@ def run() -> None:
     # Monthly market-signal prices (World Bank Pink Sheet) and leading indicators (OECD), when downloaded
     signals_monthly().to_csv(PROCESSED_DIR / "signals_monthly.csv")
     # Minor bulks, an extension tested against the headline model
-    minor = minor_bulks(div)
+    minor = minor_bulks_or_skip(div)
     # Panel
     panel = (
         totals.merge(bdi.rename(columns={"bdi": "index"}), on="month", how="inner")

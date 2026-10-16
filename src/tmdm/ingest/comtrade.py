@@ -394,7 +394,10 @@ def _write_done(done_path: Path, done: pd.DataFrame, rows: list[dict[str, Any]])
 def _metadata(start_month: str, groups: list[CallGroup], out: pd.DataFrame) -> DatasetMetadata:
     return DatasetMetadata(
         dataset_id=DATASET_ID,
-        title="UN Comtrade: monthly bilateral trade in iron ore, coal and lignite, grains and soybeans (net weight)",
+        title=(
+            "UN Comtrade: monthly bilateral trade in iron ore, coal and lignite, grains and soybeans, "
+            "and minor bulks (net weight)"
+        ),
         publisher="United Nations Statistics Division (UN Comtrade)",
         source_url=PORTAL,
         licence="UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",

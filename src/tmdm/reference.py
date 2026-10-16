@@ -45,6 +45,18 @@ COMMODITY_GROUPS: dict[str, dict[str, str]] = {
     },
 }
 CMD_TO_GROUP: dict[str, str] = {cmd: g for g, cmds in COMMODITY_GROUPS.items() for cmd in cmds}
+# Short names of the minor-bulk headings, for text.
+MINOR_BULK_NAMES: dict[str, str] = {
+    "1701": "sugar",
+    "2304": "soybean meal",
+    "2523": "cement and clinker",
+    "2602": "manganese ore",
+    "2606": "bauxite",
+    "2713": "petroleum coke",
+    "3104": "potash",
+    "4401": "wood fuel (chips and pellets)",
+    "7204": "ferrous scrap",
+}
 
 # UN Comtrade reporter and partner codes (M49 based, with Comtrade conventions such as 842 for the USA).
 COMTRADE_CODES: dict[str, int] = {

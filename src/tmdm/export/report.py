@@ -380,33 +380,41 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _extensions_text(ext: dict[str, Any]) -> str:
+def _extensions_text(ext: dict[str, Any], minor_cov: dict[str, Any] | None = None) -> str:
     """One paragraph on the extensions tested against the headline (more data, other signals)."""
     rows = {v["id"]: v for v in ext.get("variants", [])}
     head = rows.get("headline")
     if head is None or head.get("oos_r2_extended") is None or len(rows) < 2:
         return ""
     minor = rows.get("minor_bulks")
+    mc = minor_cov or {}
     cli = [v for k, v in rows.items() if k.startswith("cli_") and v.get("oos_r2_gain") is not None]
     margin = float(ext.get("adoption_margin", 0.05))
     parts = [
         f"Further additions were scored with the same protocol (headline out-of-sample R squared {head['oos_r2_extended']:.2f})."
     ]
     if minor is not None and minor.get("oos_r2_extended") is not None:
+        scope = (
+            f" for the {len(mc['exporters'])} exporters already covered (about {mc['tonnes_per_year_mt']:,.0f} million tonnes a year, a subset of world minor-bulk trade)"
+            if mc.get("exporters")
+            else " for the exporters already covered"
+        )
         parts.append(
-            f" Adding the minor bulks (sugar, soybean meal, cement, manganese and bauxite ores, petroleum coke, potash, wood, scrap), about {minor['minor_tonne_miles_share']:.0%} more tonne-miles, gives {minor['oos_r2_extended']:.2f}"
+            f" Adding minor bulks (sugar, soybean meal, cement, manganese and bauxite ores, petroleum coke, potash, wood, scrap){scope}, about {minor['minor_tonne_miles_share']:.0%} more tonne-miles, gives {minor['oos_r2_extended']:.2f}"
             f" (unexplained share {minor['oos_unexplained_extended']:.0%} out of sample against {head['oos_unexplained_extended']:.0%})."
         )
     if cli:
         gains = [float(v["oos_r2_gain"]) for v in cli]
         best = max(cli, key=lambda v: float(v["oos_r2_gain"]))
+        areas = "China and the G20" if any(v["id"].startswith("cli_g20") for v in cli) else "China"
+        repl = any(v["id"].startswith("cli_china_instead_of_ore") for v in cli)
         parts.append(
-            f" The OECD leading indicators for China and the G20, added as a third signal or in place of iron ore at leads of zero, three and six months ({len(cli)} variants), change the out-of-sample R squared by {min(gains):+.2f} to {max(gains):+.2f}; the best variant ({best['label']}) gains {float(best['oos_r2_gain']):+.2f}."
+            f" The OECD leading indicators, {areas} as a third signal{' and China in place of iron ore' if repl else ''}, at leads of zero, three and six months ({len(cli)} variants), change the out-of-sample R squared by {min(gains):+.2f} to {max(gains):+.2f}; the best variant ({best['label']}) gains {float(best['oos_r2_gain']):+.2f}."
         )
     cleared = [v for v in rows.values() if v.get("clears_margin")]
     if cleared:
         parts.append(
-            f" {len(cleared)} variant(s) clear the margin of {margin:.2f} set to cover the choice of lead; they are reported as candidates and the headline is unchanged."
+            f" {_plural(len(cleared), 'variant')} {'clears' if len(cleared) == 1 else 'clear'} the margin of {margin:.2f} set to cover the choice of lead; {'it is' if len(cleared) == 1 else 'they are'} reported as candidates for review and the headline is unchanged."
         )
     else:
         parts.append(
@@ -420,10 +428,11 @@ def _ext_note(res: dict[str, Any]) -> str:
     rows = res.get("extensions", {}).get("variants", [])
     if len(rows) < 2:
         return ""
-    if any(v.get("clears_margin") for v in rows):
-        return "; one tested extension clears the out-of-sample margin and is under review"
+    cleared = sum(1 for v in rows if v.get("clears_margin"))
+    if cleared:
+        return f"; {_plural(cleared, 'tested extension')} {'clears' if cleared == 1 else 'clear'} the out-of-sample margin and {'is' if cleared == 1 else 'are'} under review"
     margin = float(res["extensions"].get("adoption_margin", 0.05))
-    return f"; adding the minor bulks or OECD leading indicators did not raise the out-of-sample R squared by more than {margin:.2f}"
+    return f"; adding minor bulks for the covered exporters or OECD leading indicators did not raise the out-of-sample R squared by more than {margin:.2f}"
 
 
 def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> None:
@@ -647,7 +656,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
                 st["body"],
             )
         )
-        ext_text = _extensions_text(res.get("extensions", {}))
+        ext_text = _extensions_text(res.get("extensions", {}), res["coverage"].get("minor_bulks"))
         if ext_text:
             story.append(Paragraph(ext_text, st["body"]))
     story.append(Paragraph("Robustness", st["h2"]))
@@ -756,6 +765,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
     if start_tag not in text or end_tag not in text:
         return
     eps = n["episodes"]
+    ext_line = _extensions_text(res.get("extensions", {}), res["coverage"].get("minor_bulks"))
     lines = [
         "## Results",
         "",
@@ -781,7 +791,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
             if n["has_signals"]
             else []
         ),
-        *([f"* {_extensions_text(res.get('extensions', {}))}"] if _extensions_text(res.get("extensions", {})) else []),
+        *([f"* {ext_line}"] if ext_line else []),
         f"* Between the first and last twelve months of the panel, tonnes on the covered routes grew {n['t_growth']:+.0%}, tonne-miles {n['tm_growth']:+.0%} "
         f"(average haul {n['haul_growth']:+.1%}) and the bulk carrier fleet {n['fleet_growth']:+.0%} to {n['fleet_last_mdwt']:,.0f} million dwt.",
         f"* Latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}): the index moved {n['last_pct']:+.0f} percent; "

@@ -478,20 +478,47 @@
     const ext = (D.model.extensions || {}).variants || [];
     if (ext.length > 1) {
       const margin = D.model.extensions.adoption_margin;
+      const head = ext.find((v) => v.id === "headline") || ext[0];
       const minor = ext.find((v) => v.id === "minor_bulks");
+      const mc = (D.summary.coverage || {}).minor_bulks || {};
+      const list = (xs) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : xs.join(""));
+      const the = (n) => (/^United /.test(n) ? `the ${n}` : n);
       add("h3", "More data and other signals, tested and not adopted");
-      add("p", "Two further additions were scored with the same protocol as the headline, in sample and out of sample." + (minor ? ` The first adds the minor bulks (sugar, soybean meal, cement, manganese ore, bauxite, petroleum coke, potash, wood chips and pellets, ferrous scrap) exported by the eight Comtrade exporters and by Brazil to ${D.summary.coverage.minor_bulks ? D.summary.coverage.minor_bulks.routes : ""} sea routes, about ${fmt.pctPlain(minor.minor_tonne_miles_share)} more tonne-miles than the major bulks, with the same gap and proxy rules; their distances use the three ports of each country with the most dry bulk calls in the IMF PortWatch ports table, weighted by calls, because minor bulks move through many small terminals.` : "") + " The second uses the OECD composite leading indicators for China and the G20, which are built to anticipate turning points in industrial activity, either as a third signal or in place of the iron ore price, at leads of zero, three and six months.");
+      let intro = "Two further additions were scored with the same protocol as the headline, in sample and out of sample.";
+      if (minor && mc.exporters) {
+        const brazil = mc.brazil_headings || [];
+        intro += ` The first adds minor bulks for the exporters already covered: ${list(mc.commodities || [])} exported by ${list(mc.exporters.map(the))}, on ${mc.routes} sea routes, about ${d3.format(",.0f")(mc.tonnes_per_year_mt)} million tonnes a year and ${fmt.pctPlain(minor.minor_tonne_miles_share)} more tonne-miles than the major bulks.` + (brazil.length && mc.exporters.includes("Brazil") ? ` Brazilian figures come from Comex Stat and cover only the headings downloaded there: ${list(brazil)}.` : "") + ` This is a subset of world minor-bulk trade: exporters outside this list, such as Guinea for bauxite or Russia and Belarus for potash, are not covered. The same gap and proxy rules apply; ${d3.format(".1%")(mc.proxy_tonnes_share)} of these tonnes are estimated from annual unit values` + (mc.largest_proxy_exporter ? ` (mostly ${the(mc.largest_proxy_exporter)})` : "") + ` and ${d3.format(".1%")(mc.interpolated_tonnes_share)} are interpolated (table of affected groups below). Distances use the three ports of each country with the most dry bulk calls in the IMF PortWatch ports table, weighted by calls, and for the United States and Canada the three on the coast facing the partner, because minor bulks move through many small terminals.`;
+      }
+      const cli = ext.filter((v) => v.id.startsWith("cli_") && v.oos_r2_gain !== null);
+      const added = cli.filter((v) => /^cli_(china|g20)_lead/.test(v.id));
+      const repl = cli.filter((v) => v.id.startsWith("cli_china_instead_of_ore_lead"));
+      if (cli.length) intro += ` The second uses the OECD composite leading indicators, built to anticipate turning points in industrial activity: ${added.some((v) => v.id.startsWith("cli_g20")) ? "China and the G20" : "China"} as a third signal${repl.length ? ", and China in place of the iron ore price," : ""} at leads of zero, three and six months (${cli.length} variants).`;
+      add("p", intro);
       const tw = C.el("div", "table-wrap full");
       const pc = (v) => (v === null || v === undefined ? "" : fmt.pctPlain(v));
       C.dataTable(tw, [{ key: "label", label: "Variant" }, { key: "unexplained_extended", label: "Unexplained, in sample", num: true, format: pc }, { key: "oos_unexplained_extended", label: "Unexplained, out of sample", num: true, format: pc }, { key: "oos_r2_extended", label: "R squared, out of sample", num: true, format: (v) => (v === null ? "" : fmt.f2(v)) }, { key: "oos_r2_gain", label: "Change against headline", num: true, format: (v) => signed(v, 2) }], ext);
       prose.append(tw);
+      let concl = "";
+      if (minor && minor.oos_r2_gain !== null) {
+        const rng = minor.minor_tonne_miles_share_range || [];
+        concl += Math.abs(minor.oos_r2_gain) < 0.02 ? `Adding these minor bulks leaves the out-of-sample fit essentially unchanged (change ${signed(minor.oos_r2_gain, 2)})` : `Adding these minor bulks changes the out-of-sample R squared by ${signed(minor.oos_r2_gain, 2)}`;
+        concl += rng.length === 2 ? `; their tonne-miles stay between ${fmt.pctPlain(rng[0])} and ${fmt.pctPlain(rng[1])} of the major bulks' over the panel. ` : ". ";
+      }
+      if (added.length) {
+        const lower = added.filter((v) => v.unexplained_extended < head.unexplained_extended).length;
+        concl += `Added as a third signal, the leading indicators lower the in-sample unexplained share in ${lower} of ${added.length} variants`;
+        concl += repl.length ? `; in place of iron ore, the China indicator raises it in ${repl.filter((v) => v.unexplained_extended > head.unexplained_extended).length} of ${repl.length}. ` : ". ";
+      }
+      if (cli.length) {
+        const worse = cli.filter((v) => v.oos_r2_gain < 0).length;
+        concl += `Out of sample, ${worse} of ${cli.length} leading-indicator variants do worse than the headline.`;
+        const groups = { cli_china_lead: "the China indicator added as a third signal", cli_g20_lead: "the G20 indicator added as a third signal", cli_china_instead_of_ore_lead: "the China indicator in place of iron ore" };
+        const mixed = Object.entries(groups).filter(([k]) => { const g = cli.filter((v) => v.id.startsWith(k)).map((v) => v.oos_r2_gain); return g.some((x) => x > 0) && g.some((x) => x < 0); }).map(([, label]) => label);
+        if (mixed.length) concl += ` For ${list(mixed)}, the sign of the change depends on the lead.`;
+      }
       const better = ext.filter((v) => v.clears_margin);
-      const cli = ext.filter((v) => v.id.startsWith("cli_") && v.oos_r2_gain !== null);
-      const worse = cli.filter((v) => v.oos_r2_gain < 0).length;
-      const mixed = ["cli_china_lead", "cli_g20_lead", "cli_china_instead_of_ore_lead"].some((k) => { const g = cli.filter((v) => v.id.startsWith(k)).map((v) => v.oos_r2_gain); return g.some((x) => x > 0) && g.some((x) => x < 0); });
-      const minorText = minor && minor.oos_r2_gain !== null ? (Math.abs(minor.oos_r2_gain) < 0.02 ? `Adding the minor bulks leaves the out-of-sample fit essentially unchanged (${signed(minor.oos_r2_gain, 2)}): they are a stable share of the trade and their twelve-month changes add little to the balance. ` : `Adding the minor bulks changes the out-of-sample R squared by ${signed(minor.oos_r2_gain, 2)}. `) : "";
-      const cliText = cli.length ? `Leading indicators lower the unexplained share in sample, as any added regressor does, but out of sample ${worse} of ${cli.length} variants do worse than the headline` + (mixed ? ", and for a given indicator the sign of the change depends on the lead." : ".") : "";
-      add("p", minorText + cliText + (better.length ? ` ${better.map((v) => v.label).join("; ")} improves the out-of-sample R squared by more than ${fmt.f2(margin)}, the margin set to cover the choice among leads; it is shown as a candidate for review, and the headline specification is unchanged.` : ` No variant improves the out-of-sample R squared by more than ${fmt.f2(margin)}, the margin set to cover the choice among several leads, so the headline keeps the major bulks and the two prices.`));
+      concl += better.length ? ` ${better.map((v) => v.label).join("; ")} improves the out-of-sample R squared by more than ${fmt.f2(margin)}, the margin set to cover the choice among leads; it is shown as a candidate for review, and the headline specification is unchanged.` : ` No variant improves the out-of-sample R squared by more than ${fmt.f2(margin)}, the margin set to cover the choice among several leads, so the headline keeps the major bulks and the two prices.`;
+      add("p", concl.trim());
     }
     add("h3", "Reconciliation");
     add("p", "Where two sources measure the same flow (Brazilian exports in Comex Stat and in UN Comtrade; exporter and importer records for Australia to China, Brazil to China, Indonesia to China, United States to China and Australia to Japan) the series are compared on twelve-month rolling sums and the median gap is reported below. PortWatch dry bulk port loadings are compared with UNCTAD seaborne dry cargo as a level check.");
@@ -508,14 +535,15 @@
     // quantity gaps, proxies and interpolation per route group
     const cov = D.summary.coverage || {};
     const fs = cov.fill_summary || {};
-    const groups = (cov.route_groups || []).filter((g) => fs[g.group_id]);
+    const mfs = (cov.minor_bulks || {}).fill_summary || {};
+    const groups = [...(cov.route_groups || []).filter((g) => fs[g.group_id]).map((g) => ({ ...g, f: fs[g.group_id] })), ...((cov.minor_bulks || {}).route_groups || []).filter((g) => mfs[g.group_id]).map((g) => ({ ...g, label: `${g.label || g.group_id} (extension)`, f: mfs[g.group_id] }))];
     if (groups.length) {
       const gap = C.el("div", "prose");
       gap.append(C.el("h3", null, "Where customs quantities are estimated or interpolated"));
-      gap.append(C.el("p", null, "Customs offices publish values for every month but not always weights. Where a reporter's monthly records carry a value and no net weight, tonnes are estimated as the value divided by that reporter's annual unit value for the same partner and commodity from the annual UN Comtrade series (flagged as a proxy). A route-month in which more than 1 percent of the value still has no usable weight, a month in which most of a group's value has none, and a month the reporter did not publish are interpolated linearly between the neighbouring months; gaps at the ends of a group's range are trimmed rather than extrapolated. Shares below refer to the panel window. The table lists every affected group; the per-route flags are in the downloads."));
+      gap.append(C.el("p", null, "Customs offices publish values for every month but not always weights. Where a reporter's monthly records carry a value and no net weight, tonnes are estimated as the value divided by that reporter's annual unit value for the same partner and commodity from the annual UN Comtrade series (flagged as a proxy). A route-month in which more than 1 percent of the value still has no usable weight, a month in which most of a group's value has none, and a month the reporter did not publish are interpolated linearly between the neighbouring months; gaps at the ends of a group's range are trimmed rather than extrapolated. Shares below refer to the panel window; minor-bulk groups, used only in the extension tests, are marked. The table lists every affected group; the per-route flags are in the downloads."));
       const reasons = { proxy_unit_value: "proxy from annual unit value", interpolated_unpublished: "interpolated, month not published", interpolated_no_weight: "interpolated, weights missing" };
       const rows = groups.map((g) => {
-        const f = fs[g.group_id];
+        const f = g.f;
         const detail = Object.entries(f.months || {}).map(([k, v]) => `${reasons[k] || k}: ${v.length} month${v.length === 1 ? "" : "s"} (${ranges(v)})`).join(". ");
         return { group: g.label || g.group_id, window: `${fmt.month(g.first_month)} to ${fmt.month(g.last_month)}`, proxy: f.proxy_tonnes_share, interp: f.interpolated_tonnes_share, detail: detail || "none" };
       }).filter((r) => r.proxy > 0 || r.interp > 0);

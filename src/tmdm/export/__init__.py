@@ -51,6 +51,7 @@ DOWNLOADS = {
     "model_signals.json": "Market-signal coefficients and the out-of-sample comparison with the physical model",
     "model_extensions.json": "Extensions tested against the headline: minor bulks and OECD leading indicators",
     "minor_bulks_monthly.csv": "Monthly tonnes and tonne-miles of the minor bulks (extension, not in the panel)",
+    "minor_bulk_flows_monthly.csv": "Monthly tonnes per minor-bulk route, with proxy and interpolation flags",
     "minor_bulk_routes.csv": "Minor-bulk routes: baseline distance, canal use and tonnes over the window",
     "minor_bulk_ports.csv": "Ports and weights used for minor-bulk distances (IMF PortWatch ports table)",
 }
@@ -123,7 +124,7 @@ def _group_for_route(route_id: str) -> tuple[str, str]:
     raise KeyError(route_id)
 
 
-GROUP_COMMODITY = {"iron_ore": "iron ore", "coal": "coal", "grains": "grain and soybean"}
+GROUP_COMMODITY = {"iron_ore": "iron ore", "coal": "coal", "grains": "grain and soybean", "minor_bulks": "minor bulk"}
 
 
 def group_label(group_id: str) -> str:
@@ -475,7 +476,7 @@ def run() -> None:
     extensions = json.loads(ext_path.read_text()) if ext_path.exists() else {}
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     coverage = json.loads((PROCESSED_DIR / "coverage.json").read_text())
-    for g in coverage.get("route_groups", []):
+    for g in [*coverage.get("route_groups", []), *coverage.get("minor_bulks", {}).get("route_groups", [])]:
         g["label"] = group_label(str(g["group_id"]))
     export_series(panel, bdi, roll)
     export_rolling(roll, haul, signals)

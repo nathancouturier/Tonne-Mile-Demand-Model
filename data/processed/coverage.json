@@ -695,16 +695,94 @@
     ],
     "routes": 258,
     "route_groups": [
-      "ARG_X_minor_bulks",
-      "AUS_X_minor_bulks",
-      "BRA_COMEX_X_minor_bulks",
-      "CAN_X_minor_bulks",
-      "COL_X_minor_bulks",
-      "IDN_X_minor_bulks",
-      "UKR_X_minor_bulks",
-      "USA_X_minor_bulks",
-      "ZAF_X_minor_bulks"
+      {
+        "group_id": "ARG_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2026-06",
+        "n_months": 198
+      },
+      {
+        "group_id": "AUS_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2026-08",
+        "n_months": 200
+      },
+      {
+        "group_id": "BRA_COMEX_X_minor_bulks",
+        "first_month": "1997-01",
+        "last_month": "2026-09",
+        "n_months": 357
+      },
+      {
+        "group_id": "CAN_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2026-08",
+        "n_months": 200
+      },
+      {
+        "group_id": "COL_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2026-04",
+        "n_months": 196
+      },
+      {
+        "group_id": "IDN_X_minor_bulks",
+        "first_month": "2012-12",
+        "last_month": "2026-07",
+        "n_months": 164
+      },
+      {
+        "group_id": "UKR_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2025-09",
+        "n_months": 189
+      },
+      {
+        "group_id": "USA_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2026-07",
+        "n_months": 199
+      },
+      {
+        "group_id": "ZAF_X_minor_bulks",
+        "first_month": "2010-01",
+        "last_month": "2026-05",
+        "n_months": 197
+      }
     ],
+    "exporters": [
+      "Argentina",
+      "Australia",
+      "Brazil",
+      "Canada",
+      "Colombia",
+      "Indonesia",
+      "South Africa",
+      "Ukraine",
+      "United States"
+    ],
+    "commodities": [
+      "sugar",
+      "soybean meal",
+      "cement and clinker",
+      "manganese ore",
+      "bauxite",
+      "petroleum coke",
+      "potash",
+      "wood fuel (chips and pellets)",
+      "ferrous scrap"
+    ],
+    "brazil_headings": [
+      "soybean meal",
+      "sugar",
+      "manganese ore",
+      "bauxite",
+      "wood fuel (chips and pellets)"
+    ],
+    "tonnes_per_year_mt": 194.865884182078,
+    "proxy_tonnes_share": 0.04952636973174246,
+    "interpolated_tonnes_share": 0.020936154973168707,
+    "largest_proxy_exporter": "United States",
     "fill_summary": {
       "ARG_X_minor_bulks": {
         "proxy_tonnes_share": 0.0,
