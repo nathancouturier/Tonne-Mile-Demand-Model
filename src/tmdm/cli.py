@@ -8,9 +8,11 @@ outputs of earlier stages, so a partial rerun is always safe.
 from __future__ import annotations
 
 import argparse
+import importlib
 import logging
 import sys
 from collections.abc import Callable
+from typing import cast
 
 from tmdm.config import ensure_dirs
 
@@ -25,21 +27,11 @@ STAGES: dict[str, str] = {
 
 
 def _runner(stage: str) -> Callable[[], None]:
-    if stage == "ingest":
-        from tmdm.ingest import run as fn
-    elif stage == "validate":
-        from tmdm.validate import run as fn
-    elif stage == "transform":
-        from tmdm.transform import run as fn
-    elif stage == "model":
-        from tmdm.model import run as fn
-    elif stage == "export":
-        from tmdm.export import run as fn
-    elif stage == "report":
-        from tmdm.export.report import run as fn
-    else:  # pragma: no cover - argparse restricts choices
-        raise ValueError(stage)
-    return fn
+    module = "tmdm.export.report" if stage == "report" else f"tmdm.{stage}"
+    fn = importlib.import_module(module).run
+    if not callable(fn):  # pragma: no cover - defensive
+        raise TypeError(f"{module}.run is not callable")
+    return cast(Callable[[], None], fn)
 
 
 def main(argv: list[str] | None = None) -> int:

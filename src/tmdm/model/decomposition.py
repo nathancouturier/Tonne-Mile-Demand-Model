@@ -60,7 +60,7 @@ def _check_panel(panel: pd.DataFrame) -> pd.DataFrame:
 
 def log_balance(panel: pd.DataFrame) -> pd.Series:
     """Log of the demand/supply balance: tonne-miles over effective fleet."""
-    return np.log(panel["tonne_miles"] / (panel["fleet"] * panel["supply_factor"]))
+    return pd.Series(np.log(panel["tonne_miles"] / (panel["fleet"] * panel["supply_factor"])), index=panel.index)
 
 
 def fit_elasticity(panel: pd.DataFrame) -> tuple[ElasticityEstimate, dict[str, Any]]:
@@ -77,7 +77,7 @@ def fit_elasticity(panel: pd.DataFrame) -> tuple[ElasticityEstimate, dict[str, A
         robustness["twelve_month_changes"] = est.summary()
     # quarterly averages
     q = p[["index", "tonne_miles", "fleet", "supply_factor"]].copy()
-    q.index = q.index.asfreq("Q")
+    q.index = pd.PeriodIndex(q.index).asfreq("Q")
     qm = q.groupby(level=0).mean()
     if len(qm) >= 24:
         est = estimate_elasticity(np.log(qm["index"]), log_balance(qm), hac_lags=4)
@@ -169,15 +169,17 @@ def run_model(panel: pd.DataFrame, window: int = 3, horizon: int = 12) -> ModelO
     e = headline.elasticity
     rolling = rolling_attribution(p, e, horizon=horizon, window=window)
     episodes = episode_attributions(p, e, window)
-    dlog = pd.DataFrame(
+    logs = pd.DataFrame(
         {
-            "index": np.log(p["index"]).diff(),
-            "volume": np.log(p["tonnes"]).diff(),
-            "haul": np.log(p["tonne_miles"] / p["tonnes"]).diff(),
-            "fleet": np.log(p["fleet"]).diff(),
-            "supply_factor": np.log(p["supply_factor"]).diff(),
-        }
+            "index": np.log(p["index"]),
+            "volume": np.log(p["tonnes"]),
+            "haul": np.log(p["tonne_miles"] / p["tonnes"]),
+            "fleet": np.log(p["fleet"]),
+            "supply_factor": np.log(p["supply_factor"]),
+        },
+        index=p.index,
     )
+    dlog = logs.diff()
     try:
         diff_reg = difference_regression(dlog, lags=1)
     except (ValueError, np.linalg.LinAlgError) as exc:

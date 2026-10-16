@@ -73,7 +73,7 @@ def _query(url: str, params: dict[str, Any]) -> dict[str, Any]:
     sess = session()
     for attempt in range(6):
         r = get(url, params={**params, "f": "json"}, timeout=180, sess=sess)
-        data = r.json()
+        data: dict[str, Any] = r.json()
         if "error" not in data:
             return data
         wait = 5 * (attempt + 1)

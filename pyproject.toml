@@ -12,7 +12,7 @@ license = { text = "MIT" }
 authors = [{ name = "Nathan Couturier" }]
 dependencies = [
     "pandas==3.0.6",
-    "numpy==2.5.4",
+    "numpy==2.3.5",
     "requests==2.34.2",
     "searoute==1.6.0",
     "networkx==3.7",

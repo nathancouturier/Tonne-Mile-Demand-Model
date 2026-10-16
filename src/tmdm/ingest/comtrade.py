@@ -257,7 +257,7 @@ def fetch(
     avail.to_csv(d / AVAIL_FILE, index=False)
     latest_by_reporter: dict[int, str] = {}
     if not avail.empty:
-        latest_by_reporter = avail.groupby("reporterCode")["period"].max().astype(str).to_dict()
+        latest_by_reporter = {int(k): str(v) for k, v in avail.groupby("reporterCode")["period"].max().items()}
     frames = [existing]
     for spec in specs:
         latest = latest_by_reporter.get(spec.reporter_code)
@@ -333,4 +333,8 @@ def load_partner_names() -> dict[int, str]:
     """Map partner codes to names from the cached reference table."""
     p = raw_dir(DATASET_ID) / "partnerAreas.json"
     data = json.loads(p.read_text(encoding="utf-8"))
-    return {int(r["id"]): r["text"] for r in data["results"] if str(r["id"]).isdigit()}
+    names: dict[int, str] = {}
+    for r in data["results"]:
+        if str(r["id"]).isdigit():
+            names[int(r["id"])] = str(r["text"])
+    return names

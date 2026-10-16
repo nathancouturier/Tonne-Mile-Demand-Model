@@ -50,7 +50,7 @@ def check_missing(
 
 def check_monthly_continuity(dataset: str, months: pd.Series) -> CheckResult:
     """Check that a monthly series has no gaps between its first and last month."""
-    p = pd.PeriodIndex(pd.to_datetime(months.astype(str)).to_period("M")).unique().sort_values()
+    p = pd.PeriodIndex([str(m)[:7] for m in months.tolist()], freq="M").unique().sort_values()
     if len(p) == 0:
         return CheckResult(dataset, "monthly_continuity", "fail", "no months", {})
     expected = pd.period_range(p[0], p[-1], freq="M")

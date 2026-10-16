@@ -45,7 +45,8 @@ jobs:
         run: python -m tmdm.cli ingest
       - name: Commit raw data
         if: always()
-        run: bash scripts/commit_data.sh "data: refresh fast sources" data/raw
+        run: |
+          bash scripts/commit_data.sh "data: refresh fast sources" data/raw
 
   ingest-comtrade:
     name: Ingest UN Comtrade (paced)
@@ -78,7 +79,8 @@ jobs:
           exit $status
       - name: Commit raw data
         if: always()
-        run: bash scripts/commit_data.sh "data: refresh UN Comtrade" data/raw/un_comtrade
+        run: |
+          bash scripts/commit_data.sh "data: refresh UN Comtrade" data/raw/un_comtrade
 
   build:
     name: Validate, model, export and deploy
@@ -103,6 +105,7 @@ jobs:
           python -m tmdm.cli export
           python -m tmdm.cli report
       - name: Commit processed data, site and report
-        run: bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
+        run: |
+          bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
       - name: Publish site to gh-pages
         run: bash scripts/publish_pages.sh

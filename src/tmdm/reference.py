@@ -822,6 +822,15 @@ SPEC_ORDER = [
 ]
 
 
+@dataclass
+class _MergedSpec:
+    reporter: int
+    flow: str
+    cmds: set[str] = field(default_factory=set)
+    partners: set[int] = field(default_factory=set)
+    notes: list[str] = field(default_factory=list)
+
+
 def comtrade_specs() -> list[tuple[str, int, str, tuple[str, ...], tuple[int, ...], str]]:
     """Translate route groups into one Comtrade query specification per reporter and flow.
 
@@ -830,30 +839,25 @@ def comtrade_specs() -> list[tuple[str, int, str, tuple[str, ...], tuple[int, ..
     ``(spec_id, reporter_code, flow, cmd_codes, partner_codes, note)`` ordered so
     that the most important exporters are downloaded first.
     """
-    merged: dict[str, dict[str, object]] = {}
+    merged: dict[str, _MergedSpec] = {}
     for g in ROUTE_GROUPS:
         if g.reporter == "BRA_COMEX":
             continue
         key = f"{g.reporter}_{g.flow}"
-        entry = merged.setdefault(
-            key, {"reporter": COMTRADE_CODES[g.reporter], "flow": g.flow, "cmds": set(), "partners": set(), "notes": []}
-        )
-        cmds: set[str] = entry["cmds"]  # type: ignore[assignment]
-        partners: set[int] = entry["partners"]  # type: ignore[assignment]
-        notes: list[str] = entry["notes"]  # type: ignore[assignment]
-        cmds.update(COMMODITY_GROUPS[g.commodity])
-        cmds.update(g.extra_cmds)
-        partners.update(COMTRADE_CODES[p] for p in g.partners)
+        entry = merged.setdefault(key, _MergedSpec(COMTRADE_CODES[g.reporter], g.flow))
+        entry.cmds.update(COMMODITY_GROUPS[g.commodity])
+        entry.cmds.update(g.extra_cmds)
+        entry.partners.update(COMTRADE_CODES[p] for p in g.partners)
         if g.note:
-            notes.append(g.note)
-    specs = []
+            entry.notes.append(g.note)
+    specs: list[tuple[str, int, str, tuple[str, ...], tuple[int, ...], str]] = []
     for key in SPEC_ORDER + [k for k in merged if k not in SPEC_ORDER]:
         if key not in merged:
             continue
         e = merged[key]
-        cmds = tuple(sorted(e["cmds"]))  # type: ignore[arg-type]
-        partners = (*sorted(e["partners"]), 0)  # type: ignore[arg-type]
+        cmds = tuple(sorted(e.cmds))
+        partners = (*sorted(e.partners), 0)
         if len(cmds) * len(partners) > 450:
             raise ValueError(f"spec {key} could exceed the Comtrade record cap ({len(cmds) * len(partners)} rows)")
-        specs.append((key, int(e["reporter"]), str(e["flow"]), cmds, partners, "; ".join(e["notes"])))  # type: ignore[arg-type]
+        specs.append((key, e.reporter, e.flow, cmds, partners, "; ".join(e.notes)))
     return specs
