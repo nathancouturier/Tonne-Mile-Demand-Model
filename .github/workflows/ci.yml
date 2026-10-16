@@ -3,8 +3,14 @@ name: CI
 on:
   push:
     branches: ["**"]
+    # data and build outputs are committed by the refresh workflow; CI checks code only
     paths-ignore:
       - ".probe/**"
+      - "data/**"
+      - "docs/**"
+      - "site/data/**"
+      - "README.md"
+      - "scripts/*_trigger.txt"
   pull_request:
 
 permissions:

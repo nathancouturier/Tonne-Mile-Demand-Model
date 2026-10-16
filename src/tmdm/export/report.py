@@ -22,6 +22,7 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from reportlab import rl_config
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.pagesizes import A4
@@ -320,6 +321,8 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
 def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> None:
     """Assemble the research note."""
     register_fonts()
+    # every canvas starts in Liberation Serif, so no non-embedded base font is written to the file
+    rl_config.canvas_basefontname = "LiberationSerif"
     st = _styles()
     n = _numbers(res)
     doc = SimpleDocTemplate(
@@ -394,6 +397,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     t.setStyle(
         TableStyle(
             [
+                ("FONTNAME", (0, 0), (-1, -1), "LiberationSerif"),
                 ("LINEBELOW", (0, 0), (-1, 0), 0.6, colors.HexColor("#c5bfb1")),
                 ("LINEBELOW", (0, 1), (-1, -1), 0.3, colors.HexColor("#e8e4da")),
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
