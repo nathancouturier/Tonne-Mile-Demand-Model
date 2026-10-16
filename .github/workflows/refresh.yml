@@ -108,4 +108,6 @@ jobs:
         run: |
           bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
       - name: Publish site to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bash scripts/publish_pages.sh
