@@ -257,7 +257,7 @@ def fetch(
     avail.to_csv(d / AVAIL_FILE, index=False)
     latest_by_reporter: dict[int, str] = {}
     if not avail.empty:
-        latest_by_reporter = {int(k): str(v) for k, v in avail.groupby("reporterCode")["period"].max().items()}
+        latest_by_reporter = {int(str(k)): str(v) for k, v in avail.groupby("reporterCode")["period"].max().items()}
     frames = [existing]
     for spec in specs:
         latest = latest_by_reporter.get(spec.reporter_code)
