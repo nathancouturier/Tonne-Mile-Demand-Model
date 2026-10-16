@@ -237,3 +237,30 @@ def test_diversion_shares_are_zero_before_the_disruption():
     assert red.loc[pd.Period("2023-11", "M")] == pytest.approx(0.5)
     assert red.loc[pd.Period("2024-02", "M")] == pytest.approx(0.8)
     assert out[out["chokepoint"] == "panama"].empty
+
+
+def test_panama_diversion_ends_with_the_restrictions():
+    months = pd.period_range("2024-06", "2024-12", freq="M")
+    choke = pd.DataFrame(
+        {"month": list(months), "portname": ["Panama Canal"] * len(months), "n_dry_bulk_per_day": [4.0] * len(months)}
+    )
+    # no baseline months in the frame: use a frame that includes the baseline window with 8 per day
+    base_months = pd.period_range("2021-01", "2022-12", freq="M")
+    choke = pd.concat(
+        [
+            pd.DataFrame(
+                {
+                    "month": list(base_months),
+                    "portname": ["Panama Canal"] * len(base_months),
+                    "n_dry_bulk_per_day": [8.0] * len(base_months),
+                }
+            ),
+            choke,
+        ],
+        ignore_index=True,
+    )
+    pan = diversion_shares(choke)
+    pan = pan[pan["chokepoint"] == "panama"].set_index("month")["diversion_share"]
+    assert pan.loc[pd.Period("2024-09", "M")] == pytest.approx(0.5)
+    assert pan.loc[pd.Period("2024-10", "M")] == 0.0
+    assert pan.loc[pd.Period("2022-06", "M")] == 0.0

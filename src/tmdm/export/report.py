@@ -407,7 +407,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(
         Paragraph(
             f"Routes are measured from the customs data of the exporter wherever it publishes timely monthly data (Australia, Brazil, Indonesia, South Africa, United States, Canada, Ukraine, Argentina, Colombia) and from the importer for Russian and Mozambican origins (India, Japan). "
-            f"Chinese import records lag by more than a year and are used only for cross-checks. Distances are volume-weighted blends between representative terminals on a maritime routing network, with iron ore and coal routed around the Panama Canal and Red Sea routes lengthened towards the Cape in proportion to the fall in dry bulk transits through Bab el-Mandeb observed by IMF PortWatch. "
+            f"Chinese import records lag by more than a year and are used only for cross-checks. Distances are volume-weighted blends between representative terminals on a maritime routing network, with iron ore and coal routed around the Panama Canal, Suez routes lengthened towards the Cape in proportion to the fall in dry bulk transits through Bab el-Mandeb observed by IMF PortWatch since November 2023, and Panama routes lengthened the same way during the 2023 to September 2024 draught restrictions. "
             f"The three largest routes carry {n['top3_share']:.0%} of covered tonne-miles. Validation: {n['validation']['pass']} checks passed, {_plural(n['validation']['warn'], 'warning')}, {_plural(n['validation']['fail'], 'failure')} (full report on the site).",
             st["body"],
         )

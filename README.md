@@ -42,7 +42,7 @@ Every raw download is stored under `data/raw/<dataset>/` next to a `metadata.jso
 | Port coordinates | US NGA World Port Index (Pub. 150) | Public domain. |
 | Commodity prices (context) | World Bank Commodity Markets Outlook, monthly | Pink Sheet workbook. |
 
-Sea distances are computed with the `searoute` package on a maritime network graph for four routing variants per route (shortest, avoiding Suez, avoiding Panama, avoiding both). Iron ore and coal routes avoid the Panama Canal (Capesize tonnage cannot use it). Routes that normally transit the Suez Canal are lengthened towards the Cape of Good Hope in proportion to the fall in dry bulk transits through Bab el-Mandeb observed by PortWatch; grain routes that use Panama are treated the same way with Panama Canal transits. The distance matrix and the route geometries are stored under `data/processed/`.
+Sea distances are computed with the `searoute` package on a maritime network graph for four routing variants per route (shortest, avoiding Suez, avoiding Panama, avoiding both). Iron ore and coal routes avoid the Panama Canal (Capesize tonnage cannot use it). Routes that normally transit the Suez Canal are lengthened towards the Cape of Good Hope in proportion to the fall in dry bulk transits through Bab el-Mandeb observed by PortWatch, from November 2023 onward; grain and Panamax coal routes that use Panama are treated the same way with Panama Canal transits during the draught restrictions of 2023 to September 2024. Outside those windows no diversion is applied, and routes that serve a port inside the Red Sea are never diverted. The distance matrix and the route geometries are stored under `data/processed/`.
 
 Sources that were investigated and not used: Stooq and other quote sites (bot protection or terms of use), US Census trade API (requires a key), ABS merchandise trade (values only, no quantities), UNCTAD ship deliveries and demolitions by ship type (not in the public tables), Egyptian customs records for Russian wheat (values without weights in most years, and Russia itself stopped reporting to Comtrade in 2022, so the Russia to Egypt grain route is not covered).
 
@@ -55,7 +55,7 @@ Panel: Jan 2016 to Sep 2025, 117 months, 271 routes. Built from data retrieved o
 * Over rolling twelve-month windows the four measured forces have the same sign as the index move 73% of the time; the residual averages 0.40 log points against a typical move of 0.45, so about 89% of a typical move is not explained by measured demand and supply.
 * Between the first and last twelve months of the panel, tonnes on the covered routes grew +15%, tonne-miles +15% (average haul +0.4%) and the bulk carrier fleet +36% to 1,057 million dwt.
 * Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.07, haul +0.00, fleet -0.09, port time -0.01, residual -0.02 (total -0.04).
-* The three largest routes carry 49% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failures.
+* The three largest routes carry 49% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failure.
 
 | Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |
 | --- | --- | --- | --- | --- | --- | --- | --- |

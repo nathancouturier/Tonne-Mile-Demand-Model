@@ -43,10 +43,12 @@ SUEZ = "Suez Canal"
 CAPE = "Cape of Good Hope"
 RED_SEA_BASELINE = ("2023-01", "2023-10")
 PANAMA_BASELINE = ("2021-01", "2022-12")
-# Diversion shares are only applied from the start of each disruption; earlier months are zero
-# (the Houthi attacks on shipping began in November 2023, the Panama Canal draught restrictions in 2023).
-RED_SEA_DISRUPTION_START = "2023-11"
-PANAMA_DISRUPTION_START = "2023-01"
+# Diversion shares are only applied inside each disruption window; other months are zero. The Houthi
+# attacks on shipping began in November 2023 and continue; the Panama Canal draught and slot
+# restrictions ran from 2023 until the canal authority restored normal transits in September 2024.
+# Outside those windows a shortfall in transits reflects trade volumes, not rerouting.
+RED_SEA_DISRUPTION = ("2023-11", None)
+PANAMA_DISRUPTION = ("2023-01", "2024-09")
 
 
 def fleet_monthly(end_month: str) -> pd.DataFrame:
@@ -164,19 +166,20 @@ def diversion_shares(choke_monthly: pd.DataFrame) -> pd.DataFrame:
     """Share of normal dry bulk transits lost at the Red Sea and Panama, by month.
 
     The share is one minus transits relative to the pre-disruption baseline,
-    clipped to [0, 1], and set to zero for months before the disruption
-    started so that ordinary variation in earlier years does not lengthen
-    routes.
+    clipped to [0, 1], and set to zero outside the disruption window so that
+    ordinary variation in transits does not lengthen routes.
     """
     rows = []
-    for name, (b0, b1), start, label in (
-        (RED_SEA, RED_SEA_BASELINE, RED_SEA_DISRUPTION_START, "red_sea"),
-        (PANAMA, PANAMA_BASELINE, PANAMA_DISRUPTION_START, "panama"),
+    for name, (b0, b1), (start, end), label in (
+        (RED_SEA, RED_SEA_BASELINE, RED_SEA_DISRUPTION, "red_sea"),
+        (PANAMA, PANAMA_BASELINE, PANAMA_DISRUPTION, "panama"),
     ):
         s = choke_monthly[choke_monthly["portname"] == name].set_index("month")["n_dry_bulk_per_day"]
         base = s[(s.index >= pd.Period(b0, "M")) & (s.index <= pd.Period(b1, "M"))].mean()
         share = (1.0 - s / base).clip(lower=0.0, upper=1.0)
         share[s.index < pd.Period(start, "M")] = 0.0
+        if end is not None:
+            share[s.index > pd.Period(end, "M")] = 0.0
         rows.append(
             pd.DataFrame(
                 {
