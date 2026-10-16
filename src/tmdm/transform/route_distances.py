@@ -9,6 +9,11 @@ Capesize tonnage that cannot use the Panama Canal, so their baseline distance
 is the variant avoiding Panama. Coal from the Americas moves largely on
 Panamax ships through the canal, so its baseline is the shortest path, as for
 grains.
+
+Minor bulks (an extension reported as a robustness variant) move in Handysize
+and Supramax ships through many terminals. Their routes use the main dry bulk
+ports of each country in the IMF PortWatch ports table, weighted by dry bulk
+vessel calls, and the shortest path as baseline.
 """
 
 from __future__ import annotations
@@ -20,13 +25,22 @@ import unicodedata
 import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
-from tmdm.ingest import wpi
-from tmdm.reference import DISCHARGE, IMPORTER_ORIGIN_LOAD, PORTS, ROUTE_GROUPS, PortSpec, loading_blend
+from tmdm.ingest import portwatch, wpi
+from tmdm.reference import (
+    DISCHARGE,
+    IMPORTER_ORIGIN_LOAD,
+    PACIFIC_DESTINATIONS,
+    PANEL_COMMODITIES,
+    PORTS,
+    ROUTE_GROUPS,
+    PortSpec,
+    loading_blend,
+)
 from tmdm.transform.distances import RESTRICTION_SETS, Port, sea_distance_nm
 
 log = logging.getLogger(__name__)
 
-BASELINE_VARIANT = {"iron_ore": "avoid_panama", "coal": "avoid_panama", "grains": "shortest"}
+BASELINE_VARIANT = {"iron_ore": "avoid_panama", "coal": "avoid_panama", "grains": "shortest", "minor_bulks": "shortest"}
 # Coal from the Americas to Pacific destinations moves largely in Panamax tonnage through the canal.
 PANAMAX_COAL_ORIGINS = {"USA", "COL", "CAN"}
 
@@ -80,7 +94,7 @@ def route_port_pairs() -> dict[str, tuple[str, str, tuple[tuple[str, float], ...
     """Map route_id to (origin, destination, loading blend, discharge blend)."""
     out = {}
     for g in ROUTE_GROUPS:
-        if g.group_id.endswith("_mirror"):
+        if g.group_id.endswith("_mirror") or g.commodity not in PANEL_COMMODITIES:
             continue
         origin_iso = g.reporter.replace("_COMEX", "") if g.flow == "X" else None
         for p in g.partners:
@@ -108,9 +122,15 @@ def in_red_sea(port: Port) -> bool:
     return lat0 <= port.lat <= lat1 and lon0 <= port.lon <= lon1
 
 
-def build_route_distances(ports: dict[str, Port]) -> tuple[pd.DataFrame, dict[str, list[list[float]]]]:
+RoutePorts = dict[str, tuple[str, str, tuple[tuple[str, float], ...], tuple[tuple[str, float], ...]]]
+
+
+def build_route_distances(
+    ports: dict[str, Port], pairs: RoutePorts | None = None
+) -> tuple[pd.DataFrame, dict[str, list[list[float]]]]:
     """Compute blended distances per route and variant, and keep the geometry of the main leg."""
-    pairs = route_port_pairs()
+    if pairs is None:
+        pairs = route_port_pairs()
     cache: dict[tuple[str, str, str], tuple[float, list[list[float]]]] = {}
     rows = []
     geoms: dict[str, list[list[float]]] = {}
@@ -180,3 +200,69 @@ def run_distances() -> tuple[pd.DataFrame, pd.DataFrame]:
     pt.to_csv(PROCESSED_DIR / "ports.csv", index=False)
     log.info("distances: %d route-variants for %d routes", len(dist), dist["route_id"].nunique())
     return dist, pt
+
+
+# Minor bulks: main dry bulk ports per country from the PortWatch ports table.
+MINOR_PORTS_PER_COUNTRY = 3
+# North American ports west of this longitude serve Pacific trades.
+WEST_COAST_LON = -100.0
+TWO_COAST_COUNTRIES = frozenset({"USA", "CAN"})
+# Origins whose cargo to North America lands on the west coast.
+PACIFIC_ORIGINS = frozenset({"AUS", "IDN"})
+
+
+def portwatch_blend(
+    ports_db: pd.DataFrame, iso3: str, coast: str | None = None, k: int = MINOR_PORTS_PER_COUNTRY
+) -> tuple[list[Port], tuple[tuple[str, float], ...]]:
+    """The ``k`` ports of a country with the most dry bulk vessel calls, weighted by those calls.
+
+    ``coast`` ("west" or "east") restricts North American countries to one seaboard.
+    """
+    d = ports_db[(ports_db["ISO3"] == iso3) & (ports_db["vessel_count_dry_bulk"] > 0)]
+    if coast == "west":
+        d = d[d["lon"] < WEST_COAST_LON]
+    elif coast == "east":
+        d = d[d["lon"] >= WEST_COAST_LON]
+    d = d.nlargest(k, "vessel_count_dry_bulk")
+    if d.empty:
+        raise LookupError(f"no dry bulk port for {iso3} ({coast or 'any coast'}) in the PortWatch ports table")
+    total = float(d["vessel_count_dry_bulk"].sum())
+    ports = [
+        Port(f"PW_{r['portid']}", str(r["portname"]), iso3, float(r["lat"]), float(r["lon"]))
+        for r in d.to_dict(orient="records")
+    ]
+    weights = tuple((p.port_id, float(c) / total) for p, c in zip(ports, d["vessel_count_dry_bulk"], strict=True))
+    return ports, weights
+
+
+def minor_route_ports(routes: pd.DataFrame, ports_db: pd.DataFrame) -> tuple[dict[str, Port], RoutePorts]:
+    """Loading and discharge blends for minor-bulk routes (columns route_id, origin, destination)."""
+    ports: dict[str, Port] = {}
+    pairs: RoutePorts = {}
+    for r in routes[["route_id", "origin", "destination"]].drop_duplicates().to_dict(orient="records"):
+        origin, dest = str(r["origin"]), str(r["destination"])
+        o_coast = d_coast = None
+        if origin in TWO_COAST_COUNTRIES:
+            o_coast = "west" if dest in PACIFIC_DESTINATIONS else "east"
+        if dest in TWO_COAST_COUNTRIES:
+            d_coast = "west" if origin in PACIFIC_ORIGINS else "east"
+        lp, load = portwatch_blend(ports_db, origin, o_coast)
+        dp, disc = portwatch_blend(ports_db, dest, d_coast)
+        ports.update({p.port_id: p for p in (*lp, *dp)})
+        pairs[str(r["route_id"])] = (origin, dest, load, disc)
+    return ports, pairs
+
+
+def minor_bulk_distances(routes: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Distances per minor-bulk route and variant, and the PortWatch ports used (with weights)."""
+    ports, pairs = minor_route_ports(routes, portwatch.load_ports())
+    dist, _geoms = build_route_distances(ports, pairs)
+    used = pd.DataFrame(
+        [
+            {"route_id": rid, "end": end, "port_id": pid, "port": ports[pid].name, "weight": round(w, 4)}
+            for rid, (_o, _d, load, disc) in pairs.items()
+            for end, blend in (("loading", load), ("discharge", disc))
+            for pid, w in blend
+        ]
+    )
+    return dist, used

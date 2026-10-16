@@ -47,6 +47,8 @@ COLORS = {
     "fleet": "#1baf7a",
     "effective_supply": "#eda100",
     "residual": "#898781",
+    "signal_oil": "#e87ba4",
+    "signal_iron_ore": "#008300",
 }
 LABELS = {
     "volume": "Cargo volume",
@@ -54,7 +56,18 @@ LABELS = {
     "fleet": "Fleet growth",
     "effective_supply": "Effective supply (port time)",
     "residual": "Residual",
+    "signal_oil": "Oil price signal (Brent)",
+    "signal_iron_ore": "Iron ore price signal (3 months earlier)",
 }
+PHYSICAL_KEYS = ("volume", "distance", "fleet", "effective_supply")
+
+
+def _stack_keys(frame_or_cols: Any) -> tuple[str, ...]:
+    """Physical components, the signal columns present, then the residual."""
+    cols = list(frame_or_cols)
+    return (*PHYSICAL_KEYS, *[c for c in ("signal_oil", "signal_iron_ore") if c in cols], "residual")
+
+
 COMMODITY_LABEL = {"iron_ore": "Iron ore", "coal": "Coal", "grains": "Grains and soybeans"}
 
 
@@ -139,6 +152,10 @@ def load_results() -> dict[str, Any]:
     episodes = json.loads((PROCESSED_DIR / "decomposition_episodes.json").read_text())
     model = json.loads((PROCESSED_DIR / "model_elasticity.json").read_text())
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
+    sig_path = PROCESSED_DIR / "model_signals.json"
+    signals = json.loads(sig_path.read_text()) if sig_path.exists() else {}
+    ext_path = PROCESSED_DIR / "model_extensions.json"
+    extensions = json.loads(ext_path.read_text()) if ext_path.exists() else {}
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     by_route = pd.read_csv(PROCESSED_DIR / "tonne_miles_by_route.csv")
     fleet = pd.read_csv(PROCESSED_DIR / "fleet_annual.csv")
@@ -152,6 +169,8 @@ def load_results() -> dict[str, Any]:
         "episodes": episodes,
         "model": model,
         "diff_reg": diff_reg,
+        "signals": signals,
+        "extensions": extensions,
         "validation": validation,
         "by_route": by_route,
         "fleet": fleet,
@@ -195,7 +214,18 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     implied_pct = (np.exp(roll["total"] - roll["residual"]) - 1) * 100
     ax.axhline(0, color="#c5bfb1", lw=0.8)
     ax.plot(fx, actual_pct, color="#1f3a5f", lw=1.6, label="Baltic Dry Index, 12-month change")
-    ax.plot(fx, implied_pct, color="#9a9488", lw=1.3, ls="--", label="Attributed to the four forces")
+    has_sig = "residual_physical" in roll.columns
+    ax.plot(
+        fx,
+        implied_pct,
+        color="#9a9488",
+        lw=1.3,
+        ls="--",
+        label="Attributed to forces and market signals" if has_sig else "Attributed to the four forces",
+    )
+    if has_sig:
+        physical_pct = (np.exp(roll["total"] - roll["residual_physical"]) - 1) * 100
+        ax.plot(fx, physical_pct, color="#2a78d6", lw=1.0, label="Physical forces only")
     ax.fill_between(fx, implied_pct, actual_pct, color="#898781", alpha=0.12, linewidth=0)
     ax.set_ylabel("Percent change over 12 months")
     ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:+,.0f}"))
@@ -210,7 +240,7 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     pos = np.zeros(len(roll))
     neg = np.zeros(len(roll))
     width = 26
-    for k in ("volume", "distance", "fleet", "effective_supply", "residual"):
+    for k in _stack_keys(roll.columns):
         v = roll[k].to_numpy()
         bottom = np.where(v >= 0, pos, neg)
         ax.bar(rx, v, width=width, bottom=bottom, color=COLORS[k], label=LABELS[k], linewidth=0)
@@ -249,7 +279,7 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     ypos = np.arange(len(eps))[::-1]
     left_pos = np.zeros(len(eps))
     left_neg = np.zeros(len(eps))
-    for k in ("volume", "distance", "fleet", "effective_supply", "residual"):
+    for k in _stack_keys(eps[0].keys() if eps else []):
         v = np.array([e[k] for e in eps])
         left = np.where(v >= 0, left_pos, left_neg)
         ax.barh(ypos, v, left=left, color=COLORS[k], height=0.62, label=LABELS[k], linewidth=0)
@@ -278,10 +308,28 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
     mean_abs_resid = float(roll["residual"].abs().mean())
     mean_abs_total = float(roll["total"].abs().mean())
     sign_agree = float((np.sign(roll["total"] - roll["residual"]) == np.sign(roll["total"])).mean())
+    resid_phys = roll["residual_physical"] if "residual_physical" in roll.columns else roll["residual"]
+    mean_abs_resid_phys = float(resid_phys.abs().mean())
+    sign_agree_phys = float((np.sign(roll["total"] - resid_phys) == np.sign(roll["total"])).mean())
+    sig = res.get("signals", {})
+    oos = sig.get("out_of_sample", {}) if sig else {}
     tm_growth = float(panel["tonne_miles"].iloc[-12:].mean() / panel["tonne_miles"].iloc[:12].mean() - 1)
     t_growth = float(panel["tonnes"].iloc[-12:].mean() / panel["tonnes"].iloc[:12].mean() - 1)
     fleet_growth = float(panel["fleet"].iloc[-12:].mean() / panel["fleet"].iloc[:12].mean() - 1)
-    comps = {k: float(last[k]) for k in ("volume", "distance", "fleet", "effective_supply", "residual", "total")}
+    comps = {
+        k: float(last[k])
+        for k in (
+            "volume",
+            "distance",
+            "fleet",
+            "effective_supply",
+            "residual",
+            "total",
+            "signal_oil",
+            "signal_iron_ore",
+        )
+        if k in last.index
+    }
     biggest = max((k for k in ("volume", "distance", "fleet", "effective_supply")), key=lambda k: abs(comps[k]))
     top3 = float(res["route_shares"].head(3).sum())
     return {
@@ -298,6 +346,13 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
         "mean_abs_total": mean_abs_total,
         "share_resid": mean_abs_resid / mean_abs_total if mean_abs_total else float("nan"),
         "sign_agree": sign_agree,
+        "mean_abs_resid_phys": mean_abs_resid_phys,
+        "share_resid_phys": mean_abs_resid_phys / mean_abs_total if mean_abs_total else float("nan"),
+        "sign_agree_phys": sign_agree_phys,
+        "has_signals": bool(sig),
+        "sig_coef": sig.get("fit", {}).get("coefficients", {}) if sig else {},
+        "sig_t": sig.get("fit", {}).get("t_stats", {}) if sig else {},
+        "oos": oos,
         "tm_growth": tm_growth,
         "t_growth": t_growth,
         "haul_growth": (1 + tm_growth) / (1 + t_growth) - 1,
@@ -315,7 +370,69 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
         "validation": res["validation"]["summary"],
         "diff_reg": res["diff_reg"],
         "robustness": model["robustness"],
+        "signals": res.get("signals", {}),
+        "explained_typical": 1 - mean_abs_resid / mean_abs_total if mean_abs_total else float("nan"),
+        "explained_typical_physical": (
+            1 - float(roll["residual_physical"].abs().mean()) / mean_abs_total
+            if "residual_physical" in roll.columns and mean_abs_total
+            else float("nan")
+        ),
     }
+
+
+def _extensions_text(ext: dict[str, Any], minor_cov: dict[str, Any] | None = None) -> str:
+    """One paragraph on the extensions tested against the headline (more data, other signals)."""
+    rows = {v["id"]: v for v in ext.get("variants", [])}
+    head = rows.get("headline")
+    if head is None or head.get("oos_r2_extended") is None or len(rows) < 2:
+        return ""
+    minor = rows.get("minor_bulks")
+    mc = minor_cov or {}
+    cli = [v for k, v in rows.items() if k.startswith("cli_") and v.get("oos_r2_gain") is not None]
+    margin = float(ext.get("adoption_margin", 0.05))
+    parts = [
+        f"Further additions were scored with the same protocol (headline out-of-sample R squared {head['oos_r2_extended']:.2f})."
+    ]
+    if minor is not None and minor.get("oos_r2_extended") is not None:
+        scope = (
+            f" for the {len(mc['exporters'])} exporters already covered (about {mc['tonnes_per_year_mt']:,.0f} million tonnes a year, a subset of world minor-bulk trade)"
+            if mc.get("exporters")
+            else " for the exporters already covered"
+        )
+        parts.append(
+            f" Adding minor bulks (sugar, soybean meal, cement, manganese and bauxite ores, petroleum coke, potash, wood, scrap){scope}, about {minor['minor_tonne_miles_share']:.0%} more tonne-miles, gives {minor['oos_r2_extended']:.2f}"
+            f" (unexplained share {minor['oos_unexplained_extended']:.0%} out of sample against {head['oos_unexplained_extended']:.0%})."
+        )
+    if cli:
+        gains = [float(v["oos_r2_gain"]) for v in cli]
+        best = max(cli, key=lambda v: float(v["oos_r2_gain"]))
+        areas = "China and the G20" if any(v["id"].startswith("cli_g20") for v in cli) else "China"
+        repl = any(v["id"].startswith("cli_china_instead_of_ore") for v in cli)
+        parts.append(
+            f" The OECD leading indicators, {areas} as a third signal{' and China in place of iron ore' if repl else ''}, at leads of zero, three and six months ({len(cli)} variants), change the out-of-sample R squared by {min(gains):+.2f} to {max(gains):+.2f}; the best variant ({best['label']}) gains {float(best['oos_r2_gain']):+.2f}."
+        )
+    cleared = [v for v in rows.values() if v.get("clears_margin")]
+    if cleared:
+        parts.append(
+            f" {_plural(len(cleared), 'variant')} {'clears' if len(cleared) == 1 else 'clear'} the margin of {margin:.2f} set to cover the choice of lead; {'it is' if len(cleared) == 1 else 'they are'} reported as candidates for review and the headline is unchanged."
+        )
+    else:
+        parts.append(
+            f" None clears the margin of {margin:.2f} set to cover the choice of lead, so the headline keeps the major bulks and the two prices."
+        )
+    return "".join(parts)
+
+
+def _ext_note(res: dict[str, Any]) -> str:
+    """Short clause on the extensions for the talking points, empty if none was scored."""
+    rows = res.get("extensions", {}).get("variants", [])
+    if len(rows) < 2:
+        return ""
+    cleared = sum(1 for v in rows if v.get("clears_margin"))
+    if cleared:
+        return f"; {_plural(cleared, 'tested extension')} {'clears' if cleared == 1 else 'clear'} the out-of-sample margin and {'is' if cleared == 1 else 'are'} under review"
+    margin = float(res["extensions"].get("adoption_margin", 0.05))
+    return f"; adding minor bulks for the covered exporters or OECD leading indicators did not raise the out-of-sample R squared by more than {margin:.2f}"
 
 
 def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> None:
@@ -352,9 +469,19 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             f"the average distance that cargo sails, the size of the bulk carrier fleet, and the share of fleet time absorbed in port. "
             f"Over {n['n_months']} months a one percent rise in tonne-miles relative to effective fleet has been associated with a {n['elasticity']:.1f} percent rise in the index "
             f"(standard error {n['se']:.1f}, estimated on twelve-month changes); the relationship explains {n['r2']:.0%} of the variance of twelve-month changes in the log index. "
-            f"Over rolling twelve-month windows the four forces have the same sign as the move {n['sign_agree']:.0%} of the time, but the unexplained residual averages {n['mean_abs_resid']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}, "
-            f"so roughly {n['share_resid']:.0%} of a typical twelve-month move is not accounted for by measured demand and supply. "
-            f"In the latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}) the index moved {n['last_pct']:+.0f} percent; the largest measured contribution was {LABELS[n['biggest']].lower()} ({_lp(n['last'][n['biggest']])} log points) and the residual was {_lp(n['last']['residual'])}.",
+            f"Over rolling twelve-month windows the four physical forces leave about {n['share_resid_phys']:.0%} of a typical move unexplained (mean residual {n['mean_abs_resid_phys']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}). "
+            + (
+                f"Two public market-price signals, the Brent crude price and the iron ore price three months earlier, carry much of the missing commodity cycle: with them the unexplained share falls to {n['share_resid']:.0%} in sample"
+                + (
+                    f" and {n['oos']['unexplained']['extended']:.0%} out of sample (against {n['oos']['unexplained']['physical']:.0%} for the physical forces alone)"
+                    if n["oos"].get("available")
+                    else ""
+                )
+                + ". They are reported as separate market-signal bars, not as physical forces. "
+                if n["has_signals"]
+                else ""
+            )
+            + f"In the latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}) the index moved {n['last_pct']:+.0f} percent; the largest physical contribution was {LABELS[n['biggest']].lower()} ({_lp(n['last'][n['biggest']])} log points) and the residual was {_lp(n['last']['residual'])}.",
             st["body"],
         )
     )
@@ -442,11 +569,25 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     ep_rows = [
         [
             Paragraph(f"<b>{h}</b>", st["cell"])
-            for h in ("Episode", "Window", "Total", "Volume", "Haul", "Fleet", "Port", "Residual", "Explained")
+            for h in (
+                "Episode",
+                "Window",
+                "Total",
+                "Vol.",
+                "Haul",
+                "Fleet",
+                "Port",
+                "Oil",
+                "Ore",
+                "Resid.",
+                "Explained",
+            )
         ]
     ]
     for e in n["episodes"]:
         ex = e.get("explained_share")
+        exp = e.get("explained_share_physical")
+        small = abs(e["total"]) < 0.1
         ep_rows.append(
             [
                 Paragraph(e["name"], st["cell"]),
@@ -456,13 +597,17 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
                 _lp(e["distance"]),
                 _lp(e["fleet"]),
                 _lp(e["effective_supply"]),
+                _lp(e.get("signal_oil", 0.0)),
+                _lp(e.get("signal_iron_ore", 0.0)),
                 _lp(e["residual"]),
-                f"{ex:.0%}" if ex is not None and np.isfinite(ex) else "",
+                "n/m"
+                if small or ex is None or not np.isfinite(ex)
+                else (f"{ex:.0%} ({exp:.0%})" if exp is not None and np.isfinite(exp) else f"{ex:.0%}"),
             ]
         )
     t2 = Table(
         ep_rows,
-        colWidths=[width * f for f in (0.19, 0.16, 0.085, 0.085, 0.085, 0.085, 0.085, 0.09, 0.11)],
+        colWidths=[width * f for f in (0.16, 0.13, 0.07, 0.07, 0.065, 0.065, 0.065, 0.065, 0.065, 0.075, 0.12)],
         repeatRows=1,
     )
     t2.setStyle(
@@ -480,7 +625,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(t2)
     story.append(
         Paragraph(
-            "Table 1. Episode decomposition in log points. Explained is one minus residual over total; it can exceed 100 percent when the residual opposes the move.",
+            "Table 1. Episode decomposition in log points. Vol. is cargo volume and Port is port time; Oil and Ore are the market-signal bars (Brent, and iron ore three months earlier). Explained is one minus residual over total, with the physical-forces-only share in brackets; it can exceed 100 percent when the residual opposes the move and is shown as n/m for moves under 0.10 log points.",
             st["caption"],
         )
     )
@@ -491,6 +636,29 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             st["caption"],
         )
     )
+    if n["has_signals"]:
+        story.append(Paragraph("Market signals", st["h2"]))
+        o = n["oos"]
+        oos_text = (
+            f" Out of sample, refitting every coefficient each month with data that ended at least twelve months earlier ({o['n_months']} months from {_month_label(o['first_month'])} to {_month_label(o['last_month'])}), "
+            f"R squared against a zero forecast rises from {o['r2_vs_zero']['physical']:.2f} to {o['r2_vs_zero']['extended']:.2f} and the unexplained share falls from {o['unexplained']['physical']:.0%} to {o['unexplained']['extended']:.0%}; "
+            f"a benchmark with no fundamentals, the index's own twelve-month change three months earlier, reaches {o['r2_vs_zero']['persistence']:.2f}."
+            if o.get("available")
+            else ""
+        )
+        story.append(
+            Paragraph(
+                "The physical balance moves a few percent a year while the index moves by tens of percent. Two public World Bank prices carry much of the missing variation and are added after the four physical forces as separately named bars, with the elasticity of the identity unchanged: "
+                f"the Brent crude price over the same window (coefficient {n['sig_coef'].get('oil', float('nan')):.2f}, t {n['sig_t'].get('oil', float('nan')):.1f}) and the iron ore price, CFR China, over the window ending three months earlier ({n['sig_coef'].get('iron_ore', float('nan')):.2f}, t {n['sig_t'].get('iron_ore', float('nan')):.1f}); the lead keeps the freight contained in a delivered price out of the same window. "
+                f"The coefficients come from a regression without intercept of the physical residual on the two price changes over every rolling window. In sample the unexplained share of a typical move falls from {n['share_resid_phys']:.0%} to {n['share_resid']:.0%}.{oos_text} "
+                "These are market signals, not physical forces: oil and iron ore prices react to the same global and Chinese demand shocks as freight, and other industrial commodity prices carry similar information, so the bars measure a commodity cycle that the customs-based balance misses rather than a causal channel. "
+                "The two series were chosen after testing several candidate prices and leads on the same sample, which flatters the out-of-sample gain.",
+                st["body"],
+            )
+        )
+        ext_text = _extensions_text(res.get("extensions", {}), res["coverage"].get("minor_bulks"))
+        if ext_text:
+            story.append(Paragraph(ext_text, st["body"]))
     story.append(Paragraph("Robustness", st["h2"]))
     rb = n["robustness"]
     parts = [
@@ -530,7 +698,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(
         Paragraph(
             "Sailing speed, waiting outside ports and ballast ratios are not observable from public data and remain in the residual with bunker prices, sentiment and contract timing. Some customs records carry values without weights (United States monthly records before 2016); tonnes for those months are estimated from the reporter's annual unit values and flagged, and the Russia to Egypt grain route is left out because Egyptian records lack weights in most years. "
-            "The route set covers the major bulks between the main exporters and importers; minor bulks and regional trades that drive Supramax and Handysize rates are excluded. "
+            "The route set covers the major bulks between the main exporters and importers; minor bulks are tested as an extension only, and regional trades that drive Supramax and Handysize rates are excluded. "
             "Representative ports approximate real terminals; the error is a few percent of a voyage and constant over time, so it affects levels rather than changes. "
             "Customs months record declarations, not sailings. Episodes shorter than twelve months compare endpoints in different seasons, and cargo volumes are seasonal, so their volume effect includes seasonal movement. The index composition changed in 2018. The freight index is republished by the Aland statistics office less often than the demand data, so the balanced panel ends earlier than the volume series. "
             "Deliveries and demolitions by ship type are not in the public UNCTAD tables; fleet growth is shown net.",
@@ -553,16 +721,31 @@ def write_deliverables(res: dict[str, Any]) -> None:
     n = _numbers(res)
     cv = (
         f"Tonne-Mile Demand Model (Python, D3, GitHub Actions): built an automated, fully documented pipeline that decomposes moves in the Baltic Dry Index into cargo volume, haul distance, fleet growth and port-time effects using only public data (UN Comtrade, Brazil Comex Stat, IMF PortWatch AIS data, UNCTADstat, NGA World Port Index), with sea distances computed on a maritime routing network for {n['n_routes']} major bulk routes.\n"
-        f"Estimated a freight rate elasticity of {n['elasticity']:.1f} to the tonne-mile over effective fleet balance (twelve-month changes, R squared {n['r2']:.2f}, {n['n_months']} months of data) and showed that measured demand and supply account for the direction of {n['sign_agree']:.0%} of twelve-month index moves while a residual of about {n['share_resid']:.0%} of a typical move remains unexplained.\n"
-        f"Published the results as an interactive research-note website with weekly data refresh, validation and cross-source reconciliation checks, and a generated PDF note.\n"
+        f"Estimated a freight rate elasticity of {n['elasticity']:.1f} to the tonne-mile over effective fleet balance (twelve-month changes, {n['n_months']} months of data); the physical balance alone leaves about {n['share_resid_phys']:.0%} of a typical twelve-month move unexplained"
+        + (
+            f", and two public price signals (Brent crude, iron ore) cut this to {n['share_resid']:.0%} in sample"
+            + (f" and {n['oos']['unexplained']['extended']:.0%} out of sample" if n["oos"].get("available") else "")
+            if n["has_signals"]
+            else ""
+        )
+        + ".\n"
+        "Published the results as an interactive research-note website with weekly data refresh, validation and cross-source reconciliation checks, and a generated PDF note.\n"
     )
     (DOCS_DIR / "cv-description.txt").write_text(cv, encoding="utf-8")
     talking = (
         f"1. Question: how much of a move in the Baltic Dry Index is cargo volume, how much is average haul, how much is fleet growth and how much is port congestion, and what is left over?\n"
         f"2. Method: a log-difference attribution identity, log(BDI1/BDI0) = e[dlog volume + dlog haul] minus e[dlog fleet + dlog at-sea share] + residual, with one elasticity e estimated on twelve-month changes (Newey-West errors) and checked on levels with month dummies, quarterly four-quarter changes, sample halves and an unrestricted first-difference regression; tonne-miles built route by route from customs data and a maritime routing network ({n['n_routes']} routes).\n"
-        f"3. Finding: e is about {n['elasticity']:.1f} (twelve-month changes, R squared {n['r2']:.2f}, {n['n_months']} months of data); the four forces give the direction of {n['sign_agree']:.0%} of twelve-month moves, fleet growth is a steady drag, and the residual averages {n['mean_abs_resid']:.2f} log points against typical moves of {n['mean_abs_total']:.2f}; in the latest window the largest measured driver was {LABELS[n['biggest']].lower()}.\n"
-        f"4. Limitation: speed, waiting time and bunker costs are not observable from free data and sit in the residual; the route set covers major bulks only; the public monthly index ends earlier than the demand data; representative ports and customs timing add measurement error.\n"
-        f"5. Next: add minor bulks and a Capesize versus Panamax split from the Baltic sub-indices, bring in AIS-derived speed and congestion series, and estimate a time-varying elasticity to test whether the market's sensitivity to utilisation has changed since 2021.\n"
+        f"3. Finding: e is about {n['elasticity']:.1f} (twelve-month changes, R squared {n['r2']:.2f}, {n['n_months']} months of data); the physical forces leave about {n['share_resid_phys']:.0%} of a typical twelve-month move unexplained and fleet growth is a steady drag"
+        + (
+            f"; adding Brent and the lagged iron ore price as market signals cuts the unexplained share to {n['share_resid']:.0%} in sample"
+            + (f" and {n['oos']['unexplained']['extended']:.0%} out of sample" if n["oos"].get("available") else "")
+            + ", a commodity-cycle effect the customs volumes miss"
+            if n["has_signals"]
+            else ""
+        )
+        + f"; in the latest window the largest physical driver was {LABELS[n['biggest']].lower()}.\n"
+        f"4. Limitation: speed and anchorage waiting are not observable from free data and sit in the residual; the price signals are market correlates, not causes, and were chosen on the same sample{_ext_note(res)}; the public monthly index ends earlier than the demand data; representative ports and customs timing add measurement error.\n"
+        f"5. Next: replace the price signals with physical cycle measures (China steel output, monthly ship deliveries, berth waiting times), add a Capesize versus Panamax split if sub-index history becomes available, and estimate a time-varying elasticity to test whether the market's sensitivity to utilisation has changed since 2021.\n"
     )
     (DOCS_DIR / "interview-talking-points.txt").write_text(talking, encoding="utf-8")
     (DOCS_DIR / "results-summary.json").write_text(
@@ -582,6 +765,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
     if start_tag not in text or end_tag not in text:
         return
     eps = n["episodes"]
+    ext_line = _extensions_text(res.get("extensions", {}), res["coverage"].get("minor_bulks"))
     lines = [
         "## Results",
         "",
@@ -590,26 +774,52 @@ def write_readme_results(res: dict[str, Any]) -> None:
         "",
         f"* Elasticity of the index to tonne-miles over effective fleet: {n['elasticity']:.2f} (Newey-West standard error {n['se']:.2f}); "
         f"estimated on twelve-month changes, it explains {n['r2']:.0%} of the variance of twelve-month changes in the log index (Durbin-Watson {n['dw']:.2f}).",
-        f"* Over rolling twelve-month windows the four measured forces have the same sign as the index move {n['sign_agree']:.0%} of the time; "
-        f"the residual averages {n['mean_abs_resid']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}, "
-        f"so about {n['share_resid']:.0%} of a typical move is not explained by measured demand and supply.",
+        f"* Over rolling twelve-month windows the four physical forces leave about {n['share_resid_phys']:.0%} of a typical move unexplained "
+        f"(mean residual {n['mean_abs_resid_phys']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}) and have the sign of the move {n['sign_agree_phys']:.0%} of the time.",
+        *(
+            [
+                f"* Adding two public market-price signals (Brent crude over the same window, coefficient {n['sig_coef'].get('oil', float('nan')):.2f}; iron ore three months earlier, {n['sig_coef'].get('iron_ore', float('nan')):.2f}) "
+                f"cuts the unexplained share to {n['share_resid']:.0%} in sample"
+                + (
+                    f" and from {n['oos']['unexplained']['physical']:.0%} to {n['oos']['unexplained']['extended']:.0%} out of sample "
+                    f"({n['oos']['n_months']} months, every coefficient refitted on data ending twelve months earlier)"
+                    if n["oos"].get("available")
+                    else ""
+                )
+                + ". They are market correlates of the commodity cycle, shown as separate bars, not physical forces."
+            ]
+            if n["has_signals"]
+            else []
+        ),
+        *([f"* {ext_line}"] if ext_line else []),
         f"* Between the first and last twelve months of the panel, tonnes on the covered routes grew {n['t_growth']:+.0%}, tonne-miles {n['tm_growth']:+.0%} "
         f"(average haul {n['haul_growth']:+.1%}) and the bulk carrier fleet {n['fleet_growth']:+.0%} to {n['fleet_last_mdwt']:,.0f} million dwt.",
         f"* Latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}): the index moved {n['last_pct']:+.0f} percent; "
         f"contributions in log points were volume {_lp(n['last']['volume'])}, haul {_lp(n['last']['distance'])}, fleet {_lp(n['last']['fleet'])}, "
-        f"port time {_lp(n['last']['effective_supply'])}, residual {_lp(n['last']['residual'])} (total {_lp(n['last']['total'])}).",
+        f"port time {_lp(n['last']['effective_supply'])}"
+        + (
+            f", oil signal {_lp(n['last'].get('signal_oil', 0.0))}, iron ore signal {_lp(n['last'].get('signal_iron_ore', 0.0))}"
+            if n["has_signals"]
+            else ""
+        )
+        + f", residual {_lp(n['last']['residual'])} (total {_lp(n['last']['total'])}).",
         f"* The three largest routes carry {n['top3_share']:.0%} of covered tonne-miles. Validation: {n['validation']['pass']} checks passed, "
         f"{_plural(n['validation']['warn'], 'warning')}, {_plural(n['validation']['fail'], 'failure')}.",
         "",
-        "| Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| Episode | Window | Total | Volume | Haul | Fleet | Port time | Oil signal | Iron ore signal | Residual |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for e in eps:
         lines.append(
             f"| {e['name']} | {_month_label(e['start'])} to {_month_label(e['end'])} | {_lp(e['total'])} | {_lp(e['volume'])} | "
-            f"{_lp(e['distance'])} | {_lp(e['fleet'])} | {_lp(e['effective_supply'])} | {_lp(e['residual'])} |"
+            f"{_lp(e['distance'])} | {_lp(e['fleet'])} | {_lp(e['effective_supply'])} | {_lp(e.get('signal_oil', 0.0))} | "
+            f"{_lp(e.get('signal_iron_ore', 0.0))} | {_lp(e['residual'])} |"
         )
-    lines += ["", "Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages."]
+    lines += [
+        "",
+        "Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages. "
+        "The oil and iron ore columns are market signals, not physical forces.",
+    ]
     block = "\n".join(lines)
     before = text.split(start_tag)[0]
     after = text.split(end_tag)[1]

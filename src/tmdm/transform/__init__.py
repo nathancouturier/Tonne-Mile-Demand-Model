@@ -12,6 +12,9 @@ Outputs (all under ``data/processed``):
 * ``portwatch_monthly_global.csv``, ``portwatch_weekly_global.csv``, ``portwatch_monthly_country.csv``.
 * ``panel_monthly.csv``: the balanced monthly panel used by the model.
 * ``coverage.json``: data coverage per input and the resulting panel window.
+* ``signals_monthly.csv``: monthly commodity prices and leading indicators used as market signals.
+* ``minor_bulks_monthly.csv``, ``minor_bulk_flows_monthly.csv``, ``minor_bulk_routes.csv``, ``minor_bulk_ports.csv``:
+  tonnes and tonne-miles of the minor bulks (an extension tested against the headline model, not part of the panel).
 """
 
 from __future__ import annotations
@@ -22,7 +25,8 @@ import logging
 import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
-from tmdm.ingest import portwatch, unctad
+from tmdm.ingest import comexstat, portwatch, unctad
+from tmdm.reference import COMMODITY_GROUPS, ECONOMY_NAMES, EXTENSION_COMMODITIES, MINOR_BULK_NAMES
 from tmdm.transform import flows as flows_mod
 from tmdm.transform import freight, route_distances, supply
 from tmdm.transform.tonne_miles import aggregate_tonne_miles
@@ -115,6 +119,90 @@ def monthly_route_distances(canal: pd.DataFrame, diversion: pd.DataFrame, months
     return out
 
 
+def signals_monthly() -> pd.DataFrame:
+    """Monthly prices and indicators used as market signals, from 2005, indexed by month."""
+    from tmdm.ingest import oecd_cli, worldbank
+
+    frames = [worldbank.load()]
+    try:
+        frames.append(oecd_cli.load())
+    except FileNotFoundError:
+        log.info("OECD leading indicators not downloaded yet; signals use World Bank prices only")
+    out = pd.concat(frames, axis=1).sort_index()
+    out = out[out.index >= pd.Period("2005-01", "M")]
+    out.index.name = "month"
+    return out
+
+
+MINOR_FILES = (
+    "minor_bulks_monthly.csv",
+    "minor_bulk_flows_monthly.csv",
+    "minor_bulk_routes.csv",
+    "minor_bulk_ports.csv",
+)
+
+
+def minor_bulks(diversion: pd.DataFrame) -> dict[str, object]:
+    """Tonnes and tonne-miles of the minor bulks over the months every minor-bulk route group covers.
+
+    Flows are completed with the same gap rules as the panel routes; distances use the main dry bulk
+    ports of each country (see :func:`tmdm.transform.route_distances.minor_bulk_distances`) and the same
+    chokepoint diversions. Returns a coverage summary for ``coverage.json``.
+    """
+    raw = flows_mod.build_route_flows(EXTENSION_COMMODITIES)
+    flows = flows_mod.complete_months(raw, flows_mod.published_months(), flows_mod.missing_quantity_months(raw))
+    cov = flows_mod.group_coverage(flows)
+    first, last = cov["first_month"].max(), cov["last_month"].min()
+    flows = flows[(flows["month"] >= first) & (flows["month"] <= last)]
+    flows.to_csv(PROCESSED_DIR / "minor_bulk_flows_monthly.csv", index=False)
+    dist, used = route_distances.minor_bulk_distances(flows)
+    canal = canal_users(dist)
+    dist_m = monthly_route_distances(canal, diversion, pd.period_range(first, last, freq="M"))
+    _by_route, totals = aggregate_tonne_miles(flows, dist_m)
+    totals.to_csv(PROCESSED_DIR / "minor_bulks_monthly.csv", index=False)
+    canal.merge(
+        flows.groupby("route_id", as_index=False)["tonnes"].sum().rename(columns={"tonnes": "tonnes_window"}),
+        on="route_id",
+    ).to_csv(PROCESSED_DIR / "minor_bulk_routes.csv", index=False)
+    used.to_csv(PROCESSED_DIR / "minor_bulk_ports.csv", index=False)
+    log.info("minor bulks: %s to %s, %d routes", first, last, flows["route_id"].nunique())
+    total = float(flows["tonnes"].sum())
+    proxy = flows.groupby("origin")["proxy_tonnes"].sum()
+    minor_codes = COMMODITY_GROUPS["minor_bulks"]
+    return {
+        "window": [str(first), str(last)],
+        "routes": int(flows["route_id"].nunique()),
+        "route_groups": cov.assign(
+            first_month=cov["first_month"].astype(str), last_month=cov["last_month"].astype(str)
+        ).to_dict(orient="records"),
+        "exporters": sorted(ECONOMY_NAMES.get(str(o), str(o)) for o in flows["origin"].unique()),
+        "commodities": [MINOR_BULK_NAMES.get(h, minor_codes[h]) for h in minor_codes],
+        "brazil_headings": [MINOR_BULK_NAMES.get(h, minor_codes[h]) for h in comexstat.HEADINGS if h in minor_codes],
+        "tonnes_per_year_mt": float(totals["tonnes"].mean()) * 12 / 1e6,
+        "proxy_tonnes_share": float(flows["proxy_tonnes"].sum()) / total if total else 0.0,
+        "interpolated_tonnes_share": float(flows.loc[flows["interpolated"], "tonnes"].sum()) / total if total else 0.0,
+        "largest_proxy_exporter": ECONOMY_NAMES.get(str(proxy.idxmax()), str(proxy.idxmax()))
+        if proxy.max() > 0
+        else None,
+        "fill_summary": flows_mod.fill_summary(flows),
+    }
+
+
+def minor_bulks_or_skip(diversion: pd.DataFrame) -> dict[str, object]:
+    """Run the minor-bulk extension without letting a failure stop the headline build.
+
+    On failure the extension's files are removed, so the model stage does not score stale data, and the
+    error is recorded in ``coverage.json``.
+    """
+    try:
+        return minor_bulks(diversion)
+    except (LookupError, ValueError, FileNotFoundError) as exc:
+        log.warning("minor-bulk extension skipped: %s", exc)
+        for name in MINOR_FILES:
+            (PROCESSED_DIR / name).unlink(missing_ok=True)
+        return {"error": str(exc)}
+
+
 def run() -> None:
     """Build all processed series."""
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
@@ -166,6 +254,10 @@ def run() -> None:
     sf = supply.supply_factor_monthly(end_month, ships)
     sf.to_csv(PROCESSED_DIR / "supply_factor_monthly.csv", index=False)
     unctad.world_seaborne_trade().to_csv(PROCESSED_DIR / "seaborne_trade_annual.csv", index=False)
+    # Monthly market-signal prices (World Bank Pink Sheet) and leading indicators (OECD), when downloaded
+    signals_monthly().to_csv(PROCESSED_DIR / "signals_monthly.csv")
+    # Minor bulks, an extension tested against the headline model
+    minor = minor_bulks_or_skip(div)
     # Panel
     panel = (
         totals.merge(bdi.rename(columns={"bdi": "index"}), on="month", how="inner")
@@ -188,6 +280,7 @@ def run() -> None:
         "interpolated_months": flows_mod.interpolated_months(flows),
         "fill_summary": flows_mod.fill_summary(flows, (first, last)),
         "fill_summary_window": [str(first), str(last)],
+        "minor_bulks": minor,
     }
     (PROCESSED_DIR / "coverage.json").write_text(json.dumps(cov, indent=2))
     log.info(

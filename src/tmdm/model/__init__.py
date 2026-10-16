@@ -9,6 +9,8 @@ Reads ``data/processed/panel_monthly.csv`` and writes:
 * ``model_fitted.csv``: twelve-month log changes of single months: actual, implied by the balance, fitted
   (with the regression intercept) and residual.
 * ``haul_split_rolling.csv``: trade-mix versus rerouting split of the haul effect.
+* ``model_signals.json``: market-signal coefficients and the out-of-sample comparison.
+* ``model_extensions.json``: extensions tested against the headline (minor bulks, leading indicators).
 """
 
 from __future__ import annotations
@@ -22,12 +24,33 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.model.decomposition import run_model
+from tmdm.model.extensions import run_extensions
 from tmdm.transform.tonne_miles import haul_split
 
 log = logging.getLogger(__name__)
 
 WINDOW = 3
 HORIZON = 12
+
+
+def load_prices() -> pd.DataFrame | None:
+    """Monthly market-signal prices, or None before the transform stage has written them."""
+    path = PROCESSED_DIR / "signals_monthly.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path)
+    df["month"] = pd.PeriodIndex(df["month"], freq="M")
+    return df.set_index("month")
+
+
+def load_minor_bulks() -> pd.DataFrame | None:
+    """Monthly minor-bulk tonnes and tonne-miles, or None before the transform stage has written them."""
+    path = PROCESSED_DIR / "minor_bulks_monthly.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path)
+    df["month"] = pd.PeriodIndex(df["month"], freq="M")
+    return df
 
 
 def load_panel() -> pd.DataFrame:
@@ -80,7 +103,13 @@ def rolling_haul_split(horizon: int, window: int) -> pd.DataFrame:
 def run() -> None:
     """Fit the model and write every output."""
     panel = load_panel()
-    out = run_model(panel, window=WINDOW, horizon=HORIZON)
+    prices = load_prices()
+    out = run_model(panel, window=WINDOW, horizon=HORIZON, prices=prices)
+    if out.signals:
+        (PROCESSED_DIR / "model_signals.json").write_text(json.dumps(_json_ready(out.signals), indent=2))
+    if prices is not None:
+        ext = run_extensions(panel, prices, load_minor_bulks(), HORIZON, WINDOW)
+        (PROCESSED_DIR / "model_extensions.json").write_text(json.dumps(_json_ready(ext), indent=2))
     (PROCESSED_DIR / "model_elasticity.json").write_text(
         json.dumps(
             {

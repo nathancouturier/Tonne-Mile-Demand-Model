@@ -10,7 +10,9 @@ tonnes, S an effective supply factor (share of fleet time at sea), and e the
 estimated elasticity of the index to the demand/supply balance. The residual
 is defined as whatever is left, so the four contributions and the residual
 always sum exactly to the observed change. Contributions are reported both in
-log points and as shares of the total move.
+log points and as shares of the total move. :class:`ExtendedAttribution` adds
+named market-signal contributions (see :mod:`tmdm.model.signals`) between the
+physical components and the residual.
 """
 
 from __future__ import annotations
@@ -96,6 +98,45 @@ def attribute(
     eff = -elasticity * dlog_s
     residual = total - (volume + distance + fleet + eff)
     return Attribution(total, volume, distance, fleet, eff, residual, elasticity)
+
+
+@dataclass(frozen=True)
+class ExtendedAttribution:
+    """Physical attribution plus named market-signal contributions.
+
+    ``residual`` is what is left after the physical components and the
+    signals; ``residual_physical`` is the residual of the physical identity
+    alone, kept so that both readings can be shown.
+    """
+
+    physical: Attribution
+    signals: dict[str, float]
+
+    @property
+    def residual(self) -> float:
+        """Residual after the physical components and the signals."""
+        return self.physical.residual - sum(self.signals.values())
+
+    def explained_share(self) -> float:
+        """Share of the total move explained by the physical components and the signals."""
+        if self.physical.total == 0:
+            return float("nan")
+        return 1.0 - self.residual / self.physical.total
+
+    def as_dict(self) -> dict[str, float]:
+        """Physical fields, one ``signal_<name>`` field per signal, the final and the physical residual."""
+        d = self.physical.as_dict()
+        d["residual_physical"] = self.physical.residual
+        for name, v in self.signals.items():
+            d[f"signal_{name}"] = v
+        d["residual"] = self.residual
+        return d
+
+    def check_sums(self, tol: float = 1e-9) -> bool:
+        """Physical components, signals and residual add back to the total."""
+        p = self.physical
+        s = p.volume + p.distance + p.fleet + p.effective_supply + sum(self.signals.values()) + self.residual
+        return abs(s - p.total) < tol
 
 
 def log_points_to_pct(x: float) -> float:

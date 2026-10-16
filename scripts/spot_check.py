@@ -121,15 +121,17 @@ def main() -> int:
     )
     # 8. Rolling attribution components add up to the total in the latest month
     i = -1
-    s = (
-        rolling["volume"][i]
-        + rolling["distance"][i]
-        + rolling["fleet"][i]
-        + rolling["effective_supply"][i]
-        + rolling["residual"][i]
-    )
-    # each of the five components is rounded to four decimals in the site file, so allow 5 x 0.00005
-    check("rolling attribution adds up (latest month)", s, rolling["total"][i], 1e-3, abs_tol=2.5e-4)
+    keys = [
+        "volume",
+        "distance",
+        "fleet",
+        "effective_supply",
+        *[k for k in rolling if k.startswith("signal_")],
+        "residual",
+    ]
+    s = sum(rolling[k][i] for k in keys)
+    # each component is rounded to four decimals in the site file, so allow 0.00005 per component
+    check("rolling attribution adds up (latest month)", s, rolling["total"][i], 1e-3, abs_tol=5e-5 * len(keys))
     # 9. Tonne-miles total for the latest panel month equals the sum over routes of tonnes times distance
     br = pd.read_csv(PROC / "tonne_miles_by_route.csv")
     lm = series["month"][-1]
@@ -160,7 +162,28 @@ def main() -> int:
         sub = panel.loc[months]
         return math.log(sub["tonne_miles"].mean() / (sub["fleet"].mean() * sub["supply_factor"].mean()))
 
-    implied = h["elasticity"] * (balance(win1) - balance(win0))
+    from tmdm.ingest import worldbank
+
+    pink = worldbank.load()
+    sig = {d["name"]: d for d in rolling.get("signals", [])}
+
+    def price_change(col: str, start: pd.Period, end: pd.Period, lag: int) -> float:
+        s1, e1 = start - lag, end - lag
+        return math.log(pink[col].loc[e1 - 2 : e1].mean() / pink[col].loc[s1 - 2 : s1].mean())
+
+    def signal_part(start: pd.Period, end: pd.Period) -> float:
+        cols = {"oil": "brent_usd_bbl", "iron_ore": "iron_ore_usd_dmtu"}
+        return sum(d["coefficient"] * price_change(cols[n], start, end, d["lag"]) for n, d in sig.items())
+
+    physical = h["elasticity"] * (balance(win1) - balance(win0))
+    if "physical_pct" in c12:
+        check(
+            f"physical-only change, 12 months to {lm12} (pct)",
+            c12["physical_pct"][-1],
+            (math.exp(physical) - 1) * 100,
+            1e-2,
+        )
+    implied = physical + (signal_part(end - 12, end) if sig else 0.0)
     check(f"attributed change, 12 months to {lm12} (pct)", c12["implied_pct"][-1], (math.exp(implied) - 1) * 100, 1e-2)
     # 12. Explained share on the tile: total and residual recomputed from raw index averages and the panel
     la = summary["latest_attribution"]
@@ -168,9 +191,43 @@ def main() -> int:
     w1 = [str(end - k) for k in range(3)]
     w0 = [str(end - 12 - k) for k in range(3)]
     total = math.log(float(bdi_raw[w1].mean()) / float(bdi_raw[w0].mean()))
-    resid = total - h["elasticity"] * (balance(w1) - balance(w0))
+    resid = total - h["elasticity"] * (balance(w1) - balance(w0)) - (signal_part(end - 12, end) if sig else 0.0)
     check("latest attribution total (log points)", la["total"], total, 1e-3)
-    check("explained share on the tile", 1 - la["residual"] / la["total"], 1 - resid / total, 1e-2)
+    check("latest residual after forces and signals (log points)", la["residual"], resid, 1e-3, abs_tol=1e-4)
+    tile = 1 - sum(abs(v) for v in rolling["residual"]) / sum(abs(v) for v in rolling["total"])
+    if model.get("signals", {}).get("fit"):
+        check(
+            "typical-move explained share on the tile", tile, 1 - model["signals"]["fit"]["unexplained_extended"], 1e-3
+        )
+    # 13. Market-signal contributions in the latest window, recomputed from the raw Pink Sheet workbook
+    cols = {"oil": "brent_usd_bbl", "iron_ore": "iron_ore_usd_dmtu"}
+    for name, d in sig.items():
+        start, end_ = pd.Period(la["start"], "M"), pd.Period(la["end"], "M")
+        check(
+            f"{name} signal contribution {la['start']} to {la['end']} (log points)",
+            la[f"signal_{name}"],
+            d["coefficient"] * price_change(cols[name], start, end_, d["lag"]),
+            1e-6,
+        )
+    # 14. Extensions table: the headline row reproduces the out-of-sample test shown above it, and the minor-bulk
+    #     share of tonne-miles is recomputed from the processed minor-bulk and panel files
+    ext = {v["id"]: v for v in model.get("extensions", {}).get("variants", [])}
+    oos = model.get("signals", {}).get("out_of_sample", {})
+    if "headline" in ext and oos.get("available"):
+        check(
+            "extensions headline, out-of-sample R squared",
+            ext["headline"]["oos_r2_extended"],
+            oos["r2_vs_zero"]["extended"],
+            1e-9,
+        )
+    if "minor_bulks" in ext:
+        minor = pd.read_csv(ROOT / "data" / "processed" / "minor_bulks_monthly.csv").set_index("month")
+        pnl = pd.read_csv(ROOT / "data" / "processed" / "panel_monthly.csv").set_index("month")
+        common = pnl.index.intersection(minor.index)
+        share = float((minor.loc[common, "tonne_miles"] / pnl.loc[common, "tonne_miles"]).mean())
+        check(
+            "minor bulks, tonne-miles relative to the major bulks", ext["minor_bulks"]["minor_tonne_miles_share"], share
+        )
     bad = 0
     for name, sv, rv, rel, ok in results:
         print(f"{'OK  ' if ok else 'FAIL'} {name}: site={sv:,.4f} raw={rv:,.4f} rel_diff={rel:.2e}")

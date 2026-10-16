@@ -31,8 +31,32 @@ COMMODITY_GROUPS: dict[str, dict[str, str]] = {
         "1007": "Grain sorghum",
         "1201": "Soya beans",
     },
+    # Minor bulks carried mostly by Supramax and Handysize ships (the BDI weights Supramax at 30 percent)
+    "minor_bulks": {
+        "1701": "Cane or beet sugar",
+        "2304": "Soybean oilcake and meal",
+        "2523": "Portland cement and clinker",
+        "2602": "Manganese ores and concentrates",
+        "2606": "Aluminium ores and concentrates (bauxite)",
+        "2713": "Petroleum coke and bitumen",
+        "3104": "Potassic fertilisers",
+        "4401": "Fuel wood, wood chips and pellets",
+        "7204": "Ferrous waste and scrap",
+    },
 }
 CMD_TO_GROUP: dict[str, str] = {cmd: g for g, cmds in COMMODITY_GROUPS.items() for cmd in cmds}
+# Short names of the minor-bulk headings, for text.
+MINOR_BULK_NAMES: dict[str, str] = {
+    "1701": "sugar",
+    "2304": "soybean meal",
+    "2523": "cement and clinker",
+    "2602": "manganese ore",
+    "2606": "bauxite",
+    "2713": "petroleum coke",
+    "3104": "potash",
+    "4401": "wood fuel (chips and pellets)",
+    "7204": "ferrous scrap",
+}
 
 # UN Comtrade reporter and partner codes (M49 based, with Comtrade conventions such as 842 for the USA).
 COMTRADE_CODES: dict[str, int] = {
@@ -852,6 +876,42 @@ ROUTE_GROUPS: list[RouteGroup] = [
 ]
 
 # Origin economy per importer-reported route group (reporter is the destination).
+# Major dry bulk importers by sea used as partners for the minor bulks. Land neighbours of each
+# exporter are left out because customs data do not separate sea from rail and road.
+MINOR_IMPORTERS: tuple[str, ...] = (
+    "CHN", "JPN", "KOR", "TWN", "IND", "VNM", "MYS", "THA", "IDN", "PHL", "BGD", "PAK",
+    "SAU", "ARE", "EGY", "TUR", "NLD", "BEL", "DEU", "ESP", "ITA", "FRA", "GBR", "POL",
+    "USA", "MEX", "BRA", "CHL", "PER", "MAR",
+)  # fmt: skip
+LAND_NEIGHBOURS: dict[str, frozenset[str]] = {
+    "USA": frozenset({"CAN", "MEX"}),
+    "CAN": frozenset({"USA"}),
+    "UKR": frozenset({"POL"}),
+    "ARG": frozenset({"BRA", "CHL"}),
+    "BRA": frozenset({"ARG", "PER"}),
+    "COL": frozenset({"PER"}),
+}
+
+
+def _minor_partners(origin: str) -> tuple[str, ...]:
+    skip = LAND_NEIGHBOURS.get(origin, frozenset()) | {origin}
+    return tuple(p for p in MINOR_IMPORTERS if p not in skip)
+
+
+MINOR_EXPORTERS: tuple[str, ...] = ("USA", "AUS", "IDN", "ZAF", "CAN", "UKR", "ARG", "COL")
+ROUTE_GROUPS += [
+    RouteGroup(f"{o}_X_minor_bulks", o, "X", "minor_bulks", _minor_partners(o), "minor_bulks") for o in MINOR_EXPORTERS
+]
+ROUTE_GROUPS.append(
+    RouteGroup("BRA_COMEX_X_minor_bulks", "BRA_COMEX", "X", "minor_bulks", _minor_partners("BRA"), "minor_bulks")
+)
+
+# Commodity groups that enter the tonne-mile panel. The minor bulks are downloaded and carried as an
+# extension: their tonne-miles, with distances between the main dry bulk ports of each country rather than
+# documented terminals, are added to the panel in a robustness variant (see tmdm.model.extensions).
+PANEL_COMMODITIES: tuple[str, ...] = ("iron_ore", "coal", "grains")
+EXTENSION_COMMODITIES: tuple[str, ...] = ("minor_bulks",)
+
 IMPORTER_ORIGIN_LOAD: dict[tuple[str, str], str] = {
     ("IND_M_coal_RUS_MOZ", "RUS"): "coal_pacific",
     ("IND_M_coal_RUS_MOZ", "MOZ"): "coal",
@@ -861,10 +921,12 @@ IMPORTER_ORIGIN_LOAD: dict[tuple[str, str], str] = {
 MIRROR_ONLY = {"CHN_M_mirror", "BRA_X_mirror"}
 
 
-CALL_GROUPS: dict[str, tuple[str, ...]] = {
-    "exporters_a": ("USA", "AUS", "IDN"),
-    "exporters_b": ("BRA", "ZAF", "CAN", "UKR", "ARG", "COL"),
-    "importers_and_mirror": ("IND", "JPN", "CHN"),
+MAJOR_BULKS: tuple[str, ...] = ("iron_ore", "coal", "grains")
+CALL_GROUPS: dict[str, tuple[tuple[str, ...], tuple[str, ...]]] = {
+    "exporters_a": (("USA", "AUS", "IDN"), MAJOR_BULKS),
+    "exporters_b": (("BRA", "ZAF", "CAN", "UKR", "ARG", "COL"), MAJOR_BULKS),
+    "importers_and_mirror": (("IND", "JPN", "CHN"), MAJOR_BULKS),
+    "minor_bulks": (MINOR_EXPORTERS, ("minor_bulks",)),
 }
 
 
@@ -876,13 +938,13 @@ def comtrade_call_groups() -> list[tuple[str, tuple[int, ...], str, tuple[str, .
     per month. Returns ``(group_id, reporter_codes, flow, cmd_codes, partner_codes, note)``.
     """
     out = []
-    for gid, reporters in CALL_GROUPS.items():
+    for gid, (reporters, commodities) in CALL_GROUPS.items():
         cmds: set[str] = set()
         partners: set[int] = set()
         notes: list[str] = []
         flows: set[str] = set()
         for g in ROUTE_GROUPS:
-            if g.reporter not in reporters:
+            if g.reporter not in reporters or g.commodity not in commodities:
                 continue
             flows.add(g.flow)
             cmds.update(COMMODITY_GROUPS[g.commodity])

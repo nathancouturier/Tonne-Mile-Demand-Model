@@ -20,9 +20,10 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from tmdm.model.attribution import Attribution, attribute
+from tmdm.model.attribution import Attribution, ExtendedAttribution, attribute
 from tmdm.model.episodes import Episode, covered_episodes
 from tmdm.model.regression import ElasticityEstimate, difference_regression, estimate_elasticity
+from tmdm.model.signals import DEFAULT_SIGNALS, Signal, build_windows, contributions, fit_signals, out_of_sample
 
 SERIES = ("index", "tonnes", "tonne_miles", "fleet", "supply_factor")
 
@@ -39,6 +40,7 @@ class ModelOutput:
     window: int
     horizon: int
     panel: pd.DataFrame = field(repr=False)
+    signals: dict[str, Any] = field(default_factory=dict)
 
 
 def _check_panel(panel: pd.DataFrame) -> pd.DataFrame:
@@ -61,6 +63,13 @@ def _check_panel(panel: pd.DataFrame) -> pd.DataFrame:
 def log_balance(panel: pd.DataFrame) -> pd.Series:
     """Log of the demand/supply balance: tonne-miles over effective fleet."""
     return pd.Series(np.log(panel["tonne_miles"] / (panel["fleet"] * panel["supply_factor"])), index=panel.index)
+
+
+def headline_elasticity(panel: pd.DataFrame) -> float:
+    """The headline elasticity alone (twelve-month changes), for repeated out-of-sample refits."""
+    p = _check_panel(panel)
+    d12 = pd.concat([np.log(p["index"]).diff(12).rename("y"), log_balance(p).diff(12).rename("x")], axis=1).dropna()
+    return estimate_elasticity(d12["y"], d12["x"]).elasticity
 
 
 def fit_elasticity(panel: pd.DataFrame) -> tuple[ElasticityEstimate, dict[str, Any]]:
@@ -132,7 +141,29 @@ def attribute_period(
     )
 
 
-def rolling_attribution(panel: pd.DataFrame, elasticity: float, horizon: int = 12, window: int = 3) -> pd.DataFrame:
+def _extend(
+    att: Attribution,
+    prices: pd.DataFrame | None,
+    start: pd.Period,
+    end: pd.Period,
+    coefficients: dict[str, float] | None,
+    signals: tuple[Signal, ...],
+    window: int,
+) -> Attribution | ExtendedAttribution:
+    if prices is None or not coefficients:
+        return att
+    return ExtendedAttribution(att, contributions(prices, start, end, coefficients, signals, window))
+
+
+def rolling_attribution(
+    panel: pd.DataFrame,
+    elasticity: float,
+    horizon: int = 12,
+    window: int = 3,
+    prices: pd.DataFrame | None = None,
+    coefficients: dict[str, float] | None = None,
+    signals: tuple[Signal, ...] = DEFAULT_SIGNALS,
+) -> pd.DataFrame:
     """Attribute the change over ``horizon`` months for every month in the panel."""
     p = _check_panel(panel)
     rows = []
@@ -140,7 +171,9 @@ def rolling_attribution(panel: pd.DataFrame, elasticity: float, horizon: int = 1
         start = end - horizon
         if start - (window - 1) < p.index[0]:
             continue
-        a = attribute_period(p, start, end, elasticity, window)
+        a = _extend(
+            attribute_period(p, start, end, elasticity, window), prices, start, end, coefficients, signals, window
+        )
         d = a.as_dict()
         d.update({"month": end, "start": start, "end": end})
         rows.append(d)
@@ -148,14 +181,22 @@ def rolling_attribution(panel: pd.DataFrame, elasticity: float, horizon: int = 1
     return out
 
 
-def episode_attributions(panel: pd.DataFrame, elasticity: float, window: int) -> list[dict[str, Any]]:
+def episode_attributions(
+    panel: pd.DataFrame,
+    elasticity: float,
+    window: int,
+    prices: pd.DataFrame | None = None,
+    coefficients: dict[str, float] | None = None,
+    signals: tuple[Signal, ...] = DEFAULT_SIGNALS,
+) -> list[dict[str, Any]]:
     """Attribute every episode covered by the panel."""
     p = _check_panel(panel)
     eps: list[Episode] = covered_episodes(p.index[0], p.index[-1], window)
     out = []
     for ep in eps:
         s, e = pd.Period(ep.start, "M"), pd.Period(ep.end, "M")
-        a = attribute_period(p, s, e, elasticity, window)
+        phys = attribute_period(p, s, e, elasticity, window)
+        a = _extend(phys, prices, s, e, coefficients, signals, window)
         level_0 = float(_window_mean(p, s, window)["index"])
         level_1 = float(_window_mean(p, e, window)["index"])
         out.append(
@@ -169,18 +210,38 @@ def episode_attributions(panel: pd.DataFrame, elasticity: float, window: int) ->
                 "index_end": level_1,
                 **a.as_dict(),
                 "explained_share": a.explained_share(),
+                "explained_share_physical": phys.explained_share(),
             }
         )
     return out
 
 
-def run_model(panel: pd.DataFrame, window: int = 3, horizon: int = 12) -> ModelOutput:
-    """Fit the elasticity and produce rolling and episode attributions."""
+def run_model(
+    panel: pd.DataFrame,
+    window: int = 3,
+    horizon: int = 12,
+    prices: pd.DataFrame | None = None,
+    signals: tuple[Signal, ...] = DEFAULT_SIGNALS,
+) -> ModelOutput:
+    """Fit the elasticity (and, given monthly prices, the market signals) and produce the attributions."""
     p = _check_panel(panel)
     headline, robustness = fit_elasticity(p)
     e = headline.elasticity
-    rolling = rolling_attribution(p, e, horizon=horizon, window=window)
-    episodes = episode_attributions(p, e, window)
+    sig: dict[str, Any] = {}
+    coefs: dict[str, float] | None = None
+    if prices is not None:
+        windows = build_windows(p, prices, e, signals, horizon, window)
+        fit = fit_signals(windows, signals)
+        coefs = fit.coefficients
+        sig = {
+            "definitions": [s.__dict__ for s in signals],
+            "fit": fit.summary(),
+            "out_of_sample": out_of_sample(p, prices, headline_elasticity, signals, horizon, window),
+        }
+    rolling = rolling_attribution(
+        p, e, horizon=horizon, window=window, prices=prices, coefficients=coefs, signals=signals
+    )
+    episodes = episode_attributions(p, e, window, prices=prices, coefficients=coefs, signals=signals)
     logs = pd.DataFrame(
         {
             "index": np.log(p["index"]),
@@ -196,4 +257,4 @@ def run_model(panel: pd.DataFrame, window: int = 3, horizon: int = 12) -> ModelO
         diff_reg = difference_regression(dlog, lags=1)
     except (ValueError, np.linalg.LinAlgError) as exc:
         diff_reg = {"error": str(exc)}
-    return ModelOutput(headline, robustness, diff_reg, rolling, episodes, window, horizon, p)
+    return ModelOutput(headline, robustness, diff_reg, rolling, episodes, window, horizon, p, sig)
