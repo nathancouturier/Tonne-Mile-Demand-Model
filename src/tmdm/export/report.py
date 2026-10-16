@@ -573,6 +573,49 @@ def write_deliverables(res: dict[str, Any]) -> None:
     )
 
 
+def write_readme_results(res: dict[str, Any]) -> None:
+    """Replace the results block of the README with figures from the current build."""
+    n = _numbers(res)
+    readme = ROOT / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    start_tag, end_tag = "<!-- results:start -->", "<!-- results:end -->"
+    if start_tag not in text or end_tag not in text:
+        return
+    eps = n["episodes"]
+    lines = [
+        "## Results",
+        "",
+        f"Panel: {_month_label(n['first_m'])} to {_month_label(n['last_m'])}, {n['n_months']} months, {n['n_routes']} routes. "
+        f"Built from data retrieved on {max(m.retrieved_at for m in res['sources'])[:10]}.",
+        "",
+        f"* Elasticity of the index to tonne-miles over effective fleet: {n['elasticity']:.2f} (Newey-West standard error {n['se']:.2f}); "
+        f"the levels regression explains {n['r2']:.0%} of the variance of the log index (Durbin-Watson {n['dw']:.2f}).",
+        f"* Over rolling twelve-month windows the four measured forces have the same sign as the index move {n['sign_agree']:.0%} of the time; "
+        f"the residual averages {n['mean_abs_resid']:.2f} log points against a typical move of {n['mean_abs_total']:.2f}, "
+        f"so about {n['share_resid']:.0%} of a typical move is not explained by measured demand and supply.",
+        f"* Between the first and last twelve months of the panel, tonnes on the covered routes grew {n['t_growth']:+.0%}, tonne-miles {n['tm_growth']:+.0%} "
+        f"(average haul {n['haul_growth']:+.1%}) and the bulk carrier fleet {n['fleet_growth']:+.0%} to {n['fleet_last_mdwt']:,.0f} million dwt.",
+        f"* Latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}): the index moved {n['last_pct']:+.0f} percent; "
+        f"contributions in log points were volume {_lp(n['last']['volume'])}, haul {_lp(n['last']['distance'])}, fleet {_lp(n['last']['fleet'])}, "
+        f"port time {_lp(n['last']['effective_supply'])}, residual {_lp(n['last']['residual'])} (total {_lp(n['last']['total'])}).",
+        f"* The three largest routes carry {n['top3_share']:.0%} of covered tonne-miles. Validation: {n['validation']['pass']} checks passed, "
+        f"{n['validation']['warn']} warnings, {n['validation']['fail']} failures.",
+        "",
+        "| Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for e in eps:
+        lines.append(
+            f"| {e['name']} | {_month_label(e['start'])} to {_month_label(e['end'])} | {_lp(e['total'])} | {_lp(e['volume'])} | "
+            f"{_lp(e['distance'])} | {_lp(e['fleet'])} | {_lp(e['effective_supply'])} | {_lp(e['residual'])} |"
+        )
+    lines += ["", "Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages."]
+    block = "\n".join(lines)
+    before = text.split(start_tag)[0]
+    after = text.split(end_tag)[1]
+    readme.write_text(f"{before}{start_tag}\n{block}\n{end_tag}{after}", encoding="utf-8")
+
+
 def run() -> None:
     """Build figures, the PDF note and the written deliverables; copy the note to the site."""
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
@@ -581,6 +624,7 @@ def run() -> None:
     out = DOCS_DIR / PDF_NAME
     build_pdf(res, figs, out)
     write_deliverables(res)
+    write_readme_results(res)
     dl = SITE_DIR / "downloads"
     dl.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(out, dl / PDF_NAME)
