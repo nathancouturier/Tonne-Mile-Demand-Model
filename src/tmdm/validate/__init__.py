@@ -16,7 +16,7 @@ import pandas as pd
 
 from tmdm.config import PROCESSED_DIR
 from tmdm.ingest import asub_bdi, comexstat, comtrade, portwatch, unctad
-from tmdm.reference import CODE_TO_ISO3, COMEX_COUNTRY_TO_ISO3, COMMODITY_GROUPS, COMTRADE_CODES
+from tmdm.reference import CODE_TO_ISO3, COMEX_COUNTRY_TO_ISO3, COMMODITY_GROUPS, COMTRADE_CODES, ROUTE_GROUPS
 from tmdm.validate.checks import (
     CheckResult,
     check_missing,
@@ -87,7 +87,9 @@ def comtrade_checks(records: pd.DataFrame) -> list[CheckResult]:
 
 def check_weightless_values(monthly: pd.DataFrame) -> CheckResult:
     """Share of monthly bilateral trade value reported without a net weight, by reporter."""
-    sub = monthly[monthly["partnerCode"] != 0].copy()
+    # only reporters whose records feed the route panel (older cached reporters are ignored)
+    used = {COMTRADE_CODES[g.reporter] for g in ROUTE_GROUPS if g.reporter in COMTRADE_CODES}
+    sub = monthly[(monthly["partnerCode"] != 0) & (monthly["reporterCode"].isin(used))].copy()
     if sub.empty:
         return CheckResult("un_comtrade", "weightless_values", "warn", "no monthly bilateral records", {})
     sub["val"] = pd.to_numeric(sub["primaryValue"], errors="coerce").fillna(0.0)

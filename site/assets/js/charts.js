@@ -164,7 +164,7 @@
     legend(c.legend, series.length > 1 ? series.map((s) => ({ label: s.label, color: s.color, dashed: s.dashed })) : []);
     const tt = tooltip(c.body);
     const height = opts.height || 300;
-    const margin = { top: 12, right: 18, bottom: 34, left: 56 };
+    const margin = { top: opts.yLabel ? 26 : 12, right: 18, bottom: 34, left: 56 };
     const allX = series.flatMap((s) => s.values.map((v) => v.x));
     const xDomain = d3.extent(allX);
     const draw = (width) => {
@@ -249,7 +249,7 @@
     legend(c.legend, [...comps.map((k) => ({ label: k.label, color: k.color, rect: true })), ...(opts.total ? [{ label: opts.total.label, color: opts.total.color }] : [])]);
     const tt = tooltip(c.body);
     const height = opts.height || 320;
-    const margin = { top: 12, right: 18, bottom: 34, left: 56 };
+    const margin = { top: opts.yLabel ? 26 : 12, right: 18, bottom: 34, left: 56 };
     const data = opts.data; // [{x: Date, label, comps..., total}]
     const draw = (width) => {
       c.body.querySelectorAll("svg").forEach((n) => n.remove());

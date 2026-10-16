@@ -340,8 +340,10 @@ def export_fleet() -> None:
 
 
 def export_chokepoints_and_portwatch() -> dict[str, Any]:
-    """Chokepoint transits, diversion shares and PortWatch tonnage."""
+    """Chokepoint transits, diversion shares and PortWatch tonnage (complete months only)."""
     ck = _read("chokepoints_monthly.csv")
+    # a month is complete when every day has a record (the current month is usually partial)
+    ck = ck[ck["days"] >= pd.PeriodIndex(ck["month"], freq="M").days_in_month]
     names = [
         "Suez Canal",
         "Bab el-Mandeb Strait",

@@ -16,6 +16,20 @@
   ];
   const COMMODITY_LABEL = { iron_ore: "Iron ore", coal: "Coal", grains: "Grains and soybeans" };
   const COMMODITY_COLOR = { iron_ore: () => C.palette().s1, coal: () => C.palette().s2, grains: () => C.palette().s3 };
+  // "2019-01","2019-02","2019-05" -> "Jan 2019 to Feb 2019; May 2019"
+  const ranges = (months) => {
+    if (!months || !months.length) return "";
+    const next = (m) => { const [y, mo] = m.split("-").map(Number); return mo === 12 ? `${y + 1}-01` : `${y}-${String(mo + 1).padStart(2, "0")}`; };
+    const out = [];
+    let start = months[0], prev = months[0];
+    for (let i = 1; i <= months.length; i++) {
+      const m = months[i];
+      if (m !== undefined && m === next(prev)) { prev = m; continue; }
+      out.push(start === prev ? fmt.month(start) : `${fmt.month(start)} to ${fmt.month(prev)}`);
+      if (m !== undefined) { start = m; prev = m; }
+    }
+    return out.join("; ");
+  };
 
   const $ = (sel) => document.querySelector(sel);
   const text = (sel, t) => { const n = $(sel); if (n) n.textContent = t; };
@@ -98,7 +112,7 @@
     const bdiEnd = cov.freight_index_window ? cov.freight_index_window[1] : null;
     let reason = "";
     if (lastGroup && bdiEnd) {
-      reason = bdiEnd <= lastGroup.last_month ? `because the public monthly freight index ends in ${fmt.month(bdiEnd)}` : `because the customs series for ${(lastGroup.label || lastGroup.group_id).toLowerCase()} ends in ${fmt.month(lastGroup.last_month)}`;
+      reason = bdiEnd <= lastGroup.last_month ? `because the public monthly freight index ends in ${fmt.month(bdiEnd)}` : `because the customs series for ${lastGroup.label || lastGroup.group_id} ends in ${fmt.month(lastGroup.last_month)}`;
     }
     if (s.comex_coverage) parts.push(`Brazilian customs data run to ${s.comex_coverage.split(" to ")[1].split(" (")[0]}; the balanced route panel ends in ${fmt.month(s.panel.last)}${reason ? " " + reason : ""}.`);
     parts.forEach((t) => n.append(C.el("p", null, t)));
@@ -368,8 +382,8 @@
     const flagged = (key) => SE.month.filter((m, i) => SE[key][i]);
     const fx = flagged("fleet_extrapolated"), sx = flagged("supply_extrapolated");
     const flagText = [];
-    if (fx.length) flagText.push(`the fleet is extrapolated for ${fx.length} panel month${fx.length === 1 ? "" : "s"} (${fmt.month(fx[0])} to ${fmt.month(fx[fx.length - 1])})`);
-    if (sx.length) flagText.push(`the effective supply factor uses a held or assumed value for ${sx.length} panel months (${fmt.month(sx[0])} to ${fmt.month(sx[sx.length - 1])}), because PortWatch port calls start in January 2019 and the UNCTAD median port time was last published for the second half of 2023`);
+    if (fx.length) flagText.push(`the fleet is extrapolated for ${fx.length} panel month${fx.length === 1 ? "" : "s"} (${ranges(fx)})`);
+    if (sx.length) flagText.push(`the effective supply factor uses an assumed or held value for ${sx.length} panel months (${ranges(sx)}): it is set to one before PortWatch port calls start in January 2019, and the UNCTAD median port time is held at its last published value (second half of 2023) afterwards`);
     if (flagText.length) notes.append(C.el("p", null, `Within the panel, ${flagText.join("; ")}. These months are flagged in the panel download.`));
     notes.append(C.el("p", null, "The effective supply factor converts port time into capacity: median days in port per call multiplied by calls per ship gives port days per ship, and one minus that share of the half-year is the at-sea share. The factor is the at-sea share relative to its first observation, so more congestion lowers effective supply and, through the elasticity, raises the implied index. Nothing in the public data measures sailing speed."));
   }
@@ -411,20 +425,7 @@
     if (groups.length) {
       const gap = C.el("div", "prose");
       gap.append(C.el("h3", null, "Where customs quantities are estimated or interpolated"));
-      gap.append(C.el("p", null, "Customs offices publish values for every month but not always weights. Where a reporter's monthly records carry a value and no net weight, tonnes are estimated as the value divided by that reporter's annual unit value for the same partner and commodity from the annual UN Comtrade series (flagged as a proxy). Months in which most of a group's value has no usable weight, and months the reporter did not publish, are interpolated linearly between the neighbouring months inside the group's range and trimmed at its ends. The table lists every affected group; the per-route flags are in the downloads."));
-      const ranges = (months) => {
-        if (!months || !months.length) return "";
-        const out = [];
-        let start = months[0], prev = months[0];
-        const next = (m) => { const [y, mo] = m.split("-").map(Number); return mo === 12 ? `${y + 1}-01` : `${y}-${String(mo + 1).padStart(2, "0")}`; };
-        for (let i = 1; i <= months.length; i++) {
-          const m = months[i];
-          if (m !== undefined && m === next(prev)) { prev = m; continue; }
-          out.push(start === prev ? fmt.month(start) : `${fmt.month(start)} to ${fmt.month(prev)}`);
-          if (m !== undefined) { start = m; prev = m; }
-        }
-        return out.join("; ");
-      };
+      gap.append(C.el("p", null, "Customs offices publish values for every month but not always weights. Where a reporter's monthly records carry a value and no net weight, tonnes are estimated as the value divided by that reporter's annual unit value for the same partner and commodity from the annual UN Comtrade series (flagged as a proxy). A route-month in which more than 1 percent of the value still has no usable weight, a month in which most of a group's value has none, and a month the reporter did not publish are interpolated linearly between the neighbouring months; gaps at the ends of a group's range are trimmed rather than extrapolated. Shares below refer to the panel window. The table lists every affected group; the per-route flags are in the downloads."));
       const reasons = { proxy_unit_value: "proxy from annual unit value", interpolated_unpublished: "interpolated, month not published", interpolated_no_weight: "interpolated, weights missing" };
       const rows = groups.map((g) => {
         const f = fs[g.group_id];
@@ -433,7 +434,7 @@
       }).filter((r) => r.proxy > 0 || r.interp > 0);
       const gt = C.el("div");
       gap.append(gt);
-      C.dataTable(gt, [{ key: "group", label: "Route group" }, { key: "window", label: "Months used" }, { key: "proxy", label: "Proxy share of tonnes", num: true, format: d3.format(".1%") }, { key: "interp", label: "Interpolated share of tonnes", num: true, format: d3.format(".1%") }, { key: "detail", label: "Affected months" }], rows);
+      C.dataTable(gt, [{ key: "group", label: "Route group" }, { key: "window", label: "Data available" }, { key: "proxy", label: "Proxy share of tonnes", num: true, format: d3.format(".1%") }, { key: "interp", label: "Interpolated share of tonnes", num: true, format: d3.format(".1%") }, { key: "detail", label: "Affected months" }], rows);
       lim.after(gap);
     }
     // validation table
