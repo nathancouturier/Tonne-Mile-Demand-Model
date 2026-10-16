@@ -1,0 +1,1060 @@
+{
+  "currentVersion" : 12, 
+  "services" : [
+    {
+      "name" : "2018_BP_Homepage_Indicator", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/2018_BP_Homepage_Indicator/FeatureServer"
+    }, 
+    {
+      "name" : "Aggregation_of_Kenya_ATMs_all_to_Kenya_District_Boundaries_2016_2", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Aggregation_of_Kenya_ATMs_all_to_Kenya_District_Boundaries_2016_2/FeatureServer"
+    }, 
+    {
+      "name" : "All_Forestation_Indexes_with_boundaries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/All_Forestation_Indexes_with_boundaries/FeatureServer"
+    }, 
+    {
+      "name" : "ATM_NY_State2", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/ATM_NY_State2/FeatureServer"
+    }, 
+    {
+      "name" : "Average_nonlife_insurance_premium_to_GDP___map_layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Average_nonlife_insurance_premium_to_GDP___map_layer/FeatureServer"
+    }, 
+    {
+      "name" : "Bilateral_Trade_EG", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Bilateral_Trade_EG/FeatureServer"
+    }, 
+    {
+      "name" : "Bilateral_Trade_LCT", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Bilateral_Trade_LCT/FeatureServer"
+    }, 
+    {
+      "name" : "climate_scenarios_climate_risk", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/climate_scenarios_climate_risk/FeatureServer"
+    }, 
+    {
+      "name" : "country_meta", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/country_meta/FeatureServer"
+    }, 
+    {
+      "name" : "country_meta_single_page", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/country_meta_single_page/FeatureServer"
+    }, 
+    {
+      "name" : "country_meta_single_page_long", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/country_meta_single_page_long/FeatureServer"
+    }, 
+    {
+      "name" : "Country_Polygons", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Country_Polygons/FeatureServer"
+    }, 
+    {
+      "name" : "country_vars", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/country_vars/FeatureServer"
+    }, 
+    {
+      "name" : "Daily_Regional_Data", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Regional_Data/FeatureServer"
+    }, 
+    {
+      "name" : "Daily_Trade_Data_TEST4", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Trade_Data_TEST4/FeatureServer"
+    }, 
+    {
+      "name" : "Daily_Trade_Data_WLD", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Trade_Data_WLD/FeatureServer"
+    }, 
+    {
+      "name" : "disruptions_ExportFeatures", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/disruptions_ExportFeatures/FeatureServer"
+    }, 
+    {
+      "name" : "disruptions_view", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/disruptions_view/FeatureServer"
+    }, 
+    {
+      "name" : "disruptions_with_ports", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/disruptions_with_ports/FeatureServer"
+    }, 
+    {
+      "name" : "events_wp_2", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/events_wp_2/FeatureServer"
+    }, 
+    {
+      "name" : "Floods_riverine_people_all", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Floods_riverine_people_all/FeatureServer"
+    }, 
+    {
+      "name" : "FR24_airports", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/FR24_airports/FeatureServer"
+    }, 
+    {
+      "name" : "GAA_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/GAA_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Global_Assessment_Accounts_Melted_Layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Global_Assessment_Accounts_Melted_Layer/FeatureServer"
+    }, 
+    {
+      "name" : "Global_Shipping_Routes", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Global_Shipping_Routes/FeatureServer"
+    }, 
+    {
+      "name" : "green_bonds", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/green_bonds/FeatureServer"
+    }, 
+    {
+      "name" : "green_bonds_issuance_by_country", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/green_bonds_issuance_by_country/FeatureServer"
+    }, 
+    {
+      "name" : "green_bonds_issuance_by_country_SM", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/green_bonds_issuance_by_country_SM/FeatureServer"
+    }, 
+    {
+      "name" : "IAM_CID_melted", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/IAM_CID_melted/FeatureServer"
+    }, 
+    {
+      "name" : "IMF_Country_Boundaries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/IMF_Country_Boundaries/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator 15 Fossil Fuel Subsidies", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator 15 Fossil Fuel Subsidies/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator 7_2_CA_timeline", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator 7_2_CA_timeline/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator 7_2_EG", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator 7_2_EG/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1_annual", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1_annual/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1_quarterly", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1_quarterly/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1_quarterly_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1_quarterly_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1A_SM", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1A_SM/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1Q", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1Q/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_1Q_SM", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_1Q_SM/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_Greenhouse_gas_emissions_Greenhouse_gas_(GHS)_national_inventories_by_source", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_Greenhouse_gas_emissions_Greenhouse_gas_(GHS)_national_inventories_by_source/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_indices_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_indices_table/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_indices_table_SM", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_indices_table_SM/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_melted_transposed", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_melted_transposed/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_melted_transposed_interp_sameSeries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_melted_transposed_interp_sameSeries/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_10_Green_Finance", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_10_Green_Finance/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_10_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_10_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_10_SM", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_10_SM/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_1_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_1_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_1_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_1_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_1_Physical_Risks_Climate_related_disasters_frequency", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_1_Physical_Risks_Climate_related_disasters_frequency/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_2_simple", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_2_simple/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_3___Map_Layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_3___Map_Layer/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_3_Physical_Risks__Index_for_Risk_Management", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_3_Physical_Risks__Index_for_Risk_Management/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_3_SF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_3_SF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_11_3_simple", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_11_3_simple/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_13_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_13_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_13_Environmental_Taxes_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_13_Environmental_Taxes_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_13_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_13_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_13_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_13_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_14_Expenditure_on_Environmental_Protection", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_14_Expenditure_on_Environmental_Protection/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_14_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_14_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_15_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_15_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_1", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_1/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_1_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_1_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_1_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_1_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_2", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_2/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_2_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_2_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_2_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_2_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_4", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_4/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_4_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_4_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_4_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_4_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_16_6_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_16_6_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_17_pivoted", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_17_pivoted/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_18", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_18/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_18_scenarios_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_18_scenarios_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_18_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_18_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_2_Carbon_Emission_per_unit_of_Output", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_2_Carbon_Emission_per_unit_of_Output/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_2_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_2_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_2_SM", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_2_SM/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_1_Climate_Indicators_Annual_Mean_Global_Surface_Temperature", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_1_Climate_Indicators_Annual_Mean_Global_Surface_Temperature/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_1_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_1_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_1_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_1_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_2_Climate_Indicators_Monthly_Atmospheric_Carbon_Dioxide_concentrations", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_2_Climate_Indicators_Monthly_Atmospheric_Carbon_Dioxide_concentrations/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_2_dashboard_tz", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_2_dashboard_tz/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_2_melted", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_2_melted/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_2_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_2_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_3_dashboard_tz", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_3_dashboard_tz/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_3_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_3_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_3_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_3_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_4", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_4/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_4_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_4_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_4_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_4_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_5_pivoted", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_5_pivoted/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_5_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_5_selector/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_4", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_4/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_4_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_4_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_1_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_1_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_1_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_1_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_1_Trade_related_Indicators_CO2_emissions_embodied_in_trade", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_1_Trade_related_Indicators_CO2_emissions_embodied_in_trade/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_2_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_2_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_2_EG_All_years", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_2_EG_All_years/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_2_melted_new_CountryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_2_melted_new_CountryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_2_SF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_2_SF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_2_Trade_related_Indicators_Trade_in_environmental_goods", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_2_Trade_related_Indicators_Trade_in_environmental_goods/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_2BF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_2BF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_3", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_3/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_3_2020_layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_3_2020_layer/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_3_dashboard_v2", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_3_dashboard_v2/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_7_3BF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_7_3BF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_8_Direct_investment_related_Indicators", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_8_Direct_investment_related_Indicators/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_8_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_8_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_8_melted_new_SF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_8_melted_new_SF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_8_SF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_8_SF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_9_Carbon_footprint_adjusted_loans_to_total_loans_for_deposit_takers", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_9_Carbon_footprint_adjusted_loans_to_total_loans_for_deposit_takers/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_9_melted_countryView", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_9_melted_countryView/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_9_SF", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_9_SF/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_ND_GAIN_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_ND_GAIN_selector/FeatureServer"
+    }, 
+    {
+      "name" : "INFORM_Risk_2021_Layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/INFORM_Risk_2021_Layer/FeatureServer"
+    }, 
+    {
+      "name" : "Join_Features_BP_Homepage_Indicator", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Join_Features_BP_Homepage_Indicator/FeatureServer"
+    }, 
+    {
+      "name" : "L2_ulrs", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/L2_ulrs/FeatureServer"
+    }, 
+    {
+      "name" : "L3_urls", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/L3_urls/FeatureServer"
+    }, 
+    {
+      "name" : "Land_Cover_Perc_Layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Land_Cover_Perc_Layer/FeatureServer"
+    }, 
+    {
+      "name" : "Low_Carbon_Technology_Products___Layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Low_Carbon_Technology_Products___Layer/FeatureServer"
+    }, 
+    {
+      "name" : "Low_Carbon_Technology_Products_2019", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Low_Carbon_Technology_Products_2019/FeatureServer"
+    }, 
+    {
+      "name" : "ND_GAIN_with_country_boundaries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/ND_GAIN_with_country_boundaries/FeatureServer"
+    }, 
+    {
+      "name" : "NGDPD", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/NGDPD/FeatureServer"
+    }, 
+    {
+      "name" : "ngfs_melted_ordered", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/ngfs_melted_ordered/FeatureServer"
+    }, 
+    {
+      "name" : "ngfs_selector", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/ngfs_selector/FeatureServer"
+    }, 
+    {
+      "name" : "portsfacts", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/portsfacts/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_boundaries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_boundaries/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_chokepoints_database", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_chokepoints_database/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_countries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_countries/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_Countries_Simplified", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_Countries_Simplified/FeatureServer"
+    }, 
+    {
+      "name" : "portwatch_disruptions_database", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/portwatch_disruptions_database/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_ports", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_ports/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_ports_database", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_ports_database/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatchPorts_globe", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatchPorts_globe/FeatureServer"
+    }, 
+    {
+      "name" : "PW_Globe4_WFL1", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PW_Globe4_WFL1/FeatureServer"
+    }, 
+    {
+      "name" : "PW_Globe7_WFL1", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PW_Globe7_WFL1/FeatureServer"
+    }, 
+    {
+      "name" : "sankey_data", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/sankey_data/FeatureServer"
+    }, 
+    {
+      "name" : "scenarios_climate_risks", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/scenarios_climate_risks/FeatureServer"
+    }, 
+    {
+      "name" : "scenarios_trade", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/scenarios_trade/FeatureServer"
+    }, 
+    {
+      "name" : "scenarios_trade_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/scenarios_trade_geo/FeatureServer"
+    }, 
+    {
+      "name" : "scenarios_trade_network_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/scenarios_trade_network_geo/FeatureServer"
+    }, 
+    {
+      "name" : "Share_Renewables_with_Boundaries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Share_Renewables_with_Boundaries/FeatureServer"
+    }, 
+    {
+      "name" : "som_adm_ocha_itos_20230308_shp", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/som_adm_ocha_itos_20230308_shp/FeatureServer"
+    }, 
+    {
+      "name" : "som_adm1_ocha_itos_20230308_shp", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/som_adm1_ocha_itos_20230308_shp/FeatureServer"
+    }, 
+    {
+      "name" : "Spillover_Simulator_Maritime_Connections", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Spillover_Simulator_Maritime_Connections/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_country", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_country/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_country_level_impact_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_country_level_impact_geo/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_port_level_impact", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_port_level_impact/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_port_level_impact_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_port_level_impact_geo/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_port_level_impact_geo_v2", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_port_level_impact_geo_v2/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_supplychain", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_supplychain/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_supplychain_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_supplychain_geo/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_supplychain_level_impact_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_supplychain_level_impact_geo/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_trade", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_trade/FeatureServer"
+    }, 
+    {
+      "name" : "spillovers_trade_geo", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/spillovers_trade_geo/FeatureServer"
+    }, 
+    {
+      "name" : "survey123_fdd24556503246759766666b091d1273_fieldworker", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/survey123_fdd24556503246759766666b091d1273_fieldworker/FeatureServer"
+    }, 
+    {
+      "name" : "tr_pivot", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/tr_pivot/FeatureServer"
+    }, 
+    {
+      "name" : "Transition_Risks_Web_Map_Layer", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Transition_Risks_Web_Map_Layer/FeatureServer"
+    }, 
+    {
+      "name" : "web_scene_test__WFL1", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/web_scene_test__WFL1/FeatureServer"
+    }, 
+    {
+      "name" : "PortWatch_ports_final_tilelayer", 
+      "type" : "MapServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_ports_final_tilelayer/MapServer"
+    }, 
+    {
+      "name" : "PortWatch_countries_database", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/PortWatch_countries_database/FeatureServer"
+    }, 
+    {
+      "name" : "Pasadena_Fire_Area", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Pasadena_Fire_Area/FeatureServer"
+    }, 
+    {
+      "name" : "temperature_livestock_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/temperature_livestock_table/FeatureServer"
+    }, 
+    {
+      "name" : "CID_Financial_and_Risk_Indicators__Explicit_Carbon_Prices_(CCIDCBITEG)", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/CID_Financial_and_Risk_Indicators__Explicit_Carbon_Prices_(CCIDCBITEG)/FeatureServer"
+    }, 
+    {
+      "name" : "Effective_Carbon_rate_by_Sectors", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Effective_Carbon_rate_by_Sectors/FeatureServer"
+    }, 
+    {
+      "name" : "Fuel_Excise_Tax_by_Sectors", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Fuel_Excise_Tax_by_Sectors/FeatureServer"
+    }, 
+    {
+      "name" : "Explicit_Carbon_Prices", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Explicit_Carbon_Prices/FeatureServer"
+    }, 
+    {
+      "name" : "Public_Investment_in_Renewable_Energy", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Public_Investment_in_Renewable_Energy/FeatureServer"
+    }, 
+    {
+      "name" : "Heat_Stress_Indicators", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Heat_Stress_Indicators/FeatureServer"
+    }, 
+    {
+      "name" : "Agriculture_Water_Withdrawal", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Agriculture_Water_Withdrawal/FeatureServer"
+    }, 
+    {
+      "name" : "Irrigated_Agriculture_Water_Use_Efficiency", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Irrigated_Agriculture_Water_Use_Efficiency/FeatureServer"
+    }, 
+    {
+      "name" : "Access_to_Electricity", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Access_to_Electricity/FeatureServer"
+    }, 
+    {
+      "name" : "Access_Data_Table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Access_Data_Table/FeatureServer"
+    }, 
+    {
+      "name" : "coastal_buildings_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/coastal_buildings_table/FeatureServer"
+    }, 
+    {
+      "name" : "coastal_population_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/coastal_population_table/FeatureServer"
+    }, 
+    {
+      "name" : "riverine_buildings_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/riverine_buildings_table/FeatureServer"
+    }, 
+    {
+      "name" : "riverine_population_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/riverine_population_table/FeatureServer"
+    }, 
+    {
+      "name" : "coastal_gdp_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/coastal_gdp_table/FeatureServer"
+    }, 
+    {
+      "name" : "riverine_gdp_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/riverine_gdp_table/FeatureServer"
+    }, 
+    {
+      "name" : "coastal_ugdp_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/coastal_ugdp_table/FeatureServer"
+    }, 
+    {
+      "name" : "riverine_ugdp_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/riverine_ugdp_table/FeatureServer"
+    }, 
+    {
+      "name" : "gdacs_events", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/gdacs_events/FeatureServer"
+    }, 
+    {
+      "name" : "drought_cropland_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/drought_cropland_table/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_17", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_17/FeatureServer"
+    }, 
+    {
+      "name" : "Daily_Chokepoints_Data", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Chokepoints_Data/FeatureServer"
+    }, 
+    {
+      "name" : "Monthly_TradeNow", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Monthly_TradeNow/FeatureServer"
+    }, 
+    {
+      "name" : "Daily_Trade_Data_REG", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Trade_Data_REG/FeatureServer"
+    }, 
+    {
+      "name" : "Daily_Ports_Data", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Daily_Ports_Data/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_14_melted_new", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_14_melted_new/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_1_2_dashboard", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_1_2_dashboard/FeatureServer"
+    }, 
+    {
+      "name" : "INFORMRISK_V_IX_Vulnerability", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/INFORMRISK_V_IX_Vulnerability/FeatureServer"
+    }, 
+    {
+      "name" : "INFORMRISK_LCC_IX_Lack_coping_capacity", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/INFORMRISK_LCC_IX_Lack_coping_capacity/FeatureServer"
+    }, 
+    {
+      "name" : "INFORMRISK_IR_IX_Climate_INFORMRISK", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/INFORMRISK_IR_IX_Climate_INFORMRISK/FeatureServer"
+    }, 
+    {
+      "name" : "INFORMRISK_INH_IX_Climate_Hazard_Exposure", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/INFORMRISK_INH_IX_Climate_Hazard_Exposure/FeatureServer"
+    }, 
+    {
+      "name" : "temperature_population_table", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/temperature_population_table/FeatureServer"
+    }, 
+    {
+      "name" : "NDGAIN_Indicators_with_boundaries", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/NDGAIN_Indicators_with_boundaries/FeatureServer"
+    }, 
+    {
+      "name" : "geopulse_episodes", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/geopulse_episodes/FeatureServer"
+    }, 
+    {
+      "name" : "geopulse_events", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/geopulse_events/FeatureServer"
+    }, 
+    {
+      "name" : "airports_latest", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/airports_latest/FeatureServer"
+    }, 
+    {
+      "name" : "geopulse_exposures_by_country", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/geopulse_exposures_by_country/FeatureServer"
+    }, 
+    {
+      "name" : "temperatures_ssp370_2080_hd30_bands", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/temperatures_ssp370_2080_hd30_bands/FeatureServer"
+    }, 
+    {
+      "name" : "Container_Metrics", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Container_Metrics/FeatureServer"
+    }, 
+    {
+      "name" : "Indicator_3_5", 
+      "type" : "FeatureServer", 
+      "url" : "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/ArcGIS/rest/services/Indicator_3_5/FeatureServer"
+    }
+  ]
+}

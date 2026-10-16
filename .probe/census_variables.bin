@@ -1,0 +1,301 @@
+{
+  "variables": {
+    "time": {
+      "label": "ISO-8601 Date/Time value",
+      "concept": "Census API Date/Time Specification",
+      "required": "true",
+      "predicateType": "datetime",
+      "group": "N/A",
+      "limit": 0,
+      "predicateOnly": true,
+      "datetime": {
+        "year": true,
+        "month": true
+      }
+    },
+    "CNT_WGT_YR": {
+      "label": "15-digit Year-to-Date Containerized Vessel Shipping Weight",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "DF": {
+      "label": "1-character Domestic or Foreign Code",
+      "concept": "Measures",
+      "required": "default displayed",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "MONTH": {
+      "label": "2-character Month",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "SUMMARY_LVL": {
+      "label": "Detail ('DET') or Country Grouping ('CGP') indicator",
+      "concept": "Internal Use",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_1_MO": {
+      "label": "15-digit Quantity 1",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "COMM_LVL": {
+      "label": "4-character aggregation levels for commodity code.  HS2=2-digit HS totals.  HS4=4-digit HS totals. HS6=6-digit HS totals.  HS10=10-digit HS totals.",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CC_YR": {
+      "label": "15-digit Year-to-Date Card Count",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "UNIT_QY2": {
+      "label": "3-character Export Unit of Quantity 2",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "UNIT_QY1": {
+      "label": "3-character Export Unit of Quantity 1",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CNT_VAL_MO": {
+      "label": "15-digit Containerized Vessel Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_1_YR": {
+      "label": "15-digit Year-to-Date Quantity 1",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "E_COMMODITY_SDESC": {
+      "label": "50-character Export Harmonized Code Description",
+      "concept": "Descriptions",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "AIR_WGT_MO": {
+      "label": "15-digit Air Shipping Weight",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "VES_WGT_MO": {
+      "label": "15-digit Vessel Shipping Weight",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CNT_VAL_YR": {
+      "label": "15-digit Year-to-Date Containerized Vessel Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "DISTRICT": {
+      "label": "2-character District Code",
+      "concept": "Measures",
+      "required": "default displayed",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "YEAR": {
+      "label": "4-character Year",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "SUMMARY_LVL2": {
+      "label": "Variables being summarized.  See the appendix of the Guide to International Trade Datasets for a complete list of codes.",
+      "concept": "Internal Use",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "AIR_WGT_YR": {
+      "label": "15-digit Year-to-Date Air Shipping Weight",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CNT_WGT_MO": {
+      "label": "15-digit Containerized Vessel Shipping Weight",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CTY_NAME": {
+      "label": "50-character Country Name",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "VES_WGT_YR": {
+      "label": "15-digit Year-to-Date Vessel Shipping Weight",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_2_YR_FLAG": {
+      "label": "1-character True Zero Flag for Year-to-Date Quantity 2",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "E_COMMODITY_LDESC": {
+      "label": "150-character Export Harmonized Code Description",
+      "concept": "Descriptions",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_1_YR_FLAG": {
+      "label": "1-character True Zero Flag for Year-to-Date Quantity 1",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_2_MO": {
+      "label": "15-digit Quantity 2",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "ALL_VAL_MO": {
+      "label": "15-digit Total Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "AIR_VAL_MO": {
+      "label": "15-digit Air Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_1_MO_FLAG": {
+      "label": "1-character True Zero Flag for Quantity 1",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_2_MO_FLAG": {
+      "label": "1-character True Zero Flag for Quantity 2",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "ALL_VAL_YR": {
+      "label": "15-digit Year-to-Date Total Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CC_MO": {
+      "label": "15-digit Card Count",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "LAST_UPDATE": {
+      "label": "10-character Date of Last Update",
+      "concept": "Measures",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "QTY_2_YR": {
+      "label": "15-digit Year-to-Date Quantity 2",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "VES_VAL_MO": {
+      "label": "15-digit Vessel Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "CTY_CODE": {
+      "label": "4-character Country Code",
+      "concept": "Measures",
+      "required": "default displayed",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "DIST_NAME": {
+      "label": "50-character District name",
+      "concept": "Descriptions",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "VES_VAL_YR": {
+      "label": "15-digit Year-to-Date Vessel Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    },
+    "E_COMMODITY": {
+      "label": "2-, 4-, 6-, or 10-character Export Harmonized Code",
+      "concept": "Measures",
+      "required": "default displayed",
+      "predicateType": "string",
+      "group": "N/A",
+      "limit": 0
+    },
+    "AIR_VAL_YR": {
+      "label": "15-digit Year-to-Date Air Value",
+      "concept": "Measures",
+      "predicateType": "int",
+      "group": "N/A",
+      "limit": 0
+    }
+  }
+}

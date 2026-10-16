@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <script id="fenrir-console-script" >(()=>{var e={15517(){if(window.Fenrir=window.Fenrir||{config:{}},!window.Fenrir.console){window.Fenrir.console={};const e=new URLSearchParams(document.location.search),n=window.Fenrir?.config?.featureFlags?.logs||e.has("logs");Object.entries(window.console).forEach(([e,o])=>{"function"==typeof o&&(window.Fenrir.console[e]=n?o.bind(window.console):()=>{})})}window.Fenrir.getTime||(window.Fenrir.getTime=function(){const e=new Date;function n(e,n="00"){return`${n}${e}`.slice(-n.length)}return`${n(e.getHours())}:${n(e.getMinutes())}:${n(e.getSeconds())}.${n(e.getMilliseconds(),"000")}`})}},n={};function o(r){var i=n[r];if(void 0!==i)return i.exports;var t=n[r]={exports:{}};return e[r](t,t.exports,o),t.exports}o.m=e,o.c=n,o.o=(e,n)=>Object.prototype.hasOwnProperty.call(e,n),(()=>{o.S={};var e={},n={};o.I=(r,i)=>{i||(i=[]);var t=n[r];if(t||(t=n[r]={}),!(i.indexOf(t)>=0)){if(i.push(t),e[r])return e[r];o.o(o.S,r)||(o.S[r]={});o.S[r];var s=[];return s.length?e[r]=Promise.all(s).then(()=>e[r]=1):e[r]=1}}})();o(15517)})();</script>
+
+    <title>Not Found - Markets Insider</title>
+
+  <meta charset="UTF-8">
+  <meta name="version" content="261015.2980">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  
+  
+  
+  <meta
+    property="og:site_name"
+    content="Markets Insider"
+  >
+  <meta
+    property="fb:pages"
+    content="20446254070"
+  >
+  <meta
+    name="apple-itunes-app"
+    content="app-id="
+  >
+  <meta
+    name="linkedin:owner"
+    content="mid:1d5f7b"
+  >
+  
+  <link
+    rel="canonical"
+        href="https://markets.businessinsider.com/index/baltic_dry"
+    >
+  
+  
+    <meta
+      name="user-status"
+      value="anonymous"
+    >
+  
+  
+  <meta
+    name="env"
+    value="prod"
+  >
+  
+  
+  
+  
+   <link
+    class="favicon-asset"
+    rel="apple-touch-icon"
+    sizes="192x192"
+    href="/public/assets/MI/US/favicons/apple-touch-icon.png?v=2025-05"
+  >
+  
+  <link
+    class="favicon-asset"
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/public/assets/MI/US/favicons/favicon-32x32.png?v=2025-05"
+  >
+  <link
+    class="favicon-asset"
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/public/assets/MI/US/favicons/favicon-16x16.png?v=2025-05"
+  >
+  <link
+    class="favicon-asset"
+    rel="manifest"
+    href="/public/assets/MI/US/favicons/site.webmanifest?v=2025-05"
+  >
+  <link
+    class="favicon-asset"
+    rel="mask-icon"
+    href="/public/assets/MI/US/favicons/safari-pinned-tab.svg?v=2025-05"
+    color="#014E92"
+  >
+  <link
+    class="favicon-asset"
+    rel="shortcut icon"
+    href="/public/assets/MI/US/favicons/favicon.ico?v=2025-05"
+  >
+  <link
+    class="favicon-asset"
+    rel="shortcut icon"
+    type="image/svg+xml"
+    href="/public/assets/MI/US/favicons/favicon.svg?v=2025-05"
+  >
+  <meta
+    class="favicon-asset"
+    name="msapplication-config"
+    content="/public/assets/MI/US/favicons/browserconfig.xml?v=2025-05"
+  >
+  <meta
+    name="theme-color"
+    content="#014E92"
+  >
+  <meta
+    name="apple-mobile-web-app-title"
+    content="Markets Insider"
+  >
+  
+
+  <script type="text/javascript" id="fenrir-client-data">
+    const fenrirClientData = {"config":{"ads":{"enabled":false,"delayed":false,"adServer":{"enabled":true,"provider":"gam","networkid":"4442842","threadYield":"ENABLED_ALL_SLOTS"},"meta":{"deviceType":"desktop","pageType":"other","isGPP":true,"inAppAds":false,"disableInlineAds":false,"disablePopularVideo":false,"hasVideoEmbed":false,"isAdsFree":false,"isAnswers":false,"isAnswersResults":false,"isBot":true,"isLiveBlog":false,"isLoggedInOrSubscribed":false,"isMobileAppShell":false,"isReviews":false,"isEditSeries":false,"isExceptionalPost":false,"isGameHub":false,"isGamesLeaderboard":false,"isGamePlayPage":false,"isHelpfulness":false,"isPersonalFinance":false,"isDisplaySponMoActive":false,"isVideoSponMoActive":false,"isVideoHub":false,"isRailVideoEnabled":false,"hasProducts":false,"hasStickyExcludeCategory":false,"hasSummaryBullets":false,"isAudioNarrationEligible":false,"stickyTOC":false,"hasOopPrimaryVertical":false,"isCustomPage":false,"isSponsored":false,"disableRailVideo":false,"isHeroVideoPost":false,"isP2Concept":false,"siteId":"mi","adunit":{"site":"marketsinsider","template":"other","vertical":"_no-vertical","regionCounter":{}},"taxonomyData":{"taxonomy":[],"taxonomyBreakdown":[],"taxonomyIds":[],"keywords":[],"events":[],"threats":[],"sentiment":[]},"params":{},"primaryVertical":"home","wordsPerAd":false},"pageTargeting":{"abTest":[],"adx_abtesting":"11","AotID":null,"authors":[],"casafe":"true","catax":[],"cakw":[],"cathr":[],"casent":[],"ibd":"true","page_id":"347af3ce","pagetype":"other","reaction":[],"secvert":[""],"splitTest":[],"tag":[],"topix":null,"url":"/index/baltic_dry","adconsent":null,"sov100":null,"cpc":null,"traffic_source":null},"features":{"callout":{"enabled":true,"position":"above","text":"AD","style":"site"},"collapseIfEmpty":{"enabled":true},"lazyLoad":{"enabled":true,"threshold":"200%","buffer":155},"scrollVelocity":{"enabled":false,"threshold":3,"factor":3},"destroySlotsOutOfView":{"enabled":false},"refresh":{"enabled":true,"interval":30,"displayTimer":false,"viewablePercentage":50,"restrictSizes":true,"disabledSlots":[],"changeCorrelator":false},"superZoomer":{"enabled":true},"tracking":{}},"services":{"amazonTam":{"enabled":false,"loaded":false,"pubID":3201,"adServer":"googletag","timeout":1500},"rubiconPrebid":{"enabled":true,"loaded":false,"scriptUrl":"https://ads.rubiconproject.com/prebid/10306.js","timeout":1500},"permutive":{"enabled":true,"projectId":"3aba5292-ba75-422b-8715-bd21146f7836","publicKey":"6f1150a7-e587-49c6-b439-a4b7ee68a5a7","version":1},"doubleverify":{"enabled":true,"timeout":1500},"confiant":{"enabled":true}},"video":{},"regions":{}},"authEnv":"production","nativeAnalytics":false,"fenrirEnv":"production","fenrirPort":3000,"fenrirWebpackPort":3001,"version":"261015.2980","stripe":{"subscriptionResources":{"renewal-off-annual":{"plansToSubscribeTo":{"usd":{"annual":"f69f772f-a2c8-4768-ad1d-f69784590386"}}},"cancellation-annual-upgrade":{"usd":{"planId":"fb7506b9-570f-4b03-ab0b-c0baac1e46b0","currencySymbol":"$","renewalPrice":"149","offerPrice":"49","monthlyPrice":"25.95","interval":"yearly"},"cad":{"planId":"c12e3e69-0e64-4a8b-81c4-056c9f92dfa4","currencySymbol":"C$","renewalPrice":"199","offerPrice":"59","monthlyPrice":"14.95","interval":"yearly"},"gbp":{"planId":"810be99a-d57c-4c03-b0b6-ea4b9b5e5f00","currencySymbol":"£","renewalPrice":"119","offerPrice":"39","monthlyPrice":"10","interval":"yearly"}},"annual-early-renewal":{"usd":{"planId":"f88bd81d-f8f2-4972-b3de-c37dbcdb3051","currencySymbol":"$","renewalPrice":"149","offerPrice":"69"},"cad":{"planId":"89f953cf-ebf2-4353-8f74-6c15d4ecf3c9","currencySymbol":"C$","renewalPrice":"99","offerPrice":"69"},"gbp":{"planId":"3120f175-7e06-4ada-b844-5bb26f7c5f53","currencySymbol":"£","renewalPrice":"79","offerPrice":"55"}},"annual-switch":{"usd":{"planId":"92ef4403-b84d-421f-abca-a8ec85b9c71d","currencySymbol":"$","renewalPrice":"149","offerPrice":"39","interval":"yearly"},"cad":{"planId":"7c0d5e2d-901a-4e42-9194-4219a9686028","currencySymbol":"C$","renewalPrice":"179","offerPrice":"49","interval":"yearly"},"gbp":{"planId":"af40180b-4803-4b6b-adab-96b88876e54b","currencySymbol":"£","renewalPrice":"105","offerPrice":"29","interval":"yearly"}},"preCancellationOffer":{"usd":{"planId":"fb7506b9-570f-4b03-ab0b-c0baac1e46b0","currencySymbol":"$","renewalPrice":"149","offerPrice":"49","monthlyPrice":"25.95","interval":"yearly"},"cad":{"planId":"c12e3e69-0e64-4a8b-81c4-056c9f92dfa4","currencySymbol":"C$","renewalPrice":"199","offerPrice":"59","monthlyPrice":"14.95","interval":"yearly"},"gbp":{"planId":"810be99a-d57c-4c03-b0b6-ea4b9b5e5f00","currencySymbol":"£","renewalPrice":"119","offerPrice":"39","monthlyPrice":"10","interval":"yearly"}},"plansNotToShowRetentionOffer":[],"annual-switch-limited-offer":{"usd":{"planId":"e370ef9e-d604-4f2a-a6f0-42589158b973","currencySymbol":"$","renewalPrice":"149","offerPrice":"29","interval":"yearly"}}}},"capiEnv":"production","capi":"https://cda.businessinsider.com","muse":"https://muse.insider.com","frigga":"https://frigga.businessinsider.com","newsletterEnv":"production","newsletter":"https://account.businessinsider.com/newsletter","apigateway":{"domain":"https://membership-api.businessinsider.com","apiKey":"OGU5ZWUyZWUtNjM2ZS00OTdiLWI0OTUtYTliOGIzMjQ1ODA2"},"authentication":"https://account.businessinsider.com","forsetiUrl":"https://my.businessinsider.com","bifrostEnv":"https://bifrost-bfp.pages.dev","tracking":{"providerName":["ga","t","comscore"],"base_url":"//markets.businessinsider.com","postTrackingObject":{"story_platform":"web","pageType":"errorPage","postID":null,"postURI":"index/baltic_dry","publisher":"Markets Insider","editor":null,"vertical":"","verticals":[],"author":"","category":"","dateModified":false,"datePublished":false,"numSlides":0,"wordCount":0,"abTest":null,"splitTest":null,"secondaryVerticals":"","theme":""},"data":{"gtm":{"id":"GTM-MP6F46L","env_string":""},"domains":["businessinsider.com","insider.com"],"t":{"pixel":"https://c.businessinsider.com/t.gif"}}},"logging":true,"abTests":[],"featureFlags":{"disableAllAbTests":false,"activityLogging":false,"dacRefactor":false,"logs":false,"forceSponsorshipModeActive":{"display":false,"video":false},"forceSpeedcurveSample":false,"forceDataDogRumSample":false,"disableDataDogRumSample":false,"forceDataDogLogs":false,"disableDataDogLogs":false,"unified":false,"developerBar":false,"sessionData":false,"breakpoint":false,"changeCorrelator":false,"adFree":false,"ignoreRedirect":false,"removeTickerHubNav":false,"testLatestSharedComponents":false,"webVitals":false,"headerBiddingRace":false,"headerBiddingFastForward":false,"hideOpm":false,"videoShowsPreview":false,"disableAutoplay":false,"useMockVerticals":false,"forceStyleLoader":false,"giftArticle":true,"visualizeTracking":false,"inAppAds":false,"gridOverlay":false,"asToldTo":false,"forceFeaturedByline":false,"verticalVideo":true,"entityPost":false,"newsletterSticky":false,"userTesting":false,"showAiSummaryQuestions":false,"narration":false,"narrationSponsored":false,"newsletterAuthorPreferences":false,"appShellCommentsButton":false,"marketsMigration":false,"biJobScout":false},"sticky":{"siteSkinEnabled":false,"stickyActiveHeaderHeaderHeight":71,"subnavStickyAdBuffer":250},"dataLayer":{"story_platform":"web","pageType":"errorPage","postURI":"index/baltic_dry","publisher":"Markets Insider","vertical":"","author":"","category":"","dateModified":false,"datePublished":false,"secondaryVerticals":"","theme":""},"shouldDeferScripts":true,"shouldManageConsent":true,"delayThirdPartyScripts":false,"proxyUrl":"https://markets.businessinsider.com/","datadogProxyUrl":"https://markets.businessinsider.com/ajax/dd","subscribeEnabled":true,"name":"Markets Insider","domain":"businessinsider","subdomain":"markets","twitter":"mktsinsider","linkedIn":"insiderdigital","instagram":"businessinsider","s3Directory":"us","resourceName":"mi","identifier":"mi","adUnitSite":"marketsinsider","assetsPath":"MI","color":"#014E92","description":"What You Need To Know About Markets And The Economy","fbContentId":"20446254070","socialLinks":{"facebook":"https://www.facebook.com/MrktsInsider","x":"https://x.com/mktsinsider","instagram":"https://www.instagram.com/businessinsider/?hl=en","youTube":"https://www.youtube.com/user/businessinsider","linkedIn":"https://www.linkedin.com/company/businessinsider/"},"sp500Link":"https://markets.businessinsider.com/index/components/s&p_500/","partials":{"legacy-post/post-ticker":"empty"},"shareButtons":{"topBarShareButtons":["twitter","facebook","email","copylink"],"slideShareButtons":{"dropdownButtons":["twitter","facebook","email","copylink"]}},"crossDomainAuth":{"bi":"https://www.businessinsider.com"},"componentsToLoad":{"markets-insider-auth-redirect":{"disableLazy":true,"target":[]},"markets-insider-stored-assets":{"defer":true,"target":[]},"markets-insider-subnav-ad":{"disableLazy":true,"target":[]}},"bylineNoShows":["insider","business insider","business insider uk"],"components":{},"aiAnswers":{"enhancedSummaryBulletsModel":"gpt-4.1-mini"},"adsTxtDir":"/us/ads.txt","appAdsTxtDir":"/us/app-ads.txt","zendesk":{"chatKey":"76a7a72c-2c9b-455e-b822-8cb01a97e60d"},"trackingAnalyticName":"Live Election Feed","notificationBanner":{"type":"","data":{"copyTitle":"","copy":"","cta":""},"defaultState":"active","maxViews":false,"defaultClass":"d-md-none active","disallowInApp":true,"gaEvent":"","gaEventCategory":""},"sharedRecaptcha":{"V2SiteKey":"6LdHl0gsAAAAAKXDSMH6DhMI8WvGWknEdYOiRmki","V2SiteKeyInvisible":"6Lc5iUgsAAAAAPaIcXMjQlar-GK4WzJosBbXBYEg"},"gtmIdGA4":"GTM-MP6F46L","verticalVideoPlaylist":"W8Hai8Xe","recommendationsPlaylist":{"ins":"TXrojpv3","bi":"4yvN3aI1"},"validDomains":["insider.com","businessinsider.com","insider.engineering","forseti.pages.dev","my.businessinsider.com","localhost"],"formSubmit":{"corporateLanding":{"sender":"support@businessinsider.com","receivers":["group-subscriptions@businessinsider.com"],"subject":"Group Subscriptions -  Over 25 Seats"}},"doubleVerifyCodes":{"dvClientCode":"23280644","dvSettingsCode":"DV673672"},"appsFlyer":{"oneLink":"https://insider-app.onelink.me/4cpG"},"consentManagementSourcepoint":{"euPrivacyManagerModalId":"1165664"}},"isSoothUser":false,"meta":{"pageId":"347af3ce","isMobileAppShell":false},"path":"/index/baltic_dry","userStatus":"anonymous","validatedUserStatus":"other","superVertical":"Markets-Insider","type":"errorPage","deviceType":"desktop","isBot":true,"privacyApi":"GPP","trafficSource":"default","trafficThreatLevel":"green","isMobileDarkMode":false,"cm":{"vppaApplies":false},"env":"production"};
+    window.Fenrir = Object.assign({}, window.Fenrir || {"config": {}}, fenrirClientData);
+    window.Fenrir.cmd = window.Fenrir.cmd || [];
+  </script>
+    <script id="gpp-stub"
+     
+    >
+        window.__gpp_addFrame=function(e){if(!window.frames[e])if(document.body){var t=document.createElement("iframe");t.style.cssText="display:none",t.name=e,document.body.appendChild(t)}else window.setTimeout(window.__gpp_addFrame,10,e)},window.__gpp_stub=function(){var e=arguments;if(__gpp.queue=__gpp.queue||[],__gpp.events=__gpp.events||[],!e.length||1==e.length&&"queue"==e[0])return __gpp.queue;if(1==e.length&&"events"==e[0])return __gpp.events;var t=e[0],p=e.length>1?e[1]:null,s=e.length>2?e[2]:null;if("ping"===t)p({gppVersion:"1.1",cmpStatus:"stub",cmpDisplayStatus:"hidden",signalStatus:"not ready",supportedAPIs:["2:tcfeuv2","5:tcfcav1","6:uspv1","7:usnatv1","8:uscav1","9:usvav1","10:uscov1","11:usutv1","12:usctv1"],cmpId:0,sectionList:[],applicableSections:[],gppString:"",parsedSections:{}},!0);else if("addEventListener"===t){"lastId"in __gpp||(__gpp.lastId=0),__gpp.lastId++;var n=__gpp.lastId;__gpp.events.push({id:n,callback:p,parameter:s}),p({eventName:"listenerRegistered",listenerId:n,data:!0,pingData:{gppVersion:"1.1",cmpStatus:"stub",cmpDisplayStatus:"hidden",signalStatus:"not ready",supportedAPIs:["2:tcfeuv2","5:tcfcav1","6:uspv1","7:usnatv1","8:uscav1","9:usvav1","10:uscov1","11:usutv1","12:usctv1"],cmpId:0,sectionList:[],applicableSections:[],gppString:"",parsedSections:{}}},!0)}else if("removeEventListener"===t){for(var a=!1,i=0;i<__gpp.events.length;i++)if(__gpp.events[i].id==s){__gpp.events.splice(i,1),a=!0;break}p({eventName:"listenerRemoved",listenerId:s,data:a,pingData:{gppVersion:"1.1",cmpStatus:"stub",cmpDisplayStatus:"hidden",signalStatus:"not ready",supportedAPIs:["2:tcfeuv2","5:tcfcav1","6:uspv1","7:usnatv1","8:uscav1","9:usvav1","10:uscov1","11:usutv1","12:usctv1"],cmpId:0,sectionList:[],applicableSections:[],gppString:"",parsedSections:{}}},!0)}else"hasSection"===t?p(!1,!0):"getSection"===t||"getField"===t?p(null,!0):__gpp.queue.push([].slice.apply(e))},window.__gpp_msghandler=function(e){var t="string"==typeof e.data;try{var p=t?JSON.parse(e.data):e.data}catch(e){p=null}if("object"==typeof p&&null!==p&&"__gppCall"in p){var s=p.__gppCall;window.__gpp(s.command,(function(p,n){var a={__gppReturn:{returnValue:p,success:n,callId:s.callId}};e.source.postMessage(t?JSON.stringify(a):a,"*")}),"parameter"in s?s.parameter:null,"version"in s?s.version:"1.1")}},"__gpp"in window&&"function"==typeof window.__gpp||(window.__gpp=window.__gpp_stub,window.addEventListener("message",window.__gpp_msghandler,!1),window.__gpp_addFrame("__gppLocator"));
+    </script>
+    <script id="sourcepoint-config">
+      const configObject = {
+        accountId: 1108,
+        baseEndpoint: 'https://cdn.privacy-mgmt.com',
+        
+        usnat: {},
+        propertyHref: 'https://www.businessinsider.com',
+        joinHref: true,
+      };
+      window._sp_queue = [];
+      window._sp_ = {
+        config: configObject
+      };
+    </script>
+    <script
+      src='https://cdn.privacy-mgmt.com/unified/wrapperMessagingWithoutDetection.js'
+     
+      defer
+    >
+    </script>
+  <script>
+  LUX=function(){var e="undefined"!=typeof LUX&&void 0!==LUX.gaMarks?LUX.gaMarks:[],n="undefined"!=typeof LUX&&void 0!==LUX.gaMeasures?LUX.gaMeasures:[],t="LUX_start",r=window.performance,a="undefined"!=typeof LUX&&LUX.ns?LUX.ns:Date.now?Date.now():+new Date;function u(){if(r){if(r.now)return r.now();if(r.webkitNow)return r.now();if(r.msNow)return r.now();if(r.mozNow)return r.now()}return(Date.now?Date.now():+new Date)-a}function o(n){return function(e,n){for(i=n.length-1;i>=0;i--){var t=n[i];if(e===t.name)return t}return}(n,function(){if(r){if(r.getEntriesByType)return r.getEntriesByType("mark");if(r.webkitGetEntriesByType)return r.webkitGetEntriesByType("mark")}return e}())}return r&&r.timing&&r.timing.navigationStart&&(a=r.timing.navigationStart),{mark:function(n){if(r){if(r.mark)return r.mark(n);if(r.webkitMark)return r.webkitMark(n)}e.push({name:n,entryType:"mark",startTime:u(),duration:0})},measure:function(e,i,a){if(void 0===i&&o(t)&&(i=t),r){if(r.measure)return i?a?r.measure(e,i,a):r.measure(e,i):r.measure(e);if(r.webkitMeasure)return r.webkitMeasure(e,i,a)}var f=0,s=u();if(i){var m=o(i);if(m)f=m.startTime;else{if(!(r&&r.timing&&r.timing[i]))return;f=r.timing[i]-r.timing.navigationStart}}if(a){var w=o(a);if(w)s=w.startTime;else{if(!(r&&r.timing&&r.timing[a]))return;s=r.timing[a]-r.timing.navigationStart}}n.push({name:e,entryType:"measure",startTime:f,duration:s-f})},gaMarks:e,gaMeasures:n}}(),LUX.ns=Date.now?Date.now():+new Date,LUX.ac=[],LUX.cmd=function(e){LUX.ac.push(e)},LUX.init=function(){LUX.cmd(["init"])},LUX.send=function(){LUX.cmd(["send"])},LUX.addData=function(e,n){LUX.cmd(["addData",e,n])};
+  LUX.label=""; // PageType: homepage, story, slideshow, video, hubpage, etc.
+  LUX.minMeasureTime = 7000;
+  LUX.maxMeasureTime = 30000;LUX.sendBeaconOnPageHidden = true; // Set this to true when not in auto fire mode
+  LUX.auto = false; // We will manually fire once GDPR scripts have loaded (consent-handler.js)
+  
+  // We can't call LUX.forceSample until the API is on the page
+  window.Fenrir = window.Fenrir || { config: {} };
+  window.Fenrir.sampleSpeedcurve = function sampleSpeedcurve() {
+    if (window.LUX?.forceSample && window.Fenrir?.config?.featureFlags?.forceSpeedcurveSample) {
+      window.LUX.forceSample();
+    }
+  }
+  
+  document.addEventListener('onGeoDataCaptured', (event) => {
+    LUX.addData('continentCode', event.detail?.geoData?.continentCode || 'NA')
+  });
+  </script>
+  
+  <script
+    async
+   
+    src="https://cdn.speedcurve.com/js/lux.js?id=38383524"
+    onload="window.Fenrir.sampleSpeedcurve()"
+  ></script>
+  
+  <script>
+  (function(){
+    var toFirstRequest = 'Inline Scripts Init - Start';
+    var toAdLibrary = 'Inline Scripts Ad Library Loaded - Start';
+  
+    function createMark(markName) {
+      var perfMarks = window.performance;
+      var lux = window.LUX;
+  
+      if (perfMarks && perfMarks.clearMarks && perfMarks.mark) {
+        perfMarks.clearMarks(markName);
+        perfMarks.mark(markName);
+      } else if (lux && lux.mark) {
+        lux.mark(markName);
+      }
+    }
+  
+    createMark(toFirstRequest);
+    createMark(toAdLibrary);
+  })()
+  </script>    <script>
+      window.Fenrir = window.Fenrir || { config: {} };
+      window.Fenrir.config.useDatadogProxyUrl = true;
+    </script>
+    <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20async%20data-track-load%3D%22rubicon%22%20data-consent%3D%22MARKETING%22%20src%3D%22https%3A%2F%2Fmicro.rubiconproject.com%2Fprebid%2Fdynamic%2F10306.js%22%3E%3C%2Fscript%3E" });</script>
+  <!-- start Permutive -->
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%3E%0A%20%20%20%20!function(e%2Co%2Cn%2Ci)%7Bif(!e)%7Be%3De%7C%7C%7B%7D%2Cwindow.permutive%3De%2Ce.q%3D%5B%5D%3Bvar%20t%3Dfunction()%7Breturn(%5B1e7%5D%2B-1e3%2B-4e3%2B-8e3%2B-1e11).replace(%2F%5B018%5D%2Fg%2Cfunction(e)%7Breturn(e%5E(window.crypto%7C%7Cwindow.msCrypto).getRandomValues(new%20Uint8Array(1))%5B0%5D%2615%3E%3Ee%2F4).toString(16)%7D)%7D%3Be.config%3Di%7C%7C%7B%7D%2Ce.config.apiKey%3Do%2Ce.config.workspaceId%3Dn%2Ce.config.environment%3De.config.environment%7C%7C%22production%22%2C(window.crypto%7C%7Cwindow.msCrypto)%26%26(e.config.viewId%3Dt())%3Bfor(var%20g%3D%5B%22addon%22%2C%22identify%22%2C%22track%22%2C%22trigger%22%2C%22query%22%2C%22segment%22%2C%22segments%22%2C%22ready%22%2C%22on%22%2C%22once%22%2C%22user%22%2C%22consent%22%5D%2Cr%3D0%3Br%3Cg.length%3Br%2B%2B)%7Bvar%20w%3Dg%5Br%5D%3Be%5Bw%5D%3Dfunction(o)%7Breturn%20function()%7Bvar%20n%3DArray.prototype.slice.call(arguments%2C0)%3Be.q.push(%7BfunctionName%3Ao%2Carguments%3An%7D)%7D%7D(w)%7D%7D%7D(window.permutive%2C%226f1150a7-e587-49c6-b439-a4b7ee68a5a7%22%2C%223aba5292-ba75-422b-8715-bd21146f7836%22%2C%7B%22apiHost%22%3A%20%22permutive.businessinsider.com%22%2C%20%22consentRequired%22%3A%20true%7D)%3B%0A%20%20%20%20window.googletag%3Dwindow.googletag%7C%7C%7B%7D%2Cwindow.googletag.cmd%3Dwindow.googletag.cmd%7C%7C%5B%5D%2Cwindow.googletag.cmd.push(function%20permutiveCmd()%7Bif(0%3D%3D%3Dwindow.googletag.pubads().getTargeting(%22permutive%22).length)%7Bvar%20e%3Dwindow.localStorage.getItem(%22_pdfps%22)%3Bwindow.googletag.pubads().setTargeting(%22permutive%22%2Ce%3FJSON.parse(e)%3A%5B%5D)%3Bvar%20o%3Dwindow.localStorage.getItem(%22permutive-id%22)%3Bo%26%26(window.googletag.pubads().setTargeting(%22puid%22%2Co)%2Cwindow.googletag.pubads().setTargeting(%22ptime%22%2CDate.now().toString()))%2Cwindow.permutive.config.viewId%26%26window.googletag.pubads().setTargeting(%22prmtvvid%22%2Cwindow.permutive.config.viewId)%2Cwindow.permutive.config.workspaceId%26%26window.googletag.pubads().setTargeting(%22prmtvwid%22%2Cwindow.permutive.config.workspaceId)%7D%7D)%3B%0A%20%20%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20data-consent%3D%22MARKETING%22%20data-request-consent%3D%22permutive%22%20async%20src%3D%22https%3A%2F%2Fbusinessinsider.edge.permutive.app%2F3aba5292-ba75-422b-8715-bd21146f7836-web.js%22%3E%3C%2Fscript%3E" });</script>
+  <!-- end Permutive -->
+  
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%3E%0A%20%20(function()%7B%0A%20%20%20%20var%20cookies%20%3D%20document.cookie.split('%3B').reduce(function(acc%2C%20val)%20%7B%0A%20%20%20%20%20%20var%20p%20%3D%20val.trim().split('%3D')%3B%0A%20%20%20%20%20%20acc%5Bp%5B0%5D%5D%20%3D%20p%5B1%5D%3B%0A%20%20%20%20%20%20return%20acc%3B%0A%20%20%20%20%7D%2C%20%7B%7D)%3B%0A%20%20%0A%20%20%20%20var%20identify%20%3D%20%5B%5D%2C%20iId%2C%20aId%3B%0A%20%20%20%20if%20(iId%20%3D%20cookies%5B'insider_uid'%5D)%20identify.push(%7B%22id%22%3A%20iId%2C%20%22tag%22%3A%20%22insider_uid%22%2C%20%22priority%22%3A1%7D)%3B%0A%20%20%20%20if%20(aId%20%3D%20cookies%5B'anonymous_id'%5D)%20identify.push(%7B%22id%22%3A%20aId%2C%20%22tag%22%3A%20%22anonymous_id%22%2C%20%22priority%22%3A2%7D)%3B%0A%20%20%20%20if%20(uId%20%3D%20cookies%5B'universal_id'%5D)%20identify.push(%7B%22id%22%3A%20uId%2C%20%22tag%22%3A%20%22universal_id%22%2C%20%22priority%22%3A2%7D)%3B%0A%20%20%20%20if%20(identify.length)%20window.permutive.identify(identify)%3B%0A%20%20%7D)()%0A%20%20%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20data-consent%3D%22ANALYTICS%22%20async%3D%22%22src%3D%22https%3A%2F%2Fcdn.confiant-integrations.net%2Fcdnm50QDU6s2lq_RrjTCOPkh-uY%2Fgpt_and_prebid%2Fconfig.js%22%3E%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20async%20data-track-load%3D%22doubleverify%22%20data-consent%3D%22MARKETING%22%20src%3D%22https%3A%2F%2Fpub.doubleverify.com%2Fdvtag%2F23280644%2FDV673672%2Fpub.js%22%3E%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20data-consent%3D%22MARKETING%22%3E%0A%20%20%20%20!function(e%2Ct%2Cc%2Cn%2Co%2Ca%2Cm)%7Be._bmb%7C%7C(o%3De._bmb%3Dfunction()%7Bo.x%3Fo.x.apply(o%2Carguments)%3Ao.q.push(arguments)%7D%2Co.q%3D%5B%5D%2Ca%3Dt.createElement(c)%2Ca.async%3Dtrue%2Ca.src%3D%22https%3A%2F%2Fvi.ml314.com%2Fget%3Feid%3D50096%26tk%3D8PHo1fmxaUWZY0JmljRcRGcCzjCy4DKbPX5sP2fZNL483d%26fp%3D%22%2B(e.localStorage%26%26e.localStorage.getItem(n)%7C%7C%22%22)%2Cm%3Dt.getElementsByTagName(c)%5B0%5D%2Cm.parentNode.insertBefore(a%2Cm))%7D(window%2Cdocument%2C%22script%22%2C%22_ccmaid%22)%3B%0A%20%20%20%20window.googletag%20%3D%20window.googletag%20%7C%7C%20%7Bcmd%3A%20%5B%5D%7D%3B%0A%20%20%20%20googletag.cmd.push(function()%7B%0A%20%20%20%20%20%20_bmb('vi'%2C%20function(data)%7B%0A%20%20%20%20%20%20%20%20if%20(data%20!%3D%20null)%20%7B%0A%20%20%20%20%20%20%20%20%20%20var%20tmpSegment%20%3D%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20data.industry_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.revenue_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.size_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.functional_area_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.professional_group_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.seniority_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.decision_maker_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.install_data_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.topic_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.interest_group_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.segment%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data.b2b_interest_cluster_id%0A%20%20%20%20%20%20%20%20%20%20%20%20%5D.filter(Boolean).join('%2C')%3B%0A%20%20%20%20%20%20%20%20%20%20tmpSegment%20!%3D%20''%20%26%26%20window.googletag.setConfig(%7B%20targeting%3A%20%7B%20bmb%3A%20tmpSegment.split('%2C')%20%7D%20%7D)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%7D)%3B%0A%20%20%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20data-consent%3D%22MARKETING%22%3E%0A%20%20%20%20(function%20(w%2Cd%2Ct)%20%7B%0A%20%20%20%20%20%20w._ml%20%3D%20w._ml%20%7C%7C%20%7B%7D%3B%0A%20%20%20%20%20%20w._ml.eid%20%3D%20'50096'%3B%0A%20%20%20%20%20%20w.Fenrir%20%3D%20w.Fenrir%20%7C%7C%20%7B%20config%3A%20%7B%7D%20%7D%3B%0A%20%20%20%20%20%20w.Fenrir.syncBomboraIds%20%3D%20function(a%2C%20b)%20%7B%0A%20%20%20%20%20%20%20%20if%20(!a%20%26%26%20!b)%20return%3B%0A%20%20%20%20%20%20%20%20if%20(w.Fenrir.cm%20%26%26%20w.Fenrir.cm.isOptedOutOfAds)%20return%3B%0A%20%20%0A%20%20%20%20%20%20%20%20var%20decode%20%3D%20function(s)%20%7B%20return%20w.atob(s)%3B%20%7D%3B%0A%20%20%20%20%20%20%20%20var%20p%20%3D%20%7B%7D%3B%0A%20%20%0A%20%20%20%20%20%20%20%20if%20(a)%20p%5Bdecode('aGVtMjU2')%5D%20%3D%20a%3B%0A%20%20%20%20%20%20%20%20if%20(b)%20p%5Bdecode('aGVtNQ%3D%3D')%5D%20%3D%20b%3B%0A%20%20%0A%20%20%20%20%20%20%20%20var%20k%20%3D%20JSON.stringify(p)%3B%0A%20%20%20%20%20%20%20%20if%20(w.Fenrir.bomboraSyncKey%20%3D%3D%3D%20k)%20return%3B%0A%20%20%0A%20%20%20%20%20%20%20%20w.Fenrir.bomboraSyncKey%20%3D%20k%3B%0A%20%20%20%20%20%20%20%20w._ml.q%20%3D%20w._ml.q%20%7C%7C%20%5B%5D%3B%0A%20%20%20%20%20%20%20%20w._ml.q.push(%5B'sync'%2C%20p%5D)%3B%0A%20%20%20%20%20%20%7D%3B%0A%20%20%0A%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20var%20h%20%3D%20w.localStorage%20%26%26%20w.localStorage.getItem('email_hashes')%3B%0A%20%20%20%20%20%20%20%20if%20(h)%20%7B%0A%20%20%20%20%20%20%20%20%20%20h%20%3D%20JSON.parse(h)%3B%0A%20%20%20%20%20%20%20%20%20%20w.Fenrir.syncBomboraIds(h.email_sha256%2C%20h.email_md5)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%20catch%20(error)%20%7B%7D%0A%20%20%0A%20%20%20%20%20%20var%20s%2C%20cd%2C%20tag%3B%20s%20%3D%20d.getElementsByTagName(t)%5B0%5D%3B%20cd%20%3D%20new%20Date()%3B%0A%20%20%20%20%20%20tag%20%3D%20d.createElement(t)%3B%20tag.async%20%3D%201%3B%0A%20%20%20%20%20%20tag.src%20%3D%20'https%3A%2F%2Fml314.com%2Ftag.aspx%3F'%20%2B%20cd.getDate()%20%2B%20cd.getMonth()%3B%0A%20%20%20%20%20%20s.parentNode.insertBefore(tag%2C%20s)%3B%0A%20%20%20%20%7D)(window%2Cdocument%2C'script')%3B%0A%20%20%20%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20data-consent%3D%22MARKETING%22%20defer%20src%3D%22%2F%2Fb-code.liadm.com%2Fb-01h4.min.js%22%3E%3C%2Fscript%3E" });</script>
+
+
+  <style>
+  /**
+   * Font-family declarations
+   *
+   * 99% of the time you won't need to add your selector here.
+   * Read the Fenrir Wiki about how to work with fonts:
+   * https://github.com/businessinsider/fenrir/wiki/CSS-Fonts
+   */
+  
+  .headline-regular /* utility class */ {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .headline-regular-italic /* utility class */ {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .typography h1 strong:not(.ignore-typography strong),
+  .typography h2 strong:not(.ignore-typography strong),
+  .typography h3 strong:not(.ignore-typography strong),
+  .typography h4 strong:not(.ignore-typography strong),
+  .typography h5 strong:not(.ignore-typography strong),
+  .typography h6 strong:not(.ignore-typography strong),
+  .typography .summary-list,
+  .typography .summary-list li,
+  .typography .summary-list strong,
+  .typography .read-more-links li:first-child,
+  .typography .read-more-links li:first-child strong,
+  .headline-semibold /* utility class */,
+  .headline-semibold.ignore-typography /* utility class */ {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .typography h1 em:not(.ignore-typography em),
+  .typography h2 em:not(.ignore-typography em),
+  .typography h3 em:not(.ignore-typography em),
+  .typography h4 em:not(.ignore-typography em),
+  .typography h5 em:not(.ignore-typography em),
+  .typography h6 em:not(.ignore-typography em),
+  .typography .summary-list li em,
+  .headline-semibold-italic /* utility class */ {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
+  .typography:not(.ignore-typography),
+   /* TODO: Use the utility class instead of element selectors */
+  .typography .ecm .summary-list li,
+  .body-regular /* utility class */ {
+    font-family: Georgia, Times, serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  /* TODO: Use the utility class instead of element selectors */
+  .category-tagline p,
+  .typography .blockquote,
+  .typography em:not(.ignore-typography em),
+  .body-italic /* utility class */ {
+    font-family: Georgia, Times, serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .typography strong:not(.ignore-typography strong),
+  .body-bold /* utility class */ {
+    font-family: Georgia, Times, serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .typography em strong:not(h2 *):not(h3 *):not(h4 *):not(h5 *):not(h6 *):not(.ignore-typography strong),
+  .typography strong:not(h2 *):not(h3 *):not(h4 *):not(h5 *):not(h6 *):not(.ignore-typography strong) em,
+  .body-bold-italic /* utility class */ {
+    font-family: Georgia, Times, serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  </style>    <link
+      rel="stylesheet"
+      href="/styles/fonts-async.87dc6399b035527336ce.css"
+      media="print"
+      onload="this.media='all'; this.onload=null;"
+    >
+  <script>
+    window.initialDataLayer = {"story_platform":"web","pageType":"errorPage","postURI":"index/baltic_dry","publisher":"Markets Insider","vertical":"","author":"","category":"","dateModified":false,"datePublished":false,"secondaryVerticals":"","theme":""};
+    window.newsMetaData = {};
+  </script>
+  
+  <script id="gtm-config-script" >(()=>{var e={49195(e,t,r){"use strict";const a=Symbol.for("fenrir.nativeAnalyticsDebug"),n=/^[a-zA-Z][a-zA-Z0-9_.:-]{0,99}$/,s=["development","stage","local","ephemeral","sandbox"],i=()=>window.top===window&&!0===window.Fenrir?.meta?.isMobileAppShell&&s.includes(window.Fenrir?.config?.fenrirEnv)&&"function"==typeof window.ReactNativeWebView?.postMessage,o=e=>(new TextEncoder).encode(JSON.stringify(e)).length,c=(e,t)=>{const r=Object.getOwnPropertyDescriptor(e,t);return r&&"value"in r?r.value:void 0},u=()=>(window[a]||={documentId:`document-${Date.now()}-${Math.random().toString(36).slice(2)}`,sequence:0,captureId:null,enabled:!1,startup:"1"===new URL(window.location.href).searchParams.get("app-analytics-log"),buffer:[],discardedCount:0,activeEntries:new Set,layers:new WeakSet,send:null},window[a]),d=(e,t)=>{if(!e.enabled||!e.send||!i())return;const r={...t,captureId:e.captureId,documentId:e.documentId};if(!(o(r)>4096))try{e.send(r)}catch{}},l=e=>{const t=Array.isArray(window.dataLayer)&&e.layers.has(window.dataLayer);d(e,{type:"analyticsDebugStatus",state:t?"active":"unavailable",dataLayerAvailable:t,gtmLoaded:Boolean(window.google_tag_manager||document.querySelector?.('script[data-track-load="gtm"]')),discardedCount:e.discardedCount,...t?{}:{reason:"noDataLayer"}})},p=(e,t)=>{if((e.enabled||e.startup)&&i())try{if(!t||"object"!=typeof t)return;const r="event"===c(t,"0"),a=c(t,r?"1":"event");if("string"!=typeof a||!n.test(a))return;const s={type:"analyticsDebugEvent",event:a,parameters:(e=>{const t=new Set,r=(e,a)=>{if(null===e||"boolean"==typeof e)return e;if("string"==typeof e)return e.slice(0,200);if("number"==typeof e)return Number.isFinite(e)?e:void 0;if("object"!=typeof e||a>2||t.has(e))return;const n=Object.getPrototypeOf(e);if(!Array.isArray(e)&&n!==Object.prototype&&null!==n)return;t.add(e);const s={};return Object.keys(e).slice(0,40).some(t=>{if(t.length>40||0===a&&"event"===t)return!1;const n=r(c(e,t),a+1);return void 0!==n&&(Object.defineProperty(s,t,{configurable:!0,enumerable:!0,value:n}),!(o(s)<=2800||(delete s[t],0)))}),t.delete(e),Array.isArray(e)?Object.values(s):s};return!e||"object"!=typeof e||Array.isArray(e)?{}:r(e,0)||{}})(r?c(t,"2"):t),sequence:e.sequence,timestamp:Date.now()};if(e.sequence+=1,e.enabled)return void d(e,s);e.buffer.push(s),e.buffer.length>200&&(e.buffer.shift(),e.discardedCount+=1)}catch{}},y=e=>{const t=window.dataLayer;if(!Array.isArray(t)||e.layers.has(t)||!Object.isExtensible(t))return;const r=Object.getOwnPropertyDescriptor(t,"push");if(r&&!r.configurable)return;const a=r=>function(...a){const n=this===t?a.filter(t=>!e.activeEntries.has(t)):[];n.forEach(t=>e.activeEntries.add(t));try{return n.forEach(t=>p(e,t)),Reflect.apply(r,this,a)}finally{n.forEach(t=>e.activeEntries.delete(t))}};let n=a(t.push);Object.defineProperty(t,"push",{configurable:!0,enumerable:r?.enumerable??!1,get:()=>n,set:e=>{n="function"==typeof e?a(e):e}}),e.layers.add(t),e.startup&&t.forEach(t=>p(e,t))};var f=r(667),w=r.n(f);const g="https://insider/",b=()=>{let e,t;try{e=localStorage.getItem("profile")}catch(e){return null}if(!e)return null;try{t=JSON.parse(e)}catch(e){return null}if(!t)return null;const r=t[`${g}token`];if(!r||"string"!=typeof r)return null;const a=(e=>{try{const t=e.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"),r=decodeURIComponent(atob(t).split("").map(e=>`%${`00${e.charCodeAt(0).toString(16)}`.slice(-2)}`).join(""));return JSON.parse(r)}catch(e){return null}})(r);if(!a?.exp)return null;if(Math.round(Date.now()/1e3)>a.exp)return null;return{profile:t,memberId:t[`${g}memberId`]}},h=e=>{if(e.userPhase)return e.userPhase;return e[`${g}hasPrime`]?"subscriber":"account"},_=()=>{try{return Boolean(localStorage.getItem("email_hashes"))}catch(e){return!1}},v=()=>{const e=b();if(!e)return{accessType:null,authenticationStatus:"unauthenticated",insiderId:null,subscriptionId:null,subscriptionStatus:null,userPhase:_()?"user":null};const{profile:t,memberId:r}=e,a=t.analytics??{},n=t[`${g}userAccessType`];return{accessType:a.accessType??t.accessType??n??null,authenticationStatus:"authenticated",insiderId:a.insiderId??r??null,subscriptionId:a.subscriptionId??t[`${g}subscriptionId`]??t.subscriptionId??null,subscriptionStatus:a.subscriptionStatus??t.subscriptionStatus??null,userPhase:a.userPhase??h(t)??null}};(()=>{function e(...e){window.dataLayer=window.dataLayer||[],window.dataLayer.push({...e})}window.dataLayer=window.dataLayer||[],function(e){if(!i())return;const t=u();e&&(t.send=e),(t.startup||t.enabled)&&y(t),t.enabled&&l(t)}();const t={analytics_storage:"TCF"===window.Fenrir.privacyApi?"denied":"granted",ad_storage:"TCF"===window.Fenrir.privacyApi?"denied":"granted",ads_data_redaction:"TCF"===window.Fenrir.privacyApi};let r=window.localStorage.getItem("fenrir-ga-consent");try{if(r=JSON.parse(r),!["granted","denied"].includes(r.analytics_storage)||!["granted","denied"].includes(r.ad_storage)||![!0,!1].includes(r.ads_data_redaction))throw new Error("invalid fenrir-ga-consent value");t.analytics_storage=r.analytics_storage,t.ad_storage=r.ad_storage,t.ads_data_redaction=r.ads_data_redaction}catch(e){}window.localStorage.setItem("fenrir-ga-consent",JSON.stringify(t));const{analytics_storage:a,ad_storage:n,ads_data_redaction:s}=t;e("consent","default",{analytics_storage:a,ad_storage:n,wait_for_update:500}),e("set","ads_data_redaction",s);const o=window.initialDataLayer||{};"bi"===window.Fenrir.config.identifier&&(o.userAgent=window.navigator.userAgent);const c=v();o.authenticationStatus=c.authenticationStatus,c.userPhase&&(o.userPhase=c.userPhase),c.insiderId&&(o.insiderId=c.insiderId),c.subscriptionId&&(o.subscriptionId=c.subscriptionId),c.subscriptionStatus&&(o.subscription_status=c.subscriptionStatus),c.accessType&&(o.access_type=c.accessType);const d=localStorage.getItem("universal_id");if(d)o.universalId=d;else{const e=w()();localStorage.setItem("universal_id",e),o.universalId=e}const p={event:"privacy",privacy_is_opted_out_of_ads:!1};let f=null;const g=localStorage.getItem("_sp_user_consent_6165");try{f=g?JSON.parse(g):null}catch(e){}if("GPP"===window.Fenrir.privacyApi){const{granularStatus:e}=f?.usnat?.consentStatus||{};p.privacy_is_opted_out_of_ads=!1===e?.sellStatus}else if("TCF"===window.Fenrir.privacyApi){const{granularStatus:e}=f?.gdpr?.consentStatus||{};p.privacy_is_opted_out_of_ads="ALL"!==e?.purposeConsent?.toUpperCase()}window.dataLayer=window.dataLayer||[],window.dataLayer.push(p),window.dataLayer.push(o),window.dataLayer.push({"gtm.start":(new Date).getTime(),event:"gtm.js"})})()},667(e){e.exports=()=>{try{return crypto.randomUUID()}catch(e){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,e=>{const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)})}}}},t={};function r(a){var n=t[a];if(void 0!==n)return n.exports;var s=t[a]={exports:{}};return e[a](s,s.exports,r),s.exports}r.m=e,r.c=t,r.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return r.d(t,{a:t}),t},r.d=(e,t)=>{for(var a in t)r.o(t,a)&&!r.o(e,a)&&Object.defineProperty(e,a,{enumerable:!0,get:t[a]})},r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{r.S={};var e={},t={};r.I=(a,n)=>{n||(n=[]);var s=t[a];if(s||(s=t[a]={}),!(n.indexOf(s)>=0)){if(n.push(s),e[a])return e[a];r.o(r.S,a)||(r.S[a]={});r.S[a];var i=[];return i.length?e[a]=Promise.all(i).then(()=>e[a]=1):e[a]=1}}})();r(49195)})();</script>
+  
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20src%3D%22https%3A%2F%2Fwww.googletagmanager.com%2Fgtm.js%3Fid%3DGTM-MP6F46L%22%20data-consent%3D%22ANALYTICS%22%20data-track-load%3D%22gtm%22%3E%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20src%3D%22https%3A%2F%2Fwww.googletagmanager.com%2Fgtm.js%3Fid%3DGTM-MBTPXX%22%20data-consent%3D%22ANALYTICS%22%20data-track-load%3D%22gtm%22%3E%3C%2Fscript%3E" });</script>
+
+
+
+      <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "load", script: "%3Cscript%20id%3D%22meta-pixel-script%22%20%3E(()%3D%3E%7Bvar%20e%3D%7B69531()%7Blet%20e%3D!1%3Bfunction%20n()%7Bvar%20n%2Co%2Ct%2Cr%2Ci%2Ca%3Be%7C%7C(window.Fenrir%3F.cm%3F.vppaApplies%7C%7Cdocument.querySelectorAll('iframe%5Bsrc*%3D%22jwplayer%22%5D').length%7C%7C(e%3D!0%2Cn%3Dwindow%2Co%3Ddocument%2Ct%3D%22script%22%2Cn.fbq%7C%7C(r%3Dn.fbq%3Dfunction()%7Br.callMethod%3Fr.callMethod.apply(r%2Carguments)%3Ar.queue.push(arguments)%7D%2Cn._fbq%7C%7C(n._fbq%3Dr)%2Cr.push%3Dr%2Cr.loaded%3D!0%2Cr.version%3D%222.0%22%2Cr.queue%3D%5B%5D%2C(i%3Do.createElement(t)).async%3D!0%2Ci.src%3D%22https%3A%2F%2Fconnect.facebook.net%2Fen_US%2Ffbevents.js%22%2C(a%3Do.getElementsByTagName(t)%5B0%5D).parentNode.insertBefore(i%2Ca))%2Cwindow.Fenrir%3F.cm%3F.cmStarted%3Fc()%3AsetTimeout(c%2C1e3)))%3Bfunction%20c()%7Bwindow.Fenrir%3F.cm%3F.usPrivacyApplies%26%26window.Fenrir%3F.cm%3F.isOptedOutOfAds%3Ffbq(%22dataProcessingOptions%22%2C%5B%22LDU%22%5D%2C0%2C0)%3Afbq(%22dataProcessingOptions%22%2C%5B%5D)%2Cfbq(%22init%22%2C%221988166924554892%22)%2Cfbq(%22track%22%2C%22PageView%22)%7D%7DBoolean(window.Fenrir%3F.config%3F.ads%3F.enabled)%3F(window.googletag%3Dwindow.googletag%7C%7C%7Bcmd%3A%5B%5D%7D%2Cwindow.googletag.cmd.push(()%3D%3E%7B!function()%7Bconst%20o%3Dwindow.Fenrir%3F.config%3F.ads%3F.services%2Ct%3Do%3F.amazonTam%3F.enabled%2Cr%3Do%3F.rubiconPrebid%3F.enabled%3Bif(!t%26%26!r)return%20void%20n()%3Bconst%20i%3DDate.now()%3B!function%20a()%7Bif(e)return%3Bconst%20c%3D!t%7C%7Co.amazonTam.loaded%2Cs%3D!r%7C%7Co.rubiconPrebid.loaded%3Bc%26%26s%7C%7CDate.now()-i%3E%3D1e4%3Fn()%3AsetTimeout(a%2C200)%7D()%7D()%7D)%2CsetTimeout(n%2C1e4))%3An()%7D%7D%2Cn%3D%7B%7D%3Bfunction%20o(t)%7Bvar%20r%3Dn%5Bt%5D%3Bif(void%200!%3D%3Dr)return%20r.exports%3Bvar%20i%3Dn%5Bt%5D%3D%7Bexports%3A%7B%7D%7D%3Breturn%20e%5Bt%5D(i%2Ci.exports%2Co)%2Ci.exports%7Do.m%3De%2Co.c%3Dn%2Co.o%3D(e%2Cn)%3D%3EObject.prototype.hasOwnProperty.call(e%2Cn)%2C(()%3D%3E%7Bo.S%3D%7B%7D%3Bvar%20e%3D%7B%7D%2Cn%3D%7B%7D%3Bo.I%3D(t%2Cr)%3D%3E%7Br%7C%7C(r%3D%5B%5D)%3Bvar%20i%3Dn%5Bt%5D%3Bif(i%7C%7C(i%3Dn%5Bt%5D%3D%7B%7D)%2C!(r.indexOf(i)%3E%3D0))%7Bif(r.push(i)%2Ce%5Bt%5D)return%20e%5Bt%5D%3Bo.o(o.S%2Ct)%7C%7C(o.S%5Bt%5D%3D%7B%7D)%3Bo.S%5Bt%5D%3Bvar%20a%3D%5B%5D%3Breturn%20a.length%3Fe%5Bt%5D%3DPromise.all(a).then(()%3D%3Ee%5Bt%5D%3D1)%3Ae%5Bt%5D%3D1%7D%7D%7D)()%3Bo(69531)%7D)()%3B%3C%2Fscript%3E" });</script>
+
+
+      <link
+        rel="stylesheet"
+        href="/styles/markets-insider-page.de9355a8f0c9e0ac192b.css"
+        media="all"
+      >
+
+  <style id="styles-loaded" data-loaded="markets-insider-search-box,markets-insider-banner,marquee,masthead-legacy,markets-insider-footer">[data-component-type=post-body-content]>h1,[data-component-type=post-body-content]>h2,[data-component-type=post-body-content]>h3,[data-component-type=post-body-content]>h4{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>h1{font-size:var(--font-size-mobile-heading-xl);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-mobile-heading-lg);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-lg)}[data-component-type=post-body-content]>h2 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-mobile-heading-md);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-md)}[data-component-type=post-body-content]>h3:not(.ignore-typography) strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h4{font-size:var(--font-size-mobile-heading-sm);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-sm)}[data-component-type=post-body-content]>h4 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg);font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}[data-component-type=post-body-content]>strong{font-weight:var(--font-weight-tiempos-600)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-mobile-body-lg-serif);line-height:var(--line-height-mobile-heading-xl-serif)}[data-component-type=post-body-content]>.slide-content .live-blog-button{font-size:var(--font-size-mobile-label-lg);line-height:var(--line-height-mobile-label-xl)}[data-component-type=post-body-content]>.breakout-box *,[data-component-type=post-body-content]>.financial-product-card *,[data-component-type=post-body-content]>.product-card *,[data-component-type=post-body-content]>.quick-tip *{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>.blockquote{font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg-serif);font-style:italic;font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}.markets-insider-search-box .markets-insider-search-box-results{color:#71717a}.markets-insider-search-box .markets-insider-search-box-results .search-box-results{background-color:#faf7f5;border:1px solid #f0eae2;display:flex;flex-direction:column;max-height:380px;overflow-y:auto;padding:20px 0;row-gap:32px}.markets-insider-search-box .markets-insider-search-box-results .result-section{display:flex;flex-direction:column;row-gap:8px}.markets-insider-search-box .markets-insider-search-box-results .result-item .subtitle,.markets-insider-search-box .markets-insider-search-box-results .result-section-heading{text-transform:uppercase}.markets-insider-search-box .markets-insider-search-box-results .result-item,.markets-insider-search-box .markets-insider-search-box-results .result-section-heading{padding:0 16px}.markets-insider-search-box .markets-insider-search-box-results .result-item{list-style:none;padding-bottom:4px;padding-top:4px}.markets-insider-search-box .markets-insider-search-box-results .result-item:first-child{margin-top:-4px}.markets-insider-search-box .markets-insider-search-box-results .result-item:last-child{margin-bottom:-4px}.markets-insider-search-box .markets-insider-search-box-results .result-item .subtitle{color:#71717a}.markets-insider-search-box .markets-insider-search-box-results .result-item.is-active,.markets-insider-search-box .markets-insider-search-box-results .result-item:hover{background-color:#f0eae2}.markets-insider-search-box .markets-insider-search-box-results .result-item-link{display:block;outline:unset}.markets-insider-search-box{height:100%;position:relative}.masthead-legacy .cta-wrapper .markets-insider-search-box{margin-right:-12px}.markets-insider-search-box form{align-items:center;border:none;display:flex;height:100%;position:relative}.markets-insider-search-box .search-icon-wrapper{align-items:center;cursor:pointer;display:flex;height:40px;justify-content:center;position:absolute;right:0;top:50%;transform:translate3d(0,-50%,0);width:40px}.markets-insider-search-box .svg-icon.search-icon{background:#fff;font-size:20px}.markets-insider-search-box input.search-button{display:none;pointer-events:none}.markets-insider-search-box input.search-box-input{border:2px solid #fff;border-radius:4px;caret-color:#002aff;color:#31313b;height:100%;opacity:0;transition:all .3s ease-out;width:40px}.markets-insider-search-box input.search-box-input::placeholder{color:#71717a}.markets-insider-search-box .markets-insider-search-box-results{position:absolute;top:100%;width:280px}.markets-insider-search-box .markets-insider-search-box-results:has(.search-box-results:empty){display:none}.markets-insider-search-box:not(.is-active) input.search-box-input{color:#fff}.markets-insider-search-box:not(.is-active) .markets-insider-search-box-results{display:none}.markets-insider-search-box.is-active input.search-box-input{border:2px solid #002aff;border-radius:4px;height:100%;opacity:1;outline-color:#002aff;padding:10px 12px;width:280px}.markets-insider-search-box.is-active input.search-box-input:not(:placeholder-shown)+.search-button{border:none;cursor:pointer;display:block;height:100%;opacity:0;padding:0;pointer-events:all;position:absolute;right:0;top:0;width:40px;z-index:2}@media (min-width:1008px){[data-component-type=post-body-content]>h1{font-size:var(--font-size-desktop-heading-xl);line-height:var(--line-height-desktop-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-desktop-heading-lg);line-height:var(--line-height-desktop-heading-lg)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-desktop-heading-md);line-height:var(--line-height-desktop-heading-md)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-size:var(--font-size-desktop-body-lg);line-height:var(--line-height-desktop-body-lg-serif)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-desktop-body-lg-serif);line-height:var(--line-height-desktop-heading-xl-serif)}[data-component-type=post-body-content]>.blockquote{font-size:var(--font-size-desktop-body-lg-serif)}}[data-component-type=post-body-content]>h1,[data-component-type=post-body-content]>h2,[data-component-type=post-body-content]>h3,[data-component-type=post-body-content]>h4{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>h1{font-size:var(--font-size-mobile-heading-xl);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-mobile-heading-lg);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-lg)}[data-component-type=post-body-content]>h2 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-mobile-heading-md);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-md)}[data-component-type=post-body-content]>h3:not(.ignore-typography) strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h4{font-size:var(--font-size-mobile-heading-sm);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-sm)}[data-component-type=post-body-content]>h4 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg);font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}[data-component-type=post-body-content]>strong{font-weight:var(--font-weight-tiempos-600)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-mobile-body-lg-serif);line-height:var(--line-height-mobile-heading-xl-serif)}[data-component-type=post-body-content]>.slide-content .live-blog-button{font-size:var(--font-size-mobile-label-lg);line-height:var(--line-height-mobile-label-xl)}[data-component-type=post-body-content]>.breakout-box *,[data-component-type=post-body-content]>.financial-product-card *,[data-component-type=post-body-content]>.product-card *,[data-component-type=post-body-content]>.quick-tip *{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>.blockquote{font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg-serif);font-style:italic;font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}.markets-insider-banner{--masthead-padding:24px;--asset-gap:20px;display:flex;padding:0}.markets-insider-banner .banner-asset-wrapper{margin-left:var(--masthead-padding)}.markets-insider-banner .marquee{height:50px;width:100%}.markets-insider-banner .marquee.can-scroll:not(.pause-scroll) .marquee-spacer{width:var(--asset-gap)}.markets-insider-banner .marquee.can-scroll:not(.pause-scroll) .banner-asset:last-child{position:relative}.markets-insider-banner .marquee.can-scroll:not(.pause-scroll) .banner-asset:last-child:after{background-image:linear-gradient(180deg,#0a0a0a 25%,hsla(0,0%,100%,0) 0);background-position:100%;background-repeat:repeat-y;background-size:2px 4px;border:none;content:"";display:block;height:100%;position:absolute;right:calc(var(--asset-gap)/2*-1 + -1px);top:50%;transform:translate3d(0,-50%,0);width:1px}.markets-insider-banner .marquee.can-scroll.pause-scroll .banner-asset:last-child{margin-right:var(--masthead-padding)}.markets-insider-banner .marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar{height:6px;width:0}.markets-insider-banner .marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar-track{background-color:#f0eae2}.markets-insider-banner .marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar-thumb{background-color:#faf7f5}.markets-insider-banner .marquee .marquee-clone .banner-asset-wrapper{margin-left:0}.markets-insider-banner [data-component-type=marquee].can-scroll .banner-asset{pointer-events:none}.markets-insider-banner [data-component-type=marquee].can-scroll.pause-scroll .banner-asset{pointer-events:auto}.markets-insider-banner:has(iframe){--sponsor-offset:8px;align-items:center;display:flex;flex-direction:row;justify-content:space-between;row-gap:0}.markets-insider-banner:has(iframe) .marquee{flex-grow:1;width:calc(100% - 146px - var(--masthead-padding) + var(--sponsor-offset))}.markets-insider-banner .markets-sponsor{justify-self:flex-end;padding-right:calc(var(--masthead-padding) - var(--sponsor-offset));z-index:2}.markets-insider-banner .markets-sponsor>.ad-wrapper{margin:0!important;max-height:65px;width:146px}.markets-insider-banner .banner-asset-container{column-gap:var(--asset-gap);display:flex;flex-flow:row nowrap;font-variant-numeric:tabular-nums;opacity:0;overflow:visible;padding-left:0;padding-right:0;position:relative;scrollbar-width:none}.markets-insider-banner .banner-asset-container.is-visible{animation:fadein 1s ease-in-out 1 none;opacity:1}.markets-insider-banner .banner-asset-container::-webkit-scrollbar{display:none}.markets-insider-banner .banner-asset{display:flex;flex:0 0 auto;flex-flow:column nowrap;justify-content:center;transition:all .15s ease-in-out;width:160px}.markets-insider-banner .banner-asset.is-futures{width:232px}.markets-insider-banner .banner-asset:not(:last-child){position:relative}.markets-insider-banner .banner-asset:not(:last-child):after{background-image:linear-gradient(180deg,#0a0a0a 25%,hsla(0,0%,100%,0) 0);background-position:100%;background-repeat:repeat-y;background-size:2px 4px;border:none;content:"";display:block;height:100%;position:absolute;right:calc(var(--asset-gap)/2*-1 + -1px);top:50%;transform:translate3d(0,-50%,0);width:1px}.markets-insider-banner .banner-asset .banner-link{border-radius:2px;color:inherit;display:flex;flex-direction:column;padding:6px 8px;row-gap:4px;user-select:none}.markets-insider-banner .banner-asset .asset-header{color:#0a0a0a;display:inline-block}.markets-insider-banner .banner-asset .asset-bottom,.markets-insider-banner .banner-asset .asset-top{align-items:center;display:flex;flex-wrap:nowrap;height:17px}.markets-insider-banner .banner-asset .asset-top{column-gap:8px;justify-content:flex-start}.markets-insider-banner .banner-asset .asset-bottom{justify-content:space-between;width:132px}.markets-insider-banner .asset-change{align-items:center;color:#098941;display:flex}.markets-insider-banner .asset-change.is-down{color:#ea0201}.markets-insider-banner .asset-change.is-down .brand-arrow-icon{transform:rotate(90deg)}.markets-insider-banner .asset-change .brand-arrow-icon{display:inline-block;margin-right:4px;transition:transform .2s ease-in-out;vertical-align:middle}.markets-insider-banner .absolute-value,.markets-insider-banner .current-value{padding:0}.markets-insider-banner .absolute-value{line-height:1}.markets-insider-banner .current-value{border-radius:3px;padding-left:4px;padding-right:4px;transition:all .15s ease-in-out;white-space:nowrap}.markets-insider-banner .current-value.is-up{background:#d8f8c0}.markets-insider-banner .current-value.is-down{background:#ffd8e5}@media (min-width:600px){.markets-insider-banner{margin-left:calc(var(--masthead-padding)*-1);margin-right:calc(var(--masthead-padding)*-1);width:calc(100% + var(--masthead-padding)*2)}}@media (min-width:1008px){[data-component-type=post-body-content]>h1{font-size:var(--font-size-desktop-heading-xl);line-height:var(--line-height-desktop-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-desktop-heading-lg);line-height:var(--line-height-desktop-heading-lg)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-desktop-heading-md);line-height:var(--line-height-desktop-heading-md)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-size:var(--font-size-desktop-body-lg);line-height:var(--line-height-desktop-body-lg-serif)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-desktop-body-lg-serif);line-height:var(--line-height-desktop-heading-xl-serif)}[data-component-type=post-body-content]>.blockquote{font-size:var(--font-size-desktop-body-lg-serif)}.markets-insider-banner .marquee.can-scroll:not(.pause-scroll) .banner-link:hover,.markets-insider-banner .marquee.can-scroll:not(.pause-scroll):not(.can-scroll) .banner-link:hover{background-color:#faf7f5}.markets-insider-banner .banner-asset-container{margin-left:auto;margin-right:auto}.markets-insider-banner .banner-asset .banner-link:hover{background-color:#faf7f5}}.marquee{height:100%;width:100%}.marquee .marquee-wrapper{display:flex;overflow:hidden}.marquee .marquee-scroller{display:inline-block;font-size:0;white-space:nowrap}.marquee .marquee-scroller>*{display:inline-block}.marquee .marquee-spacer{height:100%;width:40px}.marquee .marquee-spacer:after{content:"";display:block;height:auto;width:40px}.marquee .marquee-clone,.marquee .marquee-spacer,.marquee .marquee-static{display:none}.marquee[data-scroll-type=loop].can-scroll:not(.pause-scroll) .marquee-clone,.marquee[data-scroll-type=loop].can-scroll:not(.pause-scroll) .marquee-spacer{display:inline-block}.marquee.can-scroll.pause-scroll{position:relative}.marquee.can-scroll.pause-scroll .marquee-wrapper{left:0;min-height:36px;position:absolute;width:100%}.marquee.can-scroll.pause-scroll[data-scroll-type=slideup] .marquee-scroller{display:none}.marquee.can-scroll.pause-scroll[data-scroll-type=slideup] .marquee-static{display:inline-block}.marquee.can-scroll.pause-scroll[data-scroll-type=loop] .marquee-clone,.marquee.can-scroll.pause-scroll[data-scroll-type=loop] .marquee-spacer{display:none}.marquee.can-scroll.pause-scroll .marquee-wrapper{overflow:auto hidden;scrollbar-width:none;-ms-overflow-style:none}.marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar{background:transparent;width:0}@media (min-width:960px){.marquee.can-scroll.pause-scroll .marquee-wrapper{scrollbar-width:thin;-ms-overflow-style:unset}.marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar{width:8px}.marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar-track{background-color:#e7e7e7;border:1px solid #cacaca;border-radius:6px;box-shadow:inset 0 0 6px rgba(0,0,0,.3)}.marquee.can-scroll.pause-scroll .marquee-wrapper::-webkit-scrollbar-thumb{background-color:#363636;border-radius:6px}}[data-component-type=post-body-content]>h1,[data-component-type=post-body-content]>h2,[data-component-type=post-body-content]>h3,[data-component-type=post-body-content]>h4{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>h1{font-size:var(--font-size-mobile-heading-xl);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-mobile-heading-lg);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-lg)}[data-component-type=post-body-content]>h2 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-mobile-heading-md);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-md)}[data-component-type=post-body-content]>h3:not(.ignore-typography) strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h4{font-size:var(--font-size-mobile-heading-sm);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-sm)}[data-component-type=post-body-content]>h4 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg);font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}[data-component-type=post-body-content]>strong{font-weight:var(--font-weight-tiempos-600)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-mobile-body-lg-serif);line-height:var(--line-height-mobile-heading-xl-serif)}[data-component-type=post-body-content]>.slide-content .live-blog-button{font-size:var(--font-size-mobile-label-lg);line-height:var(--line-height-mobile-label-xl)}[data-component-type=post-body-content]>.breakout-box *,[data-component-type=post-body-content]>.financial-product-card *,[data-component-type=post-body-content]>.product-card *,[data-component-type=post-body-content]>.quick-tip *{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>.blockquote{font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg-serif);font-style:italic;font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}.masthead-legacy{position:relative}.masthead-legacy:has(.dropdown-section){--dropdown-height:49px}.masthead-legacy a{color:#0a0a0a;text-decoration:none}.masthead-legacy a:hover{color:#31313b}.masthead-legacy>section{background-color:#fff;border-bottom:1px solid #cecece}.masthead-legacy .main-section{display:flex;flex-direction:row;justify-content:space-between;padding-bottom:9px;padding-top:9px;z-index:5777777}.masthead-legacy .main-section.with-mi-search{padding-bottom:7px;padding-top:7px}.masthead-legacy .top-section{align-items:center;border-top:none;display:flex;justify-content:center;vertical-align:middle}.masthead-legacy .bottom-section{border-bottom:1px solid #cecece}.masthead-legacy .bottom-section:not(.grid-lines){padding-left:0;padding-right:0}.masthead-legacy .dropdown-section{padding-bottom:12px;padding-top:12px;width:100%}.masthead-legacy .cta-wrapper{--col-gap:24px;align-items:center;align-self:center;column-gap:var(--col-gap);display:flex;flex-direction:row;font-size:12px;height:40px;justify-content:center;line-height:16px;max-height:40px}.masthead-legacy .cta-wrapper:has(.markets-insider-search-box){--column-gap:32px;height:44px;max-height:44px}.masthead-legacy .cta-wrapper .markets-insider-search-box{display:none}.masthead-legacy .markets-insider-my-watchlist{color:#002aff}.masthead-legacy .logo-link{align-items:center;display:flex;justify-content:flex-start}.masthead-legacy .logo-inline{height:auto;max-width:274px;width:calc(100vw - 112px)}.masthead-legacy .menu-button{align-items:center;background-color:#0a0a0a;border:none;border-radius:40px;color:#fff;display:flex;font-size:20px;height:40px;justify-content:center;margin-left:-4px;padding:0;width:40px}.masthead-legacy .menu-button:hover{background-color:#31313b;cursor:pointer}.masthead-legacy .menu-button:focus-visible{outline:2px solid #02c;outline-offset:3px}.masthead-legacy .markets-banner{margin-right:calc(var(--masthead-padding)*-1);padding:0}.masthead-legacy .sticky-section{display:none}.masthead-legacy.is-fixed.no-masthead-ad:not(:has(.vertical-nav),:has(.bottom-section)):after{content:"";display:block;height:calc(var(--main-height) + var(--dropdown-height));width:100%}.masthead-legacy.is-fixed.no-masthead-ad:not(:has(.vertical-nav),:has(.top-section)):has(.bottom-section) .bottom-section{margin-top:calc(var(--main-height) + var(--dropdown-height))}.masthead-legacy.is-fixed.no-masthead-ad:has(.vertical-nav) .vertical-nav{margin-top:calc(var(--main-height) + var(--dropdown-height))}.masthead-legacy.is-fixed:not(.no-masthead-ad) .top-section{margin-bottom:calc(var(--main-height) + var(--dropdown-height))}.masthead-legacy.is-fixed .main-section{left:0;position:fixed;top:0;width:100%}.masthead-legacy.is-fixed .dropdown-section,.masthead-legacy.is-fixed .sticky-section{display:block;left:0;position:fixed;top:var(--main-height);width:100%;z-index:5666666}.masthead-legacy.is-fixed:has(.sticky-section) .masthead-ad.is-leave-behind:not(.is-disabled) .masthead-ad-wrapper [data-bi-ad]{position:relative;z-index:2}.masthead-legacy.is-fixed:has(.sticky-section) .masthead-ad.is-leave-behind:not(.is-disabled) .masthead-ad-wrapper [data-bi-ad]:before{background-color:#fff;bottom:100%;content:"";display:block;height:100%;position:absolute;width:100%;z-index:1}.masthead-legacy{--main-height:59px;--dropdown-height:0px}.masthead-legacy.as-homepage{--main-height:100px;--dropdown-height:0px}.masthead-legacy.as-homepage .bottom-section{border-bottom:1px solid #cecece;padding-bottom:16px;padding-top:24px}.masthead-legacy.as-homepage .subnav-section{display:none}.masthead-legacy.as-homepage .logo-inline{height:auto}.masthead-legacy.as-homepage.is-fixed .main-section{position:fixed;top:0}.masthead-animation{animation-delay:calc(var(--scroll)*-1s);animation-duration:1s;animation-fill-mode:both;animation-iteration-count:1;animation-play-state:paused;animation-timing-function:linear}@keyframes logo-animation{25%{transform:scale(var(--logo-animation-scale-1))}50%{transform:scale(var(--logo-animation-scale-2))}75%{transform:scale(var(--logo-animation-scale-3))}to{transform:scale(var(--logo-animation-scale-4))}}@keyframes main-animation{25%{padding-bottom:var(--main-animation-width-1);padding-top:var(--main-animation-width-1)}50%{padding-bottom:var(--main-animation-width-2);padding-top:var(--main-animation-width-2)}75%{padding-bottom:var(--main-animation-width-3);padding-top:var(--main-animation-width-3)}90%{padding-bottom:var(--main-animation-width-4);padding-top:var(--main-animation-width-4)}to{padding-bottom:var(--main-animation-width-5);padding-top:var(--main-animation-width-5)}}.masthead-legacy.as-homepage.with-trending-bar .bottom-section{border-bottom:none;margin-bottom:0;padding-bottom:0;padding-top:0}@media (min-width:0)and (max-width:599px){.masthead-legacy .main-section .markets-insider-my-watchlist{display:none}}@media (min-width:600px){.masthead-legacy .main-section.with-mi-search{padding-bottom:14px;padding-top:14px}.masthead-legacy .main-section{padding-bottom:16px;padding-top:16px}.masthead-legacy .logo-inline{height:28px;max-width:unset;width:auto}.masthead-legacy.as-homepage .bottom-section{margin-bottom:-24px;padding-bottom:40px}.masthead-legacy.as-homepage .logo-inline{height:28px;width:auto}}@media (min-width:800px){.masthead-legacy.as-homepage.with-trending-bar .bottom-section{border-bottom:1px solid #cecece;margin-bottom:-30px;padding-bottom:53.5px}.masthead-legacy.as-homepage.with-trending-bar .bottom-section.as-narrow{margin-bottom:0;padding-bottom:13.5px}}@media (min-width:1003px)and (max-width:1128px){.masthead-legacy.as-homepage .bottom-section,.masthead-legacy.as-homepage .main-section{padding-left:24px;padding-right:24px}}@media (min-width:1008px){[data-component-type=post-body-content]>h1{font-size:var(--font-size-desktop-heading-xl);line-height:var(--line-height-desktop-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-desktop-heading-lg);line-height:var(--line-height-desktop-heading-lg)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-desktop-heading-md);line-height:var(--line-height-desktop-heading-md)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-size:var(--font-size-desktop-body-lg);line-height:var(--line-height-desktop-body-lg-serif)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-desktop-body-lg-serif);line-height:var(--line-height-desktop-heading-xl-serif)}[data-component-type=post-body-content]>.blockquote{font-size:var(--font-size-desktop-body-lg-serif)}.masthead-legacy .cta-wrapper .markets-insider-search-box{display:flex}.masthead-legacy .cta-wrapper .markets-insider-search-box+.markets-insider-my-watchlist{position:relative}.masthead-legacy .cta-wrapper .markets-insider-search-box+.markets-insider-my-watchlist:before{background-image:linear-gradient(180deg,#71717a 25%,hsla(0,0%,100%,0) 0);background-position:0;background-repeat:repeat-y;background-size:2px 4px;border:none;content:"";display:block;height:100%;left:calc(var(--col-gap)/2*-1 + -1px);position:absolute;top:50%;transform:translate3d(0,-50%,0);width:1px}.masthead-legacy .markets-insider-my-watchlist{display:inline-flex}.masthead-legacy .markets-insider-my-watchlist:hover{color:#02c}.masthead-legacy .logo-inline{height:unset;width:410px}.masthead-legacy.as-homepage .bottom-section{margin-bottom:-24px;padding-bottom:48px}.masthead-legacy.as-homepage .subnav-section{display:flex;justify-content:flex-end}.masthead-legacy.as-homepage .logo-inline{height:50px}.masthead-legacy.as-homepage .main-section{padding-bottom:24px;padding-top:24px}.masthead-legacy.as-homepage.is-fixed .main-animated{animation-name:main-animation}.masthead-legacy.as-homepage.is-fixed .logo-animated{animation-name:logo-animation;transform:scale(1);transform-origin:0 50%;transition:transform .2s ease}html{--logo-animation-scale-1:0.9;--logo-animation-scale-2:0.83;--logo-animation-scale-3:0.765;--logo-animation-scale-4:0.72;--main-animation-width-1:22px;--main-animation-width-2:20px;--main-animation-width-3:18px;--main-animation-width-4:16px;--main-animation-width-5:11px}}@media (min-width:1127px)and (max-width:1307px){.masthead-legacy.as-homepage .bottom-section,.masthead-legacy.as-homepage .main-section{padding-left:calc(50% - 539.5px);padding-right:calc(50% - 539.5px)}}@media (min-width:1128px){.masthead-legacy .grid-lines:after,.masthead-legacy .grid-lines:before{background-color:#cecece}}@media (min-width:1308px){.masthead-legacy.is-fixed .sticky-section{display:none}}@media (max-width:1307px){.masthead-legacy.is-fixed.no-masthead-ad:not(:has(.vertical-nav),:has(.bottom-section)):has(.sticky-section):after{height:calc(var(--main-height) + var(--dropdown-height) + 48px)}}@media (max-width:1007px){.masthead-legacy.is-fixed.is-hidden-by-scroll:has(.sticky-section) .main-section,.masthead-legacy.is-fixed.is-hidden-by-scroll:has(.sticky-section) .sticky-section{transform:translate3d(0,calc(var(--main-height)*-1),0)}}[data-component-type=post-body-content]>h1,[data-component-type=post-body-content]>h2,[data-component-type=post-body-content]>h3,[data-component-type=post-body-content]>h4{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>h1{font-size:var(--font-size-mobile-heading-xl);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-mobile-heading-lg);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-lg)}[data-component-type=post-body-content]>h2 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-mobile-heading-md);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-md)}[data-component-type=post-body-content]>h3:not(.ignore-typography) strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>h4{font-size:var(--font-size-mobile-heading-sm);font-weight:var(--font-weight-garnett-500);line-height:var(--line-height-mobile-heading-sm)}[data-component-type=post-body-content]>h4 strong{font-weight:var(--font-weight-garnett-500)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg);font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}[data-component-type=post-body-content]>strong{font-weight:var(--font-weight-tiempos-600)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-mobile-body-lg-serif);line-height:var(--line-height-mobile-heading-xl-serif)}[data-component-type=post-body-content]>.slide-content .live-blog-button{font-size:var(--font-size-mobile-label-lg);line-height:var(--line-height-mobile-label-xl)}[data-component-type=post-body-content]>.breakout-box *,[data-component-type=post-body-content]>.financial-product-card *,[data-component-type=post-body-content]>.product-card *,[data-component-type=post-body-content]>.quick-tip *{font-family:var(--font-family-sans)}[data-component-type=post-body-content]>.blockquote{font-family:var(--font-family-serif);font-size:var(--font-size-mobile-body-lg-serif);font-style:italic;font-weight:var(--font-weight-tiempos-400);line-height:var(--line-height-mobile-body-lg-serif)}.markets-insider-footer{align-items:center;background:#faf7f5;display:flex;flex-direction:column;font-size:.75rem;gap:24px;line-height:1.05rem;margin:48px 24px 0;padding:0 0 60px;position:relative}.markets-insider-footer:after{background:#faf7f5;box-shadow:0 0 0 100vmax #faf7f5;clip-path:inset(0 -100vmax);content:"";height:calc(100% + 48px);left:0;position:absolute;right:0;top:-24px;z-index:-1}.markets-insider-footer.gradient{position:relative}.markets-insider-footer.gradient:before{background:linear-gradient(1turn,#fff 35.75%,hsla(0,0%,100%,0) 136.29%);content:"";display:block;height:225px;position:absolute;top:-225px;width:100%}.markets-insider-footer.mobile-paywall-visible{padding-bottom:0}.markets-insider-footer p{margin:0}.markets-insider-footer a{color:#0a0a0a}.markets-insider-footer a:hover{color:#505057}.markets-insider-footer img{width:100%}.markets-insider-footer hr{background:#cecece;border:none;height:1px;margin:0;width:100%}.markets-insider-footer>section{width:100%}.markets-insider-footer .top-section{align-items:center;display:flex;justify-content:space-between}.markets-insider-footer .top-section .logo{width:115px}.markets-insider-footer .top-section .social-link{height:44px;padding:10px;width:44px}.markets-insider-footer .top-section .social-icons{align-items:center;display:flex}.markets-insider-footer .link-section{display:grid;gap:8px;grid-template-rows:min-content 0fr;transition:grid-template-rows .2s ease-in}.markets-insider-footer .link-section .footer-columns{grid-template-columns:repeat(4,auto);padding:0 24px}.markets-insider-footer .link-section.is-expanded{grid-template-rows:min-content 1fr}.markets-insider-footer .link-section.is-expanded .footer-columns{row-gap:32px}.markets-insider-footer .link-section.is-expanded .footer-list-column>a:not(:first-child){display:block}.markets-insider-footer .expandable-content{overflow:hidden}.markets-insider-footer .footer-columns{display:grid;justify-content:space-between;padding:0}.markets-insider-footer .footer-list-column{display:flex;flex-direction:column;overflow:hidden}.markets-insider-footer .footer-list-column>a{line-height:32px}.markets-insider-footer .footer-list-column>a:not(:first-child){display:none}.markets-insider-footer .expand-button{background:none;border:none;cursor:pointer;display:flex;gap:4px;height:16px;line-height:16px}.markets-insider-footer .expand-button .show-more{display:block}.markets-insider-footer .expand-button .show-less,.markets-insider-footer .expand-button.is-expanded .show-more{display:none}.markets-insider-footer .expand-button.is-expanded .show-less{display:block}.markets-insider-footer .expand-button .svg-icon{font-size:16px}.markets-insider-footer .bottom-section{display:flex;flex-direction:column;gap:24px;text-align:center}.markets-insider-footer .bottom-section .with-divider{line-height:44px}.markets-insider-footer .bottom-section .with-divider a:not(:last-child):after{border-right:1px solid #cecece;content:"";margin:0 24px}.markets-insider-footer .bottom-section .logos{align-items:center;display:flex;flex-direction:row;gap:24px;justify-content:center}.markets-insider-footer .bottom-section .logo{width:79.2px}@media (min-width:0)and (max-width:599px){.markets-insider-footer .link-section.is-expanded .footer-columns{grid-template-columns:repeat(2,calc(50% - 4px));padding:0}}@media (min-width:600px)and (max-width:1007px){.markets-insider-footer .link-section .footer-columns{margin:0 auto;max-width:800px;padding:0 8px;width:100%}.markets-insider-footer .link-section.is-expanded .footer-columns{grid-template-columns:repeat(3,calc(33.33333% - 5.33333px))}}@media (min-width:1008px){[data-component-type=post-body-content]>h1{font-size:var(--font-size-desktop-heading-xl);line-height:var(--line-height-desktop-heading-xl)}[data-component-type=post-body-content]>h2{font-size:var(--font-size-desktop-heading-lg);line-height:var(--line-height-desktop-heading-lg)}[data-component-type=post-body-content]>h3:not(.ignore-typography){font-size:var(--font-size-desktop-heading-md);line-height:var(--line-height-desktop-heading-md)}[data-component-type=post-body-content]>li:not(.ignore-typography),[data-component-type=post-body-content]>ol:not(.ignore-typography),[data-component-type=post-body-content]>p:not(.ignore-typography),[data-component-type=post-body-content]>ul:not(.ignore-typography){font-size:var(--font-size-desktop-body-lg);line-height:var(--line-height-desktop-body-lg-serif)}[data-component-type=post-body-content]>.slide-content p{font-size:var(--font-size-desktop-body-lg-serif);line-height:var(--line-height-desktop-heading-xl-serif)}[data-component-type=post-body-content]>.blockquote{font-size:var(--font-size-desktop-body-lg-serif)}.markets-insider-footer{padding:0}.markets-insider-footer .link-section{padding:0 80px}.markets-insider-footer .link-section .footer-columns{grid-template-columns:repeat(4,calc(25% - 117px));padding:0}.markets-insider-footer .link-section{gap:20px}.markets-insider-footer .footer-columns{padding:0 80px}.markets-insider-footer .footer-list-column>a{line-height:44px}.markets-insider-footer .footer-list-column>a:nth-child(-n+4){display:block}}@media (min-width:1008px)and (max-width:1307px){.markets-insider-footer{margin-left:auto;margin-right:auto;max-width:1079px;width:calc(100% - 48px)}}@media (min-width:1308px){.markets-insider-footer{margin-left:calc(50% - 630px);margin-right:calc(50% - 630px)}}@media (min-width:1950px){.markets-insider-footer:after{clip-path:inset(0 calc(50% - 975px))}}</style>
+</head>
+
+<body
+  data-site-id="mi"
+  data-id=""
+  class=" is-legacy"
+>
+
+
+  
+  
+
+  
+      
+    <header
+      class="masthead-legacy  is-fixed no-masthead-ad is-user-logged-out"
+      data-component-type="masthead-legacy"
+      data-load-strategy="disable-lazy"
+      style="--scroll: 0"
+      role="banner"
+    >
+    
+      <section class="main-section grid-lines masthead-animation main-animated with-mi-search">
+    
+        <a
+          href="https://www.businessinsider.com/"
+          class="logo-link masthead-animation logo-animated"
+          data-track-click="{&quot;product_field&quot;:&quot;logo&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;element_name&quot;:&quot;masthead&quot;,&quot;click_text&quot;:&quot;Business Insider&quot;}"
+        >
+          <svg
+              class="svg-icon logo-inline "
+              
+          
+              xmlns="http://www.w3.org/2000/svg"
+              width="1365"
+              height="120"
+              viewBox="0 0 1365 120"
+          >
+            <title>Business Insider</title>
+          
+            <g class="logo-inline-path" fill="#0a0a0a" fill-rule="evenodd">
+              <path d="M0 2.46h49.1c27.31 0 41.59 14.12 41.59 31.46 0 11.97-6.75 20.1-16.11 24.4v.31c11.97 4.3 18.72 13.81 18.72 25.93 0 17.34-13.35 32.53-42.2 32.53H0V2.46Zm47.57 45.42c8.13 0 11.82-4.14 11.82-8.75s-3.68-8.9-11.82-8.9H33.15v17.65h14.42Zm.46 41.43c8.59 0 12.74-4.14 12.74-9.51s-4.3-9.51-12.58-9.51H33.15v19.03h14.88Zm52.32-18.87V2.46h33.45v67.67c0 12.74 6.29 19.49 17.03 19.49s17.49-6.75 17.49-19.64V2.46h33.61v67.98c0 28.85-19.33 49.57-51.1 49.57s-50.49-20.72-50.49-49.57ZM287.1 7.98v29.46c-7.21-5.06-19.49-8.59-29.46-8.59-9.05 0-13.66 2.92-13.66 6.75s5.06 5.83 14.12 9.05c15.35 5.37 36.21 12.58 36.21 36.98 0 21.79-16.42 37.9-45.27 37.9-14.88 0-28.54-4.3-36.98-9.97v-31c8.29 6.75 20.87 12.12 32.99 12.12 10.28 0 15.04-3.84 15.04-8.13 0-5.52-7.83-7.98-17.19-11.36-12.28-4.45-31.76-12.43-31.76-34.68 0-20.1 15.81-36.52 44.04-36.52 12.43 0 23.63 3.22 31.92 7.98Zm15.8-5.52h33.45v114.63H302.9V2.46Zm152.38 114.63h-31.92l-41.28-61.53h-.15v61.53h-31.76V2.46h31.92l41.28 60.46h.15V2.46h31.76v114.63ZM469.09 2.46h79.18v29.77h-45.73v13.81h41.12v27.01h-41.12v14.27h45.73v29.77h-79.18V2.46Zm163.12 5.52v29.46c-7.21-5.06-19.49-8.59-29.46-8.59-9.05 0-13.66 2.92-13.66 6.75s5.06 5.83 14.12 9.05c15.35 5.37 36.21 12.58 36.21 36.98 0 21.79-16.42 37.9-45.27 37.9-14.88 0-28.54-4.3-36.98-9.97v-31c8.29 6.75 20.87 12.12 32.99 12.12 10.28 0 15.04-3.84 15.04-8.13 0-5.52-7.83-7.98-17.19-11.36-12.28-4.45-31.76-12.43-31.76-34.68 0-20.1 15.81-36.52 44.04-36.52 12.43 0 23.63 3.22 31.92 7.98Zm88.54 0v29.46c-7.21-5.06-19.49-8.59-29.46-8.59-9.05 0-13.66 2.92-13.66 6.75s5.06 5.83 14.12 9.05c15.35 5.37 36.21 12.58 36.21 36.98 0 21.79-16.42 37.9-45.27 37.9-14.88 0-28.54-4.3-36.98-9.97v-31c8.29 6.75 20.87 12.12 32.99 12.12 10.28 0 15.04-3.84 15.04-8.13 0-5.52-7.83-7.98-17.19-11.36-12.28-4.45-31.76-12.43-31.76-34.68 0-20.1 15.81-36.52 44.04-36.52 12.43 0 23.63 3.22 31.92 7.98Zm45.97 109.33h33.45V2.69h-33.45v114.63ZM919.08 2.69h-31.76v60.46h-.15L845.89 2.69h-31.92v114.63h31.76V55.79h.15l41.28 61.53h31.92V2.69ZM972.92.23c-28.24 0-44.04 16.42-44.04 36.52 0 22.25 19.49 30.23 31.76 34.68 9.36 3.38 17.19 5.83 17.19 11.36 0 4.3-4.76 8.13-15.04 8.13-12.12 0-24.71-5.37-32.99-12.12v31c8.44 5.68 22.1 9.97 36.98 9.97 28.85 0 45.27-16.11 45.27-37.9 0-24.4-20.87-31.61-36.21-36.98-9.05-3.22-14.12-5.06-14.12-9.05s4.6-6.75 13.66-6.75c9.97 0 22.25 3.53 29.46 8.59V8.21C996.55 3.45 985.35.23 972.92.23Zm46.94 117.08h33.45V2.69h-33.45v114.63Zm80.71-30.23h6.45c17.34 0 28.54-9.82 28.54-27.01s-11.2-27.16-28.54-27.16h-6.45v54.17Zm68.75-27.01c0 34.53-26.09 57.24-63.53 57.24h-38.67V2.69h38.67c37.44 0 63.53 22.86 63.53 57.39Zm9.07 57.24h79.18V87.54h-45.73V73.27h41.12V46.26h-41.12V32.45h45.73V2.69h-79.18v114.63Zm131.83-60.46c8.44 0 15.04-3.99 15.04-11.97s-6.6-11.97-15.19-11.97h-7.06v23.94h7.21Zm54.78 60.46h-39.44l-21.79-35.45h-.77v35.45h-33.45V2.69h40.82c28.7 0 48.64 12.74 48.64 39.9 0 10.74-4.76 26.39-23.79 34.37l29.77 40.36Z"/>
+            </g>
+          </svg></a>
+          <div class="cta-wrapper">
+              
+              
+              
+              <div class="markets-insider-search-box"
+                data-component-type="markets-insider-search-box"
+                data-load-strategy="lazy"
+              >
+                <form
+                  class="search-box-form"
+                  action="https://www.businessinsider.com/answers#"
+                  method="GET"
+                >
+                  <input
+                    id=""
+                    name="_search"
+                    class="search-box-input label-xl-subtle"
+                    value=""
+                    placeholder="Search markets"
+                    autocomplete="off"
+                    type="text"
+                    autocapitalize="off"
+                  >
+                  <input
+                    type="submit"
+                    value="Press here to search"
+                    class="search-button "
+                    data-track-click="{&quot;product_field&quot;:&quot;search&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;element_name&quot;:&quot;masthead&quot;,&quot;click_path&quot;:&quot;https://www.businessinsider.com/answers&quot;,&quot;click_text&quot;:&quot;bi_value_unassigned&quot;}"
+                  >
+              
+                  <div class="search-icon-wrapper">
+                    <svg
+                        aria-hidden="true"
+                        focusable="false"
+                      class="svg-icon search-icon "
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 24 24"
+                    >
+                      <path fill="currentColor" fill-rule="evenodd" d="M15.996 17.7a8.53 8.53 0 0 1-4.466 1.253c-4.711 0-8.53-3.795-8.53-8.477C3 5.795 6.819 2 11.53 2c4.71 0 8.53 3.795 8.53 8.476 0 2.156-.81 4.124-2.143 5.62l3.583 4.318L19.564 22l-3.568-4.3Zm1.555-7.224c0 3.305-2.696 5.984-6.021 5.984-3.325 0-6.021-2.679-6.021-5.984 0-3.304 2.696-5.983 6.02-5.983 3.326 0 6.022 2.679 6.022 5.983Z"/>
+                    </svg>    </div>
+              
+                  <div class="markets-insider-search-box-results">
+                    <div class="search-box-results"></div>
+                  </div>
+                </form>
+              </div>
+        
+              <a
+                class="markets-insider-my-watchlist label-md-strong"
+                data-component-type="markets-insider-my-watchlist"
+                data-load-strategy="lazy"
+                href="https://markets.businessinsider.com/mymarkets?originurl=/"
+                data-track-click="{&quot;product_field&quot;:&quot;watchlist&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;element_name&quot;:&quot;masthead&quot;}"
+              >
+                My Markets Watchlist
+              </a>
+        
+              <button
+                class="menu-button"
+                title="Open menu"
+                aria-label="Open menu"
+                data-menu-toggle
+                data-interaction-trigger="hamburger-menu,account-icon,my-insider,answers-search-box"
+                data-interaction-click-trigger="hamburger-menu"
+                data-track-click="{&quot;product_field&quot;:&quot;hamburger_menu&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;element_name&quot;:&quot;masthead&quot;,&quot;click_text&quot;:&quot;bi_value_unassigned&quot;,&quot;click_path&quot;:&quot;bi_value_unassigned&quot;}"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon menu-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" stroke="currentColor" d="M2.5 5.5h19v1.414h-19V5.5Zm0 5.793h19v1.414h-19v-1.414Zm0 7.207v-1.414h19V18.5h-19Z"/>
+                </svg>      </button>
+          </div>
+    
+      </section>
+    
+    
+    
+    
+        <section class="bottom-section grid-lines with-markets-insider-banner">
+          
+        
+        
+        <div class="markets-insider-banner" data-component-type="markets-insider-banner">
+        
+        <div class="marquee" data-component-type="marquee" data-scroll-type="loop">
+          <div class="marquee-wrapper">
+            <div class="marquee-scroller">
+                  <div class="banner-asset-wrapper"></div>
+            </div>
+          </div>
+        </div>  <div class="markets-sponsor">
+        
+        </div>
+        </div>
+        </section>
+    
+      
+    
+    </header>
+    
+    
+      
+      
+      
+      <nav
+        class="hamburger-menu"
+        data-component-type="hamburger-menu"
+        data-load-strategy="interaction"
+      >
+        <section class="hamburger-menu-content">
+          <div class="hamburger-menu-top">
+            <a
+              class="monogram-tap-target"
+              href="https://www.businessinsider.com/"
+              title="Business Insider"
+              data-track-click="{&quot;click_text&quot;:&quot;Business Insider&quot;,&quot;product_field&quot;:&quot;other&quot;,&quot;element_name&quot;:&quot;hamburger_menu&quot;,&quot;event&quot;:&quot;navigation&quot;}"
+            >
+              <svg
+                  class="svg-icon logo-monogram "
+                  
+              
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="147.4"
+                  height="120"
+                  viewBox="0 0 147.4 120"
+              >
+                <g class="logo-monogram-path" fill="currentColor" fill-rule="evenodd">
+                  <path d="M0 0h51.4C80 0 94.9 14.8 94.9 32.9s-7.1 21-16.9 25.5v.3c12.5 4.5 19.6 14.5 19.6 27.2 0 18.2-14 34.1-44.2 34.1H0V0Zm49.8 47.6c8.5 0 12.4-4.3 12.4-9.2s-3.9-9.3-12.4-9.3H34.7v18.5h15.1Zm.5 43.3c9 0 13.3-4.3 13.3-10s-4.5-10-13.2-10H34.7v19.9h15.6ZM112.4 0h35v120h-35V0Z"/>
+                </g>
+              </svg>      </a>
+            <button
+              class="close-button"
+              title="Close menu"
+              aria-label="Close menu"
+              data-menu-toggle
+              data-track-click="{&quot;product_field&quot;:&quot;close&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;element_name&quot;:&quot;hamburger_menu&quot;,&quot;click_text&quot;:&quot;bi_value_unassigned&quot;,&quot;click_path&quot;:&quot;bi_value_unassigned&quot;}"
+            >
+              <span class="close-button-background">
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon close-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" d="M21 5.394 18.606 3 12 9.606 5.394 3 3 5.394 9.606 12 3 18.606 5.394 21 12 14.394 18.606 21 21 18.606 14.394 12 21 5.394Z"/>
+                </svg>        </span>
+            </button>
+          </div>
+      
+          
+          <div
+            class="answers-search-box"
+            data-component-type="answers-search-box"
+            data-load-strategy="interaction"
+            data-tracking-area="hamburger"
+          >
+            <form
+              class="input-holder"
+              method="get"
+              action="/answers"
+            >
+              <div class="input-holder-inner">
+                <input
+                  type="text"
+                  class="js-search-input"
+                  placeholder="Search Business Insider"
+                />
+                <button
+                  class="inline-button"
+                  title="Search BI"
+                  aria-label="Search BI"
+                ><svg
+              aria-hidden="true"
+              focusable="false"
+            class="svg-icon search-icon "
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+          >
+            <path fill="currentColor" d="M19.475 9.275a8.415 8.415 0 0 1-2.058 6.82L21 20.414 19.064 22l-3.568-4.3a8.53 8.53 0 0 1-4.466 1.253c-4.711 0-8.53-3.795-8.53-8.477C2.5 5.795 6.319 2 11.03 2c.396 0 .786.027 1.167.079l-.549 1.069-2.716 1.395c-.335.173-.6.41-.794.684a5.977 5.977 0 0 0-3.13 5.25c0 3.304 2.697 5.983 6.022 5.983a6.025 6.025 0 0 0 5.298-3.138c.251-.19.468-.441.629-.754l1.395-2.716 1.123-.577Z"/>
+          
+            <path fill="#002AFF" d="M14.822 1.346a.2.2 0 0 1 .356 0l1.66 3.23a.2.2 0 0 0 .086.087l3.23 1.66a.2.2 0 0 1 0 .355l-3.23 1.66a.2.2 0 0 0-.087.086l-1.66 3.23a.2.2 0 0 1-.355 0l-1.66-3.23a.2.2 0 0 0-.086-.087l-3.23-1.66a.2.2 0 0 1 0-.355l3.23-1.66a.2.2 0 0 0 .087-.086l1.66-3.23Z"/>
+          </svg></button>
+              </div>
+              <button class="big-button">Search</button>
+            </form>
+          </div>
+          <section
+            class="hamburger-menu-vertical-lists"
+            data-track-click-shared="{&quot;product_field&quot;:&quot;vertical&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;element_name&quot;:&quot;hamburger_menu&quot;}"
+          >
+            
+            
+            
+            
+            <div
+              class="accordion level-0"
+              data-component-type="accordion"
+              data-load-strategy="exclude"    data-group="menu"
+              data-level="0"    data-track-click-shared="{&quot;element_name&quot;:&quot;hamburger_menu&quot;,&quot;event&quot;:&quot;navigation&quot;,&quot;product_field&quot;:&quot;vertical&quot;}"
+                data-type="errorPage"
+              
+            >
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/business"
+                          data-track-click=''
+                          
+                        >Business</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/strategy"
+                                    data-track-click=''
+                                    
+                                  >Strategy</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/economy"
+                                    data-track-click=''
+                                    
+                                  >Economy</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/finance"
+                                    data-track-click=''
+                                    
+                                  >Finance</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/retail"
+                                    data-track-click=''
+                                    
+                                  >Retail</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/advertising"
+                                    data-track-click=''
+                                    
+                                  >Advertising</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/careers"
+                                    data-track-click=''
+                                    
+                                  >Careers</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/law"
+                                    data-track-click=''
+                                    
+                                  >Law</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/media"
+                                    data-track-click=''
+                                    
+                                  >Media</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/real-estate"
+                                    data-track-click=''
+                                    
+                                  >Real Estate</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/smallbusiness"
+                                    data-track-click=''
+                                    
+                                  >Small Business</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/sc/introducing-the-better-work-project-hub"
+                                    data-track-click=''
+                                    
+                                  >The Better Work Project</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/personal-finance"
+                                    data-track-click=''
+                                    
+                                  >Personal Finance</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/tech"
+                          data-track-click=''
+                          
+                        >Tech</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/science"
+                                    data-track-click=''
+                                    
+                                  >Science</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/artificial-intelligence"
+                                    data-track-click=''
+                                    
+                                  >AI</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/enterprise"
+                                    data-track-click=''
+                                    
+                                  >Enterprise</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/transportation"
+                                    data-track-click=''
+                                    
+                                  >Transportation</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/startups"
+                                    data-track-click=''
+                                    
+                                  >Startups</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/innovation"
+                                    data-track-click=''
+                                    
+                                  >Innovation</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="/"
+                          data-track-click=''
+                          
+                        >Markets</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/markets"
+                                    data-track-click=''
+                                    
+                                  >News</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/stocks"
+                                    data-track-click=''
+                                    
+                                  >Stocks</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/indices"
+                                    data-track-click=''
+                                    
+                                  >Indices</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/commodities"
+                                    data-track-click=''
+                                    
+                                  >Commodities</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/cryptocurrencies"
+                                    data-track-click=''
+                                    
+                                  >Crypto</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/currencies"
+                                    data-track-click=''
+                                    
+                                  >Currencies</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/etfs"
+                                    data-track-click=''
+                                    
+                                  >ETFs</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/lifestyle"
+                          data-track-click=''
+                          
+                        >Lifestyle</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/entertainment"
+                                    data-track-click=''
+                                    
+                                  >Entertainment</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/culture"
+                                    data-track-click=''
+                                    
+                                  >Culture</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/travel"
+                                    data-track-click=''
+                                    
+                                  >Travel</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/food"
+                                    data-track-click=''
+                                    
+                                  >Food</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/health"
+                                    data-track-click=''
+                                    
+                                  >Health</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/education"
+                                    data-track-click=''
+                                    
+                                  >Education</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/parenting"
+                                    data-track-click=''
+                                    
+                                  >Parenting</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/defense"
+                          data-track-click=''
+                          
+                        >Military &amp; Defense</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/politics"
+                                    data-track-click=''
+                                    
+                                  >Politics</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/guides"
+                          data-track-click=''
+                          
+                        >Reviews</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/home"
+                                    data-track-click=''
+                                    
+                                  >Home</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/kitchen"
+                                    data-track-click=''
+                                    
+                                  >Kitchen</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/style"
+                                    data-track-click=''
+                                    
+                                  >Style</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/streaming"
+                                    data-track-click=''
+                                    
+                                  >Streaming</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/pets"
+                                    data-track-click=''
+                                    
+                                  >Pets</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/tech"
+                                    data-track-click=''
+                                    
+                                  >Tech</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/deals"
+                                    data-track-click=''
+                                    
+                                  >Deals</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/gifts"
+                                    data-track-click=''
+                                    
+                                  >Gifts</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="/guides/tickets"
+                                    data-track-click=''
+                                    
+                                  >Tickets</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/video"
+                          data-track-click=''
+                          
+                        >Video</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/big-business"
+                                    data-track-click=''
+                                    
+                                  >Big Business</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/so-expensive"
+                                    data-track-click=''
+                                    
+                                  >So Expensive</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/view-from-above"
+                                    data-track-click=''
+                                    
+                                  >View From Above</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/small-business"
+                                    data-track-click=''
+                                    
+                                  >Small Business</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/authorized-account"
+                                    data-track-click=''
+                                    
+                                  >Authorized Account</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/risky-business"
+                                    data-track-click=''
+                                    
+                                  >Risky Business</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/boot-camp"
+                                    data-track-click=''
+                                    
+                                  >Boot Camp</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/still-standing"
+                                    data-track-click=''
+                                    
+                                  >Still Standing</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/how-crime-works"
+                                    data-track-click=''
+                                    
+                                  >How Crime Works</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/show/life-lessons"
+                                    data-track-click=''
+                                    
+                                  >Life Lessons</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://www.businessinsider.com/games"
+                          data-track-click='{&quot;product_field&quot;:&quot;games&quot;}'
+                          
+                        >Games</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/games/boxed"
+                                    data-track-click='{&quot;product_field&quot;:&quot;games&quot;}'
+                                    
+                                  >Boxed</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/games/pipeline"
+                                    data-track-click='{&quot;product_field&quot;:&quot;games&quot;}'
+                                    
+                                  >Pipeline</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/games/knighthop"
+                                    data-track-click='{&quot;product_field&quot;:&quot;games&quot;}'
+                                    
+                                  >Knighthop</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://www.businessinsider.com/games/tally"
+                                    data-track-click='{&quot;product_field&quot;:&quot;games&quot;}'
+                                    
+                                  >Tally</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+                        <button class="accordion-button headline-medium" title="Expand menu" aria-label="Expand menu"><svg
+                aria-hidden="true"
+                focusable="false"
+              class="svg-icon chevron-down-icon "
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path fill="currentColor" fill-rule="evenodd" d="m19.44 5.5-7.486 7.72L4.56 5.594 2 8.234 11.954 18.5 22 8.14 19.44 5.5Z"/>
+            </svg></button>
+            
+                        <a
+                          class="accordion-link headline-medium  with-nested-accordion"
+                          href="https://live.businessinsider.com"
+                          data-track-click=''
+                          
+                        >Live Events</a>
+                    </span>
+            
+                      
+                      
+                      
+                      
+                      <div
+                        class="accordion level-1"
+                        data-component-type="accordion"
+                        data-load-strategy="exclude"    data-group="menu"
+                        data-level="1"  
+                      >
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://events.businessinsider.com/tech-insider-growth-mode"
+                                    data-track-click=''
+                                    
+                                  >Tech Insider: Growth Mode</a>
+                              </span>
+                      
+                          </div>
+                          <div class="accordion-row">
+                              <span class="accordion-item headline-medium ">
+                      
+                                  <a
+                                    class="accordion-link headline-medium "
+                                    href="https://events.businessinsider.com/the-long-play"
+                                    data-track-click=''
+                                    
+                                  >The Long Play</a>
+                              </span>
+                      
+                          </div>
+                      </div>    </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+            
+                        <a
+                          class="accordion-link headline-medium "
+                          href="https://www.businessinsider.com/stream-business-insider"
+                          data-track-click=''
+                          
+                        >Stream Business Insider</a>
+                    </span>
+            
+                </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+            
+                        <a
+                          class="accordion-link headline-medium "
+                          href="https://www.businessinsider.com/level-up"
+                          data-track-click=''
+                          
+                        >Level Up</a>
+                    </span>
+            
+                </div>
+                <div class="accordion-row">
+                    <span class="accordion-item headline-medium ">
+            
+                        <a
+                          class="accordion-link headline-medium "
+                          href="https://www.businessinsider.com/community"
+                          data-track-click=''
+                          
+                        >Community</a>
+                    </span>
+            
+                </div>
+            </div>    </section>
+      
+        </section>
+      
+        <footer class="hamburger-menu-footer">
+          
+          <div
+            class="social-media-follow"
+            data-e2e-name="social-links"    data-track-click-shared="{&quot;click_type&quot;:&quot;owned_socials&quot;,&quot;element_name&quot;:&quot;hamburger_menu&quot;,&quot;event&quot;:&quot;outbound_click&quot;}"
+          >
+              <a
+                class="social-link as-facebook"
+                href="https://www.facebook.com/MrktsInsider"
+                label="facebook"
+                title="Follow us on Facebook"
+                aria-label="Click to visit us on Facebook"
+                data-track-click="{&quot;click_text&quot;:&quot;facebook&quot;}"
+                data-e2e-name="facebook"
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon social-facebook-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" d="M22 12.037C22 6.494 17.523 2 12 2S2 6.494 2 12.037c0 4.707 3.229 8.656 7.584 9.741v-6.674H7.522v-3.067h2.062v-1.322c0-3.416 1.54-5 4.882-5 .634 0 1.727.125 2.174.25v2.78a12.807 12.807 0 0 0-1.155-.037c-1.64 0-2.273.623-2.273 2.244v1.085h3.266l-.561 3.067h-2.705V22C18.163 21.4 22 17.168 22 12.037Z"/>
+                </svg>    </a>
+              <a
+                class="social-link as-x"
+                href="https://x.com/mktsinsider"
+                label="x"
+                title="Follow us on X"
+                aria-label="Click to visit us on X"
+                data-track-click="{&quot;click_text&quot;:&quot;x&quot;}"
+                data-e2e-name="x"
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon social-x-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" d="M17.751 3h3.067l-6.7 7.625L22 21h-6.172l-4.833-6.293L5.464 21h-3.07l7.167-8.155L2 3h6.328l4.37 5.752L17.75 3Zm-1.076 16.172h1.7L7.404 4.732H5.58l11.094 14.44Z"/>
+                </svg>    </a>
+              <a
+                class="social-link as-linkedin"
+                href="https://www.linkedin.com/company/businessinsider/"
+                label="linkedin"
+                title="Follow us on LinkedIn"
+                aria-label="Click to visit us on LinkedIn"
+                data-track-click="{&quot;click_text&quot;:&quot;linkedin&quot;}"
+                data-e2e-name="linkedin"
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon social-linkedin-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" fill-rule="evenodd" d="M4 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4Zm4.339 4.606a1.627 1.627 0 1 1-3.254 0 1.627 1.627 0 0 1 3.254 0Zm-.221 2.867H5.13v9.335h2.988V9.473Zm4.517 0H9.662v9.335h2.943V13.91c0-2.729 3.461-2.982 3.461 0v4.9h2.849v-5.914c0-4.6-5.07-4.43-6.31-2.17l.03-1.252Z"/>
+                </svg>    </a>
+              <a
+                class="social-link as-youtube"
+                href="https://www.youtube.com/user/businessinsider"
+                label="youtube"
+                title="Follow us on YouTube"
+                aria-label="Click to visit us on YouTube"
+                data-track-click="{&quot;click_text&quot;:&quot;youtube&quot;}"
+                data-e2e-name="youtube"
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon social-youtube-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" d="M11.732 5.5c.508.003 1.777.014 3.126.064l.478.019c1.358.06 2.715.16 3.388.333.898.232 1.604.91 1.842 1.77.38 1.364.427 4.026.433 4.67l.001.134v.153c-.007.644-.054 3.307-.434 4.671-.242.862-.947 1.54-1.842 1.77-.673.172-2.03.273-3.388.332l-.478.02c-1.349.05-2.618.06-3.126.063l-.223.001h-.242c-1.074-.006-5.564-.05-6.992-.417-.898-.232-1.603-.91-1.842-1.769-.38-1.364-.427-4.027-.433-4.671v-.286c.006-.645.053-3.307.433-4.672.242-.862.947-1.54 1.842-1.769 1.428-.366 5.918-.41 6.992-.416h.465ZM9.6 9.937v5.125l5.2-2.562-5.2-2.563Z"/>
+                </svg>    </a>
+              <a
+                class="social-link as-instagram"
+                href="https://www.instagram.com/businessinsider/?hl&#x3D;en"
+                label="instagram"
+                title="Follow us on Instagram"
+                aria-label="Click to visit us on Instagram"
+                data-track-click="{&quot;click_text&quot;:&quot;instagram&quot;}"
+                data-e2e-name="instagram"
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon social-instagram-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" d="M7.858 2.07c-1.064.05-1.79.22-2.425.47-.658.256-1.215.6-1.77 1.156a4.899 4.899 0 0 0-1.15 1.772c-.246.637-.413 1.364-.46 2.429-.047 1.064-.057 1.407-.052 4.122.005 2.716.017 3.056.069 4.123.05 1.064.22 1.79.47 2.426.256.657.6 1.214 1.156 1.769a4.894 4.894 0 0 0 1.774 1.15c.636.245 1.363.413 2.428.46 1.064.046 1.407.057 4.122.052 2.715-.005 3.056-.017 4.123-.068 1.067-.05 1.79-.221 2.425-.47a4.901 4.901 0 0 0 1.769-1.156 4.9 4.9 0 0 0 1.15-1.774c.246-.636.413-1.363.46-2.427.046-1.067.057-1.408.052-4.123-.005-2.715-.018-3.056-.068-4.122-.05-1.067-.22-1.79-.47-2.427a4.91 4.91 0 0 0-1.156-1.769 4.88 4.88 0 0 0-1.773-1.15c-.637-.245-1.364-.413-2.428-.46-1.065-.045-1.407-.057-4.123-.052-2.716.005-3.056.017-4.123.069Zm.117 18.078c-.975-.043-1.504-.205-1.857-.34-.467-.18-.8-.398-1.152-.746a3.08 3.08 0 0 1-.75-1.149c-.137-.352-.302-.881-.347-1.856-.05-1.054-.06-1.37-.066-4.04-.006-2.67.004-2.986.05-4.04.042-.974.205-1.504.34-1.857.18-.468.397-.8.746-1.151a3.087 3.087 0 0 1 1.15-.75c.351-.138.88-.302 1.855-.348 1.054-.05 1.37-.06 4.04-.066 2.67-.006 2.986.004 4.041.05.974.043 1.505.204 1.857.34.467.18.8.397 1.151.746.352.35.568.682.75 1.15.138.35.302.88.348 1.855.05 1.054.062 1.37.066 4.04.005 2.669-.004 2.986-.05 4.04-.043.975-.205 1.504-.34 1.857a3.1 3.1 0 0 1-.747 1.152c-.349.35-.681.567-1.148.75-.352.137-.882.301-1.855.347-1.055.05-1.371.06-4.041.066-2.67.006-2.986-.005-4.04-.05m8.152-13.493a1.2 1.2 0 1 0 2.4-.003 1.2 1.2 0 0 0-2.4.003ZM6.865 12.01a5.134 5.134 0 1 0 10.27-.02 5.134 5.134 0 0 0-10.27.02Zm1.802-.004a3.334 3.334 0 1 1 6.667-.013 3.334 3.334 0 0 1-6.667.013Z"/>
+                </svg>    </a>
+              <a
+                class="social-link as-snapchat"
+                href=""
+                label="snapchat"
+                title="Follow us on Snapchat"
+                aria-label="Click to visit us on Snapchat"
+                data-track-click="{&quot;click_text&quot;:&quot;snapchat&quot;}"
+                data-e2e-name="snapchat"
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <svg
+                    aria-hidden="true"
+                    focusable="false"
+                  class="svg-icon social-snapchat-icon "
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path fill="currentColor" d="M21.928 16.396c-.139-.364-.403-.56-.705-.721a1.757 1.757 0 0 0-.153-.078c-.09-.045-.182-.088-.273-.134-.94-.48-1.674-1.087-2.183-1.805a4.065 4.065 0 0 1-.374-.64c-.044-.12-.042-.189-.01-.25a.413.413 0 0 1 .12-.122c.161-.103.328-.207.44-.278.202-.125.361-.225.464-.295.386-.26.656-.537.824-.846a1.64 1.64 0 0 0 .087-1.399c-.256-.648-.891-1.051-1.66-1.051a2.368 2.368 0 0 0-.61.078c.007-.444-.003-.912-.044-1.373-.145-1.62-.733-2.47-1.346-3.147a5.337 5.337 0 0 0-1.37-1.062C14.206 2.76 13.15 2.5 12 2.5c-1.15 0-2.2.26-3.132.773-.515.28-.978.639-1.371 1.064-.614.678-1.202 1.528-1.347 3.147-.04.46-.051.932-.044 1.373a2.367 2.367 0 0 0-.609-.078c-.77 0-1.406.402-1.66 1.051a1.632 1.632 0 0 0 .084 1.4c.169.31.439.586.824.846.103.07.262.169.464.296l.423.267c.055.034.101.079.136.132.033.064.034.134-.014.262a4.02 4.02 0 0 1-.369.627c-.498.703-1.21 1.298-2.12 1.775-.481.246-.982.41-1.194.965-.16.419-.055.895.35 1.296.15.15.322.276.511.373.395.21.815.371 1.25.483.09.022.176.059.253.108.148.125.127.313.324.588.098.142.224.265.37.363.412.275.876.292 1.368.31.444.017.947.035 1.522.218.238.076.486.223.772.395.689.408 1.631.966 3.208.966 1.577 0 2.526-.561 3.22-.971.284-.169.53-.314.761-.388.575-.183 1.078-.201 1.522-.218.492-.018.956-.035 1.369-.31.172-.116.316-.268.42-.444.142-.232.139-.394.272-.508a.796.796 0 0 1 .237-.104 5.677 5.677 0 0 0 1.267-.487c.202-.104.383-.241.537-.405l.005-.006c.38-.392.475-.855.32-1.263Zm-1.401.727c-.855.455-1.423.406-1.865.68-.376.234-.154.737-.426.918-.336.223-1.326-.016-2.607.392-1.055.337-1.729 1.305-3.628 1.305-1.898 0-2.556-.966-3.63-1.308-1.277-.407-2.27-.168-2.605-.391-.273-.182-.051-.684-.426-.918-.443-.274-1.011-.225-1.866-.678-.544-.29-.235-.47-.054-.554 3.097-1.446 3.591-3.68 3.613-3.845.027-.2.056-.358-.173-.562-.22-.197-1.203-.783-1.475-.967-.45-.303-.649-.606-.503-.979.102-.258.352-.355.613-.355.083 0 .166.01.246.027.495.103.975.342 1.253.407a.457.457 0 0 0 .102.013c.148 0 .2-.072.19-.235-.032-.522-.108-1.54-.023-2.49.117-1.309.554-1.957 1.073-2.53.25-.275 1.421-1.47 3.662-1.47 2.24 0 3.415 1.19 3.665 1.464.52.573.957 1.222 1.073 2.53.085.95.011 1.968-.023 2.49-.012.172.042.235.19.235a.457.457 0 0 0 .102-.013c.278-.065.758-.304 1.253-.407a1.18 1.18 0 0 1 .246-.027c.263 0 .51.099.613.355.146.373-.051.676-.502.98-.273.183-1.254.768-1.475.966-.23.204-.2.362-.173.562.022.168.515 2.401 3.613 3.845.182.088.491.268-.053.56Z"/>
+                </svg>    </a>
+          </div>
+        </footer>
+      </nav>
+    
+
+
+  <section id="l-main-content" data-content role="main">
+  <section class="container">
+    <section class="row">
+      <section id="l-content" class="col-md-12">
+        <div class="container">
+          <div class="row error-404 headline-semibold">
+            <div class="col-12 error-left-message" data-e2e-name="error-left-message">
+              <h1 class="error-header" data-e2e-name="error-header">Whoops!</h1>
+              <h2 class="error-subheader" data-e2e-name="error-subheader">Something went wrong.<br/>(404 page not found)
+              </h2>
+            </div>
+          </div>
+
+          <section
+            class="latest-posts row"
+            data-e2e-name="latest-module"
+            data-component-type="latest-posts"
+          >
+            <div class="latest-header col-12">
+              <h2>
+                <span class="latest-header-title headline-semibold">The Latest</span>
+              </h2>
+            </div>
+          
+            <div class="latest-article-list row js-autofill-latest">
+            </div>
+          </section>        </div>
+      </section>
+    </section>
+  </section>
+</section>
+
+  
+
+  <div data-notify-wrapper class="notify-wrapper">
+    <span data-notify-close class="notify-close icon-close"></span>
+    <span class="icon-check"></span>
+    <span data-notify-message class="notify-message"></span>
+  </div>
+  
+
+
+
+      
+  <footer
+    id="site-footer"
+    class="markets-insider-footer"
+    data-component-type="markets-insider-footer"
+    data-load-strategy="lazy"
+    data-e2e-name="footer"
+    data-track-view="{&quot;subscription_experience&quot;:&quot;bi_value_unassigned&quot;,&quot;product_field&quot;:&quot;bi_value_unassigned&quot;,&quot;element_name&quot;:&quot;footer&quot;}"
+    role="contentinfo"
+  >
+    <section class="top-section">
+      <div class="logo">
+        <a
+          href="https://markets.businessinsider.com/"
+          class=""
+          aria-label="Click to visit Markets Insider"
+          data-e2e-name="footer-insider"
+        >
+            <div
+              class="lazy-holder lazy-holder  has-transparency"
+              style="padding-top: calc(100% * 40 / 115.56)"
+            >
+          
+          
+          <img
+            class="lazy-image has-transparency"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+            data-src='/public/assets/MI/logos/markets-insider-stacked.svg'
+            alt="Click to visit Markets Insider"
+          />
+          
+          <noscript>
+              <img
+                class="no-script"
+                src="/public/assets/MI/logos/markets-insider-stacked.svg"
+                alt="Click to visit Markets Insider"
+              />
+          </noscript>
+          
+          </div>      </a>
+      </div>
+  
+      <div
+        class="social-icons"
+        data-e2e-name="social-links"
+        data-track-click-shared="{&quot;click_type&quot;:&quot;owned_socials&quot;,&quot;element_name&quot;:&quot;footer&quot;,&quot;event&quot;:&quot;outbound_click&quot;}"
+      >
+        <a
+          class="social-link"
+          href="https://www.facebook.com/MrktsInsider"
+          title="Follow us on Facebook"
+          aria-label="Click to visit us on Facebook"
+          data-track-click="{&quot;click_url&quot;:&quot;https://www.facebook.com/MrktsInsider&quot;,&quot;click_text&quot;:&quot;facebook&quot;}"
+          data-e2e-name="facebook"
+          target="_blank"
+          rel="noopener nofollow"
+        >
+            <div
+              class="lazy-holder lazy-holder  has-transparency"
+              style="padding-top: calc(100% * 24 / 24)"
+            >
+          
+          
+          <img
+            class="lazy-image has-transparency"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+            data-src='/public/assets/social/social-facebook.svg'
+            alt="Facebook"
+          />
+          
+          <noscript>
+              <img
+                class="no-script"
+                src="/public/assets/social/social-facebook.svg"
+                alt="Facebook"
+              />
+          </noscript>
+          
+          </div>      </a>
+        <a
+          class="social-link"
+          href="https://x.com/mktsinsider"
+          title="Follow us on X"
+          aria-label="Click to visit us on X"
+          data-track-click="{&quot;click_url&quot;:&quot;https://x.com/mktsinsider&quot;,&quot;click_text&quot;:&quot;X&quot;}"
+          data-e2e-name="X"
+          target="_blank"
+          rel="noopener nofollow"
+        >
+            <div
+              class="lazy-holder lazy-holder  has-transparency"
+              style="padding-top: calc(100% * 24 / 24)"
+            >
+          
+          
+          <img
+            class="lazy-image has-transparency"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+            data-src='/public/assets/social/social-x.svg'
+            alt="X"
+          />
+          
+          <noscript>
+              <img
+                class="no-script"
+                src="/public/assets/social/social-x.svg"
+                alt="X"
+              />
+          </noscript>
+          
+          </div>      </a>
+      </div>
+    </section>
+  
+    <hr>
+    <section class="link-section">
+      <section class="footer-columns">
+        <section class="footer-list-column">
+          <a class="label-md-strong" href="/indices">Indices</a>
+          <a class="label-md-subtle" href="/index/dow_jones">Dow Jones</a>
+          <a class="label-md-subtle" href="/index/s&amp;p_500">S&amp;P 500</a>
+          <a class="label-md-subtle" href="/index/nasdaq_100">Nasdaq 100</a>
+          <a class="label-md-subtle" href="/index/nasdaq_composite">Nasdaq Composite</a>
+          <a class="label-md-subtle" href="/index/ftse_100">FTSE 100</a>
+          <a class="label-md-subtle" href="/index/nikkei_225">Nikkei 225</a>
+          <a class="label-md-subtle" href="/index/dax">DAX 40</a>
+          <a class="label-md-subtle" href="/index/hang_seng">Hang Seng</a>
+          <a class="label-md-subtle" href="/index/kospi">Kospi</a>
+          <a class="label-md-subtle" href="/index/s&amp;p_tsx_composite_index">S&amp;P TSX Composite Index</a>
+          <a class="label-md-subtle" href="/index/asx">ASX</a>
+          <a class="label-md-subtle" href="/index/us-dollar-index">US Dollar Index</a>
+          <a class="label-md-subtle" href="/indices">Stock Indices</a>
+          <a class="label-md-subtle" href="/futures/dow-futures">Dow Futures</a>
+          <a class="label-md-subtle" href="/market-movers/dow_jones">Dow Jones Market Movers</a>
+        </section>      <section class="footer-list-column">
+          <a class="label-md-strong" href="/commodities">Commodities</a>
+          <a class="label-md-subtle" href="/commodities/gold-price">Gold Price</a>
+          <a class="label-md-subtle" href="/commodities/oil-price?type&#x3D;wti">Oil Price</a>
+          <a class="label-md-subtle" href="/commodities/silver-price">Silver Price</a>
+          <a class="label-md-subtle" href="/commodities/copper-price">Copper Price</a>
+          <a class="label-md-subtle" href="/commodities/cotton-price">Cotton Price</a>
+          <a class="label-md-subtle" href="/commodities/heating-oil-price">Heating Oil Price</a>
+          <a class="label-md-subtle" href="/commodities/aluminum-price">Aluminum Price</a>
+          <a class="label-md-subtle" href="/commodities/natural-gas-price">Natural Gas Price</a>
+          <a class="label-md-subtle" href="/commodities/realtime-list">Realtime Commodity Prices</a>
+        </section>      <section class="footer-list-column">
+          <a class="label-md-strong" href="/currencies">Currencies</a>
+          <a class="label-md-subtle" href="/currencies/eur-usd">EURO DOLLAR</a>
+          <a class="label-md-subtle" href="/currencies/btc-usd">Bitcoin Price</a>
+          <a class="label-md-subtle" href="/currencies/eth-usd">ETH USD</a>
+          <a class="label-md-subtle" href="/currencies/usd-cad">CAD USD</a>
+          <a class="label-md-subtle" href="/currencies/usd-mxn">PESO USD</a>
+          <a class="label-md-subtle" href="/currencies/gbp-usd">POUND USD</a>
+          <a class="label-md-subtle" href="/currencies/usd-inr">USD INR</a>
+          <a class="label-md-subtle" href="/currency-converter">Currency Converter</a>
+          <a class="label-md-subtle" href="/currencies">Exchange Rates</a>
+        </section>      <section class="footer-list-column">
+          <a class="label-md-strong" href="/stocks">Stocks</a>
+          <a class="label-md-subtle" href="/stocks/goog-stock">Google Stock</a>
+          <a class="label-md-subtle" href="/stocks/meta-stock">Meta Stock</a>
+          <a class="label-md-subtle" href="/stocks/amzn-stock">Amazon Stock</a>
+          <a class="label-md-subtle" href="/stocks/tsla-stock">Tesla Stock</a>
+          <a class="label-md-subtle" href="/stocks/dow-stock">Dow-Stock</a>
+          <a class="label-md-subtle" href="/premarket">Premarket</a>
+          <a class="label-md-subtle" href="/news">Stock Market News</a>
+        </section>    </section>
+    </section>
+  
+    <button class="expand-button label-md strong">
+      <svg
+      aria-hidden="true"
+      focusable="false"
+    class="svg-icon plus-icon show-more"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+  >
+    <path fill="currentColor" d="M14.006 2H9.994v7.994H2v4.012h7.994V22h4.012v-7.994H22V9.994h-7.994V2Z"/>
+  </svg> <svg
+      aria-hidden="true"
+      focusable="false"
+    class="svg-icon minus-icon show-less"
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+  >
+    <path fill="currentColor" d="M22 14v-4H2v4h20Z"/>
+  </svg> <span class="expand-button-text">See more categories</span>
+    </button>
+  
+    <hr>
+  
+    <section class="bottom-section label-md subtle">
+      <p><a href="https://businessinsider.com/terms">Copyright &copy; 2026</a>
+      Insider Inc and <a href="https://www.finanzen.net/impressum">finanzen.net</a> GmbH (Imprint). All rights reserved.
+      Registration on or use of this site constitutes acceptance of our <a href="https://www.businessinsider.com/terms" data-e2e-name="footer-terms-of-service">Terms of Service</a> and <a href="https://www.businessinsider.com/privacy-policy" data-e2e-name="footer-privacy-policy">Privacy Policy.</a></p>
+  
+      <div class="with-divider">
+        <a href="https://www.businessinsider.com/disclaimer">Disclaimer</a>
+        <a href="https://www.businessinsider.com/accessibility">Accessibility</a>
+        <a href="https://www.businessinsider.com/commerce-policy">Commerce Policy</a>
+        <a href="https://www.businessinsider.com/advertising-policies">Advertising Policies</a>
+        Stock quotes by <a href="https://www.finanzen.net/">finanzen.net</a>
+        <a href="https://www.businessinsider.com/contact">Contact Us</a>
+        <a href="https://www.businessinsider.com/masthead">Masthead</a>
+      </div>
+  
+      <div>
+        <a
+          class="privacy-footer"
+          href="https://markets.businessinsider.com/your-privacy-choices"
+        >Your Privacy Choices</a>
+      </div>
+  
+      <div class="logos">
+        <div class="logo">
+            <div
+              class="lazy-holder lazy-holder  has-transparency"
+              style="padding-top: calc(100% * 28 / 81.27)"
+            >
+          
+          
+          <img
+            class="lazy-image has-transparency"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+            data-src='/public/assets/logos/stacked-black.svg'
+            alt="Business Insider Logo"
+          />
+          
+          <noscript>
+              <img
+                class="no-script"
+                src="/public/assets/logos/stacked-black.svg"
+                alt="Business Insider Logo"
+              />
+          </noscript>
+          
+          </div>      </div>
+  
+        <div class="logo">
+            <div
+              class="lazy-holder lazy-holder  has-transparency"
+              style="padding-top: calc(100% * 12 / 79.2)"
+            >
+          
+          
+          <img
+            class="lazy-image has-transparency"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+            data-src='/public/assets/INSIDER/US/logos/Insider-logo-dark-opt.svg'
+            alt="Insider Logo"
+          />
+          
+          <noscript>
+              <img
+                class="no-script"
+                src="/public/assets/INSIDER/US/logos/Insider-logo-dark-opt.svg"
+                alt="Insider Logo"
+              />
+          </noscript>
+          
+          </div>      </div>
+      </div>
+    </section>
+  
+  </footer>
+
+  
+
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "first-party", script: "%3Cscript%20async%20type%3D%22text%2Fjavascript%22%20src%3D%22%2Fscripts%2Fvendors.423efbdf91f7f9d80923.js%22%3E%3C%2Fscript%3E" });</script>
+  <script>window.allScripts = window.allScripts || []; window.allScripts.push({ type: "first-party", script: "%3Cscript%20async%20type%3D%22text%2Fjavascript%22%20src%3D%22%2Fscripts%2Fmain.83f1f9b22f9989258a51.js%22%3E%3C%2Fscript%3E" });</script>
+
+  <noscript>
+    <img src="https://sb.scorecardresearch.com/p?c1=2&c2=9900186&cv=3.6.0&;cj=1&comscorekw="/>
+  </noscript>
+
+  <script id="consent-manager-script" >(()=>{var e={56426(e,n,t){"use strict";const o="https://insider/",r=()=>{let e,n;try{e=localStorage.getItem("profile")}catch(e){return null}if(!e)return null;try{n=JSON.parse(e)}catch(e){return null}if(!n)return null;const t=n[`${o}token`];if(!t||"string"!=typeof t)return null;const r=(e=>{try{const n=e.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"),t=decodeURIComponent(atob(n).split("").map(e=>`%${`00${e.charCodeAt(0).toString(16)}`.slice(-2)}`).join(""));return JSON.parse(t)}catch(e){return null}})(t);if(!r?.exp)return null;if(Math.round(Date.now()/1e3)>r.exp)return null;return{profile:n,memberId:n[`${o}memberId`]}},i=async()=>{const e=(()=>{const e=r();return e?{memberId:e.memberId,token:e.profile[`${o}token`]}:null})(),n=e?.memberId,t=e?.token;if(!n||!t)return;const i=window.Fenrir.cm?.isOptedOutOfAds,{privacyApi:s}=window.Fenrir,{countryCode:a}=window.Fenrir.geoData,c={ads:i,privacyApi:s,countryCode:a},d=localStorage.getItem("idun-consent-preferences");let u={};if(d)try{u=JSON.parse(d)}catch{}if(u.ads!==i)try{(await fetch(`${window.Fenrir.config.apigateway.domain}/v1.0/users/${n}/consent-preferences`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${t}`},body:JSON.stringify(c)})).ok&&localStorage.setItem("idun-consent-preferences",JSON.stringify(c))}catch(e){}};const s=function(){window.Fenrir.geoData?i():document.addEventListener("onGeoDataCaptured",()=>{i()})};t(61187);const a="Sourcepoint Load - start",c="Sourcepoint Load - end sourcepoint",d="Sourcepoint Load - has consent",u="Sourcepoint Load - load queue consent";let p=!1,w=!1,l=!1;function m(){return w||p}function f(){let e=!0,n=null;const t=localStorage.getItem("_sp_user_consent_6165");try{n=t?JSON.parse(t):null}catch(e){}if("GPP"===window.Fenrir.privacyApi){const{granularStatus:t}=n?.usnat?.consentStatus||{};e=!1===t?.sellStatus}else if("TCF"===window.Fenrir.privacyApi){const{granularStatus:t}=n?.gdpr?.consentStatus||{};e="ALL"!==t?.purposeConsent?.toUpperCase()}return e}function g(e){const{step:n,timeFromStart:t}=e;delete e.step,delete e.timeFromStart;const o={now:window.Fenrir.getTime(),step:n,timeFromStart:t,cmStarted:window.Fenrir.cm.cmStarted,usPrivacyApplies:window.Fenrir.cm.usPrivacyApplies,euPrivacyApplies:window.Fenrir.cm.euPrivacyApplies,windowLoaded:window.Fenrir.cm.windowLoaded,isOptedOutOfAds:window.Fenrir.cm.isOptedOutOfAds,queueConsent:window.Fenrir.cm.queueConsent,...e};return o.timeFromStart||delete o.timeFromStart,o}function F(e){window.Fenrir.cm.isOptedOutOfAds=e,window.Fenrir.cm.cmStarted=!0,window.Fenrir.cm.loadQueueConsent();const n=new CustomEvent("onConsentReady",{detail:{isOptedOutOfAds:window.Fenrir.cm.isOptedOutOfAds,type:"update"}});document.dispatchEvent(n),s()}window.performance.mark(a),window.__tcfapi&&window.__tcfapi("addEventListener",2,function(e,n){if(n&&e){if("cmpuishown"===e.eventStatus){if(window.Fenrir.console.info(g({step:"consentManager sp.getTCData cmpuishown"})),window.Fenrir.cm.isOptedOutOfAds=f(),!w){window.performance.mark(c);const e=window.performance.measure("load - sourcepoint",a,c);window.Fenrir.console.info(g({step:"consentManager europePrivacy.bannerShown",timeFromStart:e.duration}))}w=!0,window.Fenrir.cm.cmStarted=m(),window.Fenrir.cm.loadQueueConsent()}else if("useractioncomplete"===e.eventStatus||"tcloaded"===e.eventStatus){window.Fenrir.console.info(g({step:`consentManager sp.getTCData ${e.eventStatus}`})),window.Fenrir.cm.isOptedOutOfAds=f(),p||(window.performance.mark(d),window.performance.measure("consentManager europePrivacy.consentGiven",a,d)),p=!0,window.Fenrir.cm.cmStarted=m(),window.Fenrir.cm.loadQueueConsent();const n=new CustomEvent("onConsentReady",{detail:{isOptedOutOfAds:window.Fenrir.cm.isOptedOutOfAds,type:"update"}});document.dispatchEvent(n),s()}}else window.Fenrir.console.info(g({step:"consentManager sp.getTCData error",tcData:e}))}),window.__gpp&&window.__gpp("addEventListener",function(e){if("sectionChange"===e.eventName){let n=!1;Object.keys(e.pingData.parsedSections).forEach(t=>{1===e.pingData?.parsedSections[t]?.SaleOptOut&&(n=!0)}),window.Fenrir.console.info(g({step:"consentManager gpp.sectionChange",data:e})),F(n)}else"signalStatus"===e.eventName&&"disabled"===e.pingData?.cmpDisplayStatus&&(window.Fenrir.console.info(g({step:"consentManager gpp.signalStatus",data:e})),F(!1))});const O="GPP"===window.Fenrir?.privacyApi,y="TCF"===window.Fenrir?.privacyApi;window.Fenrir.cm=Object.assign({},window.Fenrir.cm,{cmStarted:!1,windowLoaded:!1,usPrivacyApplies:O,euPrivacyApplies:y,onConsent:function(e){if("function"!=typeof e)throw new Error("method `onConsent` requires `callback` function");return document.addEventListener("onConsentReady",n=>{window.Fenrir.console.info(g({step:"consentManager onConsentReady",event:n})),e(n.detail)}),e({isOptedOutOfAds:window.Fenrir.cm.isOptedOutOfAds})},requestConsent:function(e){window.Fenrir.console.info(g({step:"consentManager requestConsent",requestor:e}));const n=new CustomEvent("onConsentReady",{detail:{isOptedOutOfAds:window.Fenrir.cm.isOptedOutOfAds,type:"request",scope:e}});document.dispatchEvent(n)},loadQueueConsent:function(){if(window.Fenrir.console.info(g({step:"consentManager loadQueueConsent"})),!window.Fenrir.cm.windowLoaded||!window.Fenrir.cm.cmStarted)return;let e;l||(window.performance.mark(u),e=window.performance.measure("queue load - sourcepoint",a,u)),l=!0,window.Fenrir.config.delayThirdPartyScripts=!1,window.Fenrir.console.info(g({step:"consentManager loadQueueConsent load scripts",timeFromStart:e?.duration}));let n=window.Fenrir.cm.queueConsent.length;for(;n;){const e=window.Fenrir.cm.queueConsent.shift();n=window.Fenrir.cm.queueConsent.length,"function"==typeof e&&e(),window.Fenrir.console.info(g({step:"consentManager loadQueueConsent script",queueLength:n}))}},getAdConsent:function(){function e(){let e=!0;if(window.Fenrir.cm.usPrivacyApplies||window.Fenrir.cm.euPrivacyApplies){const{isOptedOutOfAds:n}=window.Fenrir.cm;e=!n}return e}return new Promise(n=>{if("boolean"!=typeof window.Fenrir?.cm?.isOptedOutOfAds){const t=setTimeout(()=>n(!0),3e3);document.addEventListener("onConsentSaved",()=>{t&&clearTimeout(t),n(e())})}else n(e())})},queueConsent:[]}),window.Fenrir.console.info(g({now:window.Fenrir.getTime(),step:"consentManager starting...",tcfapi:window.__tcfapi}))},61187(){window._sp_queue&&window._sp_queue.push(()=>{window._sp_.addEventListener("onMessageChoiceSelect",(e,n,t)=>{const o=window.dataLayer||[],r={event:"privacy_center_engagement",element_name:"privacy_banner",action:"save"};if("gdpr"===e){switch(t){case 11:r.is_opted_out_of_ads=!1;break;case 12:r.action="click_to_preference_center",r.is_opted_out_of_ads="bi_value_unassigned";break;case 13:r.is_opted_out_of_ads=!0}o.push(r),window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"privacy modal engagement dataLayer push",dataEvent:r})}})})}},n={};function t(o){var r=n[o];if(void 0!==r)return r.exports;var i=n[o]={exports:{}};return e[o](i,i.exports,t),i.exports}t.m=e,t.c=n,t.o=(e,n)=>Object.prototype.hasOwnProperty.call(e,n),(()=>{t.S={};var e={},n={};t.I=(o,r)=>{r||(r=[]);var i=n[o];if(i||(i=n[o]={}),!(r.indexOf(i)>=0)){if(r.push(i),e[o])return e[o];t.o(t.S,o)||(t.S[o]={});t.S[o];var s=[];return s.length?e[o]=Promise.all(s).then(()=>e[o]=1):e[o]=1}}})();t(56426)})();</script><script id="script-loader-script" >(()=>{"use strict";var e={98210(){const e={},t={sm:"0",smMax:"599px",md:"600px",mdMax:"959px",lg:"960px",lgMax:"1259px",xl:"1260px"};window.Fenrir?.viewVersion&&(t.mdMax="1007px",t.lg="1008px",t.lgMax="1307px",t.xl="1308px");const n={small:`(max-width:${t.smMax})`,medium:`(min-width:${t.md}) and (max-width:${t.mdMax})`,large:`(min-width:${t.lg}) and (max-width:${t.lgMax})`,xlarge:`(min-width:${t.xl})`},r={mobile:`(max-width:${t.smMax})`,tablet:`(min-width:${t.md}) and (max-width:${t.mdMax})`,desktop:`(min-width:${t.lg})`,desktopxl:`(min-width:${t.xl})`},i=e=>({get:()=>window.matchMedia(e).matches}),o=e=>({get:()=>Object.values(e).reduce((t,n,r)=>(window.matchMedia(n).matches&&(t=`${Object.keys(e)[r]}`),t),"")});Object.defineProperties({},{isSmall:i(n.small),isMedium:i(n.medium),isLarge:i(n.large),isXLarge:i(n.xlarge),current:o(n)}),Object.defineProperties({},{isMobile:i(r.mobile),isTablet:i(r.tablet),isDesktop:i(r.desktop),current:o(r)}),Object.defineProperties(e,{isMobile:i(`(max-width:${t.mdMax})`),isDesktop:i(r.desktop),deviceType:{get:()=>window.matchMedia(`(max-width:${t.mdMax})`).matches?"mobile":"desktop"},width:{get:()=>document.documentElement.clientWidth},height:{get:()=>document.documentElement.clientHeight}});(()=>{function e(e){const t=new RegExp(`(?:^|;)(?:[ s]*)(?:${e}=)([^;]+)`).exec(document.cookie);return t&&t[1]?t[1]:null}})();const d=(e="",t="variant")=>{const n=document.querySelector(`meta[name="ii-ab-test:${e}"]`);if(!n)return!1;const r=n.getAttribute("value");return[t].flat().includes(r)};function a(e){let t;return window.performance?.mark?t=window.performance.mark(e):window.LUX?.mark&&(t=window.LUX.mark(e)),t||(t=window.performance.getEntriesByName(e,"mark").shift(),t||(t={startTime:window.performance.now()})),t}function s(e){return`script-loader: ${e}`}function c(e,t){const n=s(e),r=function(e){return`script-loader-${e}`}(e),i=a(`${n} - End`),o=function(e,t,n){let r;try{window.performance?.measure?r=window.performance.measure(e,t,n):window.LUX?.measure&&(r=window.LUX.measure(e,t,n))}catch(e){}return r||(r=window.performance.getEntriesByName(e,"measure").shift(),r||(r={startTime:window.performance.now()})),r}(r,`${n} - Start`,`${n} - End`),d=window.performance.getEntriesByName(`${n} - Start`,"mark")[0];let c,l,w;return(t||d)&&(c=t?.startTime||d?.startTime,l=i.startTime,w=o.duration||l-c),{start:c,end:l,duration:w}}function l(e){const t=new CustomEvent("onTrackedScriptLoaded",{detail:e});document.dispatchEvent(t)}const w="testing"===window.Fenrir?.config?.context,p=window.Fenrir?.config?.shouldDeferScripts,m=3e3,u=document.querySelector("head");function f(e,t){const n=document.createElement("script");let r,i,o,d;return Array.prototype.slice.call(e.attributes).forEach(e=>{const t=e.nodeName;let d=e.nodeValue;["id","src","async","defer"].includes(t)?(["async","defer"].includes(t)&&!d&&(d=1),n[t]=d):"data-track-load"===t?r=d:"data-request-consent"===t&&window.Fenrir?.config?.delayThirdPartyScripts?i=d||!0:"onload"===t?o=d:n.setAttribute(t,d)}),r&&(d=a(`${s(r)} - Start`),n.onerror=function(){const e={name:r,error:!0};window.Fenrir.trackedScripts.push(e),l(e)}),n.onreadystatechange=function(e,t){if(t||!n.readyState||/loaded|complete/.test(n.readyState)){if(r){const{start:e,end:t,duration:n}=c(r,d),i={name:r,error:!1,start:e,end:t,duration:n};window.Fenrir.trackedScripts.push(i),l(i)}if(i&&window.Fenrir.cm&&window.Fenrir.cm.requestConsent(i),n.onreadystatechange=null,n.onload=null,o){window.Fenrir.console.info({step:"scriptLoader.loadMethod: downloadScript.OnLoad",onloadCallback:o});const e=document.createElement("script");e.setAttribute("data-on-load-callback",""),e.textContent=o,u.appendChild(e)}}},n.onload=n.onreadystatechange,window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.loadMethod: downloadScript",src:e.src,trackLoad:e.dataset.trackLoad,scriptIndex:t,script:e}),n}function g(e,t){e=decodeURIComponent(e);const n=document.createElement("div");n.innerHTML=e;const r=window.Fenrir?.privacyApi;window.Fenrir.cm.cmStarted||"NONE"!==r||(window.Fenrir.cm.cmStarted=!0);Array.prototype.slice.call(n.querySelectorAll("script")).forEach((e,n)=>{let r=e;const{trackLoad:i=""}=r.dataset||{};try{const o=r&&r.dataset&&r.dataset.consent,d=()=>{r.textContent&&r.textContent.trim()?(r=document.createElement("script"),r.textContent=e.textContent,window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.loadMethod: injectInlineScript",trackLoad:i,scriptIndex:t,script:r})):r.src&&(r=f(r,t));const o=e.id||`inline-script-${t}-${n}`;r.setAttribute("data-script-id",o),window.setTimeout(()=>u.appendChild(r),0)};if(o&&window.Fenrir.cm&&(!window.Fenrir.cm.windowLoaded||!window.Fenrir.cm.cmStarted||window.Fenrir.cm.euPrivacyApplies&&"boolean"!=typeof window.Fenrir.cm.isOptedOutOfAds))return void window.Fenrir.cm.queueConsent.push(()=>{d()});d()}catch(e){console.error(e)}})}function y(t){t=t||"load";const n=window.allScripts.filter((n,r)=>{if(Object.prototype.hasOwnProperty.call(n,"index")||(n.index=r),n.filtered)return!1;const i=n.type||"load",o=/data-only-on=['"]?(?<onlyOn>[A-Za-z\d\s-_]*)['"]?/gi.exec(decodeURIComponent(n.script)),d=o?.groups?.onlyOn;if(d&&d!==e.deviceType)return n.filtered=!0,!1;if(window.Fenrir.cm&&!window.Fenrir.cm.euPrivacyApplies){if("first-party"===t){if(i.indexOf("first-party")>=0)return n.filtered=!0,!0}else if(i.indexOf("first-party")<0)return n.filtered=!0,!0;return!1}const a=t===n.type;return a&&(n.filtered=!0),a});window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.loadScriptLoaderScripts: filtered",loadScriptType:t,scripts:n,allScripts:window.allScripts}),n.forEach((e,t)=>{e.loaded||(e.loaded=!0,w?g(e.script,t):setTimeout(()=>{g(e.script,e.index||t)},0))})}window.allScripts=window.allScripts||[],window.Fenrir.trackedScripts=[];let F=!1;const h=[];function x(e){if(window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.manageScriptTypeLoadOrder",scriptTypeToLoad:e}),"load"===e){if(F)return;return F=!0,y(e),void h.forEach(y)}F?y(e):h.push(e)}function v(){window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.triggered: load"}),x("load"),window.Fenrir.cm&&(window.Fenrir.cm.loadQueueConsent(),window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.milestone: loadQueueConsent"}))}if(p){let e=!1;const t=()=>{if(window.Fenrir.cm&&(window.Fenrir.cm.windowLoaded=!0,window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.eventHandler: window.load"})),e)return;let t;if(e=!0,d("tti","v1")&&(t="requestIdleCallback"),d("tti","v2")&&(t="setTimeout"),d("tti","v3")&&(t="onLargestContentfulPaint"),d("tti","v4")&&(t="afterFirstPartyComplete"),navigator.connection){const{rtt:e,downlink:n}=navigator.connection;(e>200||n<5)&&(t=t||"onLargestContentfulPaint"),window.Fenrir.console.info({now:window.Fenrir.getTime(),rtt:e,downlink:n})}if(window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.triggered: first-party ",ttiTestType:t}),y("first-party"),t){if("requestIdleCallback"===t)r={timeout:m},"function"==typeof(n=v)&&("function"==typeof requestIdleCallback?requestIdleCallback(n,r):setTimeout(n,0));else if("setTimeout"===t)setTimeout(v,m);else if("onLargestContentfulPaint"===t)!function(e){"function"==typeof e&&("function"==typeof PerformanceObserver&&"function"==typeof LargestContentfulPaint?new PerformanceObserver(t=>{const n=t.getEntries(),r=n[n.length-1];window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.eventHandler: onLargestContentfulPaint",entry:r}),e({entry:r})}).observe({type:"largest-contentful-paint",buffered:!0}):setTimeout(e,m,{entry:void 0,fallback:!0}))}(v);else if("afterFirstPartyComplete"===t){let e=!1;document.addEventListener("loadDelayedOnLoadScripts",()=>{e||(e=!0,window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.eventHandler: loadDelayedOnLoadScripts"}),v())})}}else v();var n,r};window.addEventListener("load",t),"serviceWorker"in navigator&&("local"!==window.Fenrir.config.fenrirEnv?window.addEventListener("load",()=>{window.Fenrir.console.info("Registering service worker"),navigator.serviceWorker.register("/service-worker.js")}):navigator.serviceWorker.getRegistrations().then(e=>{e.length&&e.forEach(e=>{window.Fenrir.console.info("Unregistering service worker"),e.unregister()})}).catch(e=>{window.Fenrir.console.info("Error unregistering service worker",e)}))}let L=!1;document.addEventListener("loadDelayedFirstPartyScripts",()=>{L||(L=!0,window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.eventHandler: loadDelayedFirstPartyScripts"}),window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.triggered: gdpr-first-party"}),x("gdpr-first-party"))});let T=!1;document.addEventListener("loadDelayedThirdPartyScripts",()=>{T||(T=!0,window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.eventHandler: loadDelayedThirdPartyScripts"}),window.Fenrir.console.info({now:window.Fenrir.getTime(),step:"scriptLoader.triggered: gdpr"}),x("gdpr"),window.Fenrir.onloadDelayedThirdPartyScripts())})}},t={};function n(r){var i=t[r];if(void 0!==i)return i.exports;var o=t[r]={exports:{}};return e[r](o,o.exports,n),o.exports}n.m=e,n.c=t,n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{n.S={};var e={},t={};n.I=(r,i)=>{i||(i=[]);var o=t[r];if(o||(o=t[r]={}),!(i.indexOf(o)>=0)){if(i.push(o),e[r])return e[r];n.o(n.S,r)||(n.S[r]={});n.S[r];var d=[];return d.length?e[r]=Promise.all(d).then(()=>e[r]=1):e[r]=1}}})();n(98210)})();</script>
+  
+
+
+
+  
+
+  <iframe
+    src="about:blank"
+    data-src="https://www.businessinsider.com/cross-domain"
+    data-load-strategy="disable-lazy"
+    id="0-iframe"
+    style="display:none"
+    class="cross-domain"
+  ></iframe>
+  <iframe
+    src="about:blank"
+    data-src="https://my.businessinsider.com/cross-domain"
+    data-load-strategy="disable-lazy"
+    id="1-iframe"
+    style="display:none"
+    class="cross-domain"
+  ></iframe>
+
+
+
+
+  <div id="checkout-entry" class="bifrost-entry full-screen hidden"></div>
+  <div id="auth-entry" class="bifrost-entry full-screen hidden"></div>
+  <div id="dialog-entry" class="bifrost-entry full-screen hidden"></div>
+  <div id="onboarding-entry" class="bifrost-entry full-screen hidden"></div>
+  <div id="content-wall-drawer-entry" class="bifrost-entry bottom hidden"></div>
+  <div id="app-banner-entry" class="bifrost-entry bottom hidden"></div>
+  <div id="desktop-paywall-drawer-entry" class="bifrost-entry bottom hidden"></div>
+  <div id="gift-article-entry" class="bifrost-entry full-screen hidden"></div>
+  <div id="gift-article-recipient-banner-entry" class="bifrost-entry bottom hidden"></div>
+  <div id="follow-modal-entry" class="bifrost-entry full-screen hidden"></div>
+
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-MP6F46L"
+      title="GTM" height="0" width="0" style="display:none;visibility:hidden"
+    ></iframe>
+  
+    <iframe
+      data-consent="ANALYTICS"
+      src="https://www.googletagmanager.com/ns.html?id=GTM-MBTPXX"
+      height="0" width="0" style="display: none; visibility: hidden"
+    ></iframe>
+  </noscript>
+
+
+  
+  <div class="overlay"
+    data-component-type="overlay"
+    data-load-strategy="interaction"
+  ></div>
+</body>
+
+</html>

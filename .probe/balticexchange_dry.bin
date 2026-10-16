@@ -1,0 +1,3182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/etc/designs/balticexchange/consumer/favicon.ico"/>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/etc/designs/balticexchange/consumer/favicon.ico"/>
+
+    <link rel="stylesheet" type="text/css" href="/etc/designs/balticexchange/consumer/styles/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/etc/designs/balticexchange/consumer/styles/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/etc/designs/shared/styles/magnificpopup/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="/etc/designs/shared/styles/videojs/video-js.css"/>
+
+<link rel="stylesheet" href="/etc.clientlibs/balticexchange/consumer/clientlibs/base.min.2191066388e42006bf9cc12eb6d23a8c.css" type="text/css">
+<script src="/etc.clientlibs/blacksunplc-aem-commons/clientlibs/blacksunplc/blacksunplc.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/jquery.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/jquery/granite/csrf.min.js"></script>
+<script src="/etc.clientlibs/blacksunplc-aem-commons/clientlibs/vanilla/moment.min.js"></script>
+<script src="/etc.clientlibs/balticexchange/consumer/components/page/basepage/clientlibs.min.js"></script>
+<script src="/etc.clientlibs/balticexchange/consumer/clientlibs/base.min.js"></script>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+    <style id="antiClickjack">body{display:none !important;}</style>
+
+
+
+    <script type="text/javascript" src="/etc/designs/shared/scripts/shared/cookiechoice.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/jquery/jquery.cookie-1.3.1.js"></script>
+    <script type="text/javascript" src="/etc/designs/balticexchange/consumer/scripts/slick-1.8.1.min.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/shared/accordion2.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/magnificpopup/jquery.magnific-popup.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/shared/videothumbnail.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/videojs/video.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/videojs/videoshiv.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/shared/video.js"></script>
+    <script type="text/javascript" src="/etc/designs/shared/scripts/shared/jsrender.min.js"></script>
+    <title>Dry</title>
+    
+<link rel="canonical" hreflang="en" href="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html"/>
+
+
+    <meta property="og:title" content="Dry" />
+      <meta property="og:site_name" content="Baltic Exchange Consumer" />
+    
+    <meta property="og:url" content="https://www.balticexchange.com/en/data-services/market-information0/dry-services.html" />
+    <meta property="og:locale" content="en" />
+
+
+    
+    <script type="text/javascript">
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K4T3VGX');
+        jQuery(function ($) {
+            try {
+                var $links = $("a[href^='http:'], a[href^='https:'], a[href^='/content/dam/']");
+                $links.each(function (ignore, link) {
+                    if (!link.target) {
+                        link.target = "_blank";
+                    }
+                    if (link.rel) {
+                        link.rel = link.rel + " noopener noreferrer";
+                    } else {
+                        link.rel = "noopener noreferrer";
+                    }
+                });
+            } catch (ignore) {
+                /* fall through */
+            }
+        });
+    </script>
+    
+
+</head>
+
+
+<body class="childcontentpage en data-services dry-services">
+<div class="cookiewarning">
+
+<script type="text/javascript">
+    var sharedComponentsIncludesCookieWarningMode = 'none';
+    var sharedComponentsIncludesCookieWarningSpeed = '1000';
+</script>
+<div id="cookie_warning" class="none" data-cookiestyle="closeButton" data-cookieid="balticexchange-consumer-cookieID"  style="display: none">
+    <div class="cookie-outer-wrapper">
+        <div class="cookie-inner-wrapper">
+            <div class="cookie-content">
+
+                <h2>This site uses cookies</h2>
+
+                <p>We use cookies to ensure that we give you the best experience on our website. If you click “Accept Cookies”, or continue without changing your settings, you consent to their use. You can change your settings at any time. To learn more about how we collect and use cookies, and how you configure or disable cookies please read our&nbsp;<a href="https://www.balticexchange.com/en/site-services/cookies" title="Original URL: https://www.balticexchange.com/en/site-services/cookies.html. Click or tap if you trust this link.">Cookie Policy</a><br>
+</p>
+
+
+            </div>
+
+            <div class="cookie-buttons">
+                <input type="button" value="Accept Cookies"  id="persistConsentTrue" class="button cookie-button close-button" />
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+    <header class="site-header-wrapper fixed-header">
+
+
+
+<div id="ticker">
+    <div class="ticker-inner">
+        <div class="ticker-rail">
+        </div>
+    </div>
+</div>
+
+<nav>
+    <div class="row container">
+        <div class="logo">
+            <a href="https://www.balticexchange.com/en/index.html"><img src="/etc/designs/balticexchange/consumer/images/logo.svg" alt="Home"/></a>
+        </div>
+        <div class="tools">
+            <div class="item">
+<div class="mobilemenu menu">
+
+
+<div class="mobilemenu view parbase">
+
+
+
+<button id="dl-menu-btn" class="dl-trigger">Menu</button>
+<div id="dl-menu" class="dl-menuwrapper">
+    <ul class="dl-menu">
+
+        <li>
+            <a href="/en/index.html">Home</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are.html">Who We Are</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-1">
+
+        <li>
+            <a href="/en/who-we-are/the-baltic-code.html">The Baltic Code</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/reporting-market-practice.html">Reporting Market Practice</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/governance.html">Corporate Governance</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/history.html">History</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/charities.html">Charitable Activities</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping.html">Guide to Modern Shipping</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/main-vessel-types.html">Main Vessel Types</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/key-trades.html">Key Trades</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/chartering-.html">Chartering </a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/chartering-negotiations.html">Chartering Negotiations</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/tanker-chartering.html">Tanker Chartering</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/insurance.html">Insurance</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/disputes.html">Disputes</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/sale---purchase.html">Sale &amp; Purchase</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/guide-to-modern-shipping/shipping-glossary.html">Shipping Glossary</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/who-we-are/faqs.html">Baltic Exchange FAQs</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li class="opened">
+            <a href="/en/data-services.html">Data Services</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-1">
+
+        <li class="opened">
+            <a href="/en/data-services/market-information0.html">Market Information</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/data-services/market-information0/indices.html">Indices</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/fixtures.html">Fixtures</a>
+
+
+        </li>
+
+        <li class="current">
+            <a href="/en/data-services/market-information0/dry-services.html">Dry</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/tankers-services.html">Tankers</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/gas-services.html">Gas</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/chemical-and-agricultural-oil-assessments-.html">Chemical and Agricultural Oil Assessments </a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/container-services.html">Container</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/air-freight-services.html">Air freight</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/tools-for-shipping-investors-services.html">Investor Indices</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/bunker-reports.html">Fuel</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/holidays---non-publications.html">Non-publication days</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/market-information0/data-licence-.html">Settlement Licence </a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-.html">Freight Derivatives </a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/Baltic-Forward-Assessments.html">Baltic Forward Curves</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/Baltic-Options-Assessments.html">Volatilities</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/Volumes.html">Volumes</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/Clearing.html">Clearing</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/FFA-Brokers-Association.html">FFA Brokers&rsquo; Association</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/FFA-Trade-Ticker.html">FFA trade ticker</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/Open-interest.html">Open interest</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/freight-derivatives-/Intraday-prices.html">Intraday prices</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology.html">Methodology</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/data-services/Methodology/Benchmark_Administration_Activities.html">Benchmark Administration Activities</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology/benchmark-administration-activities.html">Benchmark Statements</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology/ESG_Disclosures.html">ESG Disclosures</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology/market-data.html">Market Data</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology/governance-and-oversight.html">Governance and Oversight</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology/cessation-policy.html">Cessation Policy</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Methodology/Index_Methodology.html">Index Governance</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/panellists.html">Panellists</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/routes.html">Interactive Map </a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Circulars.html">Circulars</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/WeeklyRoundup.html">Weekly Market Roundups</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/complaints.html">Complaints</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Documentation.html">Documentation</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/Non-Display.html">Non-Display Usage</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/support.html">Support</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/data-services/support/api.html">API</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/data-services/support/snowflake-marketplace.html">Snowflake Marketplace</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS.html">FFAs</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-1">
+
+        <li>
+            <a href="/en/FFAS/About-FFAs.html">About FFAs</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/FFAS/About-FFAs/what-are-ffas-.html">What are FFAs?</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/About-FFAs/why-uses-ffas.html">Why use FFAs?</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/About-FFAs/Features-of-an-FFA-Contract.html">Features of an FFA Contract</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/About-FFAs/what-are-ffa-options-.html">What are FFA options?</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/How-to-trade-an-FFA.html">How to trade an FFA</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/FFAS/How-to-trade-an-FFA/Part-one-Setting-up.html">Setting up - FFA Brokers</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/How-to-trade-an-FFA/General-Clearing-Member-GCM.html">Setting up - General Clearing Member (GCM)</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/How-to-trade-an-FFA/Part-two-Trading.html">Trading</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/How-to-trade-an-FFA/Part-three-Advanced-trading-strategies.html">Advanced trading strategies</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/How-to-trade-an-FFA/Part-four-Settlement.html">Settlement</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Role-of-the-Clearing-House.html"> Role of the Clearing House</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/FFAS/Role-of-the-Clearing-House/types-of-margin.html">Types of margin</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Role-of-the-Clearing-House/forward-curves.html">Forward curves</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Role-of-the-Clearing-House/Glossary-of-terms.html">Glossary of terms</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Index-Production.html">Index Production</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/FFAS/Index-Production/the-role-of-the-baltic.html">The Role of the Baltic</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Index-Production/index-development.html">Index Development</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Index-Production/Participants.html">Participants</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Index-Production/Data-validation.html">Data validation</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Index-Production/Governance-and-audits.html">Governance &amp; Audits</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/FFAS/Index-Production/advisory-councils.html">Advisory Councils</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services.html">Membership Services</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-1">
+
+        <li>
+            <a href="/en/membership-services/escrow-service.html">Escrow Service</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/disputes0.html">Dispute Resolution</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/New-Entrants-Market-Exam.html">New Entrants Market Exam</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0.html">Baltic Academy </a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/ics---baltic-lectures.html">ICS / Baltic lectures</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/baltic-academy.html">Advanced Freight Modelling &amp; Trading</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/container-freight-market-and-risk-management.html">Container Freight Market and Risk Management</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/freight-derivatives-and-shipping-risk-management.html">Freight Derivatives and Shipping Risk Management</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/ship-finance-executive.html">Ship Finance</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/shipping-economics---investment.html">Shipping Economics &amp; Investment</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/baltic-academy-0/book.html">Book a course</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies.html">Clubs and societies </a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-2">
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/irish-society-.html">Irish Society </a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/scottish-society-.html">Caledonian Society</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/wine-society-.html">Wine Society </a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/football.html">Football Club</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/rugby.html">Rugby Club</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/Sailing.html">Sailing Association</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/Golf.html">Golf Society</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/Tennis.html">Racket Sports Club</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/Cricket.html">Cricket Club</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/young-baltic-association-.html">Young Baltic Association </a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/clubs-and-societies/fly-fishing-society.html">Fly Fishing Society</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/membership-services/apply-page.html">Apply to join</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/kyc.html">KYC</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/news-and-events.html">Media &amp; Events</a>
+
+
+            <a class="submenu-link" href="#">&nbsp;&gt;&nbsp;</a>
+            <ul class="dl-submenu level-1">
+
+        <li>
+            <a href="/en/news-and-events/news.html">Latest News</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/news-and-events/events.html">Events</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/news-and-events/baltic-academy.html">Baltic Academy</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/news-and-events/recent-webinars.html">Recent Events</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/news-and-events/videos.html">Videos</a>
+
+
+        </li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="/en/free-trial.html">Free Trial</a>
+
+
+        </li>
+
+        <li>
+            <a href="/en/emissions.html">Emissions</a>
+
+
+        </li>
+
+    </ul>
+</div>
+</div>
+
+
+</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mainmenu" id="navmenu">
+        <div class="row-inner">
+            <div class="navigation">
+<div class="topnavmultimenu parbase">
+
+
+
+
+
+    <div class="publicmode">
+        <div class="topnavmultimenu publicmodedefault">
+
+
+
+<div class="componentBody" >
+    
+
+
+
+<nav id="primary-menu">
+    <div class="primary-menu-wrap">
+        <ul class="primary-menu menu-on-mouseover" id="topnav_multimenu_list">
+
+            <li id="who-we-are" class=" has-children has-multimenu">
+                <a class="topnav-item" role="presentation" href="/en/who-we-are.html">
+                    Who We Are
+                </a>
+            </li>
+
+            <li id="data-services" class="active has-children has-multimenu">
+                <a class="topnav-item" role="presentation" href="/en/data-services.html">
+                    Data Services
+                </a>
+            </li>
+
+            <li id="FFAS" class=" has-children ">
+                <a class="topnav-item" role="presentation" href="/en/FFAS.html">
+                    FFAs
+                </a>
+            </li>
+
+            <li id="membership-services" class=" has-children has-multimenu">
+                <a class="topnav-item" role="presentation" href="/en/membership-services.html">
+                    Membership Services
+                </a>
+            </li>
+
+            <li id="kyc" class="  ">
+                <a class="topnav-item" role="presentation" href="/en/kyc.html">
+                    KYC
+                </a>
+            </li>
+
+            <li id="news-and-events" class=" has-children ">
+                <a class="topnav-item" role="presentation" href="/en/news-and-events.html">
+                    Media & Events
+                </a>
+            </li>
+
+            <li id="free-trial" class="  ">
+                <a class="topnav-item" role="presentation" href="/en/free-trial.html">
+                    Free Trial
+                </a>
+            </li>
+
+            <li id="emissions" class="  ">
+                <a class="topnav-item" role="presentation" href="/en/emissions.html">
+                    Emissions
+                </a>
+            </li>
+
+    </ul>
+  </div>
+    <div style="clear: left;"></div>
+</nav>
+
+
+
+                <div class="topnavmultimenuitem_who-we-are topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_who-we-are" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>Who We Are</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+                    <ul class="topnavmultimenu-subnav-0 topnavmultimenu-subnav firstlast">
+
+
+
+                            <li>
+                                   <a href="/en/who-we-are/the-baltic-code.html">The Baltic Code</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/who-we-are/reporting-market-practice.html">Reporting Market Practice</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/who-we-are/governance.html">Corporate Governance</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/who-we-are/history.html">History</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/who-we-are/charities.html">Charitable Activities</a>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/who-we-are/guide-to-modern-shipping.html">Guide to Modern Shipping</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/main-vessel-types.html">Main Vessel Types</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/key-trades.html">Key Trades</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/chartering-.html">Chartering </a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/chartering-negotiations.html">Chartering Negotiations</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/tanker-chartering.html">Tanker Chartering</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/insurance.html">Insurance</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/disputes.html">Disputes</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/sale---purchase.html">Sale & Purchase</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/who-we-are/guide-to-modern-shipping/shipping-glossary.html">Shipping Glossary</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/who-we-are/faqs.html">Baltic Exchange FAQs</a>
+                            </li>
+
+
+                        </ul>
+
+    </div>
+
+    <div class="content-wrapper">
+
+        <div class="documentteaser teaser parbase">
+
+
+
+
+
+
+
+
+
+
+
+<div class="teaser-inner default plain">
+    <div class="content-wrapper">
+        <div class="content-wrapper-inner">
+            
+
+
+
+            
+
+
+<div class="image-wrapper">
+
+    <a href="https://signup.balticexchange.com/"><img data-emptytext="Teaser image not configured" src="/content/balticexchange/consumer/en/index/_jcr_content/topnavmultimenu/topnavmultimenu/topnavmultimenuitem_who-we-are/par/documentteaser/image.img.jpg/1612948216929.jpg" alt=" " title=" " class="cq-dd-teaserimage"></a>
+
+</div>
+
+
+            
+
+
+    <h3>Not yet registered?</h3>
+
+
+            
+
+
+            
+
+<div class="link-wrapper">
+
+    <a href="https://signup.balticexchange.com/" class="external">Member registration</a>
+
+</div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_data-services topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_data-services" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>Data Services</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+                    <ul class="topnavmultimenu-subnav-0 topnavmultimenu-subnav firstlast">
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/data-services/market-information0.html">Market Information</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/indices.html">Indices</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/fixtures.html">Fixtures</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/dry-services.html">Dry</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/tankers-services.html">Tankers</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/gas-services.html">Gas</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/chemical-and-agricultural-oil-assessments-.html">Chemical and Agricultural Oil Assessments </a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/container-services.html">Container</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/air-freight-services.html">Air freight</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/tools-for-shipping-investors-services.html">Investor Indices</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/bunker-reports.html">Fuel</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/holidays---non-publications.html">Non-publication days</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/market-information0/data-licence-.html">Settlement Licence </a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/data-services/freight-derivatives-.html">Freight Derivatives </a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/Baltic-Forward-Assessments.html">Baltic Forward Curves</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/Baltic-Options-Assessments.html">Volatilities</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/Volumes.html">Volumes</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/Clearing.html">Clearing</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/FFA-Brokers-Association.html">FFA Brokers’ Association</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/FFA-Trade-Ticker.html">FFA trade ticker</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/Open-interest.html">Open interest</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/freight-derivatives-/Intraday-prices.html">Intraday prices</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/data-services/Methodology.html">Methodology</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/Benchmark_Administration_Activities.html">Benchmark Administration Activities</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/benchmark-administration-activities.html">Benchmark Statements</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/ESG_Disclosures.html">ESG Disclosures</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/market-data.html">Market Data</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/governance-and-oversight.html">Governance and Oversight</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/cessation-policy.html">Cessation Policy</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/Methodology/Index_Methodology.html">Index Governance</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/panellists.html">Panellists</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/routes.html">Interactive Map </a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/Circulars.html">Circulars</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/WeeklyRoundup.html">Weekly Market Roundups</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/complaints.html">Complaints</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/Documentation.html">Documentation</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/data-services/Non-Display.html">Non-Display Usage</a>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/data-services/support.html">Support</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/data-services/support/api.html">API</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/data-services/support/snowflake-marketplace.html">Snowflake Marketplace</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+                        </ul>
+
+    </div>
+
+    <div class="content-wrapper">
+
+        <div class="documentteaser teaser parbase">
+
+
+
+
+
+
+
+
+
+
+
+<div class="teaser-inner default plain">
+    <div class="content-wrapper">
+        <div class="content-wrapper-inner">
+            
+
+
+
+            
+
+
+<div class="image-wrapper">
+
+    <a href="https://vimeo.com/557664225"><img data-emptytext="Teaser image not configured" src="/content/balticexchange/consumer/en/index/_jcr_content/topnavmultimenu/topnavmultimenu/topnavmultimenuitem_data-services/par/documentteaser/image.img.png/1626884424831.png" alt=" " title=" " class="cq-dd-teaserimage"></a>
+
+</div>
+
+
+            
+
+
+    <h3>A guide to using the Baltic API</h3>
+
+
+            
+
+
+            
+
+<div class="link-wrapper">
+
+    <a href="https://vimeo.com/557664225" class="external">Watch tutorial</a>
+
+</div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_FFAS topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_FFAS" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>FFAs</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+                    <ul class="topnavmultimenu-subnav-0 topnavmultimenu-subnav firstlast">
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/FFAS/About-FFAs.html">About FFAs</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/FFAS/About-FFAs/what-are-ffas-.html">What are FFAs?</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/About-FFAs/why-uses-ffas.html">Why use FFAs?</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/About-FFAs/Features-of-an-FFA-Contract.html">Features of an FFA Contract</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/About-FFAs/what-are-ffa-options-.html">What are FFA options?</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/FFAS/How-to-trade-an-FFA.html">How to trade an FFA</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/FFAS/How-to-trade-an-FFA/Part-one-Setting-up.html">Setting up - FFA Brokers</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/How-to-trade-an-FFA/General-Clearing-Member-GCM.html">Setting up - General Clearing Member (GCM)</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/How-to-trade-an-FFA/Part-two-Trading.html">Trading</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/How-to-trade-an-FFA/Part-three-Advanced-trading-strategies.html">Advanced trading strategies</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/How-to-trade-an-FFA/Part-four-Settlement.html">Settlement</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/FFAS/Role-of-the-Clearing-House.html"> Role of the Clearing House</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/FFAS/Role-of-the-Clearing-House/types-of-margin.html">Types of margin</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Role-of-the-Clearing-House/forward-curves.html">Forward curves</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Role-of-the-Clearing-House/Glossary-of-terms.html">Glossary of terms</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/FFAS/Index-Production.html">Index Production</a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/FFAS/Index-Production/the-role-of-the-baltic.html">The Role of the Baltic</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Index-Production/index-development.html">Index Development</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Index-Production/Participants.html">Participants</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Index-Production/Data-validation.html">Data validation</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Index-Production/Governance-and-audits.html">Governance & Audits</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/FFAS/Index-Production/advisory-councils.html">Advisory Councils</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+                        </ul>
+
+    </div>
+
+    <div class="content-wrapper">
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_membership-services topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_membership-services" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>Membership Services</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+                    <ul class="topnavmultimenu-subnav-0 topnavmultimenu-subnav firstlast">
+
+
+
+                            <li>
+                                   <a href="/en/membership-services/escrow-service.html">Escrow Service</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/membership-services/disputes0.html">Dispute Resolution</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/membership-services/New-Entrants-Market-Exam.html">New Entrants Market Exam</a>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/membership-services/baltic-academy-0.html">Baltic Academy </a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/ics---baltic-lectures.html">ICS / Baltic lectures</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/baltic-academy.html">Advanced Freight Modelling & Trading</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/container-freight-market-and-risk-management.html">Container Freight Market and Risk Management</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/freight-derivatives-and-shipping-risk-management.html">Freight Derivatives and Shipping Risk Management</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/ship-finance-executive.html">Ship Finance</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/shipping-economics---investment.html">Shipping Economics & Investment</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/baltic-academy-0/book.html">Book a course</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li class="topnavmultimenu-has-thirdlevel">
+                                <a href="/en/membership-services/clubs-and-societies.html">Clubs and societies </a>
+
+                                <ul class="topnavmultimenu-third-level-links" style="display:none;">
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/irish-society-.html">Irish Society </a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/scottish-society-.html">Caledonian Society</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/wine-society-.html">Wine Society </a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/football.html">Football Club</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/rugby.html">Rugby Club</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/Sailing.html">Sailing Association</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/Golf.html">Golf Society</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/Tennis.html">Racket Sports Club</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/Cricket.html">Cricket Club</a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/young-baltic-association-.html">Young Baltic Association </a>
+
+                                        
+                                    </li>
+
+                                     <li>
+                                        <a href="/en/membership-services/clubs-and-societies/fly-fishing-society.html">Fly Fishing Society</a>
+
+                                        
+                                    </li>
+
+                                 </ul>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/membership-services/apply-page.html">Apply to join</a>
+                            </li>
+
+
+                        </ul>
+
+    </div>
+
+    <div class="content-wrapper">
+
+        <div class="documentteaser teaser parbase">
+
+
+
+
+
+
+
+
+
+
+
+<div class="teaser-inner default plain">
+    <div class="content-wrapper">
+        <div class="content-wrapper-inner">
+            
+
+
+
+            
+
+
+<div class="image-wrapper">
+
+    <a href="/content/balticexchange/consumer/en/news-letter-sign-up"><img data-emptytext="Teaser image not configured" src="/content/balticexchange/consumer/en/index/_jcr_content/topnavmultimenu/topnavmultimenu/topnavmultimenuitem_membership-services/par/documentteaser/image.img.jpg/1684250727248.jpg" alt=" " title=" " class="cq-dd-teaserimage"></a>
+
+</div>
+
+
+            
+
+
+    <h3>Sign up to our newsletter</h3>
+
+
+            
+
+
+            
+
+<div class="link-wrapper">
+
+    <a href="/en/news-letter-sign-up.html" class="internal">Baltic Newsletter</a>
+
+</div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_kyc topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_kyc" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>KYC</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+    </div>
+
+    <div class="content-wrapper">
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_news-and-events topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_news-and-events" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>Media & Events</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+                    <ul class="topnavmultimenu-subnav-0 topnavmultimenu-subnav firstlast">
+
+
+
+                            <li>
+                                   <a href="/en/news-and-events/news.html">Latest News</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/news-and-events/events.html">Events</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/news-and-events/baltic-academy.html">Baltic Academy</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/news-and-events/recent-webinars.html">Recent Events</a>
+                            </li>
+
+
+
+
+                            <li>
+                                   <a href="/en/news-and-events/videos.html">Videos</a>
+                            </li>
+
+
+                        </ul>
+
+    </div>
+
+    <div class="content-wrapper">
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_free-trial topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_free-trial" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>Free Trial</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+    </div>
+
+    <div class="content-wrapper">
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+                <div class="topnavmultimenuitem_emissions topnavmultimenuitem parbase">
+
+
+
+<div class="multi-menu-detail-content" id="topnavmultimenuitem_emissions" style="display:none; position: relative; ">
+
+    <div class="introduction-wrapper">
+                <h2>Emissions</h2>
+        
+    </div>
+    <div class="subnav-wrapper">
+
+    </div>
+
+    <div class="content-wrapper">
+
+    </div>
+</div>
+<span class="close-megamenu"></span>
+</div>
+
+ 
+</div>
+</div>
+
+    </div>
+
+
+</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row row-links mainmenu" id="headerlinks" data-pop-up-enabled="false"
+        data-publish-mode="true">
+        <div class="row-inner">
+            
+            <div class="wechat-code-icon"><a href="/en/apply-page/china.html" class="wechat-link">中文</a></div>
+            
+            <div class="header-search"><a class="search-menu-button"></a></div>
+            
+            <div class="header-mybaltic"><a href="/en/my-baltic/dashboard.html" class="my-baltic">My Baltic</a></div>
+            
+        </div>
+    </div>
+    <div class="row row-searchfield mainmenu" id="searchmenu">
+        <div class="searchmenu-content">
+            <div class="searfield-libelle">
+                What can we help you find?
+            </div>
+<div class="searchfield">
+
+
+<div class="search-field-outer">
+
+    <div class="searchfield searchfielddefault">
+<div class="search-field-wrapper">
+    <form role="search" action="/en/site-services/search-results.html" class="search-form">
+        <input role="searchbox" type="text" name="q" class="search-field"   />
+        <input type="submit"  class="search-button" />
+    </form>
+</div></div>
+
+
+</div></div>
+
+        </div>
+    </div>
+</nav>
+    </header>
+
+    <div class="site-main-wrapper">
+
+
+<section id="breadcrumb">
+    <div class="breadcrumb">
+
+
+    
+
+<!-- currentPageLevel = 6, targetLevel = 5, startLevel = 3 -->
+<a href="/en/index.html">Home</a> <span class="delimiter"></span> <a href="/en/data-services.html">Data&nbsp;Services</a> <span class="delimiter"></span> <a href="/en/data-services/market-information0.html">Market&nbsp;Information</a> </div>
+
+</section>
+<section id="title">
+<div class="title">
+
+
+<h1>Dry</h1></div>
+
+</section>
+<section id="main">
+
+    <div class="content-page-wrapper with-side-nav">
+
+        <div class="side-nav">
+            <ul>
+                <li >
+                    <a href="/en/data-services/market-information0.html">
+                        Market Information
+                    </a>
+                </li>
+                <li>
+                    <ul>
+
+                <li >
+                    <a href="/en/data-services/market-information0/indices.html">
+                        Indices
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/fixtures.html">
+                        Fixtures
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="/en/data-services/market-information0/dry-services.html">
+                        Dry
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/tankers-services.html">
+                        Tankers
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/gas-services.html">
+                        Gas
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/chemical-and-agricultural-oil-assessments-.html">
+                        Chemical and Agricultural Oil Assessments 
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/container-services.html">
+                        Container
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/air-freight-services.html">
+                        Air freight
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/tools-for-shipping-investors-services.html">
+                        Investor Indices
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/bunker-reports.html">
+                        Fuel
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/holidays---non-publications.html">
+                        Non-publication days
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/data-licence-.html">
+                        Settlement Licence 
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/carbon-emissions-.html">
+                        Carbon Emissions 
+                    </a>
+                </li>
+
+                <li >
+                    <a href="/en/data-services/market-information0/benchmark-publication0.html">
+                        Benchmark Publication
+                    </a>
+                </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="main-content">
+<div class="main-par parsys"><div class="text parbase section">
+
+
+<div class="default"><h2>Independent information for the dry bulk market</h2>
+<p>Our daily spot market and forward assessments, market and fixture reports, weekly S&amp;P and recycling and quarterly OPEX data provide the dry bulk market with a comprehensive, independent reference point.</p>
+</div>
+</div>
+<div class="image parbase section">
+
+
+
+<div id="cq-image-jsp-/content/balticexchange/consumer/en/data-services/market-information0/dry-services/jcr:content/main-par/image_1481037379" class="Default">
+
+<img src="/content/balticexchange/consumer/en/data-services/market-information0/dry-services/_jcr_content/main-par/image_1481037379.img.jpg/1684250729063.jpg" alt="Baltic Dry Routes" title=" " class="cq-dd-image">
+
+</div></div>
+<div class="text parbase section">
+
+
+<div class="default"><p><a href="https://www.balticexchange.com/en/data-services/routes.html">Click here</a>&nbsp;to explore an interactive map of all our routes.</p>
+<ul>
+<li>$ per day timecharter &amp; $ per tonne voyage assessments<br>
+</li>
+<li>Capesize, Panamax, Supramax and Handysize</li>
+<li>Historical data since 1985</li>
+<li>Published throughout the global working day</li>
+</ul>
+</div>
+</div>
+<div class="image parbase section">
+
+
+
+<div id="cq-image-jsp-/content/balticexchange/consumer/en/data-services/market-information0/dry-services/jcr:content/main-par/image" class="Default">
+
+<img src="/content/balticexchange/consumer/en/data-services/market-information0/dry-services/_jcr_content/main-par/image.img.jpg/1612441703328.jpg" alt="Baltic Dry Index 1985 - 2020" title=" " class="cq-dd-image">
+
+</div></div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_143434568'
+        });
+        openAccordion('main_par_accordion2_143434568');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_143434568'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_143434568item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Baltic Dry Index</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>The Baltic Dry Index (BDI) is a composite of the dry bulk timecharter averages and provides a continuous time series since 1985.</p>
+<ul>
+<li>Baltic Capesize Index (40%)</li>
+<li>Baltic Panamax Index (30%)&nbsp;</li>
+<li>Baltic Supramax Index (30%)&nbsp;</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_517468538'
+        });
+        openAccordion('main_par_accordion2_517468538');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_517468538'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_517468538item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Capesize Index</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>C2 - Tubarao to Rotterdam<br>
+C3 - Tubarao to Qingdao<br>
+C5 - West Australia to Qingdao<br>
+C7 - Bolivar to Rotterdam<br>
+C8_182 - Gibraltar/Hamburg transatlantic round voyage<br>
+C9_182 -&nbsp;Cont-Med trip China-Japan<br>
+C10_182 -&nbsp;China-Japan transpacific round voyage<br>
+C14_182 -&nbsp;China - Brazil or West Africa round voyage<br>
+C16_182 -&nbsp;Far East-Atlantic Backhaul<br>
+C17 - Saldanha Bay to Qingdao<br>
+<br>
+5TC_182 Weighted Timecharter Average: Sum(C8_182*0.15, C9_182*0.125, C10_182*0.35, C14_182*0.25, C16_182*0.125)&nbsp;&nbsp;</p>
+<p>Baltic Capesize vessel for Timecharter routes is a non scrubber fitted vessel based on the following description:<br>
+<br>
+182,000mt dwt on 18.2m SSW draft<br>
+Max age 10 yrs<br>
+LOA 292m, beam 45m, TPC 123,<br>
+199,500cbm grain<br>
+Speed &amp; Consumption:<br>
+14 knots on 52 MT Laden, 44 Ballast. MFO<br>
+13 knots on 44 MT Laden, 36 Ballast. MFO<br>
+12 knots on 36 MT Laden, 29 Ballast. MFO<br>
+11 knots on 29 MT Laden, 23 Ballast. MFO, no diesel at sea.</p>
+<p>&nbsp;</p>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_1977609677'
+        });
+        openAccordion('main_par_accordion2_1977609677');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_1977609677'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_1977609677item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Panamax Index</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>P1A_82 - Skaw-Gib transatlantic round voyage<br>
+P2A_82 - Skaw-Gib trip to Taiwan-Japan<br>
+P3A_82 -&nbsp;Hong Kong-South Korea transpacific round voyage &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+P4_82 -&nbsp;Hong Kong-South Korea trip to Skaw-Passero &nbsp; &nbsp; &nbsp;<br>
+P5_82 - South China, Indonesian round voyage (BEP Asia)<br>
+P6_82 - Singapore round voyage via Atlantic&nbsp; &nbsp;&nbsp;<br>
+P7 -&nbsp; USG to Qingdao grain&nbsp; 66,000 MT&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>
+P8 - Santos to Qingdao grain 66,000 MT&nbsp; &nbsp; &nbsp;<br>
+</p>
+<p>5TC Weighted Timecharter Average:&nbsp;Sum(P1A_82*0.25, P2A_82*0.1, P3A_82*0.25, P4_82*0.10, P6_82*0.30)&nbsp;</p>
+<p>Baltic Panamax Index (BPI): Sum(P1A_82*0.027777775, P2A_82*0.01111111, P3A_82*0.027777775, P4_82*0.01111111, P6_82*0.03333333)&nbsp;&nbsp;</p>
+<p>Baltic Panamax vessel for Timecharter routes is a non-scrubber fitted vessel based on the following description:<br>
+</p>
+<p><br>
+82,500mt dwt on 14.43m SSW draft<br>
+Max age 12 yrs<br>
+LOA 229m, beam 32.25m, TPC 70.5<br>
+97,000 cbm grain<br>
+13.5 knots laden on 33mt fuel oil (380cs t) / 14 knots ballast on 31mt fuel oil (380cs t) + 0.1 MGO at sea<br>
+11.5 knots laden on 22mt fuel oil (380cs t) / 12.5 knots ballast on 23mt fuel oil (380cs t) + 0.1 MGO at sea</p>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_437959107'
+        });
+        openAccordion('main_par_accordion2_437959107');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_437959107'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_437959107item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Supramax Index</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>S1B - Canakkale trip via Med or Bl Sea to China-South Korea<br>
+S1C - US Gulf trip to China-south Japan<br>
+S2 - North China one Australian or Pacific round voyage<br>
+S3 - North China trip to West Africa<br>
+S4A - US Gulf trip to Skaw-Passero<br>
+S4B - Skaw-Passero trip to US Gulf<br>
+S5 - West Africa trip via east coast South America to north China<br>
+S8 - South China trip via Indonesia to east coast India<br>
+S9 - West Africa trip via east coast South America to Skaw-Passero<br>
+S10 - South China trip via Indonesia to south China<br>
+S15 – Indian Ocean trip via South Africa to Far East</p>
+<p>11TC Weighted Timecharter Average: Sum(S1B*0.05, S1C*0.05, S2*0.15, S3*0.15, S4A*0.075, S4B*0.10, S5*0.05, S8*0.10, S9*0.075, S10*0.10, S15*0.10)</p>
+<p>Baltic Supramax Index (BS I63): RoundedSum(S1B_63*0.05, S1C_63*0.05, S2_63*0.15, S3_63*0.15, S4A_63*0.075, S4B_63*0.10, S5_63*0.05, S8_63*0.1, S9_63*0.075, S10_63*0.10, S15_63*0.10)*0.079112625)</p>
+<p>Baltic Supramax vessel for Timecharter routes is based on a non-scrubber fitted vessel based on the following description:</p>
+<p>63,500mt DWT on 13.418m SSW – TPC 61.4<br>
+Max 15 Years<br>
+LOA 199.98 M / Beam 32.24 M<br>
+GRAIN: 80,500cbm BALE: 76,200cbm<br>
+Cranes 4 x 30 MT with 4 x 12 CBM Grabs<br>
+5 HO/HA<br>
+14 knots on 29 mt laden, 25mt ballast. Marine Fuel Oil, no Marine Gas Oil at sea<br>
+13 knots on 24 mt laden, 21mt ballast. Marine Fuel Oil, no Marine Gas Oil at sea<br>
+12 knots on 20 mt laden, 17mt ballast. Marine Fuel Oil, no Marine Gas Oil at sea<br>
+11 knots on 16.5 mt laden, 14mt ballast. Marine Fuel Oil, no Marine Gas Oil at sea</p>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_1480222029'
+        });
+        openAccordion('main_par_accordion2_1480222029');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_1480222029'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_1480222029item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Handysize Index</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>HS1_38 - Skaw-Passero trip to Rio de Janeiro-Recalada<br>
+HS2_38 - Skaw-Passero trip to Boston-Galveston<br>
+HS3_38 - Rio de Janeiro-Recalada trip to Skaw-Passero<br>
+HS4_38 - US Gulf trip via US Gulf or north coast South America to Skaw-Passero<br>
+HS5_38 - South East Asia trip to Singapore-Japan<br>
+HS6_38 - North China-South Korea-Japan trip to North China-South Korea-Japan<br>
+HS7_38 - North China-South Korea-Japan trip to south east Asia</p>
+<p>7TC Weighted Time Charter Average:&nbsp;&nbsp;Sum(HS1_38*0.125, HS2_38*0.125, HS3_38*0.125, HS4_38*0.125, HS5_38*0.20, HS6_38*0.20, HS7_38*0.10)&nbsp;<br>
+</p>
+<p>Baltic Handysize Index (BHSI): Sum(HS1_38*0.006944444, HS2_38*0.006944444, HS3_38*0.006944444, HS4_38*0.006944444, HS5_38*0.011111111, HS6_38*0.011111111, HS7_38*0.005555556)&nbsp;Baltic Handysize 38 vessel for Timecharter routes is a non-scrubber fitted vessel based on the following description:<br>
+</p>
+<p><br>
+Singledeck self trimming geared bulk carrier<br>
+38,200mt dwt on 10.538m SSW<br>
+Max Age 15 Years<br>
+LOA 180m / Beam 29.8m / TPC 49<br>
+47,125 cbm grain / 45,300 cbm bale<br>
+5 holds / 5 hatches<br>
+4 x 30 ton cranes<br>
+Speed &amp; consumptions including main engine &amp; auxibrary engines:<br>
+14 knots on 26mt IFO (380 CST) laden/24mt IFO (380 CST) ballast + 0.1 MDO at sea<br>
+12 knots on 18mt IFO (380 CST) laden/17mt IFO (380 CST) ballast + 0.1 MDO at sea</p>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2'
+        });
+        openAccordion('main_par_accordion2');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Sale &amp; Purchase</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>Weekly assessments for a five-year old vessel type for:</p>
+<ul>
+<li>Capesize (180,000 dwt)</li>
+<li>Panamax (82,500 dwt)</li>
+<li>Superhandy (Tess 58 type)</li>
+<li>Handysize (38,200 dwt)</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_1055440652'
+        });
+        openAccordion('main_par_accordion2_1055440652');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_1055440652'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_1055440652item" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">Recycling</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>Weekly assessments of in US $/Lightweight for dry bulk carriers.</p>
+<p>Delivery in Bangladesh, India &amp; Pakistan.</p>
+<ul>
+<li>Large bulk carrier 20,000+ LDT</li>
+<li>Medium bulk carrier 9,001 - 20,000 LDT</li>
+<li>Small bulk carrier 5,000 - 9000 LDT&nbsp;</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="accordion2 parbase section">
+
+
+
+<script type="text/javascript">
+    $(function () {
+        initialiseSharedComponentsFunctionalAccordion({
+            speed: 400,
+            start: 0,
+            mode: 'separate',
+            accordionId: 'main_par_accordion2_835944341'
+        });
+        openAccordion('main_par_accordion2_835944341');
+    });
+
+</script>
+
+
+<div id='main_par_accordion2_835944341'
+    class="sharedComponentsFunctionalAccordion accordion-wrapper default"
+    data-speed="400"
+    data-start="0"
+    data-mode="separate">
+
+
+    <div class="parsys accordionparsys"><div class="accordionitem parbase section">
+
+
+<div id="main_par_accordion2_835944341item_165177" class="accordion-content" >
+    <div class="accordion-header-wrapper" id="null">
+        <h3 class="accordion-header">OPEX</h3>
+        <span class="accordion-header-icon"> </span>
+    </div>
+    <div class="accordion-content-wrapper">
+        <div class="accordion-content-inner">
+            <div class="parsys"><div class="text parbase section">
+
+
+<div class="default"><p>A quarterly index tracking the daily vessel operating costs for Capesize, Panamax, Supramax and Handysize vessels.<br>
+<br>
+The Baltic Operating Costs Index – Dry (DOPEX) is calculated using crewing, technical and insurance costs. Published quarterly, the assessment is based on assessments by leading third party ship managers.<br>
+<br>
+A five-year old dry dock cost, amortised over five years, is published separately.</p>
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="videopopupteaser teaser parbase section">
+
+
+    
+
+
+
+<div class="teaser-inner grey-text-white-bg plainimageleft">
+        <div class="image-wrapper" style="background-image: url('/content/dam/balticexchange/consumer/opexsea.jpg');">
+            <a class="popupboxLink" id="popupvideo-videopopupteaser" href="#" data-id="videopopupteaser" data-target="videoComponent-videopopupteaser">
+                <div class="image-overlay"> </div>
+            </a>
+        </div>
+        <div class="content-wrapper">
+            <div class="content-wrapper-inner">
+                
+
+
+    <h2>DOPEX</h2>
+
+
+                
+
+
+
+                
+
+<div class="teaser-content">
+
+    <p>Track Dry vessel operational costs with our quarterly assessments</p>
+
+
+</div>
+
+                
+
+
+    <div class="video-description-box">
+        <div class="video-description">
+            Watch our video 
+        </div>
+        <div class="video-duration">
+
+        </div>
+    </div>
+
+                
+
+
+<div style="display:none;">
+    <div id="videoComponent-videopopupteaser" >
+
+
+
+    <div class="vimeo-wrapper">
+       <iframe src="https://player.vimeo.com/video/402126737" width="480" height="320" frameborder="0" 
+            allow="autoplay; fullscreen" allowfullscreen></iframe>
+        
+    </div>
+
+
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="text parbase section">
+
+
+
+</div>
+<div class="text parbase section">
+
+
+<div class="default"><h2><b>Fixtures and market reports</b></h2>
+<p><span style="background-color: transparent;">The Baltic Exchange's team of freight market reporters in London and Singapore produces a daily fixture list and daily news round-up for the dry bulk market.<br>
+ <br>
+ Our comprehensive fixture list can be readily integrated with users’ systems and provides historical data and contains around 100,000 fixtures.&nbsp;</span></p>
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="articlefilterpane section">
+
+
+<script src="/etc.clientlibs/balticexchange/consumer/components/functional/articlefilterpane/clientlibs.min.js"></script>
+
+
+<div  class='article-filter-pane-wrapper
+            
+            
+            no-loadmore-link
+            
+            
+            
+            '
+    data-resource="/content/balticexchange/consumer/en/data-services/market-information0/dry-services/jcr:content/main-par/articlefilterpane" data-start="0">
+    <div class="pane-head">
+        <div class="pane-title">
+
+            News
+
+        </div>
+        <div class="pane-link">
+
+            <a href="/en/news-and-events/market-information/dry.html">View more</a>
+
+        </div>
+    </div>
+
+
+    <div class="article-filter-options">
+        <form class="article-filter-form">
+
+
+        </form>
+    </div>
+
+
+
+
+    <div class="carousel-handles">
+        <span class="carousel-handle carousel-handle-left"></span>
+        <span class="carousel-handle carousel-handle-right"></span>
+    </div>
+
+    <div class="article-filter-content-container">
+        <div class="article-filter-content">
+        </div>
+    </div>
+
+    <div class="article-filter-actions">
+        <a class="article-filter-loadmore">Read More</a>
+    </div>
+
+</div>
+</div>
+
+</div>
+
+        </div>
+    </div>
+</section>
+
+    </div>
+
+    <footer class="site-footer-wrapper">
+
+
+<div class="container">
+
+    <div class="footer-top">
+        <div class="row">
+            <div class="column column-1 colspan-2">
+                <div class="logo">
+                    <a href="/en/index.html"><img src="/etc/designs/balticexchange/consumer/images/logo-with-text.png" alt="Home"/></a>
+                </div>
+            </div>
+            <div class="column column-2 colspan-1">
+                <div class="links-col">
+<div class="about-links fixedtext">
+
+
+    <div class="fixedtext fixedtextdefault">
+
+
+    <h3>About</h3>
+<p><a href="/en/who-we-are.html">Who we are</a></p>
+<p><a href="/en/who-we-are/governance.html">Corporate Governance</a></p>
+<p><a href="/en/who-we-are/history.html">Our History</a></p>
+<p><a href="/en/who-we-are/sgx-group.html">SGX Group</a></p>
+<p><a href="/en/membership-services.html">Membership Services</a></p>
+<p><a href="/en/who-we-are/faqs.html">FAQ’s</a></p>
+
+</div>
+
+</div>
+
+                </div>
+            </div>
+            <div class="column column-3 colspan-1">
+                <div class="links-col">
+<div class="market-links fixedtext">
+
+
+    <div class="fixedtext fixedtextdefault">
+
+
+    <h3>Data services</h3>
+<p><a href="/en/free-trial.html">Free Trial</a></p>
+<p><a href="/en/data-services/market-information0.html">Market Information</a></p>
+<p><a href="/en/data-services/freight-derivatives-.html">Freight Derivatives</a></p>
+<p><a href="/en/data-services/Methodology.html">Methodology</a></p>
+<p>&nbsp;</p>
+
+</div>
+
+</div>
+
+                </div>
+            </div>
+            <div class="column column-4 colspan-1">
+                <div class="links-col">
+<div class="connect-links fixedtext">
+
+
+    <div class="fixedtext fixedtextdefault">
+
+
+    <h3>Connect</h3>
+<p><a href="/en/apply-page.html">Apply</a></p>
+<p><a href="/en/news-letter-sign-up.html">Newsletter</a></p>
+<p><a href="/en/news-and-events.html">News &amp; Events</a></p>
+<p><a href="https://www.balticexchange.com/en/free-trial.html">Baltic App</a></p>
+<p><a href="/en/contact-us.html">Contact us</a></p>
+
+</div>
+
+</div>
+
+                </div>
+            </div>
+            <div class="column column-5 colspan-1">
+                <div class="links-col links-col-social">
+<div class="socialmedia-links-title fixedtext">
+
+
+    <div class="fixedtext fixedtextdefault">
+
+
+    <h3>Follow</h3>
+
+</div>
+
+</div>
+
+<div class="socialmedia-links socialmedialinks">
+
+
+
+<div class="social-media-inner JcrNodeResource, type=nt:unstructured, superType=null, path=/content/balticexchange/consumer/en/index/jcr:content/socialmedia-links/socialLinks" >
+
+            <a href="https://x.com/balticexchange?lang=en">
+                <span class="x-icon">
+                    X
+                </span>
+            </a>
+
+            <a href="https://www.linkedin.com/company/the-baltic-exchange/">
+                <span class="linkedin-icon">
+                    LinkedIn
+                </span>
+            </a>
+
+            <a href="https://vimeo.com/user110698375">
+                <span class="vimeo-icon">
+                    Vimeo
+                </span>
+            </a>
+
+            <a href="https://www.instagram.com/balticexchange/">
+                <span class="instagram-icon">
+                    Instagram
+                </span>
+            </a>
+
+</div>
+
+
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+<div class="footer">
+
+
+<div class="footer-wrapper">
+    <div class="footer-main">
+        <div class="footer-main-inner">
+            
+    <div class="footer footerdefault">
+
+
+
+
+
+
+
+
+
+                    
+
+
+
+
+
+<ul class="site-services-links">
+
+    <li>
+        <a href="/en/site-services/data-policy.html">Data Policy</a>
+    </li>
+
+    <li>
+        <a href="/en/site-services/privacy-policy.html">Privacy Policy</a>
+    </li>
+
+    <li>
+        <a href="/en/site-services/terms-and-conditions.html">Terms and Conditions</a>
+    </li>
+
+    <li>
+        <a href="/en/site-services/baltic-rules.html">Baltic Rules</a>
+    </li>
+
+    <li>
+        <a href="/en/site-services/cookies.html">Cookies</a>
+    </li>
+
+    <li>
+        <a href="/en/site-services/sitemap.html">Sitemap</a>
+    </li>
+
+</ul>
+
+
+
+</div>
+
+
+
+        </div>
+    </div>
+</div></div>
+
+    </div>
+</div>
+    </footer>
+</body>
+
+</html>
