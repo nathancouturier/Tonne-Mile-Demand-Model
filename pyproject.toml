@@ -47,7 +47,6 @@ tmdm = ["py.typed"]
 line-length = 120
 target-version = "py311"
 src = ["src", "tests", "scripts"]
-extend-exclude = ["scripts/probe_sources.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "W", "UP", "B", "N", "D", "ANN", "RUF", "BLE"]
