@@ -92,6 +92,7 @@ def difference_regression(
     regressors: tuple[str, ...] = ("volume", "haul", "fleet", "supply_factor"),
     lags: int = 1,
     hac_lags: int = 6,
+    lagged: tuple[str, ...] = ("volume", "haul"),
 ) -> dict[str, Any]:
     """Unrestricted regression of d log index on component changes and their lags.
 
@@ -99,8 +100,11 @@ def difference_regression(
         dlog: Frame of log differences with the target and regressor columns.
         target: Name of the dependent column.
         regressors: Component columns.
-        lags: Number of lags of each regressor to include (contemporaneous always included).
+        lags: Number of lags to include for the regressors named in ``lagged`` (contemporaneous
+            terms are always included). Fleet and the supply factor move smoothly, so their lags
+            are nearly collinear with the current change and are left out.
         hac_lags: Newey-West bandwidth.
+        lagged: Regressors that receive lagged terms.
 
     Returns:
         Dictionary with coefficients, standard errors, p-values, fit statistics
@@ -111,8 +115,9 @@ def difference_regression(
     cols: dict[str, pd.Series] = {}
     for r in regressors:
         cols[r] = dlog[r]
-        for k in range(1, lags + 1):
-            cols[f"{r}_lag{k}"] = dlog[r].shift(k)
+        if r in lagged:
+            for k in range(1, lags + 1):
+                cols[f"{r}_lag{k}"] = dlog[r].shift(k)
     x = pd.DataFrame(cols)
     df = pd.concat([dlog[target].rename("y"), x], axis=1).dropna()
     if len(df) < 24:

@@ -64,29 +64,40 @@ def log_balance(panel: pd.DataFrame) -> pd.Series:
 
 
 def fit_elasticity(panel: pd.DataFrame) -> tuple[ElasticityEstimate, dict[str, Any]]:
-    """Headline levels elasticity plus robustness variants."""
+    """Headline elasticity from twelve-month log changes, plus robustness variants.
+
+    Twelve-month changes remove seasonality and the slow trends that dominate
+    the levels of both series, so the coefficient measures how a year-on-year
+    change in the demand/supply balance has translated into a year-on-year
+    change in the index. Levels regressions (with and without month dummies),
+    quarterly changes and the two halves of the sample are reported as
+    robustness checks.
+    """
     p = _check_panel(panel)
     y = np.log(p["index"])
     x = log_balance(p)
-    headline = estimate_elasticity(y, x, seasonal=True)
-    robustness: dict[str, Any] = {"levels_no_seasonal_dummies": estimate_elasticity(y, x).summary()}
-    # 12-month changes
     d12 = pd.concat([y.diff(12).rename("y"), x.diff(12).rename("x")], axis=1).dropna()
-    if len(d12) >= 24:
-        est = estimate_elasticity(d12["y"], d12["x"])
-        robustness["twelve_month_changes"] = est.summary()
-    # quarterly averages
+    if len(d12) < 24:
+        raise ValueError("need at least 36 months of panel data for the twelve-month change regression")
+    headline = estimate_elasticity(d12["y"], d12["x"])
+    robustness: dict[str, Any] = {
+        "levels_with_month_dummies": estimate_elasticity(y, x, seasonal=True).summary(),
+        "levels_plain": estimate_elasticity(y, x).summary(),
+    }
+    # quarterly averages, four-quarter changes
     q = p[["index", "tonne_miles", "fleet", "supply_factor"]].copy()
     q.index = pd.PeriodIndex(q.index).asfreq("Q")
     qm = q.groupby(level=0).mean()
-    if len(qm) >= 24:
-        est = estimate_elasticity(np.log(qm["index"]), log_balance(qm), hac_lags=4)
-        robustness["quarterly_levels"] = est.summary()
-    # halves of the sample
-    half = len(p) // 2
-    for label, part in (("first_half", p.iloc[:half]), ("second_half", p.iloc[half:])):
+    if len(qm) >= 20:
+        yq = np.log(qm["index"]).diff(4)
+        xq = log_balance(qm).diff(4)
+        est = estimate_elasticity(yq, xq, hac_lags=4)
+        robustness["quarterly_four_quarter_changes"] = est.summary()
+    # halves of the sample (twelve-month changes)
+    half = len(d12) // 2
+    for label, part in (("first_half", d12.iloc[:half]), ("second_half", d12.iloc[half:])):
         if len(part) >= 24:
-            est = estimate_elasticity(np.log(part["index"]), log_balance(part))
+            est = estimate_elasticity(part["y"], part["x"])
             robustness[label] = est.summary()
     return headline, robustness
 

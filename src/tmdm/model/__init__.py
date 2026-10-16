@@ -97,16 +97,15 @@ def run() -> None:
         roll[c] = roll[c].astype(str)
     roll.to_csv(PROCESSED_DIR / "decomposition_rolling.csv", index=False)
     (PROCESSED_DIR / "decomposition_episodes.json").write_text(json.dumps(_json_ready(out.episodes), indent=2))
-    fitted = pd.DataFrame(
-        {
-            "month": [str(m) for m in out.elasticity.fitted.index],
-            "log_index": np.log(panel.loc[out.elasticity.fitted.index, "index"]).to_numpy(),
-            "fitted_log_index": out.elasticity.fitted.to_numpy(),
-            "residual": out.elasticity.residuals.to_numpy(),
-        }
-    )
-    fitted["fitted_index"] = np.exp(fitted["fitted_log_index"])
-    fitted.to_csv(PROCESSED_DIR / "model_fitted.csv", index=False)
+    # Twelve-month change actual versus implied by the balance (the headline specification)
+    log_index = np.log(panel["index"])
+    balance = np.log(panel["tonne_miles"] / (panel["fleet"] * panel["supply_factor"]))
+    d12 = pd.DataFrame({"actual_dlog12": log_index.diff(12), "balance_dlog12": balance.diff(12)}).dropna()
+    e = out.elasticity
+    d12["implied_dlog12"] = e.intercept + e.elasticity * d12["balance_dlog12"]
+    d12["residual"] = d12["actual_dlog12"] - d12["implied_dlog12"]
+    d12.insert(0, "month", [str(m) for m in d12.index])
+    d12.to_csv(PROCESSED_DIR / "model_fitted.csv", index=False)
     hs = rolling_haul_split(HORIZON, WINDOW)
     hs["month"] = hs["month"].astype(str)
     hs.to_csv(PROCESSED_DIR / "haul_split_rolling.csv", index=False)
