@@ -6,7 +6,8 @@ Reads ``data/processed/panel_monthly.csv`` and writes:
 * ``model_difference_regression.json``: unrestricted first-difference regression.
 * ``decomposition_rolling.csv``: 12-month attribution for every month.
 * ``decomposition_episodes.json``: attribution for each covered named episode.
-* ``model_fitted.csv``: twelve-month log change of the index, actual and implied by the balance, with residuals.
+* ``model_fitted.csv``: twelve-month log changes of single months: actual, implied by the balance, fitted
+  (with the regression intercept) and residual.
 * ``haul_split_rolling.csv``: trade-mix versus rerouting split of the haul effect.
 """
 
@@ -56,9 +57,13 @@ def rolling_haul_split(horizon: int, window: int) -> pd.DataFrame:
     rows = []
 
     def window_mean(end: pd.Period) -> tuple[pd.Series, pd.Series]:
+        # tonne-weighted distance per route, so that sum(t * d) equals the window mean of tonne-miles and
+        # the split adds up to the same haul change as the decomposition (which uses window means of totals)
         sub = by_route[(by_route["month"] > end - window) & (by_route["month"] <= end)]
-        t = sub.groupby("route_id")["tonnes"].mean()
-        d = sub.groupby("route_id")["distance_nm"].mean()
+        g = sub.groupby("route_id")
+        t = g["tonnes"].mean()
+        tm = g["tonne_miles"].mean()
+        d = (tm / t.where(t > 0)).fillna(g["distance_nm"].mean())
         return t, d
 
     for end in months:
@@ -84,7 +89,8 @@ def run() -> None:
                 "window_months": WINDOW,
                 "horizon_months": HORIZON,
                 "panel_window": [str(panel.index[0]), str(panel.index[-1])],
-                "n_obs": len(panel),
+                "panel_months": len(panel),
+                "n_obs": out.elasticity.n_obs,
             },
             indent=2,
         )
@@ -97,13 +103,17 @@ def run() -> None:
         roll[c] = roll[c].astype(str)
     roll.to_csv(PROCESSED_DIR / "decomposition_rolling.csv", index=False)
     (PROCESSED_DIR / "decomposition_episodes.json").write_text(json.dumps(_json_ready(out.episodes), indent=2))
-    # Twelve-month change actual versus implied by the balance (the headline specification)
+    # Twelve-month changes of single months: the data behind the headline regression.
+    # implied_dlog12 is the elasticity times the change in the balance (what the decomposition attributes to
+    # the four forces); fitted_dlog12 adds the regression intercept, a drift that the decomposition leaves in
+    # the residual. residual_dlog12 is actual minus implied, the same definition as the decomposition.
     log_index = np.log(panel["index"])
     balance = np.log(panel["tonne_miles"] / (panel["fleet"] * panel["supply_factor"]))
     d12 = pd.DataFrame({"actual_dlog12": log_index.diff(12), "balance_dlog12": balance.diff(12)}).dropna()
     e = out.elasticity
-    d12["implied_dlog12"] = e.intercept + e.elasticity * d12["balance_dlog12"]
-    d12["residual"] = d12["actual_dlog12"] - d12["implied_dlog12"]
+    d12["implied_dlog12"] = e.elasticity * d12["balance_dlog12"]
+    d12["fitted_dlog12"] = e.intercept + d12["implied_dlog12"]
+    d12["residual_dlog12"] = d12["actual_dlog12"] - d12["implied_dlog12"]
     d12.insert(0, "month", [str(m) for m in d12.index])
     d12.to_csv(PROCESSED_DIR / "model_fitted.csv", index=False)
     hs = rolling_haul_split(HORIZON, WINDOW)

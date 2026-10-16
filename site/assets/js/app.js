@@ -47,7 +47,7 @@
       { label: "Covered trades, tonnes shipped", value: mt(lt.tonnes_mt), note: `${s.routes.count} routes, latest month` },
       { label: "Tonne-miles on covered routes", value: d3.format(",.0f")(lt.tonne_miles_bn) + " bn", note: `average haul ${fmt.int(lt.avg_haul_nm)} nautical miles` },
       { label: "Bulk carrier fleet", value: d3.format(",.0f")(lt.fleet_mdwt) + " Mdwt", note: "UNCTAD, interpolated to month" },
-      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: explained !== null && (explained < 0 || explained > 1) ? `residual larger than the move itself; index moved ${signed(la.total_pct, 0)} percent` : `index moved ${signed(la.total_pct, 0)} percent; elasticity ${d3.format(".1f")(la.elasticity)}` },
+      { label: `Explained by the four forces, 12 months to ${fmt.month(la.end)}`, value: explained === null ? "n/a" : fmt.pctPlain(explained), note: explained !== null && (explained < 0 || explained > 1) ? `residual larger than the move itself; index moved ${signed(la.total_pct, 0)} percent` : `index moved ${signed(la.total_pct, 0)} percent (three-month averages); elasticity ${d3.format(".1f")(la.elasticity)}` },
     ];
     items.forEach((it) => {
       const t = C.el("div", "tile");
@@ -66,14 +66,14 @@
     const implied = xs.map((x, i) => ({ x, y: c12.implied_pct[i] }));
     const n = c12.month.length - 1;
     const first = c12.month[0], last = c12.month[n];
-    const verb = (v) => (v >= 0 ? "rise" : "fall");
+    const move = (v, rise, fall) => `${v >= 0 ? rise : fall} ${fmt.int(Math.abs(v))} percent`;
     C.lineChart("#chart-headline", {
-      title: `Tonne-miles against effective fleet implied a ${fmt.int(Math.abs(c12.implied_pct[n]))} percent ${verb(c12.implied_pct[n])} in the index over the twelve months to ${fmt.month(last)}; it ${c12.actual_pct[n] >= 0 ? "rose" : "fell"} ${fmt.int(Math.abs(c12.actual_pct[n]))} percent`,
-      subtitle: `Twelve-month change in the Baltic Dry Index (percent) against the change implied by the demand/supply balance at the estimated elasticity, ${fmt.month(first)} to ${fmt.month(last)}. The shaded gap is the residual.`,
-      source: sourceLine("Baltic Dry Index from Statistics and Research Aland (originator Baltic Exchange); implied change from the twelve-month change regression in this project", ["asub_baltic_dry_index"]),
+      title: `Over the twelve months to ${fmt.month(last)} the four forces pointed to a ${move(c12.implied_pct[n], "rise of", "fall of")} in the index; it ${move(c12.actual_pct[n], "rose", "fell")}`,
+      subtitle: `Twelve-month change in the Baltic Dry Index against the change attributed to cargo volume, haul, fleet and port time at the estimated elasticity, percent, ${fmt.month(first)} to ${fmt.month(last)}. Endpoints are three-month averages, as in the decomposition. The shaded gap is the residual.`,
+      source: sourceLine("Baltic Dry Index from Statistics and Research Aland (originator Baltic Exchange); attribution from this project's decomposition", ["asub_baltic_dry_index", "un_comtrade", "brazil_comexstat", "unctadstat_maritime"]),
       series: [
         { key: "actual", label: "Baltic Dry Index, 12-month change", color: p.accent, values: actual, format: fmt.pctSigned },
-        { key: "implied", label: "Implied by tonne-miles over effective fleet", color: p.fitted, dashed: true, values: implied, format: fmt.pctSigned },
+        { key: "implied", label: "Attributed to the four forces", color: p.fitted, dashed: true, values: implied, format: fmt.pctSigned },
       ],
       yFormat: "+.0f", yLabel: "Percent change over 12 months", area: true, height: 320, tableRows: 48,
     });
@@ -281,6 +281,20 @@
       series: comms.map((k) => ({ key: k, label: COMMODITY_LABEL[k], color: COMMODITY_COLOR[k](), values: xs.map((x, i) => ({ x, y: M.by_commodity[k][i] })) })),
       yZero: true, yLabel: "Billion tonne-miles per month", height: 300,
     });
+    const RO = D.rolling;
+    const hs = RO.month.map((m, i) => ({ x: C.monthToDate(m), label: `${fmt.month(RO.start[i])} to ${fmt.month(m)}`, mix: RO.haul_dlog_mix[i], rerouting: RO.haul_dlog_rerouting[i], total: RO.haul_dlog[i] })).filter((d) => d.total !== null);
+    if (hs.length) {
+      const lastH = hs[hs.length - 1];
+      const peak = hs.reduce((a, b) => (Math.abs(b.rerouting) > Math.abs(a.rerouting) ? b : a));
+      C.stackedBars("#chart-haul-split", {
+        title: `Rerouting moved the average haul by up to ${fmt.lp(peak.rerouting)} log points over twelve months (${peak.label}); in the latest window trade mix contributed ${fmt.lp(lastH.mix)} and rerouting ${fmt.lp(lastH.rerouting)}`,
+        subtitle: "Twelve-month log change in the average haul of covered cargo (line), split into trade mix (shares shifting between routes at fixed distances) and rerouting (distances changing at fixed shares, from the Red Sea and Panama diversions). Values are changes in the haul itself, before the elasticity is applied; 0.01 is about one percent.",
+        source: sourceLine("UN Comtrade, Brazil Comex Stat, IMF PortWatch chokepoint transits, this project's distance matrix", ["un_comtrade", "brazil_comexstat", "imf_portwatch"]),
+        components: [{ key: "mix", label: "Trade mix", color: p.s1 }, { key: "rerouting", label: "Rerouting", color: p.s2 }],
+        total: { key: "total", label: "Change in average haul", color: p.accent },
+        data: hs, yLabel: "Log change over 12 months", height: 300,
+      });
+    }
     const notes = $("#routes-notes");
     notes.innerHTML = "";
     notes.append(C.el("h3", null, "How routes are measured"));
@@ -366,9 +380,9 @@
     add("h3", "The attribution identity");
     add("p", "For any two months, with endpoint values averaged over three months:", null);
     add("p", "log(BDI1 / BDI0) = e [ dlog(tonnes) + dlog(haul) ] minus e [ dlog(fleet) + dlog(supply factor) ] + residual", "formula");
-    add("p", `The elasticity e is estimated once, by regressing the log index on the log of tonne-miles over effective fleet across the whole panel (${fmt.month(m.panel_window[0])} to ${fmt.month(m.panel_window[1])}, ${m.n_obs} months) with Newey-West standard errors. Each contribution is e multiplied by the log change of its input; the four contributions and the residual sum exactly to the observed change, which the unit tests enforce.`);
+    add("p", `The elasticity e is estimated once, by regressing the twelve-month change in the log index on the twelve-month change in the log of tonne-miles over effective fleet (${fmt.month(m.panel_window[0])} to ${fmt.month(m.panel_window[1])}, ${m.headline.n_obs} overlapping twelve-month changes) with Newey-West standard errors over twelve lags. Twelve-month changes remove the seasonal pattern and the slow trends that dominate the levels of both series. The regression intercept (${fmt.lp(m.headline.intercept)} log points a year) is a drift the four forces do not account for; the decomposition leaves it in the residual. Each contribution is e multiplied by the log change of its input; the four contributions and the residual sum exactly to the observed change.`);
     add("h3", "Cross-checks");
-    add("p", `Robustness variants re-estimate the elasticity on twelve-month changes, on quarterly averages and on each half of the sample. An unrestricted regression of monthly changes in the log index on the four component changes and their lags tests whether the data accept one common elasticity (Wald test of equal absolute coefficients with the signs implied by the identity).`);
+    add("p", `Robustness variants re-estimate the elasticity on monthly levels (with and without month dummies), on four-quarter changes of quarterly averages and on each half of the sample. The levels regressions are shown for completeness: both series trend and their residuals are strongly autocorrelated, so their coefficients are not reliable. An unrestricted regression of monthly changes in the log index on the four component changes, with lags for volume and haul, tests whether the data accept one common elasticity (Wald test of equal absolute coefficients with the signs implied by the identity).`);
     add("h3", "Reconciliation");
     add("p", "Where two sources measure the same flow (Brazilian exports in Comex Stat and in UN Comtrade; exporter and importer records for Australia to China, Brazil to China, Indonesia to China, United States to China and Australia to Japan) the series are compared on twelve-month rolling sums and the median gap is reported below. PortWatch dry bulk port loadings are compared with UNCTAD seaborne dry cargo as a level check.");
     // sources table

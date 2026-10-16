@@ -43,7 +43,7 @@ DOWNLOADS = {
     "portwatch_weekly_global.csv": "Weekly global dry bulk port tonnage (PortWatch)",
     "portwatch_monthly_country.csv": "Monthly dry bulk port tonnage by country (PortWatch)",
     "decomposition_rolling.csv": "Rolling 12-month decomposition of the index",
-    "model_fitted.csv": "Twelve-month log change of the index, actual and implied by the demand/supply balance",
+    "model_fitted.csv": "Twelve-month log changes used by the regression: actual, implied, fitted, residual",
     "haul_split_rolling.csv": "Trade-mix versus rerouting split of the haul effect",
     "validation_report.json": "Validation and reconciliation report",
     "seaborne_trade_annual.csv": "World seaborne trade loaded by cargo type (UNCTAD)",
@@ -117,9 +117,14 @@ def _group_for_route(route_id: str) -> tuple[str, str]:
     raise KeyError(route_id)
 
 
-def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, fitted: pd.DataFrame) -> None:
-    """Panel series for the overview chart."""
-    f = fitted.set_index("month")
+def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, roll: pd.DataFrame) -> None:
+    """Panel series for the overview chart.
+
+    ``change12`` is the twelve-month change of the index and the part of it
+    attributed to the four forces, from the rolling decomposition (endpoints
+    are three-month averages), so that the headline chart, the tiles and the
+    decomposition explorer show the same numbers.
+    """
     _json(
         SITE_DATA_DIR / "series.json",
         {
@@ -132,12 +137,15 @@ def export_series(panel: pd.DataFrame, bdi: pd.DataFrame, fitted: pd.DataFrame) 
             "fleet_extrapolated": [bool(v) for v in panel["fleet_extrapolated"]],
             "supply_factor": _col(panel, "supply_factor", 4),
             "supply_extrapolated": [bool(v) for v in panel["supply_extrapolated"]],
-            # twelve-month changes, actual and implied by the headline regression (percent)
+            # twelve-month changes from the rolling decomposition (percent), actual and implied by the four forces
             "change12": {
-                "month": [str(m) for m in f.index],
-                "actual_pct": [round((math.exp(_f(v)) - 1) * 100, 2) for v in f["actual_dlog12"]],
-                "implied_pct": [round((math.exp(_f(v)) - 1) * 100, 2) for v in f["implied_dlog12"]],
-                "residual_lp": [round(_f(v), 4) for v in f["residual"]],
+                "month": _col(roll, "month"),
+                "actual_pct": [round((math.exp(_f(v)) - 1) * 100, 2) for v in roll["total"]],
+                "implied_pct": [
+                    round((math.exp(_f(t) - _f(r)) - 1) * 100, 2)
+                    for t, r in zip(roll["total"], roll["residual"], strict=True)
+                ],
+                "residual_lp": [round(_f(v), 4) for v in roll["residual"]],
             },
             "bdi_full": {"month": _col(bdi, "month"), "bdi": _col(bdi, "bdi", 1)},
         },
@@ -158,8 +166,11 @@ def export_rolling(roll: pd.DataFrame, haul: pd.DataFrame) -> None:
             "fleet": _col(roll, "fleet", 4),
             "effective_supply": _col(roll, "effective_supply", 4),
             "residual": _col(roll, "residual", 4),
-            "haul_mix": [None if m not in h.index else round(float(h.loc[m, "mix"]), 4) for m in roll["month"]],
-            "haul_rerouting": [
+            # twelve-month log change of the average haul itself (not multiplied by the elasticity), split into
+            # trade mix (shares shifting at fixed distances) and rerouting (distances changing at fixed shares)
+            "haul_dlog": [None if m not in h.index else round(float(h.loc[m, "dlog_haul"]), 4) for m in roll["month"]],
+            "haul_dlog_mix": [None if m not in h.index else round(float(h.loc[m, "mix"]), 4) for m in roll["month"]],
+            "haul_dlog_rerouting": [
                 None if m not in h.index else round(float(h.loc[m, "rerouting"]), 4) for m in roll["month"]
             ],
             "elasticity": _f(roll["elasticity"].iloc[0]) if len(roll) else None,
@@ -402,7 +413,6 @@ def run() -> None:
     SITE_DATA_DIR.mkdir(parents=True, exist_ok=True)
     panel = _read("panel_monthly.csv")
     bdi = _read("freight_monthly.csv")
-    fitted = _read("model_fitted.csv")
     roll = _read("decomposition_rolling.csv")
     haul = _read("haul_split_rolling.csv")
     by_route = _read("tonne_miles_by_route.csv")
@@ -415,7 +425,7 @@ def run() -> None:
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     coverage = json.loads((PROCESSED_DIR / "coverage.json").read_text())
-    export_series(panel, bdi, fitted)
+    export_series(panel, bdi, roll)
     export_rolling(roll, haul)
     routes_out = export_routes(by_route, distances, canal, ports, geoms)
     export_fleet()

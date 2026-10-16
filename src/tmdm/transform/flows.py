@@ -10,9 +10,12 @@ Some reporters publish monthly values without net weight (the United States
 before 2016 and Egypt in several years). For those records the tonnage is
 estimated as the reported value divided by the reporter's annual unit value
 for the same partner and commodity, taken from the annual Comtrade series,
-and flagged as a proxy. Months in which the value without any usable weight
-exceeds :data:`MISSING_VALUE_SHARE` of a group's trade are treated like
-unpublished months: interpolated inside the group's range, trimmed at its ends.
+and flagged as a proxy. A route-month in which more than
+:data:`ROUTE_MISSING_SHARE` of the value still has no usable weight is a gap:
+it is interpolated between the route's neighbouring months, never counted as
+zero. Group-months in which more than :data:`MISSING_VALUE_SHARE` of the
+group's value has no usable weight are treated like unpublished months:
+interpolated inside the group's range and trimmed at its ends.
 """
 
 from __future__ import annotations
@@ -44,6 +47,8 @@ QUALITY_COLUMNS = ["proxy_tonnes", "value_usd", "value_missing_usd"]
 UNIT_VALUE_BOUNDS = (5.0, 3000.0)
 # a group-month whose value without a usable weight exceeds this share is treated as unpublished
 MISSING_VALUE_SHARE = 0.2
+# a route-month whose value without a usable weight exceeds this share of the route's value is a gap
+ROUTE_MISSING_SHARE = 0.01
 
 
 def route_id(origin: str, destination: str, commodity: str) -> str:
@@ -216,20 +221,28 @@ def complete_months(
     """Fill route-months without a record inside each group's published range.
 
     Customs data omit a partner in a month with no trade, so a route-month
-    without a record in a month the reporter published is a true zero. A month
-    the reporter did not publish at all (listed in the availability table), or
-    one in which most of the group's value carries no usable weight (see
-    :func:`missing_quantity_months`), is a gap: it is filled by linear
-    interpolation between the neighbouring usable months and flagged in the
-    ``interpolated`` column (with the reason in ``fill``) so that the
-    validation report and the site can list it. Gaps at the start or end of a
-    group's range are trimmed rather than extrapolated.
+    without a record in a month the reporter published is a true zero. The
+    following are gaps, filled by linear interpolation between the route's
+    neighbouring usable months and flagged in ``interpolated`` (with the
+    reason in ``fill``):
+
+    * a month the reporter did not publish (absent from the availability
+      table and without any record in the cache);
+    * a group-month in which most of the value has no usable weight (see
+      :func:`missing_quantity_months`);
+    * a route-month in which more than :data:`ROUTE_MISSING_SHARE` of the
+      route's value has no usable weight.
+
+    Group-level gaps at the start or end of a group's range are trimmed rather
+    than extrapolated. A route that has no usable month at all keeps zero
+    tonnes and is flagged ``missing_no_weight``.
     """
     out = []
     flows = flows.copy()
     flows["month"] = pd.PeriodIndex(flows["month"], freq="M")
-    if "proxy_tonnes" not in flows.columns:
-        flows["proxy_tonnes"] = 0.0
+    for c in ("proxy_tonnes", "value_usd", "value_missing_usd"):
+        if c not in flows.columns:
+            flows[c] = 0.0
     for gid, g in flows.groupby("group_id"):
         reporter = str(gid).split("_")[0]
         gaps = set(missing.get(str(gid), set())) if missing else set()
@@ -238,15 +251,22 @@ def complete_months(
             log.warning("flows %s: no month with usable quantities, group dropped", gid)
             continue
         months = pd.period_range(usable["month"].min(), usable["month"].max(), freq="M")
-        # Comex Stat returns complete months; Comtrade reporters may skip months (see availability table)
+        # Comex Stat returns complete months; Comtrade reporters may skip months (see availability table).
+        # A month with records in the cache counts as published even if the availability table missed it.
         comex = "COMEX" in str(gid)
-        pub = published.get(reporter) if (published and reporter in published and not comex) else None
+        pub: set[pd.Period] | None = None
+        if published and reporter in published and not comex:
+            present = set(g.loc[(g["tonnes"] > 0) | (g["value_usd"] > 0), "month"])
+            pub = set(published[reporter]) | present
         routes = g[["route_id", "origin", "destination", "commodity", "source"]].drop_duplicates()
         grid = routes.merge(pd.DataFrame({"month": months}), how="cross")
-        merged = grid.merge(g[["month", "route_id", "tonnes", "proxy_tonnes"]], on=["month", "route_id"], how="left")
-        merged["proxy_tonnes"] = merged["proxy_tonnes"].fillna(0.0)
+        cols = ["month", "route_id", "tonnes", "proxy_tonnes", "value_usd", "value_missing_usd"]
+        merged = grid.merge(g[cols], on=["month", "route_id"], how="left")
+        for c in ("proxy_tonnes", "value_usd", "value_missing_usd"):
+            merged[c] = merged[c].fillna(0.0)
         is_pub = merged["month"].isin(pub) if pub is not None else pd.Series(True, index=merged.index)
-        is_gap = merged["month"].isin(gaps)
+        route_gap = merged["value_missing_usd"] > ROUTE_MISSING_SHARE * merged["value_usd"]
+        is_gap = merged["month"].isin(gaps) | route_gap
         ok = is_pub & ~is_gap
         merged.loc[ok, "tonnes"] = merged.loc[ok, "tonnes"].fillna(0.0)
         merged.loc[~ok, "tonnes"] = float("nan")
@@ -255,12 +275,22 @@ def complete_months(
         merged["fill"] = "reported"
         merged.loc[merged["proxy_tonnes"] > 0, "fill"] = "proxy_unit_value"
         merged.loc[~is_pub, "fill"] = "interpolated_unpublished"
-        merged.loc[is_gap, "fill"] = "interpolated_no_weight"
+        merged.loc[is_gap & is_pub, "fill"] = "interpolated_no_weight"
         if (~ok).any():
             merged = merged.sort_values(["route_id", "month"])
             merged["tonnes"] = merged.groupby("route_id")["tonnes"].transform(
                 lambda s: s.interpolate(method="linear", limit_direction="both")
             )
+        still = merged["tonnes"].isna()
+        if still.any():
+            log.warning(
+                "flows %s: %d route-months on %d routes have no usable weight in any month",
+                gid,
+                int(still.sum()),
+                merged.loc[still, "route_id"].nunique(),
+            )
+            merged.loc[still, "tonnes"] = 0.0
+            merged.loc[still, "fill"] = "missing_no_weight"
         merged["group_id"] = gid
         out.append(merged[[*FLOW_COLUMNS, "proxy_tonnes", "interpolated", "fill"]])
     return pd.concat(out, ignore_index=True).sort_values(["route_id", "month"]).reset_index(drop=True)
@@ -274,18 +304,25 @@ def interpolated_months(flows: pd.DataFrame) -> dict[str, list[str]]:
     return {str(g): sorted({str(m) for m in grp["month"]}) for g, grp in sub.groupby("group_id")}
 
 
-def fill_summary(flows: pd.DataFrame) -> dict[str, dict[str, Any]]:
-    """Per route group: months by fill method and the share of tonnes that is proxy or interpolated."""
+def fill_summary(flows: pd.DataFrame, window: tuple[pd.Period, pd.Period] | None = None) -> dict[str, dict[str, Any]]:
+    """Per route group: months by fill method and the share of tonnes that is proxy or interpolated.
+
+    A month is listed under a fill method if any route of the group has that
+    method in that month. With ``window`` the summary covers only those months
+    (the balanced panel window used by the model).
+    """
     if "fill" not in flows.columns:
         return {}
+    sub = flows
+    if window is not None:
+        sub = flows[(flows["month"] >= window[0]) & (flows["month"] <= window[1])]
     out: dict[str, dict[str, Any]] = {}
-    for gid, grp in flows.groupby("group_id"):
+    for gid, grp in sub.groupby("group_id"):
         tot = float(grp["tonnes"].sum())
-        by_month = grp.groupby("month")["fill"].agg(
-            lambda s: "reported" if (s == "reported").all() else s.mode().iloc[0]
-        )
         months_by_fill = {
-            str(k): sorted(str(m) for m in v.index) for k, v in by_month.groupby(by_month) if str(k) != "reported"
+            str(f): sorted({str(m) for m in grp.loc[grp["fill"] == f, "month"]})
+            for f in sorted(grp["fill"].unique())
+            if str(f) != "reported"
         }
         out[str(gid)] = {
             "proxy_tonnes_share": round(float(grp["proxy_tonnes"].sum()) / tot, 4) if tot else 0.0,

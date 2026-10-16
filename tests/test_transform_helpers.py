@@ -264,3 +264,73 @@ def test_panama_diversion_ends_with_the_restrictions():
     assert pan.loc[pd.Period("2024-09", "M")] == pytest.approx(0.5)
     assert pan.loc[pd.Period("2024-10", "M")] == 0.0
     assert pan.loc[pd.Period("2022-06", "M")] == 0.0
+
+
+def _route_frame(rows):
+    cols = ["month", "route_id", "tonnes", "value_usd", "value_missing_usd"]
+    df = pd.DataFrame(rows, columns=cols)
+    df["month"] = pd.PeriodIndex(df["month"], freq="M")
+    df["origin"] = df["route_id"].str.split("-").str[0]
+    df["destination"] = df["route_id"].str.split("-").str[1]
+    df["commodity"] = "coal"
+    df["source"] = "s"
+    df["group_id"] = "AUS_X_coal"
+    df["proxy_tonnes"] = 0.0
+    return df
+
+
+def test_weightless_route_month_is_a_gap_even_when_the_group_share_is_small():
+    flows = _route_frame(
+        [
+            # a large route with full weights and a small route whose March record has no weight
+            ("2024-01", "AUS-JPN-coal", 1000.0, 100.0, 0.0),
+            ("2024-02", "AUS-JPN-coal", 1000.0, 100.0, 0.0),
+            ("2024-03", "AUS-JPN-coal", 1000.0, 100.0, 0.0),
+            ("2024-01", "AUS-CHL-coal", 10.0, 1.0, 0.0),
+            ("2024-02", "AUS-CHL-coal", 0.0, 1.0, 1.0),
+            ("2024-03", "AUS-CHL-coal", 30.0, 3.0, 0.0),
+        ]
+    )
+    published = {"AUS": set(pd.period_range("2024-01", "2024-03", freq="M"))}
+    out = complete_months(flows, published, {}).set_index(["route_id", "month"])
+    feb = out.loc[("AUS-CHL-coal", pd.Period("2024-02", "M"))]
+    assert feb["tonnes"] == pytest.approx(20.0)
+    assert feb["fill"] == "interpolated_no_weight"
+    assert bool(feb["interpolated"]) is True
+
+
+def test_months_with_records_count_as_published_even_if_missing_from_availability():
+    flows = _route_frame(
+        [
+            ("2024-01", "AUS-JPN-coal", 10.0, 1.0, 0.0),
+            ("2024-02", "AUS-JPN-coal", 20.0, 2.0, 0.0),
+            ("2024-03", "AUS-JPN-coal", 50.0, 5.0, 0.0),
+        ]
+    )
+    # the availability table was downloaded before March was released
+    published = {"AUS": set(pd.period_range("2024-01", "2024-02", freq="M"))}
+    out = complete_months(flows, published, {}).set_index("month")
+    assert out.loc[pd.Period("2024-03", "M"), "tonnes"] == pytest.approx(50.0)
+    assert out.loc[pd.Period("2024-03", "M"), "fill"] == "reported"
+
+
+def test_fill_summary_lists_months_where_any_route_is_filled():
+    from tmdm.transform.flows import fill_summary
+
+    flows = _route_frame(
+        [
+            ("2024-01", "AUS-JPN-coal", 1000.0, 100.0, 0.0),
+            ("2024-02", "AUS-JPN-coal", 1000.0, 100.0, 0.0),
+            ("2024-03", "AUS-JPN-coal", 1000.0, 100.0, 0.0),
+            ("2024-01", "AUS-CHL-coal", 10.0, 1.0, 0.0),
+            ("2024-02", "AUS-CHL-coal", 0.0, 1.0, 1.0),
+            ("2024-03", "AUS-CHL-coal", 30.0, 3.0, 0.0),
+        ]
+    )
+    published = {"AUS": set(pd.period_range("2024-01", "2024-03", freq="M"))}
+    out = complete_months(flows, published, {})
+    fs = fill_summary(out)["AUS_X_coal"]
+    assert fs["months"] == {"interpolated_no_weight": ["2024-02"]}
+    assert fs["interpolated_tonnes_share"] == pytest.approx(20.0 / 3060.0, abs=1e-4)
+    windowed = fill_summary(out, (pd.Period("2024-03", "M"), pd.Period("2024-03", "M")))["AUS_X_coal"]
+    assert windowed["months"] == {}

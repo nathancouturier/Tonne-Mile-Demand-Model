@@ -80,7 +80,7 @@ def estimate_elasticity(
         r_squared=float(res.rsquared),
         n_obs=int(res.nobs),
         durbin_watson=float(durbin_watson(res.resid)),
-        residual_std=float(np.std(res.resid, ddof=2)),
+        residual_std=float(np.sqrt(res.mse_resid)),
         fitted=pd.Series(res.fittedvalues, index=df.index),
         residuals=pd.Series(res.resid, index=df.index),
     )

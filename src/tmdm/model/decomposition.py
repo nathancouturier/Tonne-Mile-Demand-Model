@@ -6,7 +6,7 @@ The driver works on a monthly panel with the following positive series:
     tonnes         cargo tonnes on the covered routes
     tonne_miles    tonnes multiplied by route distance, summed over routes
     fleet          bulk carrier fleet, deadweight tonnes
-    supply_factor  effective supply factor (share of fleet time at sea), 1 if absent
+    supply_factor  effective supply factor (share of fleet time at sea relative to its first observation)
 
 Endpoint values for an attribution are trailing averages over ``window``
 months so that a single noisy month does not dominate an episode.
@@ -88,7 +88,8 @@ def fit_elasticity(panel: pd.DataFrame) -> tuple[ElasticityEstimate, dict[str, A
     q = p[["index", "tonne_miles", "fleet", "supply_factor"]].copy()
     q.index = pd.PeriodIndex(q.index).asfreq("Q")
     qm = q.groupby(level=0).mean()
-    if len(qm) >= 20:
+    # estimate_elasticity needs 24 observations, i.e. 28 quarters before the four-quarter difference
+    if len(qm) >= 28:
         yq = np.log(qm["index"]).diff(4)
         xq = log_balance(qm).diff(4)
         est = estimate_elasticity(yq, xq, hac_lags=4)

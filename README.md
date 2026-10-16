@@ -26,7 +26,7 @@ The attribution identity for two months (endpoints averaged over three months):
 log(BDI_1 / BDI_0) = e [dlog tonnes + dlog haul] - e [dlog fleet + dlog supply factor] + residual
 ```
 
-The elasticity e is estimated once by regressing the log index on the log of tonne-miles over effective fleet across the whole monthly panel (Newey-West standard errors). Robustness variants re-estimate it on twelve-month changes, quarterly averages and each half of the sample, and an unrestricted first-difference regression tests whether the four inputs share one elasticity. The components and the residual sum exactly to the observed change; the unit tests enforce this.
+The elasticity e is estimated once by regressing the twelve-month change in the log index on the twelve-month change in the log of tonne-miles over effective fleet (Newey-West standard errors over twelve lags). Twelve-month changes remove the seasonal pattern and the slow trends that dominate the levels of both series. The regression intercept is a drift that the four forces do not explain; the decomposition leaves it in the residual. Robustness variants re-estimate e on monthly levels (with and without month dummies, reported for completeness because both series trend), on four-quarter changes of quarterly averages and on each half of the sample, and an unrestricted first-difference regression tests whether the four inputs share one elasticity. The components and the residual sum exactly to the observed change; the unit tests enforce this.
 
 ## Data sources
 
@@ -51,20 +51,20 @@ Sources that were investigated and not used: Stooq and other quote sites (bot pr
 
 Panel: Jan 2016 to Sep 2025, 117 months, 271 routes. Built from data retrieved on 2026-10-16.
 
-* Elasticity of the index to tonne-miles over effective fleet: 3.03 (Newey-West standard error 0.74); estimated on twelve-month changes, it explains 11% of the variance of twelve-month changes in the log index (Durbin-Watson 0.52).
-* Over rolling twelve-month windows the four measured forces have the same sign as the index move 73% of the time; the residual averages 0.40 log points against a typical move of 0.45, so about 89% of a typical move is not explained by measured demand and supply.
-* Between the first and last twelve months of the panel, tonnes on the covered routes grew +15%, tonne-miles +15% (average haul +0.4%) and the bulk carrier fleet +36% to 1,057 million dwt.
-* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.07, haul +0.00, fleet -0.09, port time -0.01, residual -0.02 (total -0.04).
+* Elasticity of the index to tonne-miles over effective fleet: 3.23 (Newey-West standard error 0.71); estimated on twelve-month changes, it explains 12% of the variance of twelve-month changes in the log index (Durbin-Watson 0.55).
+* Over rolling twelve-month windows the four measured forces have the same sign as the index move 70% of the time; the residual averages 0.40 log points against a typical move of 0.45, so about 89% of a typical move is not explained by measured demand and supply.
+* Between the first and last twelve months of the panel, tonnes on the covered routes grew +14%, tonne-miles +14% (average haul -0.1%) and the bulk carrier fleet +33% to 1,057 million dwt.
+* Latest window (Sep 2024 to Sep 2025): the index moved -4 percent; contributions in log points were volume +0.08, haul -0.01, fleet -0.09, port time -0.01, residual -0.01 (total -0.04).
 * The three largest routes carry 49% of covered tonne-miles. Validation: 18 checks passed, 6 warnings, 1 failure.
 
 | Episode | Window | Total | Volume | Haul | Fleet | Port time | Residual |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.12 | +0.11 | -0.08 | +0.01 | +0.20 |
+| 2019 Brumadinho dam collapse | Jan 2019 to Sep 2019 | +0.35 | +0.12 | +0.09 | -0.08 | +0.01 | +0.22 |
 | Pandemic trough | Dec 2019 to May 2020 | -1.05 | -0.20 | +0.01 | -0.05 | -0.01 | -0.80 |
-| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.16 | +0.06 | -0.16 | +0.01 | +1.88 |
-| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.27 | -0.09 | -0.13 | -0.01 | -0.85 |
-| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.06 | -0.05 | -0.06 | +0.00 | +0.33 |
-| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.07 | +0.00 | -0.09 | -0.01 | -0.02 |
+| 2021 boom | May 2020 to Oct 2021 | +1.95 | +0.17 | +0.08 | -0.17 | +0.01 | +1.86 |
+| Normalisation after the boom | Oct 2021 to Feb 2023 | -1.34 | -0.29 | -0.09 | -0.14 | -0.01 | -0.82 |
+| Red Sea and Panama Canal disruptions | Oct 2023 to Jun 2024 | +0.28 | +0.06 | -0.05 | -0.06 | +0.01 | +0.32 |
+| Latest twelve months | Sep 2024 to Sep 2025 | -0.04 | +0.08 | -0.01 | -0.09 | -0.01 | -0.01 |
 
 Values are log points (0.10 is roughly a ten percent move). Endpoints are three-month averages.
 <!-- results:end -->
@@ -75,7 +75,7 @@ Values are log points (0.10 is roughly a ten percent move). Endpoints are three-
 * The route set covers the major bulks between the main exporters and importers. Minor bulks and short-haul regional trades, which matter for Supramax and Handysize rates, are not in the tonne-mile series.
 * Representative ports approximate real terminals; the error is a few percent of a voyage and constant over time, so it affects levels rather than changes.
 * Customs months record declarations, not sailings. Three-month averaging at the endpoints and twelve-month windows reduce but do not remove this timing noise.
-* Months a reporter did not publish, and months whose customs records carry values without weights, are filled by linear interpolation and flagged; where the reporter's annual records give a unit value, weightless months are estimated from value instead (flagged as a proxy). Annual US records before 2006 report weights that are a thousand times too small for their value and are excluded by a unit value check. The Methodology page and `coverage.json` list every affected group and month.
+* Months a reporter did not publish, and months whose customs records carry values without weights, are filled by linear interpolation and flagged; where the reporter's annual records give a unit value, weightless months are estimated from value instead (flagged as a proxy). Some annual records report weights about a thousand times too small for their value (for example US coal and iron ore before 2006 and US grains in 2000 and 2001); a unit value check excludes them from the proxy and the validation report lists every case. The Methodology page and `coverage.json` list every affected group and month.
 * The index composition changed in March 2018 (Handysize removed, weights 40/30/30 for Capesize, Panamax and Supramax). The series is used as published.
 * The public monthly index is republished with a lag and updated less often than the demand data, so the balanced panel ends earlier than the volume series.
 

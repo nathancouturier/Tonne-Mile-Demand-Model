@@ -21,9 +21,9 @@ SITE = ROOT / "site" / "data"
 results: list[tuple[str, float, float, float, bool]] = []
 
 
-def check(name: str, site_value: float, raw_value: float, tol: float = 1e-6) -> None:
+def check(name: str, site_value: float, raw_value: float, tol: float = 1e-6, abs_tol: float = 0.0) -> None:
     rel = abs(site_value - raw_value) / (abs(raw_value) if raw_value else 1.0)
-    ok = rel <= tol
+    ok = rel <= tol or abs(site_value - raw_value) <= abs_tol
     results.append((name, site_value, raw_value, rel, ok))
 
 
@@ -128,7 +128,8 @@ def main() -> int:
         + rolling["effective_supply"][i]
         + rolling["residual"][i]
     )
-    check("rolling attribution adds up (latest month)", s, rolling["total"][i], 1e-3)
+    # each of the five components is rounded to four decimals in the site file, so allow 5 x 0.00005
+    check("rolling attribution adds up (latest month)", s, rolling["total"][i], 1e-3, abs_tol=2.5e-4)
     # 9. Tonne-miles total for the latest panel month equals the sum over routes of tonnes times distance
     br = pd.read_csv(PROC / "tonne_miles_by_route.csv")
     lm = series["month"][-1]
@@ -142,24 +143,25 @@ def main() -> int:
     # 10. Episode totals equal log(index_end / index_start)
     e = episodes[-1]
     check(f"episode total {e['episode_id']}", e["total"], math.log(e["index_end"] / e["index_start"]), 1e-6)
-    # 11. Implied twelve-month change on the headline chart equals intercept + e x (12-month change in log balance)
+    # 11. Headline chart, latest point: the index change uses three-month averages of the raw ASUB series, and the
+    #     attributed change equals e x (12-month change in log tonne-miles minus log effective fleet), recomputed
+    #     from the panel
     h = model["elasticity"]["headline"]
     panel = pd.read_csv(PROC / "panel_monthly.csv").set_index("month")
     c12 = series["change12"]
     lm12 = c12["month"][-1]
-    prev = str(pd.Period(lm12, "M") - 12)
-    bal = {
-        m: math.log(panel.loc[m, "tonne_miles"] / (panel.loc[m, "fleet"] * panel.loc[m, "supply_factor"]))
-        for m in (lm12, prev)
-    }
-    implied = h["intercept"] + h["elasticity"] * (bal[lm12] - bal[prev])
-    check(f"implied 12-month change {lm12} (pct)", c12["implied_pct"][-1], (math.exp(implied) - 1) * 100, 1e-2)
-    check(
-        f"actual 12-month change {lm12} (pct)",
-        c12["actual_pct"][-1],
-        (float(bdi_raw[lm12]) / float(bdi_raw[prev]) - 1) * 100,
-        1e-2,
-    )
+    end = pd.Period(lm12, "M")
+    win1 = [str(end - k) for k in range(3)]
+    win0 = [str(end - 12 - k) for k in range(3)]
+    raw_bdi_change = float(bdi_raw[win1].mean() / bdi_raw[win0].mean() - 1) * 100
+    check(f"index change, 12 months to {lm12} (pct, 3-month averages)", c12["actual_pct"][-1], raw_bdi_change, 1e-2)
+
+    def balance(months: list[str]) -> float:
+        sub = panel.loc[months]
+        return math.log(sub["tonne_miles"].mean() / (sub["fleet"].mean() * sub["supply_factor"].mean()))
+
+    implied = h["elasticity"] * (balance(win1) - balance(win0))
+    check(f"attributed change, 12 months to {lm12} (pct)", c12["implied_pct"][-1], (math.exp(implied) - 1) * 100, 1e-2)
     # 12. Explained share on the tile equals one minus residual over total from rolling data
     la = summary["latest_attribution"]
     check("latest attribution total equals rolling total", la["total"], rolling["total"][-1], 1e-3)

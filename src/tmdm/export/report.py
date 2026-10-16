@@ -140,7 +140,6 @@ def load_results() -> dict[str, Any]:
     diff_reg = json.loads((PROCESSED_DIR / "model_difference_regression.json").read_text())
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     by_route = pd.read_csv(PROCESSED_DIR / "tonne_miles_by_route.csv")
-    fitted = pd.read_csv(PROCESSED_DIR / "model_fitted.csv")
     fleet = pd.read_csv(PROCESSED_DIR / "fleet_annual.csv")
     coverage = json.loads((PROCESSED_DIR / "coverage.json").read_text())
     last12 = by_route[by_route["month"] > str(pd.Period(by_route["month"].max(), "M") - 12)]
@@ -154,7 +153,6 @@ def load_results() -> dict[str, Any]:
         "diff_reg": diff_reg,
         "validation": validation,
         "by_route": by_route,
-        "fitted": fitted,
         "fleet": fleet,
         "coverage": coverage,
         "route_shares": shares,
@@ -188,15 +186,15 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
         }
     )
     out: dict[str, Path] = {}
-    fitted, roll = res["fitted"], res["roll"]
-    # Figure 1: twelve-month change in the index, actual versus implied by the balance
+    roll = res["roll"]
+    # Figure 1: twelve-month change in the index and the part attributed to the four forces (rolling decomposition)
     fig, ax = plt.subplots(figsize=(7.0, 2.9))
-    fx = pd.PeriodIndex(fitted["month"], freq="M").to_timestamp()
-    actual_pct = (np.exp(fitted["actual_dlog12"]) - 1) * 100
-    implied_pct = (np.exp(fitted["implied_dlog12"]) - 1) * 100
+    fx = pd.PeriodIndex(roll["month"], freq="M").to_timestamp()
+    actual_pct = (np.exp(roll["total"]) - 1) * 100
+    implied_pct = (np.exp(roll["total"] - roll["residual"]) - 1) * 100
     ax.axhline(0, color="#c5bfb1", lw=0.8)
     ax.plot(fx, actual_pct, color="#1f3a5f", lw=1.6, label="Baltic Dry Index, 12-month change")
-    ax.plot(fx, implied_pct, color="#9a9488", lw=1.3, ls="--", label="Implied by tonne-miles over effective fleet")
+    ax.plot(fx, implied_pct, color="#9a9488", lw=1.3, ls="--", label="Attributed to the four forces")
     ax.fill_between(fx, implied_pct, actual_pct, color="#898781", alpha=0.12, linewidth=0)
     ax.set_ylabel("Percent change over 12 months")
     ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:+,.0f}"))
@@ -281,7 +279,7 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
     sign_agree = float((np.sign(roll["total"] - roll["residual"]) == np.sign(roll["total"])).mean())
     tm_growth = float(panel["tonne_miles"].iloc[-12:].mean() / panel["tonne_miles"].iloc[:12].mean() - 1)
     t_growth = float(panel["tonnes"].iloc[-12:].mean() / panel["tonnes"].iloc[:12].mean() - 1)
-    fleet_growth = float(panel["fleet"].iloc[-1] / panel["fleet"].iloc[0] - 1)
+    fleet_growth = float(panel["fleet"].iloc[-12:].mean() / panel["fleet"].iloc[:12].mean() - 1)
     comps = {k: float(last[k]) for k in ("volume", "distance", "fleet", "effective_supply", "residual", "total")}
     biggest = max((k for k in ("volume", "distance", "fleet", "effective_supply")), key=lambda k: abs(comps[k]))
     top3 = float(res["route_shares"].head(3).sum())
@@ -293,6 +291,8 @@ def _numbers(res: dict[str, Any]) -> dict[str, Any]:
         "se": h["std_error"],
         "r2": h["r_squared"],
         "dw": h["durbin_watson"],
+        "intercept": h["intercept"],
+        "n_obs_reg": h["n_obs"],
         "mean_abs_resid": mean_abs_resid,
         "mean_abs_total": mean_abs_total,
         "share_resid": mean_abs_resid / mean_abs_total if mean_abs_total else float("nan"),
@@ -368,7 +368,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(Image(str(figs["fitted"]), width=width, height=width * 2.9 / 7.0))
     story.append(
         Paragraph(
-            f"Figure 1. Twelve-month percent change in the Baltic Dry Index and the change implied by the twelve-month change in tonne-miles over effective fleet at the estimated elasticity ({n['elasticity']:.2f}). Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat and this project's distance matrix (inputs).",
+            f"Figure 1. Twelve-month percent change in the Baltic Dry Index and the part attributed to cargo volume, haul, fleet and port time at the estimated elasticity ({n['elasticity']:.2f}); endpoints are three-month averages. Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat and this project's distance matrix (inputs).",
             st["caption"],
         )
     )
@@ -490,7 +490,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(Paragraph("Robustness", st["h2"]))
     rb = n["robustness"]
     parts = [
-        f"twelve-month changes (headline): {n['elasticity']:.2f} (se {n['se']:.2f}, R squared {n['r2']:.2f}, Durbin-Watson {n['dw']:.2f})"
+        f"twelve-month changes (headline, {n['n_obs_reg']} observations): {n['elasticity']:.2f} (se {n['se']:.2f}, R squared {n['r2']:.2f}, Durbin-Watson {n['dw']:.2f}, intercept {n['intercept']:+.2f} log points a year, which the decomposition leaves in the residual)"
     ]
     names = {
         "levels_with_month_dummies": "monthly levels with month dummies",

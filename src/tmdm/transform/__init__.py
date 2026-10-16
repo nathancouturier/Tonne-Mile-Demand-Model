@@ -173,7 +173,8 @@ def run() -> None:
         ).to_dict(orient="records"),
         "routes": int(flows["route_id"].nunique()),
         "interpolated_months": flows_mod.interpolated_months(flows),
-        "fill_summary": flows_mod.fill_summary(flows),
+        "fill_summary": flows_mod.fill_summary(flows, (first, last)),
+        "fill_summary_window": [str(first), str(last)],
     }
     (PROCESSED_DIR / "coverage.json").write_text(json.dumps(cov, indent=2))
     log.info(
