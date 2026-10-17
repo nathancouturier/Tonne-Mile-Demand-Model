@@ -1,0 +1,881 @@
+{
+ "asub_tree_en": "error string indices must be integers, not 'str'",
+ "asub_tree_sv": "error string indices must be integers, not 'str'",
+ "fred_igrea": {
+  "url": "https://fred.stlouisfed.org/graph/fredgraph.csv",
+  "error": "HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=150)"
+ },
+ "fred_igrea_txt": {
+  "url": "https://fred.stlouisfed.org/data/IGREA.txt",
+  "error": "HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=150)"
+ },
+ "dallasfed_igrea": {
+  "url": "https://www.dallasfed.org/research/igrea",
+  "status": 200,
+  "type": "text/html; charset=utf-8",
+  "head": "\r\n<!doctype html>\r\n<html dir=\"ltr\" lang=\"en\">\r\n<head>\r\n    <title>Index of global real economic activity - Dallasfed.org</title>\r\n    <meta charset=\"utf-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n    \r\n        <meta name=\"keywords\" content=\"Dallas, Federal Reserve, commodities, GDP, economic activity\" />\r\n        <meta name=\"DCSext.keywords\" content=\"Dallas, Federal Reserve, commodities, GDP, economic activity\" />\r\n        <meta property=\"og:title\" content=\"Index of global real economic activity "
+ },
+ "dallasfed_igrea_links": [
+  "https://www.dallasfed.org/-/media/Documents/research/igrea/igrea.xlsx",
+  "https://www.dallasfed.org/research/igrea/related"
+ ],
+ "dallasfed_igrea_file_0": {
+  "url": "https://www.dallasfed.org/-/media/Documents/research/igrea/igrea.xlsx",
+  "status": 200,
+  "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "head": "PK\u0003\u0004\u0014\u0000\u0006\u0000\b\u0000\u0000\u0000!\u0000g\u0013S\ufffd\ufffd\u0001\u0000\u0000v\u0005\u0000\u0000\u0013\u0000\b\u0002[Content_Types].xml \ufffd\u0004\u0002(\ufffd\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+ },
+ "kilian_site": {
+  "url": "https://sites.google.com/site/lkilian2019/research/data-sets",
+  "status": 200,
+  "type": "text/html; charset=utf-8",
+  "head": "<!DOCTYPE html><html lang=\"en-US\" itemscope itemtype=\"http://schema.org/WebPage\"><head><script nonce=\"MDsFPqr2lD1hxMnbQDPMwQ\">window['ppConfig'] = {productName: '6b8ce7c01e3dacd3d2c7a8cd322ff979', deleteIsEnforced:  false , sealIsEnforced:  false , heartbeatRate:  0.5 , periodicReportingRateMillis:  60000.0 , disableAllReporting:  false };(function(){'use strict';function k(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function l(a){var b=typeof Symbol!=\"undefined\"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length==\"number\")return{"
+ },
+ "kilian_site_links": [
+  "https://drive.google.com/file/d/169Nj256wQ27xOnuVEllfj_jbb7JNGrlQ/view?usp=sharing",
+  "https://drive.google.com/file/d/1PK6L5dR5vR8JUI2IbJD32odQByHlPzNo/view?usp=sharing",
+  "https://drive.google.com/file/d/1PmgTOlRoJG_0v-1imv-DlBxtzjtaP5Lo/view?usp=sharing",
+  "https://drive.google.com/file/d/1fysBGNNB3Vx3mnOI02hBgQ4qMAMm3e0Q/view?usp=sharing",
+  "https://drive.google.com/file/d/1taCyNal2BJHqfxiid5-nTrkBaQCbRUmC/view?usp=sharing"
+ ],
+ "dataverse_bdi": {
+  "url": "https://dataverse.harvard.edu/api/search?q=%22Baltic+Dry+Index%22&type=file&per_page=50",
+  "status": 200,
+  "type": "application/json;charset=UTF-8",
+  "head": "{\"status\":\"OK\",\"data\":{\"q\":\"\\\"Baltic Dry Index\\\"\",\"total_count\":0,\"start\":0,\"spelling_alternatives\":{},\"items\":[],\"count_in_response\":0}}"
+ },
+ "dataverse_bdi_datasets": {
+  "url": "https://dataverse.harvard.edu/api/search?q=%22Baltic+Dry+Index%22&type=dataset&per_page=30",
+  "status": 200,
+  "type": "application/json;charset=UTF-8",
+  "head": "{\"status\":\"OK\",\"data\":{\"q\":\"\\\"Baltic Dry Index\\\"\",\"total_count\":0,\"start\":0,\"spelling_alternatives\":{},\"items\":[],\"count_in_response\":0}}"
+ },
+ "zenodo_bdi": {
+  "url": "https://zenodo.org/api/records?q=%22Baltic+Dry+Index%22&size=30",
+  "status": 400,
+  "type": "application/json",
+  "head": "{\"status\": 400, \"message\": \"A validation error occurred.\", \"errors\": [{\"field\": \"size\", \"messages\": [\"Page size cannot be greater than 25. Please use authenticated requests to increase the limit to 100.\"]}]}"
+ },
+ "stooq_bdi": {
+  "url": "https://stooq.com/q/d/l/?s=bdi&i=m",
+  "status": 200,
+  "type": "text/html; charset=utf-8",
+  "head": "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"robots\" content=\"noindex,nofollow\"></head><body><noscript>This site requires JavaScript to verify your browser. Please enable JavaScript and reload.</noscript><script nonce=\"DzuZEIVZ4eAkA9nBf0oApg\">\n(async()=>{const c=\"AAAAAGrTT2MudLZyqJUXHULREogvO6tJFBmXckvDeYdy1GMT9W-W-XFVVq8\",d=4,t=\"0\".repeat(d),e=new TextEncoder;let n=0;while(1){cons"
+ },
+ "nasdaq_lloyds_bdi": {
+  "url": "https://data.nasdaq.com/api/v3/datasets/LLOYDS/BDI.csv?rows=5",
+  "status": 403,
+  "type": "text/html",
+  "head": "<html style=\"height:100%\"><head><META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, NOFOLLOW\"><meta name=\"format-detection\" content=\"telephone=no\"><meta name=\"viewport\" content=\"initial-scale=1.0\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\"><script type=\"text/javascript\" src=\"/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3\"></script></head><body style=\"margin:0px;height:100%\"><i"
+ },
+ "comtrade_avail_A_HS": {
+  "status": 200,
+  "by_reporter": {
+   "32": [
+    "1993",
+    "2025",
+    33
+   ],
+   "36": [
+    "1988",
+    "2025",
+    38
+   ],
+   "76": [
+    "1989",
+    "2025",
+    37
+   ],
+   "124": [
+    "1989",
+    "2025",
+    37
+   ],
+   "156": [
+    "1992",
+    "2025",
+    34
+   ],
+   "170": [
+    "1991",
+    "2025",
+    35
+   ],
+   "360": [
+    "1989",
+    "2025",
+    37
+   ],
+   "392": [
+    "1988",
+    "2025",
+    38
+   ],
+   "643": [
+    "1996",
+    "2021",
+    26
+   ],
+   "699": [
+    "1988",
+    "2025",
+    38
+   ],
+   "710": [
+    "2000",
+    "2025",
+    26
+   ],
+   "711": [
+    "1992",
+    "1999",
+    8
+   ],
+   "804": [
+    "1996",
+    "2024",
+    29
+   ],
+   "842": [
+    "1991",
+    "2025",
+    35
+   ]
+  }
+ },
+ "comtrade_avail_A_S1": {
+  "status": 200,
+  "by_reporter": {
+   "32": [
+    "1962",
+    "1999",
+    38
+   ],
+   "36": [
+    "1963",
+    "1999",
+    37
+   ],
+   "76": [
+    "1962",
+    "1999",
+    38
+   ],
+   "124": [
+    "1962",
+    "1999",
+    38
+   ],
+   "156": [
+    "1984",
+    "1999",
+    16
+   ],
+   "170": [
+    "1962",
+    "1999",
+    38
+   ],
+   "360": [
+    "1962",
+    "1999",
+    34
+   ],
+   "392": [
+    "1962",
+    "1999",
+    38
+   ],
+   "643": [
+    "1996",
+    "1999",
+    4
+   ],
+   "699": [
+    "1975",
+    "1999",
+    25
+   ],
+   "711": [
+    "1974",
+    "1999",
+    20
+   ],
+   "804": [
+    "1996",
+    "1999",
+    4
+   ],
+   "842": [
+    "1981",
+    "1999",
+    19
+   ]
+  }
+ },
+ "comtrade_avail_A_S2": {
+  "status": 200,
+  "by_reporter": {
+   "32": [
+    "1980",
+    "2000",
+    21
+   ],
+   "36": [
+    "1979",
+    "2000",
+    22
+   ],
+   "76": [
+    "1983",
+    "2000",
+    18
+   ],
+   "124": [
+    "1978",
+    "2000",
+    23
+   ],
+   "156": [
+    "1984",
+    "2000",
+    17
+   ],
+   "170": [
+    "1978",
+    "2000",
+    23
+   ],
+   "360": [
+    "1979",
+    "2000",
+    22
+   ],
+   "392": [
+    "1976",
+    "2000",
+    25
+   ],
+   "643": [
+    "1996",
+    "2000",
+    5
+   ],
+   "699": [
+    "1978",
+    "2000",
+    23
+   ],
+   "710": [
+    "2000",
+    "2000",
+    1
+   ],
+   "711": [
+    "1976",
+    "1999",
+    18
+   ],
+   "804": [
+    "1996",
+    "2000",
+    5
+   ],
+   "842": [
+    "1981",
+    "2000",
+    20
+   ]
+  }
+ },
+ "comtrade_avail_A_S3": {
+  "status": 200,
+  "by_reporter": {
+   "32": [
+    "1992",
+    "2009",
+    18
+   ],
+   "36": [
+    "1988",
+    "2009",
+    22
+   ],
+   "76": [
+    "1989",
+    "2009",
+    21
+   ],
+   "124": [
+    "1988",
+    "2009",
+    22
+   ],
+   "156": [
+    "1992",
+    "2009",
+    18
+   ],
+   "170": [
+    "1991",
+    "2009",
+    19
+   ],
+   "360": [
+    "1989",
+    "2009",
+    21
+   ],
+   "392": [
+    "1988",
+    "2009",
+    22
+   ],
+   "643": [
+    "1996",
+    "2009",
+    14
+   ],
+   "699": [
+    "1988",
+    "2009",
+    22
+   ],
+   "710": [
+    "2000",
+    "2009",
+    10
+   ],
+   "711": [
+    "1992",
+    "1999",
+    8
+   ],
+   "804": [
+    "1996",
+    "2009",
+    14
+   ],
+   "842": [
+    "1989",
+    "2009",
+    21
+   ]
+  }
+ },
+ "comtrade_s2_aus_1985_iron_ore": {
+  "status": 200,
+  "n": 20,
+  "world": [
+   {
+    "typeCode": "C",
+    "freqCode": "A",
+    "refPeriodId": 19850101,
+    "refYear": 1985,
+    "refMonth": 52,
+    "period": "1985",
+    "reporterCode": 36,
+    "reporterISO": null,
+    "reporterDesc": null,
+    "flowCode": "X",
+    "flowDesc": null,
+    "partnerCode": 0,
+    "partnerISO": null,
+    "partnerDesc": null,
+    "partner2Code": 0,
+    "partner2ISO": null,
+    "partner2Desc": null,
+    "classificationCode": "S2",
+    "classificationSearchCode": "S2",
+    "isOriginalClassification": true,
+    "cmdCode": "281",
+    "cmdDesc": null,
+    "aggrLevel": null,
+    "isLeaf": null,
+    "customsCode": "C00",
+    "customsDesc": null,
+    "mosCode": "0",
+    "motCode": 0,
+    "motDesc": null,
+    "qtyUnitCode": 8,
+    "qtyUnitAbbr": null,
+    "qty": 88279957504.0,
+    "isQtyEstimated": false,
+    "altQtyUnitCode": -1,
+    "altQtyUnitAbbr": null,
+    "altQty": null,
+    "isAltQtyEstimated": false,
+    "netWgt": 88279957504.0,
+    "isNetWgtEstimated": false,
+    "grossWgt": null,
+    "isGrossWgtEstimated": false,
+    "cifvalue": null,
+    "fobvalue": 1407864192.0,
+    "primaryValue": 1407864192.0,
+    "legacyEstimationFlag": 0,
+    "isReported": true,
+    "isAggregate": false
+   }
+  ],
+  "sample": [
+   {
+    "cmdCode": "281",
+    "partnerCode": 0,
+    "netWgt": 88279957504.0,
+    "qty": 88279957504.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 1407864192.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 40,
+    "netWgt": 101623000.0,
+    "qty": 101623000.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 1691339.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 58,
+    "netWgt": 1179998976.0,
+    "qty": 1179998976.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 9712036.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 156,
+    "netWgt": 7535258112.0,
+    "qty": 7535258112.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 124675912.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 251,
+    "netWgt": 1905858944.0,
+    "qty": 1905858944.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 21475316.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 280,
+    "netWgt": 6604547584.0,
+    "qty": 6604547584.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 86218832.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 380,
+    "netWgt": 2056016000.0,
+    "qty": 2056016000.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 24035820.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "281",
+    "partnerCode": 392,
+    "netWgt": 54953267200.0,
+    "qty": 54953267200.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 927834304.0,
+    "isAggregate": false
+   }
+  ]
+ },
+ "comtrade_s2_aus_1985_coal": {
+  "status": 429,
+  "n": 0,
+  "world": [],
+  "sample": []
+ },
+ "comtrade_s2_usa_1985_grain": {
+  "status": 200,
+  "n": 239,
+  "world": [
+   {
+    "typeCode": "C",
+    "freqCode": "A",
+    "refPeriodId": 19850101,
+    "refYear": 1985,
+    "refMonth": 52,
+    "period": "1985",
+    "reporterCode": 842,
+    "reporterISO": null,
+    "reporterDesc": null,
+    "flowCode": "X",
+    "flowDesc": null,
+    "partnerCode": 0,
+    "partnerISO": null,
+    "partnerDesc": null,
+    "partner2Code": 0,
+    "partner2ISO": null,
+    "partner2Desc": null,
+    "classificationCode": "S2",
+    "classificationSearchCode": "S2",
+    "isOriginalClassification": true,
+    "cmdCode": "041",
+    "cmdDesc": null,
+    "aggrLevel": null,
+    "isLeaf": null,
+    "customsCode": "C00",
+    "customsDesc": null,
+    "mosCode": "0",
+    "motCode": 0,
+    "motDesc": null,
+    "qtyUnitCode": 8,
+    "qtyUnitAbbr": null,
+    "qty": 23566559232.0,
+    "isQtyEstimated": false,
+    "altQtyUnitCode": -1,
+    "altQtyUnitAbbr": null,
+    "altQty": null,
+    "isAltQtyEstimated": false,
+    "netWgt": 23566559232.0,
+    "isNetWgtEstimated": false,
+    "grossWgt": null,
+    "isGrossWgtEstimated": false,
+    "cifvalue": null,
+    "fobvalue": 3602034176.0,
+    "primaryValue": 3602034176.0,
+    "legacyEstimationFlag": 0,
+    "isReported": true,
+    "isAggregate": false
+   },
+   {
+    "typeCode": "C",
+    "freqCode": "A",
+    "refPeriodId": 19850101,
+    "refYear": 1985,
+    "refMonth": 52,
+    "period": "1985",
+    "reporterCode": 842,
+    "reporterISO": null,
+    "reporterDesc": null,
+    "flowCode": "X",
+    "flowDesc": null,
+    "partnerCode": 0,
+    "partnerISO": null,
+    "partnerDesc": null,
+    "partner2Code": 0,
+    "partner2ISO": null,
+    "partner2Desc": null,
+    "classificationCode": "S2",
+    "classificationSearchCode": "S2",
+    "isOriginalClassification": true,
+    "cmdCode": "044",
+    "cmdDesc": null,
+    "aggrLevel": null,
+    "isLeaf": null,
+    "customsCode": "C00",
+    "customsDesc": null,
+    "mosCode": "0",
+    "motCode": 0,
+    "motDesc": null,
+    "qtyUnitCode": 8,
+    "qtyUnitAbbr": null,
+    "qty": 41816391680.0,
+    "isQtyEstimated": false,
+    "altQtyUnitCode": -1,
+    "altQtyUnitAbbr": null,
+    "altQty": null,
+    "isAltQtyEstimated": false,
+    "netWgt": 41816391680.0,
+    "isNetWgtEstimated": false,
+    "grossWgt": null,
+    "isGrossWgtEstimated": false,
+    "cifvalue": null,
+    "fobvalue": 5334962176.0,
+    "primaryValue": 5334962176.0,
+    "legacyEstimationFlag": 0,
+    "isReported": true,
+    "isAggregate": false
+   },
+   {
+    "typeCode": "C",
+    "freqCode": "A",
+    "refPeriodId": 19850101,
+    "refYear": 1985,
+    "refMonth": 52,
+    "period": "1985",
+    "reporterCode": 842,
+    "reporterISO": null,
+    "reporterDesc": null,
+    "flowCode": "X",
+    "flowDesc": null,
+    "partnerCode": 0,
+    "partnerISO": null,
+    "partnerDesc": null,
+    "partner2Code": 0,
+    "partner2ISO": null,
+    "partner2Desc": null,
+    "classificationCode": "S2",
+    "classificationSearchCode": "S2",
+    "isOriginalClassification": true,
+    "cmdCode": "2222",
+    "cmdDesc": null,
+    "aggrLevel": null,
+    "isLeaf": null,
+    "customsCode": "C00",
+    "customsDesc": null,
+    "mosCode": "0",
+    "motCode": 0,
+    "motDesc": null,
+    "qtyUnitCode": 8,
+    "qtyUnitAbbr": null,
+    "qty": 16075566080.0,
+    "isQtyEstimated": false,
+    "altQtyUnitCode": -1,
+    "altQtyUnitAbbr": null,
+    "altQty": null,
+    "isAltQtyEstimated": false,
+    "netWgt": 16075566080.0,
+    "isNetWgtEstimated": false,
+    "grossWgt": null,
+    "isGrossWgtEstimated": false,
+    "cifvalue": null,
+    "fobvalue": 3749938944.0,
+    "primaryValue": 3749938944.0,
+    "legacyEstimationFlag": 0,
+    "isReported": true,
+    "isAggregate": false
+   }
+  ],
+  "sample": [
+   {
+    "cmdCode": "041",
+    "partnerCode": 0,
+    "netWgt": 23566559232.0,
+    "qty": 23566559232.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 3602034176.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 12,
+    "netWgt": 750172032.0,
+    "qty": 750172032.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 115782336.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 48,
+    "netWgt": 18960.0,
+    "qty": 18960.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 3856.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 50,
+    "netWgt": 557426816.0,
+    "qty": 557426816.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 80967696.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 52,
+    "netWgt": 16769015.0,
+    "qty": 16769015.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 2953829.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 58,
+    "netWgt": 63922672.0,
+    "qty": 63922672.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 9024970.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 68,
+    "netWgt": 108467936.0,
+    "qty": 108467936.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 14913149.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "041",
+    "partnerCode": 76,
+    "netWgt": 1940867712.0,
+    "qty": 1940867712.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 307992032.0,
+    "isAggregate": false
+   }
+  ]
+ },
+ "comtrade_s1_aus_1975_iron_ore": {
+  "status": 429,
+  "n": 0,
+  "world": [],
+  "sample": []
+ },
+ "comtrade_hs_aus_1990_iron_ore": {
+  "status": 200,
+  "n": 18,
+  "world": [
+   {
+    "typeCode": "C",
+    "freqCode": "A",
+    "refPeriodId": 19900101,
+    "refYear": 1990,
+    "refMonth": 52,
+    "period": "1990",
+    "reporterCode": 36,
+    "reporterISO": null,
+    "reporterDesc": null,
+    "flowCode": "X",
+    "flowDesc": null,
+    "partnerCode": 0,
+    "partnerISO": null,
+    "partnerDesc": null,
+    "partner2Code": 0,
+    "partner2ISO": null,
+    "partner2Desc": null,
+    "classificationCode": "H0",
+    "classificationSearchCode": "HS",
+    "isOriginalClassification": true,
+    "cmdCode": "2601",
+    "cmdDesc": null,
+    "aggrLevel": null,
+    "isLeaf": null,
+    "customsCode": "C00",
+    "customsDesc": null,
+    "mosCode": "0",
+    "motCode": 0,
+    "motDesc": null,
+    "qtyUnitCode": 8,
+    "qtyUnitAbbr": null,
+    "qty": 100482906236.0,
+    "isQtyEstimated": false,
+    "altQtyUnitCode": -1,
+    "altQtyUnitAbbr": null,
+    "altQty": null,
+    "isAltQtyEstimated": true,
+    "netWgt": 100482906236.0,
+    "isNetWgtEstimated": false,
+    "grossWgt": null,
+    "isGrossWgtEstimated": false,
+    "cifvalue": null,
+    "fobvalue": 1761413957.0,
+    "primaryValue": 1761413957.0,
+    "legacyEstimationFlag": 0,
+    "isReported": false,
+    "isAggregate": false
+   }
+  ],
+  "sample": [
+   {
+    "cmdCode": "2601",
+    "partnerCode": 0,
+    "netWgt": 100482906236.0,
+    "qty": 100482906236.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 1761413957.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 156,
+    "netWgt": 5202917500.0,
+    "qty": 5202917500.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 106423653.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 251,
+    "netWgt": 2025274000.0,
+    "qty": 2025274000.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 39682005.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 280,
+    "netWgt": 3560187000.0,
+    "qty": 3560187000.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 72988908.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 380,
+    "netWgt": 1868141000.0,
+    "qty": 1868141000.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 29816791.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 392,
+    "netWgt": 53736644222.0,
+    "qty": 53736644222.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 946559332.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 410,
+    "netWgt": 4850807503.0,
+    "qty": 4850807503.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 114624482.0,
+    "isAggregate": false
+   },
+   {
+    "cmdCode": "2601",
+    "partnerCode": 458,
+    "netWgt": 25400000.0,
+    "qty": 25400000.0,
+    "qtyUnitAbbr": null,
+    "primaryValue": 551267.0,
+    "isAggregate": false
+   }
+  ]
+ },
+ "comtrade_hs_bra_1992_iron_ore": {
+  "status": 429,
+  "n": 0,
+  "world": [],
+  "sample": []
+ },
+ "oecd_cpi_usa": {
+  "url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/USA.M.N.CPI.IX._T.N._Z?startPeriod=1965-01&format=csvfilewithlabels",
+  "status": 200,
+  "type": "application/vnd.sdmx.data+csv; labels=name; charset=utf-8; version=2",
+  "head": "STRUCTURE,STRUCTURE_ID,STRUCTURE_NAME,ACTION,REF_AREA,Reference area,FREQ,Frequency of observation,METHODOLOGY,Methodology,MEASURE,Measure,UNIT_MEASURE,Unit of measure,EXPENDITURE,Expenditure,ADJUSTMENT,Adjustment,TRANSFORMATION,Transformation,TIME_PERIOD,Time period,OBS_VALUE,Observation value,OBS_STATUS,Observation status,UNIT_MULT,Unit multiplier,BASE_PER,Base period,DURABILITY,Durability,DECIMALS,Decimals\r\nDATAFLOW,OECD.SDD.TPS:DSD_PRICES@DF_PRICES_ALL(1.0),\"Consumer price indices (CPIs, HICPs), COICOP 1999\",I,USA,United States,M,Monthly,N,National,CPI,Consumer price index,IX,Index,_T,Total,N,Neither seasonally adjusted nor calendar adjusted,_Z,Not applicable,2020-05,,108.1754,,A,Normal value,,,2015,,,,2,Two\r\nDATAFLOW,OECD.SDD.TPS:DSD_PRICES@DF_PRICES_ALL(1.0),\"Consumer price indices (CPIs, HICPs), COICOP 1999\",I,USA,United States,M,Monthly,N,National,CPI,Consumer price index,IX,Index,_T,Total,N,Neither seasonally adjusted nor calendar adjusted,_Z,Not applicable,2020-04,,108.1733,,A,Normal value,,,2015,,,,2,Two\r\nDATAFLOW,OECD.SDD.TPS:DSD_PRICES@DF_PRICES_ALL(1.0),\"Consumer price indices (CPIs, HICPs), COICOP 1999\",I,USA,United States,M,Monthly,N,National,CPI,Consumer price inde"
+ },
+ "bls_cpi_v1": {
+  "url": "https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SA0?startyear=1985&endyear=1994",
+  "status": 200,
+  "type": "application/json",
+  "head": "{\"status\":\"REQUEST_SUCCEEDED\",\"responseTime\":81,\"message\":[],\"Results\":{\n\"series\":\n[{\"seriesID\":\"CUUR0000SA0\",\"data\":[{\"year\":\"2026\",\"period\":\"M09\",\"periodName\":\"September\",\"latest\":\"true\",\"value\":\"336.940\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M08\",\"periodName\":\"August\",\"value\":\"334.980\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M07\",\"periodName\":\"July\",\"value\":\"333.918\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M06\",\"periodName\":\"June\",\"value\":\"333.952\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M05\",\"periodName\":\"May\",\"value\":\"335.123\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M04\",\"periodName\":\"April\",\"value\":\"333.020\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M03\",\"periodName\":\"March\",\"value\":\"330.213\",\"footnotes\":[{}]},{\"year\":\"2026\",\"period\":\"M02\",\"periodName\":\"February\",\"v"
+ }
+}
