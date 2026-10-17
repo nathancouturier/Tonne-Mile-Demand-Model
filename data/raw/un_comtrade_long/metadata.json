@@ -7,7 +7,7 @@
   "frequency": "annual",
   "coverage": "SITC Revision 2 1980 to 1995; HS as reported 1988 to 2025",
   "units": "kilograms (netWgt); values in current US dollars (primaryValue)",
-  "retrieved_at": "2026-10-17T12:00:35Z",
+  "retrieved_at": "2026-10-17T15:02:50Z",
   "files": [
     "done_shard0of3.csv",
     "done_shard1of3.csv",
@@ -20,15 +20,15 @@
     "records_shard2of3.csv.gz"
   ],
   "sha256": {
-    "done_shard0of3.csv": "058672b72bf55552b69ac6bfd2e79bff8829c65955fce0469c2138131dc2898e",
-    "done_shard1of3.csv": "03862df86bd8d7a48ffb9c9009fe1f942a541411b69ceed711c4f1aeb162e426",
-    "done_shard2of3.csv": "edebd09befbb443f21318572321c88b77b062a569a2feedbb61c0c5554851de0",
-    "fetch_log_shard0of3.csv": "4c026ddeed9c4cbc436b6453f0ab257c0e22774832b97e4e568a447998ec0416",
-    "fetch_log_shard1of3.csv": "bb7666116f91aba988aeac858d2730669b5830597aa4a55587a3516d49d2a918",
-    "fetch_log_shard2of3.csv": "468c0617726b75a18878c755bb06fc11735a4aab6f8578f5cf55722dde3bd777",
-    "records_shard0of3.csv.gz": "5f4f9a03037529ab8259f37d2ac2e8b4aea0c8b41e2b64886d9a7adb5915a1b3",
-    "records_shard1of3.csv.gz": "f6b013429f11ce8226d8e3a42a335e29b97eedc02772b585d8d1b1a839999353",
-    "records_shard2of3.csv.gz": "30f4024f7eb9bf6524076856222fe7c372ac35e57ea1804d04b8d94b175ea2b3"
+    "done_shard0of3.csv": "52d59d2544ed739ffb64c419f227f5af01e32daa9e8ece2295a2c67528da60b1",
+    "done_shard1of3.csv": "a62d9f4b702d79f5821cea1304ffb118efd1f79eaf45b1a2f51dd530e40741e1",
+    "done_shard2of3.csv": "ac15a60835bf06dcc0f28fbb88d70c3f49bf2a59d71bb41bef870b4ba527419c",
+    "fetch_log_shard0of3.csv": "d60c043b722cad2023a0108c951400ecf159ffcf48cae068bc69fade3714c606",
+    "fetch_log_shard1of3.csv": "0196693a8832258df91b57d9cc31d076b8931211089014b946f3b43c7f6fe6d2",
+    "fetch_log_shard2of3.csv": "73f3699ebafc57799faf0d104a3481e800ada2f1bc68662a166f9cb2d270ae6a",
+    "records_shard0of3.csv.gz": "a899373e4e902492218e9b694d12f07dfd4a81cb5fa090efaf6c3d1479911850",
+    "records_shard1of3.csv.gz": "73b38c545655a8e3cb767d3a338f3e5820107cddaa0e890435f6f99124459e07",
+    "records_shard2of3.csv.gz": "ce00e90123469757b97c23f1ea0779354ba09301606cfa16558d6ecf6947c585"
   },
   "limitations": [
     "Reporters enter the record in different years (HS from 1988 to 1993; the United States from 1981, Brazil from 1983 in SITC Revision 2; Ukraine from 1996); annual changes are measured on the reporters present in both years.",
