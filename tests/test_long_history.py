@@ -10,12 +10,23 @@ from tmdm.transform.long_history import (
     classify_partner,
     fleet_annual,
     freight_annual,
+    measured_series,
+    monthly_mismatch,
     prices_annual,
 )
 
 
 def _sea(rows):
-    return pd.DataFrame(rows, columns=["unit", "cls", "year", "route_id", "tonnes", "tonne_miles"])
+    """Rows (unit, cls, year, route_id, tonnes, tonne_miles); one commodity code per unit."""
+    df = pd.DataFrame(rows, columns=["unit", "cls", "year", "route_id", "tonnes", "tonne_miles"])
+    df["cmd"] = "2701"
+    df["commodity"] = "coal"
+    df["measured_tonnes"] = df["tonnes"]
+    return df
+
+
+def _all_measured(sea):
+    return set(zip(sea["unit"], sea["cls"], sea["commodity"], sea["year"], strict=True))
 
 
 def test_chain_link_ignores_reporter_entry_and_classification_change():
@@ -30,8 +41,7 @@ def test_chain_link_ignores_reporter_entry_and_classification_change():
         if y >= 2001:
             rows.append(("B_X", "HS", y, "B-X-coal", 1000, 1000 * 5000))
     sea = _sea(rows)
-    avail = set(zip(sea["unit"], sea["cls"], sea["year"], strict=True))
-    out = chain_link(sea, avail, 1998, 2003).set_index("year")
+    out = chain_link(sea, _all_measured(sea), 1998, 2003).set_index("year")
     g = out["tonnes"] / out["tonnes"].shift(1)
     # 1998 to 2001: only A (S2), +10% a year; the HS break in 2001 is not a jump
     assert g.loc[1999] == pytest.approx(1.10)
@@ -44,15 +54,45 @@ def test_chain_link_ignores_reporter_entry_and_classification_change():
     assert out.loc[2001, "units"] == "A_X:S2"
 
 
-def test_chain_link_counts_a_missing_route_as_zero_but_needs_the_unit_in_both_years():
+def test_chain_link_counts_a_missing_route_as_zero_but_needs_the_series_in_both_years():
     sea = _sea(
         [("A_X", "HS", 2000, "r1", 50, 50), ("A_X", "HS", 2000, "r2", 50, 50), ("A_X", "HS", 2001, "r1", 60, 60)]
     )
-    avail = {("A_X", "HS", 2000), ("A_X", "HS", 2001)}
-    out = chain_link(sea, avail, 2000, 2001).set_index("year")
+    out = chain_link(sea, _all_measured(sea), 2000, 2001).set_index("year")
     assert out.loc[2001, "tonnes"] / out.loc[2000, "tonnes"] == pytest.approx(0.6)
     with pytest.raises(ValueError):
-        chain_link(sea, {("A_X", "HS", 2000)}, 2000, 2001)
+        chain_link(sea, {("A_X", "HS", "2701", 2000)}, 2000, 2001)
+
+
+def test_chain_link_uses_only_series_measured_in_both_years():
+    # two codes of one unit: coal measured both years (+10%), maize estimated in 2001 (a spurious doubling)
+    sea = _sea([("A_X", "HS", 2000, "c", 100, 100), ("A_X", "HS", 2001, "c", 110, 110)])
+    maize = pd.DataFrame(
+        {"unit": "A_X", "cls": "HS", "year": [2000, 2001], "route_id": "m", "tonnes": [50.0, 100.0],
+         "tonne_miles": [50.0, 100.0], "cmd": "1005", "commodity": "grains", "measured_tonnes": [50.0, 0.0]}
+    )  # fmt: skip
+    sea = pd.concat([sea, maize], ignore_index=True)
+    measured = measured_series(sea)
+    assert ("A_X", "HS", "grains", 2001) not in measured and ("A_X", "HS", "grains", 2000) in measured
+    out = chain_link(sea, measured, 2000, 2001).set_index("year")
+    assert out.loc[2001, "tonnes"] / out.loc[2000, "tonnes"] == pytest.approx(1.10)
+    assert out.loc[2001, "n_series"] == 1
+    # the level of the last year still counts every series (estimated tonnes included)
+    assert out.loc[2001, "tonnes"] == pytest.approx(210.0)
+    # a series excluded by the monthly cross-check drops out as well
+    assert ("A_X", "HS", "coal", 2001) not in measured_series(sea, {("A_X", "2701", 2001)})
+
+
+def test_a_series_is_a_commodity_group_so_code_switches_do_not_move_the_chain():
+    # Australia's coal: SITC 3222 in 1980, 3221 in 1981 (same coal, +10%); a code-level chain would see 0 to 110
+    sea = pd.DataFrame(
+        {"unit": "AUS_X", "cls": "S2", "year": [1980, 1980, 1981], "route_id": "AUS-JPN-coal",
+         "cmd": ["3222", "3221", "3221"], "commodity": "coal", "tonnes": [100.0, 0.5, 110.55],
+         "tonne_miles": [100.0, 0.5, 110.55]}
+    )  # fmt: skip
+    sea["measured_tonnes"] = sea["tonnes"]
+    out = chain_link(sea, measured_series(sea), 1980, 1981).set_index("year")
+    assert out.loc[1981, "tonnes_chain"] == pytest.approx(1.10)
 
 
 def test_freight_proxy_recovers_the_calibration():
@@ -200,7 +240,9 @@ def test_undisclosed_destinations_are_allocated_pro_rata():
             "route_class": ["sea", "sea", "land", "unspecified", "world"],
             "destination": ["JPN", "ITA", "ZWE", None, None],
             "tonnes": [30.0, 10.0, 10.0, 50.0, 100.0],
+            "measured_tonnes": [30.0, 0.0, 10.0, 50.0, 100.0],
             "proxy_tonnes": [0.0, 10.0, 0.0, 0.0, 0.0],
+            "cmd": ["2701"] * 5,
         }
     )
     sea = allocate_undisclosed(flows)
@@ -258,7 +300,68 @@ def test_chain_link_skips_a_unit_without_sea_tonnes_on_one_side():
     sea = _sea(
         [("A_X", "HS", 2000, "a", 100, 100), ("A_X", "HS", 2001, "a", 110, 110), ("B_X", "HS", 2001, "b", 500, 500)]
     )
-    avail = {("A_X", "HS", 2000), ("A_X", "HS", 2001), ("B_X", "HS", 2000), ("B_X", "HS", 2001)}
-    out = chain_link(sea, avail, 2000, 2001).set_index("year")
+    out = chain_link(sea, _all_measured(sea), 2000, 2001).set_index("year")
     assert out.loc[2001, "tonnes"] / out.loc[2000, "tonnes"] == pytest.approx(1.10)
     assert out.loc[2001, "units"] == "A_X:HS"
+
+
+def test_confidential_values_keep_their_weights_but_thousandfold_errors_do_not():
+    # wheat: partner values suppressed (unit value under 5 $/t) but weights add up to the World weight
+    rows = [
+        ("HS", "2002", 36, "X", 360, "1001", 1.17e9, 1.17e9, 8, 0.45e6),
+        ("HS", "2002", 36, "X", 392, "1001", 1.16e9, 1.16e9, 8, 0.52e6),
+        ("HS", "2002", 36, "X", 156, "1001", 2.0e9, 2.0e9, 8, 300e6),
+        ("HS", "2002", 36, "X", 0, "1001", 4.33e9, 4.33e9, 8, 301e6),
+        # maize: weights a thousand times too small (unit value far above 3,000 $/t)
+        ("HS", "2002", 842, "X", 392, "1005", 1.0e6, 1.0e6, 8, 100e6),
+        ("HS", "2002", 842, "X", 0, "1005", 1.0e6, 1.0e6, 8, 100e6),
+    ]
+    f = annual_flows(_rec(rows), {360: "IDN", 392: "JPN", 156: "CHN", 0: None})
+    idn = f[(f["destination"] == "IDN")].iloc[0]
+    assert idn["measured_tonnes"] == pytest.approx(1.17e6) and idn["proxy_tonnes"] == 0
+    jp_maize = f[(f["cmd"] == "1005") & (f["destination"] == "JPN")].iloc[0]
+    assert jp_maize["measured_tonnes"] == 0
+
+
+def test_comtrade_estimated_flag_and_per_code_unit_values():
+    # 2005: soybeans and maize both weightless (flagged estimated); 2004 and 2006 measured at their own prices
+    rows = []
+    for y, soy_uv, maize_uv in ((2004, 250.0, 100.0), (2006, 260.0, 110.0)):
+        rows += [("HS", str(y), 842, "X", 156, "1201", 20e9, 20e9, 8, soy_uv * 20e6, False),
+                 ("HS", str(y), 842, "X", 392, "1005", 40e9, 40e9, 8, maize_uv * 40e6, False)]  # fmt: skip
+    rows += [("HS", "2005", 842, "X", 156, "1201", 99e9, 99e9, 8, 255.0 * 20e6, True),
+             ("HS", "2005", 842, "X", 392, "1005", 99e9, 99e9, 8, 105.0 * 40e6, True)]  # fmt: skip
+    rec = pd.DataFrame(rows, columns=["classification", "period", "reporterCode", "flowCode", "partnerCode", "cmdCode",
+                                      "netWgt", "qty", "qtyUnitCode", "primaryValue", "isNetWgtEstimated"])  # fmt: skip
+    f = annual_flows(rec, {156: "CHN", 392: "JPN"}).set_index(["cmd", "year"])
+    # the estimated 99 Mt weights are discarded; each code keeps its own unit value (not a pooled grain price)
+    assert f.loc[("1201", 2005), "measured_tonnes"] == 0
+    assert f.loc[("1201", 2005), "tonnes"] == pytest.approx(255.0 * 20e6 / np.sqrt(250.0 * 260.0), rel=1e-6)
+    assert f.loc[("1005", 2005), "tonnes"] == pytest.approx(105.0 * 40e6 / np.sqrt(100.0 * 110.0), rel=1e-6)
+
+
+def test_monthly_cross_check_flags_annual_weights_that_disagree():
+    months = [f"2025{m:02d}" for m in range(1, 13)]
+    monthly = pd.DataFrame({"freqCode": "M", "partnerCode": 0, "period": months, "reporterCode": 842, "flowCode": "X",
+                            "cmdCode": "2701", "netWgt": [67e9 / 12] * 12})  # fmt: skip
+    annual = pd.DataFrame({"classification": ["HS", "HS"], "partnerCode": [0, 0], "period": ["2025", "2025"],
+                           "reporterCode": [842, 842], "flowCode": ["X", "X"], "cmdCode": ["2701", "1005"],
+                           "netWgt": [52.8e9, 60e9]})  # fmt: skip
+    assert monthly_mismatch(monthly, annual) == {("USA_X", "2701", 2025)}
+    annual.loc[0, "netWgt"] = 66e9
+    assert monthly_mismatch(monthly, annual) == set()
+    # monthly weights far below a correct annual total do not flag the annual weight
+    annual.loc[0, "netWgt"] = 240e9
+    assert monthly_mismatch(monthly, annual) == set()
+
+
+def test_long_out_of_sample_does_not_train_on_the_predicted_year():
+    panel, prices = _synthetic_long()
+    o1 = out_of_sample(panel, prices)
+    k = 2010
+    p2 = panel.copy()
+    p2.loc[p2["year"] == k, "index"] *= 3
+    o2 = out_of_sample(p2, prices)
+    e1 = {p["year"]: p["extended"] for p in o1["predictions"] if p["year"] <= k}
+    e2 = {p["year"]: p["extended"] for p in o2["predictions"] if p["year"] <= k}
+    assert k in e1 and e1 == pytest.approx(e2)

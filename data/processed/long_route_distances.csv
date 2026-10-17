@@ -91,7 +91,6 @@ ARG-TTO-grains,ARG,TTO,grains,shortest,4525.667968482625,False
 ARG-TUN-grains,ARG,TUN,grains,shortest,6352.905969183856,True
 ARG-TUR-grains,ARG,TUR,grains,shortest,7587.669761740683,True
 ARG-YEM-grains,ARG,YEM,grains,shortest,7956.374853268846,True
-ARG-MNE-grains,ARG,MNE,grains,shortest,6927.220016992941,False
 ARG-CMR-grains,ARG,CMR,grains,shortest,4894.209697395421,False
 ARG-COG-grains,ARG,COG,grains,shortest,4758.475497579579,False
 ARG-LVA-grains,ARG,LVA,grains,shortest,7535.921908103495,False
@@ -117,11 +116,13 @@ ARG-AUS-grains,ARG,AUS,grains,shortest,8161.042928985968,False
 ARG-GNQ-grains,ARG,GNQ,grains,shortest,4839.148387880248,False
 ARG-DJI-grains,ARG,DJI,grains,shortest,8023.157765482197,False
 ARG-MDG-grains,ARG,MDG,grains,shortest,5910.531872136522,False
+ARG-MNE-grains,ARG,MNE,grains,shortest,6927.220016992941,False
 ARG-NZL-grains,ARG,NZL,grains,shortest,6370.457894315141,False
 ARG-AZE-grains,ARG,AZE,grains,shortest,8885.320908350732,False
 ARG-SLB-grains,ARG,SLB,grains,shortest,8243.611837151571,False
 ARG-NAM-grains,ARG,NAM,grains,shortest,4189.652546124997,False
 ARG-BRN-grains,ARG,BRN,grains,shortest,9831.882212218597,False
+ARG-PRK-grains,ARG,PRK,grains,shortest,11519.915254660711,False
 ARG-LCA-grains,ARG,LCA,grains,shortest,4551.376790578595,False
 ARG-VCT-grains,ARG,VCT,grains,shortest,4559.859888053791,False
 ARG-MTQ-grains,ARG,MTQ,grains,shortest,4574.65025889258,False
@@ -161,6 +162,7 @@ AUS-IRQ-grains,AUS,IRQ,grains,shortest,6082.399473770374,False
 AUS-ITA-grains,AUS,ITA,grains,shortest,7924.193299038044,True
 AUS-JPN-grains,AUS,JPN,grains,shortest,4993.670634666997,True
 AUS-JOR-grains,AUS,JOR,grains,shortest,6816.393673547523,False
+AUS-PRK-grains,AUS,PRK,grains,shortest,4918.176955331236,False
 AUS-KOR-grains,AUS,KOR,grains,shortest,4867.866127736993,True
 AUS-KWT-grains,AUS,KWT,grains,shortest,6039.751688480508,False
 AUS-MYS-grains,AUS,MYS,grains,shortest,3225.048670616955,True
@@ -290,6 +292,7 @@ AUS-USA-iron_ore,AUS,USA,iron_ore,avoid_panama,8039.9945967191625,False
 AUS-USA-coal,AUS,USA,coal,avoid_panama,6594.292313772559,False
 AUS-HRV-coal,AUS,HRV,coal,avoid_panama,9529.613878085314,False
 AUS-BGR-coal,AUS,BGR,coal,avoid_panama,9332.158120483393,False
+AUS-PRK-coal,AUS,PRK,coal,avoid_panama,4435.146704297206,False
 AUS-MYS-iron_ore,AUS,MYS,iron_ore,avoid_panama,2130.274964163671,True
 AUS-PNG-coal,AUS,PNG,coal,avoid_panama,1469.3237107249774,False
 AUS-POL-iron_ore,AUS,POL,iron_ore,avoid_panama,10585.657636323653,False
@@ -349,6 +352,7 @@ AUS-MAR-coal,AUS,MAR,coal,avoid_panama,10518.698891492171,True
 AUS-FJI-iron_ore,AUS,FJI,iron_ore,avoid_panama,4039.2250449867174,False
 BRA-AGO-grains,BRA,AGO,grains,shortest,3843.789914435619,False
 BRA-BEL-grains,BRA,BEL,grains,shortest,5295.4027226337275,False
+BRA-COL-grains,BRA,COL,grains,shortest,4014.2835542073444,True
 BRA-CUB-grains,BRA,CUB,grains,shortest,4402.794910823458,False
 BRA-ECU-grains,BRA,ECU,grains,shortest,5004.445016266997,True
 BRA-FRA-grains,BRA,FRA,grains,shortest,5158.108598188699,False
@@ -361,6 +365,7 @@ BRA-JPN-grains,BRA,JPN,grains,shortest,11349.638369347473,True
 BRA-MEX-grains,BRA,MEX,grains,shortest,5252.795470454718,True
 BRA-NLD-grains,BRA,NLD,grains,shortest,5316.76165028515,True
 BRA-NOR-grains,BRA,NOR,grains,shortest,6051.521007922821,False
+BRA-PER-grains,BRA,PER,grains,shortest,4653.640498567531,True
 BRA-PRT-grains,BRA,PRT,grains,shortest,4321.2049988576255,True
 BRA-ROU-grains,BRA,ROU,grains,shortest,6306.331396324229,False
 BRA-ESP-grains,BRA,ESP,grains,shortest,4806.491085038838,True
@@ -368,6 +373,7 @@ BRA-SDN-grains,BRA,SDN,grains,shortest,7037.7993747538885,False
 BRA-EGY-grains,BRA,EGY,grains,shortest,6115.364070692269,True
 BRA-GBR-grains,BRA,GBR,grains,shortest,5407.177194564226,True
 BRA-USA-grains,BRA,USA,grains,shortest,5149.208452106768,False
+BRA-VEN-grains,BRA,VEN,grains,shortest,3374.6434775495336,False
 BRA-CAN-grains,BRA,CAN,grains,shortest,5914.182764488555,False
 BRA-CPV-grains,BRA,CPV,grains,shortest,2764.978865861862,False
 BRA-EST-grains,BRA,EST,grains,shortest,6438.359136152518,False
@@ -388,6 +394,7 @@ BRA-CHN-grains,BRA,CHN,grains,shortest,11178.626195076547,True
 BRA-CRI-grains,BRA,CRI,grains,shortest,4700.156081720257,False
 BRA-GRC-grains,BRA,GRC,grains,shortest,5751.523132959848,True
 BRA-IRN-grains,BRA,IRN,grains,shortest,8188.185236036369,True
+BRA-PRK-grains,BRA,PRK,grains,shortest,11401.216103457095,False
 BRA-MAR-grains,BRA,MAR,grains,shortest,4178.1987660689,True
 BRA-PHL-grains,BRA,PHL,grains,shortest,10305.3175090885,True
 BRA-SEN-grains,BRA,SEN,grains,shortest,3011.8813304639843,False
@@ -415,6 +422,7 @@ BRA-ARE-grains,BRA,ARE,grains,shortest,8346.285390565674,True
 BRA-YEM-grains,BRA,YEM,grains,shortest,7350.710340419471,True
 BRA-ALB-grains,BRA,ALB,grains,shortest,5647.168012610176,False
 BRA-BLZ-grains,BRA,BLZ,grains,shortest,4752.189099322769,False
+BRA-GUY-grains,BRA,GUY,grains,shortest,2817.4082580405156,False
 BRA-KEN-grains,BRA,KEN,grains,shortest,6152.644269606653,True
 BRA-LBY-grains,BRA,LBY,grains,shortest,5440.632231151101,True
 BRA-NGA-grains,BRA,NGA,grains,shortest,3719.1774121605354,True
@@ -439,6 +447,7 @@ BRA-HND-grains,BRA,HND,grains,shortest,4715.447894060048,True
 BRA-HKG-grains,BRA,HKG,grains,shortest,10532.212245139915,False
 BRA-MRT-grains,BRA,MRT,grains,shortest,3226.5924638558076,False
 BRA-NIC-grains,BRA,NIC,grains,shortest,5031.9433794374545,False
+BRA-SUR-grains,BRA,SUR,grains,shortest,2627.538494971296,False
 BRA-MMR-grains,BRA,MMR,grains,shortest,9132.925883863227,False
 BRA-CMR-grains,BRA,CMR,grains,shortest,3955.7915618107345,False
 BRA-COD-grains,BRA,COD,grains,shortest,4009.8111643787865,False
@@ -495,13 +504,17 @@ BRA-EGY-iron_ore,BRA,EGY,iron_ore,avoid_panama,5419.8244057646025,False
 BRA-GBR-iron_ore,BRA,GBR,iron_ore,avoid_panama,4636.841896020679,True
 BRA-USA-iron_ore,BRA,USA,iron_ore,avoid_panama,4154.47613472858,False
 BRA-BHS-iron_ore,BRA,BHS,iron_ore,avoid_panama,3432.97822847282,False
+BRA-PRK-iron_ore,BRA,PRK,iron_ore,avoid_panama,11737.823695613148,False
 BRA-MEX-iron_ore,BRA,MEX,iron_ore,avoid_panama,5624.831320837334,False
 BRA-IND-iron_ore,BRA,IND,iron_ore,avoid_panama,9194.723929656413,True
+BRA-VEN-coal,BRA,VEN,coal,avoid_panama,3034.644577508389,False
 BRA-AGO-coal,BRA,AGO,coal,avoid_panama,3791.3983710298803,False
 BRA-BGR-iron_ore,BRA,BGR,iron_ore,avoid_panama,5507.865134858713,False
 BRA-NOR-iron_ore,BRA,NOR,iron_ore,avoid_panama,5269.592204812404,False
 BRA-TUN-iron_ore,BRA,TUN,iron_ore,avoid_panama,4554.137503415925,False
+BRA-COL-iron_ore,BRA,COL,iron_ore,avoid_panama,4223.543304452229,False
 BRA-MOZ-coal,BRA,MOZ,coal,avoid_panama,5074.778777513683,False
+BRA-PER-coal,BRA,PER,coal,avoid_panama,5537.455236378469,False
 BRA-IND-coal,BRA,IND,coal,avoid_panama,8695.848448069386,False
 BRA-USA-coal,BRA,USA,coal,avoid_panama,4810.7381483670815,False
 BRA-DZA-iron_ore,BRA,DZA,iron_ore,avoid_panama,4102.793052028353,False
@@ -510,6 +523,7 @@ BRA-CUW-iron_ore,BRA,CUW,iron_ore,avoid_panama,2558.7438846602527,False
 BRA-CYM-iron_ore,BRA,CYM,iron_ore,avoid_panama,3348.806936174933,False
 BRA-SWE-iron_ore,BRA,SWE,iron_ore,avoid_panama,5342.500212344565,False
 BRA-UKR-iron_ore,BRA,UKR,iron_ore,avoid_panama,5708.388770216123,False
+BRA-VEN-iron_ore,BRA,VEN,iron_ore,avoid_panama,2376.234420929785,False
 BRA-HKG-iron_ore,BRA,HKG,iron_ore,avoid_panama,10664.095317119245,False
 BRA-SGP-iron_ore,BRA,SGP,iron_ore,avoid_panama,9359.751217202265,False
 BRA-ARE-coal,BRA,ARE,coal,avoid_panama,8181.5221485100565,False
@@ -572,6 +586,7 @@ CAN-ITA-grains,CAN,ITA,grains,shortest,4544.278933473244,True
 CAN-JAM-grains,CAN,JAM,grains,shortest,2831.0693230159927,False
 CAN-JPN-grains,CAN,JPN,grains,shortest,4261.412153025082,True
 CAN-JOR-grains,CAN,JOR,grains,shortest,5655.378718792525,False
+CAN-PRK-grains,CAN,PRK,grains,shortest,11820.176170000508,False
 CAN-KOR-grains,CAN,KOR,grains,shortest,4798.621183062548,True
 CAN-LBN-grains,CAN,LBN,grains,shortest,5313.765364547303,True
 CAN-LBR-grains,CAN,LBR,grains,shortest,4405.704871056295,False
@@ -633,7 +648,6 @@ CAN-PAN-grains,CAN,PAN,grains,shortest,3337.175184752557,True
 CAN-IND-grains,CAN,IND,grains,shortest,9090.234186491856,False
 CAN-SUR-grains,CAN,SUR,grains,shortest,3645.386186489083,False
 CAN-ARE-grains,CAN,ARE,grains,shortest,8268.765391046902,True
-CAN-MNE-grains,CAN,MNE,grains,shortest,4674.801398046303,False
 CAN-CYP-grains,CAN,CYP,grains,shortest,5222.978783077637,False
 CAN-PYF-grains,CAN,PYF,grains,shortest,7859.558923032965,False
 CAN-IRQ-grains,CAN,IRQ,grains,shortest,8620.984350122462,False
@@ -660,6 +674,7 @@ CAN-OMN-grains,CAN,OMN,grains,shortest,7747.187174364554,False
 CAN-VCT-grains,CAN,VCT,grains,shortest,3055.991087638826,False
 CAN-SOM-grains,CAN,SOM,grains,shortest,7306.185780716978,False
 CAN-EST-grains,CAN,EST,grains,shortest,3882.01422507403,False
+CAN-MNE-grains,CAN,MNE,grains,shortest,4674.801398046303,False
 CAN-BHR-grains,CAN,BHR,grains,shortest,8392.902382821725,False
 CAN-MMR-grains,CAN,MMR,grains,shortest,9986.841084966938,False
 CAN-KWT-grains,CAN,KWT,grains,shortest,8578.336564832594,False
@@ -692,6 +707,7 @@ CAN-ITA-iron_ore,CAN,ITA,iron_ore,avoid_panama,4128.223902910639,True
 CAN-ITA-coal,CAN,ITA,coal,shortest,9842.86349242526,True
 CAN-JPN-iron_ore,CAN,JPN,iron_ore,avoid_panama,12908.556028356312,True
 CAN-JPN-coal,CAN,JPN,coal,shortest,4261.412153025082,True
+CAN-PRK-coal,CAN,PRK,coal,shortest,4999.398245837436,False
 CAN-KOR-iron_ore,CAN,KOR,iron_ore,avoid_panama,12491.596866008897,True
 CAN-KOR-coal,CAN,KOR,coal,shortest,4798.621183062548,True
 CAN-MEX-coal,CAN,MEX,coal,shortest,4693.021527618847,False
@@ -722,7 +738,6 @@ CAN-AUS-iron_ore,CAN,AUS,iron_ore,avoid_panama,12280.557125891608,False
 CAN-FIN-iron_ore,CAN,FIN,iron_ore,avoid_panama,3567.8358324087953,False
 CAN-TWN-iron_ore,CAN,TWN,iron_ore,avoid_panama,11625.837097975596,True
 CAN-SGP-coal,CAN,SGP,coal,shortest,7200.760383727829,False
-CAN-MNE-coal,CAN,MNE,coal,shortest,9973.385956998318,False
 CAN-CHN-iron_ore,CAN,CHN,iron_ore,avoid_panama,12335.510639262486,True
 CAN-HKG-coal,CAN,HKG,coal,shortest,5857.147471829119,True
 CAN-NOR-iron_ore,CAN,NOR,iron_ore,avoid_panama,2814.418868363845,False
@@ -791,7 +806,9 @@ CAN-DOM-iron_ore,CAN,DOM,iron_ore,avoid_panama,2404.1426083513816,False
 COL-USA-grains,COL,USA,grains,shortest,1804.133835186335,False
 COL-GTM-grains,COL,GTM,grains,shortest,1333.278899513321,False
 COL-MEX-grains,COL,MEX,grains,shortest,1817.7375852174082,False
+COL-PAN-grains,COL,PAN,grains,shortest,429.604139472038,False
 COL-BEL-grains,COL,BEL,grains,shortest,4808.073784144264,False
+COL-PER-grains,COL,PER,grains,shortest,1674.4248401775749,False
 COL-ARG-grains,COL,ARG,grains,shortest,5355.761711301824,False
 COL-ESP-grains,COL,ESP,grains,shortest,4773.406567240652,False
 COL-FRA-grains,COL,FRA,grains,shortest,4708.547168999052,False
@@ -809,6 +826,7 @@ COL-JAM-grains,COL,JAM,grains,shortest,980.0373109186562,False
 COL-NIC-grains,COL,NIC,grains,shortest,1119.0428522518516,False
 COL-TTO-grains,COL,TTO,grains,shortest,1105.653873573932,False
 COL-CAN-grains,COL,CAN,grains,shortest,3848.804147492017,False
+COL-BRA-grains,COL,BRA,grains,shortest,3820.3996614131574,False
 COL-BLZ-grains,COL,BLZ,grains,shortest,1149.4206745852666,False
 COL-CHL-grains,COL,CHL,grains,shortest,2933.012203953308,False
 COL-TUR-grains,COL,TUR,grains,shortest,6321.045400522562,False
@@ -816,6 +834,7 @@ COL-CUB-grains,COL,CUB,grains,shortest,1294.0361758521017,False
 COL-ARE-grains,COL,ARE,grains,shortest,9254.559648775421,False
 COL-ARG-coal,COL,ARG,coal,shortest,5199.498496433791,False
 COL-BEL-coal,COL,BEL,coal,shortest,4514.784297187747,False
+COL-BRA-coal,COL,BRA,coal,shortest,3947.6208211685207,True
 COL-CHL-coal,COL,CHL,coal,shortest,3185.267238465337,True
 COL-DNK-coal,COL,DNK,coal,shortest,4915.968855963642,False
 COL-DOM-coal,COL,DOM,coal,shortest,732.811772173915,True
@@ -831,6 +850,8 @@ COL-ITA-coal,COL,ITA,coal,shortest,5204.9345382287875,True
 COL-JPN-coal,COL,JPN,coal,shortest,8255.661889263949,True
 COL-MEX-coal,COL,MEX,coal,shortest,1995.5600515708475,False
 COL-NLD-coal,COL,NLD,coal,shortest,4536.143224839168,True
+COL-PAN-coal,COL,PAN,coal,shortest,519.3945212329667,False
+COL-PER-coal,COL,PER,coal,shortest,2027.2683361684362,False
 COL-PRT-coal,COL,PRT,coal,shortest,3855.43578227774,True
 COL-GNB-coal,COL,GNB,coal,shortest,3491.020573635171,False
 COL-ESP-coal,COL,ESP,coal,shortest,4448.267914267679,True
@@ -855,6 +876,7 @@ COL-CHN-coal,COL,CHN,coal,shortest,9959.868819227724,True
 COL-JAM-coal,COL,JAM,coal,shortest,836.2028411115301,False
 COL-LBR-coal,COL,LBR,coal,shortest,3944.170548300078,False
 COL-TUR-coal,COL,TUR,coal,shortest,5995.9067475495885,True
+COL-BRA-iron_ore,COL,BRA,iron_ore,avoid_panama,4511.45974316761,False
 COL-KOR-iron_ore,COL,KOR,iron_ore,avoid_panama,12075.47942554313,False
 COL-MEX-iron_ore,COL,MEX,iron_ore,avoid_panama,5885.7403102545995,False
 COL-USA-iron_ore,COL,USA,iron_ore,avoid_panama,4589.991841960382,False
@@ -871,6 +893,7 @@ COL-JPN-iron_ore,COL,JPN,iron_ore,avoid_panama,12252.61978385465,False
 COL-KOR-coal,COL,KOR,coal,shortest,8792.870919301415,True
 COL-LTU-iron_ore,COL,LTU,iron_ore,avoid_panama,7415.267299323566,False
 COL-MYS-coal,COL,MYS,coal,shortest,10707.378528792528,True
+COL-PER-iron_ore,COL,PER,iron_ore,avoid_panama,6657.435381026381,False
 COL-THA-coal,COL,THA,coal,shortest,11271.351797474486,True
 COL-UKR-coal,COL,UKR,coal,shortest,6090.510942459674,True
 COL-BGR-coal,COL,BGR,coal,shortest,5888.006071543574,False
@@ -885,6 +908,7 @@ COL-EST-coal,COL,EST,coal,shortest,5554.847331910068,False
 COL-IDN-coal,COL,IDN,coal,shortest,10783.700160879896,False
 COL-ALB-coal,COL,ALB,coal,shortest,5288.944841839017,False
 COL-CUW-coal,COL,CUW,coal,shortest,303.00805068505906,False
+COL-PAN-iron_ore,COL,PAN,iron_ore,avoid_panama,330.6815689012186,False
 IDN-JPN-grains,IDN,JPN,grains,shortest,3077.755789763754,False
 IDN-MYS-grains,IDN,MYS,grains,shortest,1236.9014953985575,False
 IDN-TWN-grains,IDN,TWN,grains,shortest,1882.9982576376963,False
@@ -951,7 +975,6 @@ IDN-FIN-coal,IDN,FIN,coal,avoid_panama,10537.020104995347,False
 IDN-NOR-coal,IDN,NOR,coal,avoid_panama,10063.411694481323,False
 IDN-TUR-coal,IDN,TUR,coal,avoid_panama,6400.196245370237,True
 IDN-GBR-coal,IDN,GBR,coal,avoid_panama,9403.961525509669,True
-IDN-MNE-coal,IDN,MNE,coal,avoid_panama,6999.7979543692145,False
 IDN-BRN-coal,IDN,BRN,coal,avoid_panama,1086.4462717370175,False
 IDN-ISR-coal,IDN,ISR,coal,avoid_panama,6208.785396442381,True
 IDN-MLT-coal,IDN,MLT,coal,avoid_panama,6951.451343689862,False
@@ -976,6 +999,7 @@ IDN-HRV-coal,IDN,HRV,coal,avoid_panama,7135.771008841784,False
 IDN-BEN-coal,IDN,BEN,coal,avoid_panama,8480.934028799458,False
 IDN-FRA-coal,IDN,FRA,coal,avoid_panama,9218.782453045042,True
 IDN-JPN-iron_ore,IDN,JPN,iron_ore,avoid_panama,3077.755789763754,False
+IDN-PRK-coal,IDN,PRK,coal,avoid_panama,2727.7701156469866,False
 IDN-MAC-coal,IDN,MAC,coal,avoid_panama,1847.1483186037663,False
 IDN-MUS-coal,IDN,MUS,coal,avoid_panama,3785.289523997094,False
 IDN-MAR-coal,IDN,MAR,coal,avoid_panama,8124.856022248641,True
@@ -1024,6 +1048,7 @@ UKR-GRC-grains,UKR,GRC,grains,shortest,709.3958269564423,True
 UKR-IRL-grains,UKR,IRL,grains,shortest,3369.323804441499,True
 UKR-ISR-grains,UKR,ISR,grains,shortest,1192.1163962232022,True
 UKR-JOR-grains,UKR,JOR,grains,shortest,1587.2750116864245,False
+UKR-PRK-grains,UKR,PRK,grains,shortest,8761.827901676093,False
 UKR-KOR-grains,UKR,KOR,grains,shortest,8716.980388374097,True
 UKR-LBN-grains,UKR,LBN,grains,shortest,1172.2140329539122,True
 UKR-LVA-grains,UKR,LVA,grains,shortest,4501.82865202106,False
@@ -1126,8 +1151,6 @@ UKR-ITA-coal,UKR,ITA,coal,avoid_panama,1071.8976698282981,False
 UKR-LVA-iron_ore,UKR,LVA,iron_ore,avoid_panama,4497.761366675612,False
 UKR-LTU-coal,UKR,LTU,coal,avoid_panama,4399.598057055679,False
 UKR-TUR-coal,UKR,TUR,coal,avoid_panama,1180.7259283057247,False
-UKR-MNE-iron_ore,UKR,MNE,iron_ore,avoid_panama,1102.7329191278318,False
-UKR-MNE-coal,UKR,MNE,coal,avoid_panama,1102.7329191278318,False
 UKR-CYP-coal,UKR,CYP,coal,avoid_panama,1077.3601661387993,False
 UKR-EST-coal,UKR,EST,coal,avoid_panama,4652.007690194587,False
 UKR-FIN-coal,UKR,FIN,coal,avoid_panama,4753.884328091958,False
@@ -1207,6 +1230,7 @@ UKR-QAT-iron_ore,UKR,QAT,iron_ore,avoid_panama,4301.417214859961,False
 UKR-SAU-iron_ore,UKR,SAU,iron_ore,avoid_panama,3935.5330081604116,False
 UKR-ZAF-iron_ore,UKR,ZAF,iron_ore,avoid_panama,5853.485570224735,False
 UKR-ESP-iron_ore,UKR,ESP,iron_ore,avoid_panama,2772.124343153701,False
+UKR-MNE-coal,UKR,MNE,coal,avoid_panama,1102.7329191278318,False
 UKR-SWE-coal,UKR,SWE,coal,avoid_panama,4326.484064930175,False
 USA-ALB-grains,USA,ALB,grains,shortest,5777.130125671306,False
 USA-DZA-grains,USA,DZA,grains,shortest,4882.027583928017,True
@@ -1339,10 +1363,10 @@ USA-MAC-grains,USA,MAC,grains,shortest,10857.98078295054,False
 USA-MDG-grains,USA,MDG,grains,shortest,9310.322130646417,False
 USA-VNM-grains,USA,VNM,grains,shortest,9419.910116350966,True
 USA-GMB-grains,USA,GMB,grains,shortest,4426.619886886649,False
+USA-PRK-grains,USA,PRK,grains,shortest,9946.903614842286,False
 USA-LBY-grains,USA,LBY,grains,shortest,5570.594344212232,True
 USA-NAM-grains,USA,NAM,grains,shortest,7081.360969499841,False
 USA-MHL-grains,USA,MHL,grains,shortest,8502.455880125275,False
-USA-MNE-grains,USA,MNE,grains,shortest,5823.642286634136,False
 USA-AZE-grains,USA,AZE,grains,shortest,7781.7431779919225,False
 USA-MMR-grains,USA,MMR,grains,shortest,11135.68197355477,False
 USA-FJI-grains,USA,FJI,grains,shortest,7976.060089020793,False
@@ -1351,6 +1375,7 @@ USA-KHM-grains,USA,KHM,grains,shortest,11847.12649126846,False
 USA-MYT-grains,USA,MYT,grains,shortest,9467.649350366239,False
 USA-SXM-grains,USA,SXM,grains,shortest,1726.4018537575319,False
 USA-MUS-grains,USA,MUS,grains,shortest,9558.809893459516,False
+USA-MNE-grains,USA,MNE,grains,shortest,5823.642286634136,False
 USA-GNB-grains,USA,GNB,grains,shortest,4513.305443596391,False
 USA-SLB-grains,USA,SLB,grains,shortest,9006.747095098297,False
 USA-MDV-grains,USA,MDV,grains,shortest,9577.882465691251,False
@@ -1475,7 +1500,6 @@ USA-LBR-coal,USA,LBR,coal,shortest,4493.007632484408,False
 USA-MYS-iron_ore,USA,MYS,iron_ore,avoid_panama,7905.102128425358,False
 USA-NZL-iron_ore,USA,NZL,iron_ore,avoid_panama,12249.882645703434,False
 USA-VNM-coal,USA,VNM,coal,shortest,11208.212969935976,True
-USA-MNE-iron_ore,USA,MNE,iron_ore,avoid_panama,5995.260952270021,False
 USA-BEL-iron_ore,USA,BEL,iron_ore,avoid_panama,4876.299590702568,False
 USA-GNQ-coal,USA,GNQ,coal,shortest,5754.830304942387,False
 USA-LBY-iron_ore,USA,LBY,iron_ore,avoid_panama,5842.736742756968,False
@@ -1558,6 +1582,7 @@ ZAF-CIV-grains,ZAF,CIV,grains,shortest,3537.563590789668,False
 ZAF-JPN-grains,ZAF,JPN,grains,shortest,7962.178740639801,False
 ZAF-JOR-grains,ZAF,JOR,grains,shortest,4575.809763206623,False
 ZAF-KEN-grains,ZAF,KEN,grains,shortest,1839.7430233065666,False
+ZAF-PRK-grains,ZAF,PRK,grains,shortest,7495.200954047314,False
 ZAF-KOR-grains,ZAF,KOR,grains,shortest,7450.353440745315,False
 ZAF-KWT-grains,ZAF,KWT,grains,shortest,4505.33887436623,False
 ZAF-LBN-grains,ZAF,LBN,grains,shortest,4976.836332738184,False
@@ -1686,9 +1711,9 @@ ZAF-LKA-iron_ore,ZAF,LKA,iron_ore,avoid_panama,4644.752376118501,False
 ZAF-LKA-coal,ZAF,LKA,coal,avoid_panama,3781.576153756049,False
 ZAF-COL-iron_ore,ZAF,COL,iron_ore,avoid_panama,6754.457182191061,False
 ZAF-GNQ-coal,ZAF,GNQ,coal,avoid_panama,3439.3931001092515,False
+ZAF-PRK-coal,ZAF,PRK,coal,avoid_panama,7463.239027112816,False
 ZAF-ROU-coal,ZAF,ROU,coal,avoid_panama,5567.291589289562,False
 ZAF-ARE-iron_ore,ZAF,ARE,iron_ore,avoid_panama,5037.599239081154,True
-ZAF-MNE-coal,ZAF,MNE,coal,avoid_panama,5568.67213840942,False
 ZAF-FIN-iron_ore,ZAF,FIN,iron_ore,avoid_panama,7582.070639332095,False
 ZAF-GMB-coal,ZAF,GMB,coal,avoid_panama,4562.466455839721,False
 ZAF-ISL-coal,ZAF,ISL,coal,avoid_panama,7729.386535309987,False
@@ -1760,6 +1785,7 @@ ZAF-SEN-coal,ZAF,SEN,coal,avoid_panama,4620.094355146619,False
 ZAF-BEL-iron_ore,ZAF,BEL,iron_ore,avoid_panama,6337.237587915928,False
 ZAF-COG-coal,ZAF,COG,coal,avoid_panama,2903.519257095606,False
 ZAF-CYP-coal,ZAF,CYP,coal,avoid_panama,4822.467192485495,False
+ZAF-PRK-iron_ore,ZAF,PRK,iron_ore,avoid_panama,8135.636927809608,False
 ZAF-KWT-coal,ZAF,KWT,coal,avoid_panama,4359.566374778971,False
 ZAF-MYS-iron_ore,ZAF,MYS,iron_ore,avoid_panama,5528.988066324931,True
 ZAF-PAK-iron_ore,ZAF,PAK,iron_ore,avoid_panama,4880.793491234413,False
@@ -1858,10 +1884,12 @@ BRA-DOM-iron_ore,BRA,DOM,iron_ore,avoid_panama,2776.575051954076,False
 BRA-IRL-iron_ore,BRA,IRL,iron_ore,avoid_panama,4314.632591833835,False
 BRA-THA-iron_ore,BRA,THA,iron_ore,avoid_panama,10105.792877556265,False
 BRA-SLV-coal,BRA,SLV,coal,avoid_panama,7349.355223578863,False
+BRA-PER-iron_ore,BRA,PER,iron_ore,avoid_panama,6126.896885241475,False
 BRA-DOM-coal,BRA,DOM,coal,avoid_panama,3418.5566193861573,False
 BRA-SYR-coal,BRA,SYR,coal,avoid_panama,6101.969773504377,False
 BRA-GIN-iron_ore,BRA,GIN,iron_ore,avoid_panama,2401.794903999979,False
 BRA-NOR-coal,BRA,NOR,coal,avoid_panama,5801.5233000012095,False
+BRA-COL-coal,BRA,COL,coal,avoid_panama,4511.45974316761,False
 BRA-FRA-coal,BRA,FRA,coal,avoid_panama,4976.820388355516,False
 BRA-HND-iron_ore,BRA,HND,iron_ore,avoid_panama,4534.406345799148,False
 CAN-ERI-grains,CAN,ERI,grains,shortest,6263.549303265424,False
@@ -1896,6 +1924,7 @@ COL-GIB-coal,COL,GIB,coal,shortest,3966.9839781600567,False
 COL-IRN-coal,COL,IRN,coal,shortest,9104.875077780764,False
 COL-NLD-iron_ore,COL,NLD,iron_ore,avoid_panama,6618.423243872696,False
 COL-GBR-iron_ore,COL,GBR,iron_ore,avoid_panama,6708.83878815177,False
+COL-PRK-coal,COL,PRK,coal,shortest,8993.647982076305,False
 COL-SEN-coal,COL,SEN,coal,shortest,3437.6924350721306,False
 COL-ZAF-coal,COL,ZAF,coal,shortest,6837.062288767032,False
 COL-KEN-coal,COL,KEN,coal,shortest,8622.38806890228,False
@@ -1926,6 +1955,7 @@ IDN-LBN-coal,IDN,LBN,coal,avoid_panama,6281.5546030390005,False
 IDN-TZA-iron_ore,IDN,TZA,iron_ore,avoid_panama,4719.877602824922,False
 IDN-LVA-coal,IDN,LVA,coal,avoid_panama,10280.897143579,False
 IDN-VNM-iron_ore,IDN,VNM,iron_ore,avoid_panama,1336.0050821474817,False
+IDN-MNE-coal,IDN,MNE,coal,avoid_panama,6999.7979543692145,False
 UKR-CUB-grains,UKR,CUB,grains,shortest,6201.575228546564,False
 UKR-KHM-grains,UKR,KHM,grains,shortest,6868.928161959573,False
 UKR-ISL-grains,UKR,ISL,grains,shortest,4152.574607511858,False
@@ -1968,10 +1998,8 @@ USA-HTI-iron_ore,USA,HTI,iron_ore,avoid_panama,1280.5776008532414,False
 USA-CUW-iron_ore,USA,CUW,iron_ore,avoid_panama,1796.5240755184093,False
 ZAF-BLZ-grains,ZAF,BLZ,grains,shortest,7762.739822273712,False
 ZAF-CIV-iron_ore,ZAF,CIV,iron_ore,avoid_panama,2776.927753161723,False
-ZAF-MNE-iron_ore,ZAF,MNE,iron_ore,avoid_panama,6556.276176497295,False
 ZAF-NCL-coal,ZAF,NCL,coal,avoid_panama,7410.160645181774,False
 ZAF-ALB-grains,ZAF,ALB,grains,shortest,5666.356115065166,False
-ZAF-MNE-grains,ZAF,MNE,grains,shortest,5714.444637996679,False
 ZAF-GRD-grains,ZAF,GRD,grains,shortest,6149.9446046906205,False
 ZAF-NCL-grains,ZAF,NCL,grains,shortest,7348.066611014938,False
 ZAF-VCT-grains,ZAF,VCT,grains,shortest,6188.273653776954,False
@@ -2020,7 +2048,6 @@ BRA-GRD-grains,BRA,GRD,grains,shortest,3139.393881739676,False
 BRA-LCA-grains,BRA,LCA,grains,shortest,3187.239382146156,False
 BRA-SOM-grains,BRA,SOM,grains,shortest,6983.43221464343,False
 BRA-AUS-coal,BRA,AUS,coal,avoid_panama,8895.525833571633,False
-BRA-MNE-iron_ore,BRA,MNE,iron_ore,avoid_panama,4955.316066116984,False
 BRA-CYP-iron_ore,BRA,CYP,iron_ore,avoid_panama,5503.49345114832,False
 BRA-ECU-iron_ore,BRA,ECU,iron_ore,avoid_panama,6804.301027429094,False
 BRA-TTO-coal,BRA,TTO,coal,avoid_panama,2803.532111213702,False
@@ -2090,6 +2117,7 @@ USA-ABW-iron_ore,USA,ABW,iron_ore,avoid_panama,1741.8061913889942,False
 USA-BHR-iron_ore,USA,BHR,iron_ore,avoid_panama,9713.131345784244,False
 USA-HND-iron_ore,USA,HND,iron_ore,avoid_panama,3115.8253980369614,False
 USA-ERI-coal,USA,ERI,coal,shortest,6661.015586817839,False
+USA-MNE-iron_ore,USA,MNE,iron_ore,avoid_panama,5995.260952270021,False
 USA-COD-coal,USA,COD,coal,shortest,6055.271882878577,False
 USA-TKM-coal,USA,TKM,coal,shortest,7062.248642732689,False
 USA-LCA-iron_ore,USA,LCA,iron_ore,avoid_panama,2018.5714743627836,False

@@ -51,7 +51,7 @@ import pandas as pd
 import statsmodels.api as sm
 
 from tmdm.config import PROCESSED_DIR
-from tmdm.ingest import comtrade_long, kilian, oecd_cpi, portwatch, worldbank, wpi
+from tmdm.ingest import comtrade, comtrade_long, kilian, oecd_cpi, portwatch, worldbank, wpi
 from tmdm.io import raw_dir
 from tmdm.reference import DISCHARGE, LOADING, LOADING_BY_DESTINATION, PACIFIC_DESTINATIONS, loading_blend
 from tmdm.transform.distances import Port, sea_distance_nm
@@ -71,6 +71,8 @@ UNIT_VALUE_BOUNDS = (5.0, 3000.0)  # US dollars per tonne; weights implying valu
 ESTIMATED_MODAL_SHARE = 0.5
 ESTIMATED_MIN_ROWS = 3
 MIN_VALID_VALUE_SHARE = 0.5  # share of a year's value that rows with usable weights must carry to set its unit value
+MEASURED_SHARE = 0.9  # a series-year counts as measured if at least this share of its tonnes has measured weights
+MONTHLY_TOLERANCE = 0.15  # largest gap between an annual weight and the sum of its twelve monthly weights
 
 COMMODITY_OF: dict[str, dict[str, str]] = {
     "HS": {
@@ -103,22 +105,26 @@ SUCCESSOR = {
     "DDR": "DEU",
     "YUG": "HRV",
     "CSK": "CZE",
-    "SCG": "MNE",
+    "SCG": "SRB",
     "ZA1": "ZAF",
     "ANT": "CUW",
     "YMD": "YEM",
 }
 # Comtrade records Taiwan as "Other Asia, nes" (partner code 490).
 PARTNER_CODE_ISO = {490: "TWN"}
+# Coastal partners without dry bulk calls in the PortWatch table: distances use a neighbouring coast's ports.
+PORT_PROXY_COUNTRY = {"PRK": "KOR"}
 # Partners whose destination is not disclosed ("Areas, nes", "Special categories", free zones, bunkers):
 # their tonnes are allocated to the disclosed destinations of the same exporter, commodity and year.
 UNDISCLOSED = "unspecified"
+# Land neighbours where bulk cargo can move by rail, road or river; pairs separated by roadless terrain
+# (Colombia and Brazil, Peru or Panama; Brazil and Venezuela or the Guianas) trade bulk by sea and stay in.
 LAND_NEIGHBOURS_LONG: dict[str, frozenset[str]] = {
     "USA": frozenset({"CAN", "MEX"}),
     "CAN": frozenset({"USA"}),
-    "BRA": frozenset({"ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"}),
+    "BRA": frozenset({"ARG", "BOL", "PRY", "URY"}),
     "ARG": frozenset({"BOL", "BRA", "CHL", "PRY", "URY"}),
-    "COL": frozenset({"BRA", "ECU", "PAN", "PER", "VEN"}),
+    "COL": frozenset({"ECU", "VEN"}),
     "UKR": frozenset({"BLR", "HUN", "MDA", "POL", "ROU", "RUS", "SVK"}),
     "ZAF": frozenset({"BWA", "LSO", "MOZ", "NAM", "SWZ", "ZWE"}),
     "IDN": frozenset({"PNG", "TLS"}),
@@ -145,7 +151,14 @@ def partner_iso() -> dict[int, str | None]:
 
 
 def _weights(rec: pd.DataFrame) -> pd.DataFrame:
-    """Tonnes from net weight (or quantity in kilograms); weights with implausible unit values set to missing."""
+    """Tonnes from net weight (or quantity in kilograms), with unusable weights set to missing.
+
+    A weight implying more than the upper unit-value bound is unusable (weights a thousand times too small,
+    as in US records for 2000 and 2001). A weight implying less than the lower bound is kept when the
+    reporter's partner weights add up to its World weight for that commodity and year: the value was then
+    withheld for confidentiality, not the weight mis-stated (Australian wheat, 2000 to 2008). Weights that
+    Comtrade flags as estimated are set to missing in :func:`annual_flows`.
+    """
     df = rec.copy()
     nw = pd.to_numeric(df["netWgt"], errors="coerce")
     qty = pd.to_numeric(df["qty"], errors="coerce")
@@ -156,7 +169,19 @@ def _weights(rec: pd.DataFrame) -> pd.DataFrame:
     df["value_usd"] = pd.to_numeric(df["primaryValue"], errors="coerce").fillna(0.0)
     df["tonnes_reported"] = kg / 1000.0
     uv = df["value_usd"] / df["tonnes_reported"]
-    ok = df["tonnes_reported"].gt(0) & uv.between(*UNIT_VALUE_BOUNDS)
+    key = [
+        df["reporterCode"],
+        df["classification"].astype(str),
+        df["cmdCode"].astype(str),
+        df["period"].astype(str),
+        df["flowCode"].astype(str),
+    ]
+    world = df["partnerCode"].astype(int) == 0
+    part_sum = df["tonnes_reported"].where(~world).groupby(key).transform("sum")
+    world_w = df["tonnes_reported"].where(world).groupby(key).transform("max")
+    consistent = (world_w > 0) & ((part_sum / world_w - 1.0).abs() < 0.05)
+    low = uv < UNIT_VALUE_BOUNDS[0]
+    ok = df["tonnes_reported"].gt(0) & (uv <= UNIT_VALUE_BOUNDS[1]) & (~low | consistent)
     df.loc[~ok, "tonnes_reported"] = np.nan
     return df
 
@@ -176,14 +201,17 @@ def benchmark_prices(prices_m: pd.DataFrame) -> pd.DataFrame:
 
 
 def _estimated_weights(rec: pd.DataFrame) -> pd.Series:
-    """Rows of commodity-years whose weights Comtrade estimated from a few standard unit values.
+    """Rows of commodity-years whose weights were estimated, not measured.
 
-    Measured customs weights give each partner its own unit value. When at least half of a reporter's
-    partner rows for a commodity and year share one unit value (to four significant figures), the weights
-    were estimated, not measured: Canada's 2008 records, for example, put most coal at 70.39 and most wheat
-    at 231.67 dollars a tonne while prices were near their peak. Every row of such a commodity-year,
-    the World total included, is then treated as having no usable weight.
+    Comtrade flags estimated weights (``isNetWgtEstimated``) when it has the flag. In addition, when at
+    least half of a reporter's partner rows for a commodity and year share one unit value (to four
+    significant figures), the weights were set from a few standard unit values: Canada's 2008 records put
+    most coal at 70.39 and most wheat at 231.67 dollars a tonne while prices were near their peak. Every row
+    of such a commodity-year, the World total included, is then treated as having no measured weight.
     """
+    flagged = pd.Series(False, index=rec.index)
+    if "isNetWgtEstimated" in rec.columns:
+        flagged = rec["isNetWgtEstimated"].astype(str).str.lower().isin(["true", "1", "1.0"])
     part = rec[~rec["is_world"] & rec["tonnes_reported"].notna()]
     uv4 = (part["value_usd"] / part["tonnes_reported"]).map(lambda v: float(f"{v:.4g}"))
     key = [part["unit"], part["cls"], part["cmd"], part["year"]]
@@ -192,20 +220,30 @@ def _estimated_weights(rec: pd.DataFrame) -> pd.Series:
     flagged_rows = part[(n >= ESTIMATED_MIN_ROWS) & (modal / n >= ESTIMATED_MODAL_SHARE)]
     groups = set(zip(flagged_rows["unit"], flagged_rows["cls"], flagged_rows["cmd"], flagged_rows["year"], strict=True))
     keys = list(zip(rec["unit"], rec["cls"], rec["cmd"], rec["year"], strict=True))
-    return pd.Series([k in groups for k in keys], index=rec.index, dtype=bool)
+    modal_flag = pd.Series([k in groups for k in keys], index=rec.index, dtype=bool)
+    return flagged | modal_flag
+
+
+def _carry(log_uv: pd.Series, ref: pd.Series | None) -> pd.Series:
+    """Fill missing years of a log unit value: the premium over the benchmark is interpolated, then added back."""
+    if ref is not None and ref.notna().all():
+        return (log_uv - ref).interpolate(limit_direction="both") + ref
+    return log_uv.interpolate(limit_direction="both")
 
 
 def annual_flows(
     records: pd.DataFrame, partners: dict[int, str | None], bench: pd.DataFrame | None = None
 ) -> pd.DataFrame:
-    """Tidy annual flows: unit, classification, year, origin, destination, commodity, tonnes (with proxies).
+    """Tidy annual flows per commodity code: unit, classification, year, origin, destination, tonnes.
 
-    A unit is a reporter and flow (for example AUS exports, IND coal imports). Rows without a usable weight
-    (missing, implying an implausible unit value, or estimated by Comtrade from one unit value) get tonnes
-    from value over the unit's value-weighted unit value for the same commodity group and year, and are
+    A unit is a reporter and flow (for example AUS exports, IND coal imports). ``measured_tonnes`` holds
+    the weights as reported and usable; rows without one (missing, implausible or estimated) get tonnes
+    from value over the unit value of the same unit, classification and commodity code that year, and are
     flagged as proxies. A year whose usable rows carry less than half the value has no unit value of its
-    own: it is carried from the neighbouring years in proportion to the benchmark price ``bench``
-    (World Bank, annual), or interpolated if no benchmark is given.
+    own: it is carried from the neighbouring years in proportion to the World Bank benchmark price of the
+    commodity group (``bench``), or interpolated if no benchmark is given; a code with no usable year at all
+    takes the group's unit value. Proxies fill levels and coverage; the chained changes use measured
+    series only (see :func:`chain_link`).
     """
     rec = records.copy()
     rec["cls"] = rec["classification"].astype(str)
@@ -227,60 +265,55 @@ def annual_flows(
     rec["destination"] = np.where(is_x, rec["partner_iso"], rec["reporterCode"].map(IMPORTER_ISO))
     rec["is_world"] = rec["partnerCode"] == 0
     rec.loc[_estimated_weights(rec), "tonnes_reported"] = np.nan
-    # unit values per unit, classification, year and commodity group from rows with plausible weights
-    key = ["unit", "cls", "commodity", "year"]
+    rec["measured_tonnes"] = rec["tonnes_reported"].fillna(0.0)
+    # unit values per unit, classification, commodity code and year from rows with usable weights
     partners_only = rec[~rec["is_world"]]
     valid = partners_only[partners_only["tonnes_reported"].notna()]
-    uv = valid.groupby(key)[["value_usd", "tonnes_reported"]].sum()
-    total_value = partners_only.groupby(key)["value_usd"].sum()
-    uv["share"] = uv["value_usd"] / total_value.reindex(uv.index)
-    # a year's unit value is trusted only if rows with usable weights carry most of its value; otherwise a
-    # few odd records would set it (US grains 2000 and 2001, Canadian ores 2008), so it is interpolated
-    uv = uv[uv["share"] >= MIN_VALID_VALUE_SHARE]
-    uv = (uv["value_usd"] / uv["tonnes_reported"]).rename("uv").reset_index()
-    bounds = rec.groupby(["unit", "cls", "commodity"])["year"].agg(["min", "max"])
-    span = {k: (int(v["min"]), int(v["max"])) for k, v in bounds.to_dict(orient="index").items()}
-    filled = []
-    for _key, g in uv.groupby(["unit", "cls", "commodity"]):
-        lo, hi = span[_key]
-        years = pd.RangeIndex(lo, hi + 1)
-        log_uv = np.log(g.set_index("year")["uv"]).reindex(years)
-        ref = None
-        if bench is not None and str(_key[2]) in bench.columns:
-            ref = np.log(bench[str(_key[2])]).reindex(years)
-        if ref is not None and ref.notna().all():
-            # interpolate the premium over the benchmark, then add the benchmark back
-            s = (log_uv - ref).interpolate(limit_direction="both") + ref
-        else:
-            s = log_uv.interpolate(limit_direction="both")
-        filled.append(
-            pd.DataFrame({"unit": _key[0], "cls": _key[1], "commodity": _key[2], "year": years, "uv": np.exp(s.values)})
-        )
-    uvf = (
-        pd.concat(filled, ignore_index=True)
-        if filled
-        else pd.DataFrame(columns=["unit", "cls", "commodity", "year", "uv"])
-    )
-    rec = rec.merge(uvf, on=["unit", "cls", "commodity", "year"], how="left")
+
+    def unit_values(key: list[str]) -> pd.DataFrame:
+        uv = valid.groupby(key)[["value_usd", "tonnes_reported"]].sum()
+        uv["share"] = uv["value_usd"] / partners_only.groupby(key)["value_usd"].sum().reindex(uv.index)
+        # a year's unit value is trusted only if rows with usable weights carry most of its value
+        uv = uv[uv["share"] >= MIN_VALID_VALUE_SHARE]
+        return (uv["value_usd"] / uv["tonnes_reported"]).rename("uv").reset_index()
+
+    def fill(uv: pd.DataFrame, by: list[str]) -> pd.DataFrame:
+        bounds = rec.groupby(by)["year"].agg(["min", "max"])
+        span = {k: (int(v["min"]), int(v["max"])) for k, v in bounds.to_dict(orient="index").items()}
+        out = []
+        for k, g in uv.groupby(by):
+            lo, hi = span[k]
+            years = pd.RangeIndex(lo, hi + 1)
+            group = str(g["commodity"].iloc[0])
+            ref = np.log(bench[group]).reindex(years) if bench is not None and group in bench.columns else None
+            s = _carry(np.log(g.set_index("year")["uv"]).reindex(years), ref)
+            out.append(pd.DataFrame(dict(zip(by, k, strict=True)) | {"year": years, "uv": np.exp(s.values)}))
+        return pd.concat(out, ignore_index=True) if out else pd.DataFrame(columns=[*by, "year", "uv"])
+
+    by_cmd = fill(unit_values(["unit", "cls", "cmd", "commodity", "year"]), ["unit", "cls", "cmd", "commodity"])
+    by_group = fill(unit_values(["unit", "cls", "commodity", "year"]), ["unit", "cls", "commodity"])
+    rec = rec.merge(by_cmd, on=["unit", "cls", "cmd", "commodity", "year"], how="left")
+    rec = rec.merge(by_group.rename(columns={"uv": "uv_group"}), on=["unit", "cls", "commodity", "year"], how="left")
+    rec["uv"] = rec["uv"].fillna(rec["uv_group"])
     proxy = rec["tonnes_reported"].isna() & (rec["value_usd"] > 0) & rec["uv"].notna()
     rec["proxy_tonnes"] = np.where(proxy, rec["value_usd"] / rec["uv"], 0.0)
     rec["tonnes"] = rec["tonnes_reported"].fillna(0.0) + rec["proxy_tonnes"]
     rec["no_weight"] = rec["tonnes_reported"].isna() & ~proxy & (rec["value_usd"] > 0)
-    keep = ["unit", "cls", "year", "origin", "destination", "commodity", "partnerCode", "is_world", "tonnes",
-            "proxy_tonnes", "value_usd", "no_weight"]  # fmt: skip
+    keep = ["unit", "cls", "cmd", "year", "origin", "destination", "commodity", "partnerCode", "is_world", "tonnes",
+            "measured_tonnes", "proxy_tonnes", "value_usd", "no_weight"]  # fmt: skip
     return rec[keep]
 
 
 def allocate_undisclosed(flows: pd.DataFrame) -> pd.DataFrame:
     """Sea-route rows with the undisclosed destinations allocated pro rata.
 
-    For each unit, classification, year and commodity group, tonnes sent to undisclosed destinations
-    are spread over the disclosed partners in proportion to their tonnes (sea, land and no-port alike),
-    so that the sea routes receive their share. Otherwise a change in what a reporter discloses (South
-    Africa's destinations were confidential in the 1980s) would show up as a change in trade.
+    For each unit, classification, year and commodity code, tonnes sent to undisclosed destinations are
+    spread over the disclosed partners in proportion to their tonnes (sea, land and no-port alike), so
+    that the sea routes receive their share. A reporter that discloses no destination at all in a year
+    (South Africa's customs union before 1992) has nothing to allocate to, and drops out of that year.
     """
     x = flows[~flows["is_world"]]
-    key = ["unit", "cls", "year", "commodity"]
+    key = ["unit", "cls", "year", "cmd"]
     disclosed = x[x["route_class"] != UNDISCLOSED].groupby(key)["tonnes"].sum().rename("disclosed")
     undisclosed = x[x["route_class"] == UNDISCLOSED].groupby(key)["tonnes"].sum().rename("undisclosed")
     factor = pd.concat([disclosed, undisclosed], axis=1).fillna(0.0)
@@ -288,9 +321,69 @@ def allocate_undisclosed(flows: pd.DataFrame) -> pd.DataFrame:
     sea = x[x["route_class"] == "sea"].merge(factor["factor"].reset_index(), on=key, how="left")
     sea["factor"] = sea["factor"].fillna(1.0)
     sea["allocated_tonnes"] = sea["tonnes"] * (sea["factor"] - 1.0)
-    sea["tonnes"] = sea["tonnes"] * sea["factor"]
-    sea["proxy_tonnes"] = sea["proxy_tonnes"] * sea["factor"]
+    for c in ("tonnes", "measured_tonnes", "proxy_tonnes"):
+        sea[c] = sea[c] * sea["factor"]
     return sea.drop(columns="factor").copy()
+
+
+def monthly_mismatch(
+    monthly: pd.DataFrame, annual: pd.DataFrame, tolerance: float = MONTHLY_TOLERANCE
+) -> set[tuple[str, str, int]]:
+    """(unit, cmd, year) whose annual HS World weight falls short of the sum of twelve monthly World weights.
+
+    Both come from UN Comtrade for the same reporter and code. Where the annual weight is more than
+    ``tolerance`` below the twelve monthly weights it is missing tonnes and is not treated as measured
+    (US coal in 2025: 52.8 Mt annual against 67.0 Mt over the twelve months). The reverse gap is not used:
+    monthly weights that add up to far less than a correct annual total are common (US wheat in 2016:
+    2.2 Mt over the months against 24.0 Mt for the year).
+    """
+    m = monthly[(monthly["freqCode"].astype(str) == "M") & (monthly["partnerCode"].astype(int) == 0)].copy()
+    if m.empty:
+        return set()
+    m["year"] = m["period"].astype(str).str[:4].astype(int)
+    m["w"] = pd.to_numeric(m["netWgt"], errors="coerce")
+    g = m.groupby(["reporterCode", "flowCode", "cmdCode", "year"]).agg(
+        w=("w", "sum"), n=("period", "nunique"), na=("w", lambda s: s.isna().sum())
+    )
+    g = g[(g["n"] == 12) & (g["na"] == 0)].reset_index()
+    a = annual[(annual["classification"] == "HS") & (annual["partnerCode"].astype(int) == 0)].copy()
+    a["year"] = a["period"].astype(str).str[:4].astype(int)
+    a["aw"] = pd.to_numeric(a["netWgt"], errors="coerce")
+    j = a.merge(g, on=["reporterCode", "flowCode", "cmdCode", "year"], how="inner")
+    j = j[(j["w"] > 0) & (j["aw"] > 0)]
+    bad = j[j["aw"] < (1.0 - tolerance) * j["w"]]
+    out = set()
+    for r in bad.to_dict(orient="records"):
+        iso = (
+            REPORTER_ISO.get(int(r["reporterCode"]))
+            if str(r["flowCode"]) == "X"
+            else IMPORTER_ISO.get(int(r["reporterCode"]))
+        )
+        if iso:
+            out.add((f"{iso}_{r['flowCode']}", str(r["cmdCode"]), int(r["year"])))
+    return out
+
+
+def measured_series(
+    sea: pd.DataFrame, exclude: set[tuple[str, str, int]] | None = None
+) -> set[tuple[str, str, str, int]]:
+    """(unit, cls, commodity, year) whose sea-route tonnes are mostly measured (at least MEASURED_SHARE).
+
+    A series is one unit and commodity group (iron ore, coal, grains) in one classification, not one
+    commodity code: reporters move the same coal between codes from year to year (Australia records it as
+    SITC 3222 in 1980, 3221 from 1981 to 1987 and 3222 again from 1988). ``exclude`` lists
+    (unit, cmd, year) whose HS weights failed the monthly cross-check; their tonnes count as not measured.
+    """
+    m = sea[["unit", "cls", "cmd", "commodity", "year", "tonnes", "measured_tonnes"]].copy()
+    if exclude:
+        bad = [
+            c == "HS" and (str(u), str(k), int(y)) in exclude
+            for u, c, k, y in zip(m["unit"], m["cls"], m["cmd"], m["year"], strict=True)
+        ]
+        m.loc[bad, "measured_tonnes"] = 0.0
+    g = m.groupby(["unit", "cls", "commodity", "year"])[["tonnes", "measured_tonnes"]].sum()
+    g = g[(g["tonnes"] > 0) & (g["measured_tonnes"] >= MEASURED_SHARE * g["tonnes"])]
+    return {(str(u), str(c), str(k), int(y)) for u, c, k, y in g.index}
 
 
 # ---------------------------------------------------------------- route set and distances
@@ -314,7 +407,7 @@ def classify_partner(origin: str, destination: str | None, port_countries: set[s
         return "own"
     if destination in LAND_NEIGHBOURS_LONG.get(origin, frozenset()):
         return "land"
-    if destination not in port_countries:
+    if destination not in port_countries and PORT_PROXY_COUNTRY.get(destination) not in port_countries:
         return "no_port"
     return "sea"
 
@@ -338,7 +431,7 @@ def route_specs(
             disc = DISCHARGE[(d, c)]
         else:
             coast = ("west" if o in PACIFIC_ORIGINS else "east") if d in TWO_COAST_COUNTRIES else None
-            dp, disc = portwatch_blend(ports_db, d, coast)
+            dp, disc = portwatch_blend(ports_db, PORT_PROXY_COUNTRY.get(d, d), coast)
             ports.update({p.port_id: p for p in dp})
         specs.append(RouteSpec(f"{o}-{d}-{c}", o, d, c, tuple(load), tuple(disc)))
     return specs, ports
@@ -419,66 +512,57 @@ def diversion_ratios() -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------- chain-linking
-def unit_years(flows: pd.DataFrame) -> set[tuple[str, str, int]]:
-    """(unit, classification, year) with partner detail.
+def chain_link(sea: pd.DataFrame, measured: set[tuple[str, str, str, int]], first: int, last: int) -> pd.DataFrame:
+    """Chain-linked tonnes and tonne-miles, each year's change measured on series measured in both years.
 
-    An exporter counts in a year when it has partner rows with tonnes (a World total alone is not enough);
-    importer units count every requested year (they report throughout, and a year without Russian or
-    Mozambican coal is a true zero).
+    ``sea`` has unit, cls, commodity, year, tonnes and tonne_miles per route. A series is one unit and
+    commodity group in one classification (see ``measured_series``). For each pair (t-1, t) and unit, HS
+    is used if at least one of the unit's HS series is measured in both years, else SITC Revision 2 on the
+    same rule, else the unit is left out of that pair; within the chosen classification only series
+    measured (and positive) in both years count.
+    Estimated tonnes and reporters that enter, leave or change classification therefore never move the
+    chain. Levels are scaled so that the last year equals that year's covered total (HS, all series).
     """
-    rows = flows[~flows["is_world"] & (flows["tonnes"] > 0)]
-    have = set(zip(rows["unit"], rows["cls"], rows["year"], strict=True))
-    for u in {x for x in flows["unit"] if str(x).endswith("_M")}:
-        for cls in ("S2", "HS"):
-            last = int(flows["year"].max())
-            for y in comtrade_long.years_for(cls, last):
-                have.add((u, cls, y))
-    return have
-
-
-def chain_link(sea: pd.DataFrame, available: set[tuple[str, str, int]], first: int, last: int) -> pd.DataFrame:
-    """Chain-linked tonnes and tonne-miles: each year's change measured on units present in both years.
-
-    ``sea`` has unit, cls, year, route_id, tonnes, tonne_miles. For each pair (t-1, t) and unit, HS is used
-    if the unit has HS records in both years, else SITC Revision 2 if both years have it, else the unit is
-    left out of that pair. Returns one row per year with the chained levels (scaled so that the last year
-    equals that year's covered total), the pair coverage and the units used.
-    """
-    agg = sea.groupby(["unit", "cls", "year"], as_index=False)[["tonnes", "tonne_miles"]].sum()
-    totals: dict[tuple[str, str, int], tuple[float, float]] = {
-        (str(r["unit"]), str(r["cls"]), int(r["year"])): (float(r["tonnes"]), float(r["tonne_miles"]))
+    agg = sea.groupby(["unit", "cls", "commodity", "year"], as_index=False)[["tonnes", "tonne_miles"]].sum()
+    totals: dict[tuple[str, str, str, int], tuple[float, float]] = {
+        (str(r["unit"]), str(r["cls"]), str(r["commodity"]), int(r["year"])): (
+            float(r["tonnes"]),
+            float(r["tonne_miles"]),
+        )
         for r in agg.to_dict(orient="records")
     }
-    rows = []
+    series: dict[tuple[str, str], set[str]] = {}
+    for u, c, k, _y in totals:
+        series.setdefault((u, c), set()).add(k)
+    units = sorted({u for u, _c in series})
+    rows = [{"year": first, "tonnes_chain": 1.0, "tm_chain": 1.0, "units": "", "n_units": 0, "n_series": 0}]
     t_idx, tm_idx = 1.0, 1.0
-    rows.append({"year": first, "tonnes_chain": 1.0, "tm_chain": 1.0, "units": "", "n_units": 0})
     for y in range(first + 1, last + 1):
         num_t = den_t = num_tm = den_tm = 0.0
-        used = []
-        for u in sorted({k[0] for k in available}):
-            cls = next((c for c in ("HS", "S2") if (u, c, y - 1) in available and (u, c, y) in available), None)
-            if cls is None:
+        used, n_series = [], 0
+        for u in units:
+            for cls in ("HS", "S2"):
+                both = [
+                    k
+                    for k in sorted(series.get((u, cls), set()))
+                    if (u, cls, k, y - 1) in measured and (u, cls, k, y) in measured
+                ]
+                if both:
+                    break
+            else:
                 continue
-            a = totals.get((u, cls, y - 1), (0.0, 0.0))
-            b = totals.get((u, cls, y), (0.0, 0.0))
-            if a[0] <= 0 or b[0] <= 0:
-                # no sea-route tonnes on one side (for example destinations not yet disclosed): a ratio would be
-                # an entry or an exit, not a change in trade
-                continue
-            den_t += a[0]
-            den_tm += a[1]
-            num_t += b[0]
-            num_tm += b[1]
+            for k in both:
+                a, b = totals[(u, cls, k, y - 1)], totals[(u, cls, k, y)]
+                den_t, den_tm, num_t, num_tm = den_t + a[0], den_tm + a[1], num_t + b[0], num_tm + b[1]
             used.append(f"{u}:{cls}")
+            n_series += len(both)
         if den_t <= 0 or num_t <= 0:
-            raise ValueError(f"no units with data in both {y - 1} and {y}")
+            raise ValueError(f"no series measured in both {y - 1} and {y}")
         t_idx *= num_t / den_t
         tm_idx *= num_tm / den_tm
-        rows.append(
-            {"year": y, "tonnes_chain": t_idx, "tm_chain": tm_idx, "units": " ".join(used), "n_units": len(used)}
-        )
+        rows.append({"year": y, "tonnes_chain": t_idx, "tm_chain": tm_idx, "units": " ".join(used),
+                     "n_units": len(used), "n_series": n_series})  # fmt: skip
     out = pd.DataFrame(rows)
-    # scale to the covered level of the last year (HS where available)
     last_t = sea[(sea["year"] == last) & (sea["cls"] == "HS")]
     out["tonnes"] = out["tonnes_chain"] / out["tonnes_chain"].iloc[-1] * float(last_t["tonnes"].sum())
     out["tonne_miles"] = out["tm_chain"] / out["tm_chain"].iloc[-1] * float(last_t["tonne_miles"].sum())
@@ -588,6 +672,10 @@ def run() -> dict[str, Any]:
     """Build the annual long-history panel and its supporting tables; returns a coverage summary."""
     records = comtrade_long.load_records()
     flows = annual_flows(records, partner_iso(), benchmark_prices(worldbank.load()))
+    try:
+        mismatch = monthly_mismatch(comtrade.load_records(), records)
+    except FileNotFoundError:
+        mismatch = set()
     ports_db = portwatch.load_ports()
     port_countries = set(ports_db.loc[ports_db["vessel_count_dry_bulk"] > 0, "ISO3"].astype(str))
     flows["route_class"] = [
@@ -608,7 +696,11 @@ def run() -> dict[str, Any]:
     sea = sea.merge(div, on=["route_id", "year"], how="left")
     sea["ratio"] = sea["ratio"].fillna(1.0)
     sea["tonne_miles"] = sea["tonnes"] * sea["distance_nm"] * sea["ratio"]
-    available = unit_years(flows)
+    measured = measured_series(sea, mismatch)
+    sea["measured_series"] = [
+        (u, c, k, y) in measured
+        for u, c, k, y in zip(sea["unit"], sea["cls"], sea["commodity"], sea["year"], strict=True)
+    ]
     freight_m = pd.read_csv(PROCESSED_DIR / "freight_monthly.csv")
     bdi_m = pd.Series(freight_m["bdi"].to_numpy(), index=pd.PeriodIndex(freight_m["month"], freq="M"))
     freight, calib = freight_annual(bdi_m, kilian.load(), oecd_cpi.load())
@@ -616,7 +708,7 @@ def run() -> dict[str, Any]:
     sf = supply_annual(pd.read_csv(PROCESSED_DIR / "supply_factor_monthly.csv"))
     first = max(FIRST_YEAR, int(fleet.index.min()), int(freight["year"].min()))
     last = min(int(sea["year"].max()), int(fleet.index.max()), int(freight["year"].max()))
-    chain = chain_link(sea, available, first, last)
+    chain = chain_link(sea, measured, first, last)
     panel = (
         chain.merge(freight[["year", "index", "proxy"]], on="year")
         .merge(fleet.reset_index(), on="year")
@@ -629,8 +721,8 @@ def run() -> dict[str, Any]:
     prices_annual(worldbank.load()).to_csv(PROCESSED_DIR / "long_prices_annual.csv")
     cov = coverage_table(flows, sea)
     cov.to_csv(PROCESSED_DIR / "long_coverage_annual.csv", index=False)
-    sea_out = sea.groupby(["unit", "cls", "year", "route_id", "commodity"], as_index=False)[
-        ["tonnes", "proxy_tonnes", "tonne_miles"]
+    sea_out = sea.groupby(["unit", "cls", "cmd", "year", "route_id", "commodity", "measured_series"], as_index=False)[
+        ["tonnes", "measured_tonnes", "proxy_tonnes", "tonne_miles"]
     ].sum()
     sea_out.to_csv(PROCESSED_DIR / "long_route_flows_annual.csv", index=False)
     summary = {
@@ -640,7 +732,12 @@ def run() -> dict[str, Any]:
         "routes_named_ports": int(dist["named_ports"].sum()),
         "proxy_years": [int(y) for y in panel.loc[panel["proxy"], "year"]],
         "freight_calibration": calib,
-        "units": sorted({k[0] for k in available}),
+        "units": sorted({k[0] for k in measured}),
+        "monthly_mismatch": sorted(f"{u} {c} {y}" for u, c, y in mismatch),
+        "series_years": len(
+            {(u, c, k, y) for u, c, k, y in zip(sea["unit"], sea["cls"], sea["commodity"], sea["year"], strict=True)}
+        ),
+        "series_years_measured": len(measured),
     }
     (PROCESSED_DIR / "long_coverage.json").write_text(json.dumps(summary, indent=2, default=str))
     log.info("long history panel: %s to %s", panel["year"].min(), panel["year"].max())
@@ -657,11 +754,13 @@ def coverage_table(flows: pd.DataFrame, sea: pd.DataFrame) -> pd.DataFrame:
         .fillna(0.0)
     )
     proxy = x[~x["is_world"]].groupby(["unit", "cls", "year"])["proxy_tonnes"].sum().rename("proxy_tonnes")
+    meas = sea[sea["unit"].str.endswith("_X") & sea["measured_series"]].groupby(["unit", "cls", "year"])["tonnes"].sum()
     alloc = sea[sea["unit"].str.endswith("_X")].groupby(["unit", "cls", "year"])["allocated_tonnes"].sum()
     out = (
         parts.join(world, how="outer")
         .join(proxy, how="left")
         .join(alloc.rename("sea_allocated"), how="left")
+        .join(meas.rename("sea_in_measured_series"), how="left")
         .fillna(0.0)
         .reset_index()
     )
@@ -669,5 +768,8 @@ def coverage_table(flows: pd.DataFrame, sea: pd.DataFrame) -> pd.DataFrame:
         if c not in out.columns:
             out[c] = 0.0
     out["sea_with_allocation"] = out["sea"] + out["sea_allocated"]
+    disclosed = out["sea"] + out["land"] + out["no_port"] + out["own"]
+    # undisclosed tonnes of unit-years without any disclosed destination have nothing to be allocated to
+    out["undisclosed_dropped"] = out["unspecified"].where(disclosed <= 0, 0.0)
     out["sea_share_of_world"] = out["sea_with_allocation"] / out["world_tonnes"].where(out["world_tonnes"] > 0)
     return out

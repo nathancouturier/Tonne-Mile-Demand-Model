@@ -350,8 +350,17 @@ def _long_readme(res: dict[str, Any]) -> str:
         f"the physical forces leave {ln['unexpl_phys']:.0%} of a typical annual move unexplained, {ln['unexpl_ext']:.0%} with the two price signals"
         + (f" and {ln['oos_ext']:.0%} out of sample" if ln["oos_ext"] is not None else "")
         + f". Before {ln['first_bdi']} the freight index is a proxy from the Kilian index of dry cargo freight rates, calibrated on the overlap "
-        f"(annual changes correlate at {ln['proxy_corr']:.3f})."
+        f"(annual changes correlate at {ln['proxy_corr']:.3f}). Unit-value estimates are {ln['estimated_share']:.0%} of sea-route tonnes; "
+        f"annual changes use the {ln['measured_share']:.0%} of exporter-commodity-years whose tonnes are at least 90% measured."
     )
+
+
+def _estimated_share() -> float:
+    path = PROCESSED_DIR / "long_route_flows_annual.csv"
+    if not path.exists():
+        return float("nan")
+    f = pd.read_csv(path)
+    return float(f["proxy_tonnes"].sum() / f["tonnes"].sum())
 
 
 def _long_numbers(res: dict[str, Any]) -> dict[str, Any] | None:
@@ -369,6 +378,8 @@ def _long_numbers(res: dict[str, Any]) -> dict[str, Any] | None:
         "unexpl_ext": lm["signals"]["fit"]["unexplained_extended"],
         "oos_ext": oos["unexplained"]["extended"] if oos.get("available") else None,
         "first_bdi": meta.get("freight_calibration", {}).get("first_bdi_year"),
+        "estimated_share": _estimated_share(),
+        "measured_share": (meta.get("series_years_measured") or 0) / (meta.get("series_years") or 1),
         "proxy_corr": meta.get("freight_calibration", {}).get("annual_change_corr"),
     }
 
@@ -387,7 +398,7 @@ def _long_text(res: dict[str, Any]) -> str:
     fl_x = float(lp["fleet"].iloc[-1] / lp["fleet"].iloc[0])
     eps = {ep["episode_id"]: ep for ep in lm["episodes"]}
     parts = [
-        f"An annual version of the decomposition runs from {y0} to {y1} ({y1 - y0} annual changes). Tonnes come from the annual UN Comtrade records of the same exporters for every partner (SITC Revision 2 before HS), chain-linked on the reporters present in both years of each change; the fleet is the UNCTAD series; the freight index is the Baltic Dry Index from {cal.get('first_bdi_year')} and, before, a proxy: the Kilian index of dry cargo freight rates (Federal Reserve Bank of Dallas), converted back to nominal terms with US consumer prices and calibrated on {cal.get('overlap_months')} months where both exist (annual changes correlate at {cal.get('annual_change_corr', float('nan')):.3f}). "
+        f"An annual version of the decomposition runs from {y0} to {y1} ({y1 - y0} annual changes). Tonnes come from the annual UN Comtrade records of the same exporters for every partner (SITC Revision 2 before HS), chain-linked on the series (exporter and commodity group) measured in both years of each change, with unit-value estimates for missing or estimated weights in the levels only; the fleet is the UNCTAD series; the freight index is the Baltic Dry Index from {cal.get('first_bdi_year')} and, before, a proxy: the Kilian index of dry cargo freight rates (Federal Reserve Bank of Dallas), converted back to nominal terms with US consumer prices and calibrated on {cal.get('overlap_months')} months where both exist (annual changes correlate at {cal.get('annual_change_corr', float('nan')):.3f}). "
         f"Over the period tonne-miles on the covered trades rose {tm_x:.1f}-fold and the fleet {fl_x:.1f}-fold. On annual changes the elasticity is {e['elasticity']:.2f} (standard error {e['std_error']:.2f}); the forces leave {fit['unexplained_physical']:.0%} of a typical annual move unexplained, {fit['unexplained_extended']:.0%} with the two price signals"
         + (
             f" ({oos['unexplained']['extended']:.0%} out of sample, {oos['first_year']} to {oos['last_year']})"

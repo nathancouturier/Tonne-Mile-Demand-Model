@@ -461,12 +461,23 @@ def export_long() -> dict[str, Any] | None:
     meta = json.loads((PROCESSED_DIR / "long_coverage.json").read_text())
     att = pd.DataFrame(model["annual"])
     hs_or_s2 = cov.sort_values("cls").drop_duplicates(["unit", "year"], keep="first")  # HS before S2
-    for c in ("unspecified", "sea_with_allocation"):
+    for c in ("unspecified", "sea_with_allocation", "sea_allocated", "undisclosed_dropped"):
         if c not in hs_or_s2.columns:
             hs_or_s2[c] = 0.0
     sea_y = hs_or_s2.groupby("year")[
-        ["world_tonnes", "sea_with_allocation", "land", "no_port", "unspecified", "proxy_tonnes"]
+        [
+            "world_tonnes",
+            "sea_with_allocation",
+            "land",
+            "no_port",
+            "unspecified",
+            "sea_allocated",
+            "undisclosed_dropped",
+            "proxy_tonnes",
+        ]
     ].sum()
+    flows = _read("long_route_flows_annual.csv")
+    dropped = hs_or_s2[hs_or_s2["undisclosed_dropped"] > 0].groupby("unit")["year"].agg(["min", "max"]).reset_index()
     units = (
         hs_or_s2[hs_or_s2["sea_with_allocation"] > 0]
         .groupby("unit")["year"]
@@ -506,6 +517,13 @@ def export_long() -> dict[str, Any] | None:
             "world_mt": [round(_f(v) / 1e6, 1) for v in sea_y["world_tonnes"]],
             "sea_mt": [round(_f(v) / 1e6, 1) for v in sea_y["sea_with_allocation"]],
             "undisclosed_mt": [round(_f(v) / 1e6, 1) for v in sea_y["unspecified"]],
+            "allocated_mt": [round(_f(v) / 1e6, 1) for v in sea_y["sea_allocated"]],
+            "dropped_mt": [round(_f(v) / 1e6, 1) for v in sea_y["undisclosed_dropped"]],
+            "dropped_units": dropped.rename(columns={"min": "first", "max": "last"}).to_dict(orient="records"),
+            "estimated_share": _f(flows["proxy_tonnes"].sum() / flows["tonnes"].sum()),
+            "series_years": meta.get("series_years"),
+            "series_years_measured": meta.get("series_years_measured"),
+            "monthly_mismatch": meta.get("monthly_mismatch", []),
             "land_mt": [round(_f(v) / 1e6, 1) for v in sea_y["land"]],
             "no_port_mt": [round(_f(v) / 1e6, 1) for v in sea_y["no_port"]],
             "proxy_mt": [round(_f(v) / 1e6, 1) for v in sea_y["proxy_tonnes"]],

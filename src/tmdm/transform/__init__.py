@@ -222,8 +222,8 @@ def long_history_or_skip() -> None:
 
     try:
         long_history.run()
-    except (LookupError, ValueError, FileNotFoundError, KeyError) as exc:
-        log.warning("long history skipped: %s", exc)
+    except Exception:
+        log.exception("long history skipped")
         for name in LONG_FILES:
             (PROCESSED_DIR / name).unlink(missing_ok=True)
 

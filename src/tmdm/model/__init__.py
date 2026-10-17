@@ -135,7 +135,11 @@ def run() -> None:
     if prices is not None:
         ext = run_extensions(panel, prices, load_minor_bulks(), HORIZON, WINDOW)
         (PROCESSED_DIR / "model_extensions.json").write_text(json.dumps(_json_ready(ext), indent=2))
-    run_long()
+    try:
+        run_long()
+    except Exception:
+        log.exception("long model skipped")
+        (PROCESSED_DIR / "model_long.json").unlink(missing_ok=True)
     (PROCESSED_DIR / "model_elasticity.json").write_text(
         json.dumps(
             {
