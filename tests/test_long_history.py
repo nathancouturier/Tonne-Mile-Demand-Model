@@ -4,6 +4,7 @@ import pytest
 
 from tmdm.model.long_history import out_of_sample, run_long_model
 from tmdm.transform.long_history import (
+    allocate_undisclosed,
     annual_flows,
     chain_link,
     classify_partner,
@@ -186,3 +187,25 @@ def test_long_out_of_sample_uses_only_past_years():
     assert [p["extended"] for p in o1["predictions"][:-1]] == pytest.approx(
         [p["extended"] for p in o2["predictions"][:-1]]
     )
+
+
+def test_undisclosed_destinations_are_allocated_pro_rata():
+    flows = pd.DataFrame(
+        {
+            "unit": ["ZAF_X"] * 5,
+            "cls": ["S2"] * 5,
+            "year": [1985] * 5,
+            "commodity": ["coal"] * 5,
+            "is_world": [False, False, False, False, True],
+            "route_class": ["sea", "sea", "land", "unspecified", "world"],
+            "destination": ["JPN", "ITA", "ZWE", None, None],
+            "tonnes": [30.0, 10.0, 10.0, 50.0, 100.0],
+            "proxy_tonnes": [0.0, 10.0, 0.0, 0.0, 0.0],
+        }
+    )
+    sea = allocate_undisclosed(flows)
+    # 50 undisclosed over 50 disclosed: every disclosed partner doubles; only sea rows are returned
+    assert list(sea["destination"]) == ["JPN", "ITA"]
+    assert sea["tonnes"].tolist() == pytest.approx([60.0, 20.0])
+    assert sea["allocated_tonnes"].tolist() == pytest.approx([30.0, 10.0])
+    assert sea["proxy_tonnes"].tolist() == pytest.approx([0.0, 20.0])

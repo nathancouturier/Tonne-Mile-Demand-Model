@@ -461,9 +461,14 @@ def export_long() -> dict[str, Any] | None:
     meta = json.loads((PROCESSED_DIR / "long_coverage.json").read_text())
     att = pd.DataFrame(model["annual"])
     hs_or_s2 = cov.sort_values("cls").drop_duplicates(["unit", "year"], keep="first")  # HS before S2
-    sea_y = hs_or_s2.groupby("year")[["world_tonnes", "sea", "land", "no_port", "proxy_tonnes"]].sum()
+    for c in ("unspecified", "sea_with_allocation"):
+        if c not in hs_or_s2.columns:
+            hs_or_s2[c] = 0.0
+    sea_y = hs_or_s2.groupby("year")[
+        ["world_tonnes", "sea_with_allocation", "land", "no_port", "unspecified", "proxy_tonnes"]
+    ].sum()
     units = (
-        hs_or_s2[hs_or_s2["sea"] > 0]
+        hs_or_s2[hs_or_s2["sea_with_allocation"] > 0]
         .groupby("unit")["year"]
         .agg(["min", "max"])
         .reset_index()
@@ -499,7 +504,8 @@ def export_long() -> dict[str, Any] | None:
         "coverage": {
             "year": [int(y) for y in sea_y.index],
             "world_mt": [round(_f(v) / 1e6, 1) for v in sea_y["world_tonnes"]],
-            "sea_mt": [round(_f(v) / 1e6, 1) for v in sea_y["sea"]],
+            "sea_mt": [round(_f(v) / 1e6, 1) for v in sea_y["sea_with_allocation"]],
+            "undisclosed_mt": [round(_f(v) / 1e6, 1) for v in sea_y["unspecified"]],
             "land_mt": [round(_f(v) / 1e6, 1) for v in sea_y["land"]],
             "no_port_mt": [round(_f(v) / 1e6, 1) for v in sea_y["no_port"]],
             "proxy_mt": [round(_f(v) / 1e6, 1) for v in sea_y["proxy_tonnes"]],

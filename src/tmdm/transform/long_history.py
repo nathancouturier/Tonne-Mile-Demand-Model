@@ -94,7 +94,21 @@ COMMODITY_OF: dict[str, dict[str, str]] = {
 REPORTER_ISO = {code: iso.replace("_SACU", "") for iso, code in comtrade_long.EXPORTERS.items()}
 IMPORTER_ISO = {code: iso for iso, code in comtrade_long.IMPORTERS.items()}
 # Partners that no longer exist, mapped to a successor for ports; land-locked successors drop out with no port.
-SUCCESSOR = {"SUN": "RUS", "DDR": "DEU", "YUG": "HRV", "CSK": "CZE", "SCG": "MNE", "ZA1": "ZAF", "ANT": "CUW"}
+SUCCESSOR = {
+    "SUN": "RUS",
+    "DDR": "DEU",
+    "YUG": "HRV",
+    "CSK": "CZE",
+    "SCG": "MNE",
+    "ZA1": "ZAF",
+    "ANT": "CUW",
+    "YMD": "YEM",
+}
+# Comtrade records Taiwan as "Other Asia, nes" (partner code 490).
+PARTNER_CODE_ISO = {490: "TWN"}
+# Partners whose destination is not disclosed ("Areas, nes", "Special categories", free zones, bunkers):
+# their tonnes are allocated to the disclosed destinations of the same exporter, commodity and year.
+UNDISCLOSED = "unspecified"
 LAND_NEIGHBOURS_LONG: dict[str, frozenset[str]] = {
     "USA": frozenset({"CAN", "MEX"}),
     "CAN": frozenset({"USA"}),
@@ -118,9 +132,11 @@ def partner_iso() -> dict[int, str | None]:
     for r in data["results"]:
         if not str(r.get("id")).isdigit():
             continue
+        code = int(r["id"])
         iso = str(r.get("PartnerCodeIsoAlpha3") or "").strip()
+        iso = PARTNER_CODE_ISO.get(code, SUCCESSOR.get(iso, iso))
         valid = len(iso) == 3 and iso.isalpha() and iso.isupper() and not r.get("isGroup")
-        out[int(r["id"])] = SUCCESSOR.get(iso, iso) if valid else None
+        out[code] = iso if valid else None
     return out
 
 
@@ -196,6 +212,28 @@ def annual_flows(records: pd.DataFrame, partners: dict[int, str | None]) -> pd.D
     return rec[keep]
 
 
+def allocate_undisclosed(flows: pd.DataFrame) -> pd.DataFrame:
+    """Sea-route rows with the undisclosed destinations allocated pro rata.
+
+    For each unit, classification, year and commodity group, tonnes sent to undisclosed destinations
+    are spread over the disclosed partners in proportion to their tonnes (sea, land and no-port alike),
+    so that the sea routes receive their share. Otherwise a change in what a reporter discloses (South
+    Africa's destinations were confidential in the 1980s) would show up as a change in trade.
+    """
+    x = flows[~flows["is_world"]]
+    key = ["unit", "cls", "year", "commodity"]
+    disclosed = x[x["route_class"] != UNDISCLOSED].groupby(key)["tonnes"].sum().rename("disclosed")
+    undisclosed = x[x["route_class"] == UNDISCLOSED].groupby(key)["tonnes"].sum().rename("undisclosed")
+    factor = pd.concat([disclosed, undisclosed], axis=1).fillna(0.0)
+    factor["factor"] = 1.0 + factor["undisclosed"] / factor["disclosed"].where(factor["disclosed"] > 0)
+    sea = x[x["route_class"] == "sea"].merge(factor["factor"].reset_index(), on=key, how="left")
+    sea["factor"] = sea["factor"].fillna(1.0)
+    sea["allocated_tonnes"] = sea["tonnes"] * (sea["factor"] - 1.0)
+    sea["tonnes"] = sea["tonnes"] * sea["factor"]
+    sea["proxy_tonnes"] = sea["proxy_tonnes"] * sea["factor"]
+    return sea.drop(columns="factor").copy()
+
+
 # ---------------------------------------------------------------- route set and distances
 @dataclass(frozen=True)
 class RouteSpec:
@@ -212,7 +250,7 @@ class RouteSpec:
 def classify_partner(origin: str, destination: str | None, port_countries: set[str]) -> str:
     """Why a flow is kept or left out of the sea routes: sea, own, land, no_port or unspecified."""
     if destination is None or destination == "nan":
-        return "unspecified"
+        return UNDISCLOSED
     if destination == origin:
         return "own"
     if destination in LAND_NEIGHBOURS_LONG.get(origin, frozenset()):
@@ -493,7 +531,7 @@ def run() -> dict[str, Any]:
         "world" if w else classify_partner(str(o), None if pd.isna(d) else str(d), port_countries)
         for o, d, w in zip(flows["origin"], flows["destination"], flows["is_world"], strict=True)
     ]
-    sea = flows[flows["route_class"] == "sea"].copy()
+    sea = allocate_undisclosed(flows)
     sea["route_id"] = sea["origin"].astype(str) + "-" + sea["destination"].astype(str) + "-" + sea["commodity"]
     named = resolve_ports(wpi.load())
     specs, ports = route_specs(sea, ports_db, named)
@@ -556,9 +594,17 @@ def coverage_table(flows: pd.DataFrame, sea: pd.DataFrame) -> pd.DataFrame:
         .fillna(0.0)
     )
     proxy = x[~x["is_world"]].groupby(["unit", "cls", "year"])["proxy_tonnes"].sum().rename("proxy_tonnes")
-    out = parts.join(world, how="outer").join(proxy, how="left").fillna(0.0).reset_index()
+    alloc = sea[sea["unit"].str.endswith("_X")].groupby(["unit", "cls", "year"])["allocated_tonnes"].sum()
+    out = (
+        parts.join(world, how="outer")
+        .join(proxy, how="left")
+        .join(alloc.rename("sea_allocated"), how="left")
+        .fillna(0.0)
+        .reset_index()
+    )
     for c in ("sea", "land", "no_port", "own", "unspecified"):
         if c not in out.columns:
             out[c] = 0.0
-    out["sea_share_of_world"] = out["sea"] / out["world_tonnes"].where(out["world_tonnes"] > 0)
+    out["sea_with_allocation"] = out["sea"] + out["sea_allocated"]
+    out["sea_share_of_world"] = out["sea_with_allocation"] / out["world_tonnes"].where(out["world_tonnes"] > 0)
     return out
