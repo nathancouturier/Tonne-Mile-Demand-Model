@@ -1,0 +1,27 @@
+{
+  "dataset_id": "dallasfed_kilian_index",
+  "title": "Index of global real economic activity (Kilian index), based on dry cargo ocean freight rates",
+  "publisher": "Federal Reserve Bank of Dallas (index by Lutz Kilian)",
+  "source_url": "https://www.dallasfed.org/research/igrea",
+  "licence": "Public research data of the Federal Reserve Bank of Dallas; cite Kilian (2009, 2019)",
+  "frequency": "monthly",
+  "coverage": "1968-01 to 2026-09",
+  "units": "percent deviation of real (US CPI deflated) freight rates from a linear trend",
+  "retrieved_at": "2026-10-17T10:47:49Z",
+  "files": [
+    "igrea.xlsx",
+    "kilian_index_monthly.csv"
+  ],
+  "sha256": {
+    "igrea.xlsx": "648ab7fa35380048c58eaae136a168a28393c7e7897ff7b9dc8948a2b291d1f6",
+    "kilian_index_monthly.csv": "cdbb81d61cf94744684a50d75471bd81cd854b89691aa5ecf6434abc6e161a45"
+  },
+  "limitations": [
+    "A real, detrended index of dry cargo single-voyage freight rates, not the Baltic Dry Index; the project converts it back to nominal terms with the US CPI and estimates the trend on the years where both series exist (2011 onward).",
+    "The trend and the scaling are re-estimated by the publisher with each update, so past values can change slightly."
+  ],
+  "notes": [],
+  "extra": {
+    "workbook_url": "https://www.dallasfed.org/-/media/Documents/research/igrea/igrea.xlsx"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "dataset_id": "oecd_cpi_usa",
+  "title": "Consumer price index, United States, all items (OECD Prices database)",
+  "publisher": "OECD (source: US Bureau of Labor Statistics)",
+  "source_url": "https://data-explorer.oecd.org/",
+  "licence": "OECD terms and conditions (free use with attribution)",
+  "frequency": "monthly",
+  "coverage": "1960-01 to 2026-09",
+  "units": "index, base 2015, not seasonally adjusted",
+  "retrieved_at": "2026-10-17T10:47:49Z",
+  "files": [
+    "cpi_usa_monthly.csv"
+  ],
+  "sha256": {
+    "cpi_usa_monthly.csv": "02d339a2663f0b8d2126270eeb727b1a045e54603bb0c57fde216f6593f056b0"
+  },
+  "limitations": [
+    "Used only to convert the Kilian freight index back to nominal terms."
+  ],
+  "notes": [],
+  "extra": {
+    "api": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/USA.M.N.CPI.IX._T.N._Z"
+  }
+}
