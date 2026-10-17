@@ -282,8 +282,9 @@ def fetch(
     Periods are assigned to shards round-robin so that parallel jobs, each with
     its own hourly quota, cover disjoint months. Each shard writes its own
     files; :func:`load_records` merges them. Annual records are fetched from
-    2000 to the last complete year (default) for the long history and for the
-    annual unit values used where monthly records lack a net weight.
+    2000 to the last complete year (default) for the annual unit values used
+    where monthly records lack a net weight (the multi-decade history has its
+    own download, :mod:`tmdm.ingest.comtrade_long`).
     """
     d = raw_dir(DATASET_ID)
     rec_path, log_path, done_path = _files(d)
@@ -412,7 +413,7 @@ def _metadata(start_month: str, groups: list[CallGroup], out: pd.DataFrame) -> D
         publisher="United Nations Statistics Division (UN Comtrade)",
         source_url=PORTAL,
         licence="UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",
-        frequency="monthly from 2010; annual from 2000 (long history and annual unit values)",
+        frequency="monthly from 2010; annual from 2000 (annual unit values)",
         coverage=f"{start_month} to latest published month per reporter; {len(groups)} reporter groups",
         units="kilograms (netWgt); values in current US dollars (primaryValue)",
         retrieved_at=utc_now_iso(),

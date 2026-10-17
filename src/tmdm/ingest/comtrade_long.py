@@ -81,7 +81,11 @@ COLUMNS = [
     "qtyUnitCode",
     "primaryValue",
     "isAggregate",
+    "isNetWgtEstimated",
+    "isQtyEstimated",
 ]
+# Version of the stored columns; done-list entries from an older version are fetched again.
+SCHEMA = 2
 
 
 def call_groups(cls: str) -> list[CallGroup]:
@@ -144,8 +148,11 @@ def fetch() -> pd.DataFrame:
     done = (
         pd.read_csv(done_path, dtype={"period": str})
         if done_path.exists()
-        else pd.DataFrame(columns=["classification", "group_id", "period", "n_records", "retrieved_at"])
+        else pd.DataFrame(columns=["classification", "group_id", "period", "n_records", "retrieved_at", "schema"])
     )
+    if "schema" not in done.columns:
+        done["schema"] = 1
+    done = done[pd.to_numeric(done["schema"], errors="coerce") == SCHEMA]
     done_keys = set(zip(done["classification"], done["group_id"], done["period"].astype(str), strict=True))
     last_year = datetime.now(UTC).year - 1
     client = ComtradeClient()
@@ -183,6 +190,7 @@ def fetch() -> pd.DataFrame:
                     "group_id": g.group_id,
                     "period": period,
                     "n_records": len(new),
+                    "schema": SCHEMA,
                     "retrieved_at": utc_now_iso(),
                 }
             )
