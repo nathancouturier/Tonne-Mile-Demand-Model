@@ -7,7 +7,7 @@
   "frequency": "monthly",
   "coverage": "2005-01 to 2026-09, 22 areas",
   "units": "index, long-term average = 100",
-  "retrieved_at": "2026-10-17T10:47:11Z",
+  "retrieved_at": "2026-10-17T13:50:15Z",
   "files": [
     "cli_monthly.csv"
   ],
