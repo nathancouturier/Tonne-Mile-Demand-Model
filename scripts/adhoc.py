@@ -1,4 +1,4 @@
-"""Ad hoc remote check: public sources for a long (multi-decade) history of freight, trade and prices."""
+"""Ad hoc remote check (round 2): a long public history of dry bulk freight rates."""
 
 from __future__ import annotations
 
@@ -6,20 +6,19 @@ import json
 import re
 import time
 from pathlib import Path
-from urllib.parse import quote, urljoin
+from urllib.parse import quote
 
 import requests
 
 OUT = Path(".adhoc")
-OUT.mkdir(exist_ok=True)
+FILES = OUT / "long_history_files"
+FILES.mkdir(parents=True, exist_ok=True)
 S = requests.Session()
 S.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) tonne-mile-demand-model/0.1 research"})
 res: dict[str, object] = {}
 
 
-def probe(
-    name: str, url: str, params: dict | None = None, n: int = 1500, timeout: int = 90
-) -> requests.Response | None:
+def raw(name: str, url: str, params: dict | None = None, n: int = 3000, timeout: int = 90) -> requests.Response | None:
     try:
         r = S.get(url, params=params, timeout=timeout)
         res[name] = {"url": r.url, "status": r.status_code, "type": r.headers.get("content-type"), "head": r.text[:n]}
@@ -27,149 +26,107 @@ def probe(
         return r
     except Exception as exc:  # noqa: BLE001
         res[name] = {"url": url, "error": str(exc)[:300]}
-        print(name, "error", str(exc)[:120])
         return None
 
 
-def links(html: str, base: str, pattern: str) -> list[str]:
-    out = []
-    for href in re.findall(r'href="([^"]+)"', html):
-        if re.search(pattern, href, re.I):
-            out.append(urljoin(base, href))
-    return sorted(set(out))[:40]
-
-
-# 1. ASUB: every table under tourism, transport and shipping, with the range of its time variable
-def asub_tree(lang: str) -> list[dict]:
-    api = f"https://pxweb.asub.ax/PXWeb/api/v1/{lang}/Statistik"
-    found: list[dict] = []
-
-    def walk(path: str, depth: int) -> None:
-        if depth > 4:
-            return
-        try:
-            items = S.get(f"{api}/{path}", timeout=60).json()
-        except Exception as exc:  # noqa: BLE001
-            found.append({"path": path, "error": str(exc)[:200]})
-            return
-        for it in items:
-            sub = f"{path}/{quote(it['id'])}"
-            if it.get("type") == "l":
-                walk(sub, depth + 1)
-            elif it.get("type") == "t":
-                entry = {"path": sub, "text": it.get("text"), "updated": it.get("updated")}
-                try:
-                    meta = S.get(f"{api}/{sub}", timeout=60).json()
-                    for v in meta.get("variables", []):
-                        vals = v.get("valueTexts", [])
-                        entry[v.get("code", "?")] = [len(vals), vals[:2], vals[-2:]]
-                except Exception as exc:  # noqa: BLE001
-                    entry["error"] = str(exc)[:200]
-                found.append(entry)
-                time.sleep(0.3)
-
-    walk("TUTRSJ", 0)
-    return found
-
-
-for lang in ("en", "sv"):
+def save(name: str, url: str, params: dict | None = None) -> None:
     try:
-        res[f"asub_tree_{lang}"] = asub_tree(lang)
-        print("asub", lang, len(res[f"asub_tree_{lang}"]))
-    except Exception as exc:  # noqa: BLE001
-        res[f"asub_tree_{lang}"] = f"error {exc}"
-
-# 2. Long dry cargo freight series: Kilian index (FRED, Dallas Fed, author page), data repositories
-probe("fred_igrea", "https://fred.stlouisfed.org/graph/fredgraph.csv", {"id": "IGREA"}, timeout=150)
-probe("fred_igrea_txt", "https://fred.stlouisfed.org/data/IGREA.txt", timeout=150)
-r = probe("dallasfed_igrea", "https://www.dallasfed.org/research/igrea", n=600)
-if r is not None and r.ok:
-    res["dallasfed_igrea_links"] = links(r.text, r.url, r"\.(xlsx|xls|csv|txt)(\?|$)|igrea")
-    for i, u in enumerate([x for x in res["dallasfed_igrea_links"] if re.search(r"\.(xlsx|xls|csv|txt)", x, re.I)][:3]):
-        probe(f"dallasfed_igrea_file_{i}", u, n=400)
-r = probe("kilian_site", "https://sites.google.com/site/lkilian2019/research/data-sets", n=600)
-if r is not None and r.ok:
-    res["kilian_site_links"] = links(r.text, r.url, r"\.(xlsx|xls|csv|txt|dat|m)(\?|$)|drive\.google|docs\.google")
-probe(
-    "dataverse_bdi",
-    "https://dataverse.harvard.edu/api/search",
-    {"q": '"Baltic Dry Index"', "type": "file", "per_page": 50},
-    n=12000,
-)
-probe(
-    "dataverse_bdi_datasets",
-    "https://dataverse.harvard.edu/api/search",
-    {"q": '"Baltic Dry Index"', "type": "dataset", "per_page": 30},
-    n=12000,
-)
-probe("zenodo_bdi", "https://zenodo.org/api/records", {"q": '"Baltic Dry Index"', "size": 30}, n=15000)
-probe("stooq_bdi", "https://stooq.com/q/d/l/", {"s": "bdi", "i": "m"}, n=400)
-probe("nasdaq_lloyds_bdi", "https://data.nasdaq.com/api/v3/datasets/LLOYDS/BDI.csv", {"rows": 5}, n=400)
-
-# 3. UN Comtrade: annual availability by classification for the covered reporters, and sample calls
-REPORTERS = {"AUS": 36, "BRA": 76, "IDN": 360, "ZAF": 710, "SACU": 711, "USA": 842, "CAN": 124, "UKR": 804,
-             "ARG": 32, "COL": 170, "IND": 699, "JPN": 392, "CHN": 156, "RUS": 643}  # fmt: skip
-for cls in ("HS", "S1", "S2", "S3"):
-    try:
-        time.sleep(2)
-        r = S.get(
-            f"https://comtradeapi.un.org/public/v1/getDa/C/A/{cls}",
-            params={"reporterCode": ",".join(str(c) for c in REPORTERS.values())},
-            timeout=120,
-        )
-        rows = r.json().get("data", []) if r.ok else []
-        years: dict[str, list[str]] = {}
-        for row in rows:
-            years.setdefault(str(row.get("reporterCode")), []).append(str(row.get("period")))
-        res[f"comtrade_avail_A_{cls}"] = {
+        r = S.get(url, params=params, timeout=120, allow_redirects=True)
+        cd = r.headers.get("content-disposition", "")
+        m = re.search(r'filename\*?="?([^";]+)"?', cd)
+        fname = f"{name}__{m.group(1) if m else 'file'}".replace("/", "_")[:120]
+        (FILES / fname).write_bytes(r.content)
+        res[f"save_{name}"] = {
+            "url": r.url,
             "status": r.status_code,
-            "by_reporter": {k: [min(v), max(v), len(v)] for k, v in years.items()},
+            "type": r.headers.get("content-type"),
+            "bytes": len(r.content),
+            "file": fname,
+            "head": r.content[:200].decode("latin-1"),
         }
-        print("comtrade avail", cls, r.status_code, len(rows))
+        print("saved", name, r.status_code, len(r.content))
     except Exception as exc:  # noqa: BLE001
-        res[f"comtrade_avail_A_{cls}"] = {"error": str(exc)[:300]}
-for name, cls, rep, period, cmd in (
-    ("s2_aus_1985_iron_ore", "S2", 36, 1985, "281"),
-    ("s2_aus_1985_coal", "S2", 36, 1985, "322"),
-    ("s2_usa_1985_grain", "S2", 842, 1985, "041,044,2222"),
-    ("s1_aus_1975_iron_ore", "S1", 36, 1975, "281"),
-    ("hs_aus_1990_iron_ore", "HS", 36, 1990, "2601"),
-    ("hs_bra_1992_iron_ore", "HS", 76, 1992, "2601"),
-):
-    time.sleep(2)
+        res[f"save_{name}"] = {"url": url, "error": str(exc)[:300]}
+
+
+# 1. ASUB: print the raw folder listings, then walk lists only
+api = "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik"
+raw("asub_root", api)
+raw("asub_tutrsj", f"{api}/TUTRSJ")
+raw("asub_sj", f"{api}/TUTRSJ/SJ")
+tables = []
+
+
+def walk(path: str, depth: int) -> None:
+    if depth > 4:
+        return
     try:
-        r = S.get(
-            f"https://comtradeapi.un.org/public/v1/preview/C/A/{cls}",
-            params={"reporterCode": rep, "period": period, "cmdCode": cmd, "flowCode": "X"},
-            timeout=120,
-        )
-        data = r.json().get("data", []) if r.ok else []
-        sample = [
-            {
-                k: d.get(k)
-                for k in ("cmdCode", "partnerCode", "netWgt", "qty", "qtyUnitAbbr", "primaryValue", "isAggregate")
-            }
-            for d in data[:8]
-        ]
-        world = [d for d in data if d.get("partnerCode") == 0]
-        res[f"comtrade_{name}"] = {"status": r.status_code, "n": len(data), "world": world[:3], "sample": sample}
-        print("comtrade", name, r.status_code, len(data))
+        items = S.get(f"{api}/{path}", timeout=60).json()
     except Exception as exc:  # noqa: BLE001
-        res[f"comtrade_{name}"] = {"error": str(exc)[:300]}
+        tables.append({"path": path, "error": str(exc)[:200]})
+        return
+    if not isinstance(items, list):
+        tables.append({"path": path, "not_a_list": str(items)[:300]})
+        return
+    for it in items:
+        if not isinstance(it, dict):
+            continue
+        sub = f"{path}/{quote(str(it.get('id')))}"
+        if it.get("type") == "l":
+            walk(sub, depth + 1)
+        elif it.get("type") == "t":
+            entry = {"path": sub, "text": it.get("text")}
+            try:
+                meta = S.get(f"{api}/{sub}", timeout=60).json()
+                for v in meta.get("variables", []):
+                    vals = v.get("valueTexts", [])
+                    entry[v.get("code", "?")] = [len(vals), vals[:2], vals[-2:]]
+            except Exception as exc:  # noqa: BLE001
+                entry["error"] = str(exc)[:200]
+            tables.append(entry)
+            time.sleep(0.3)
 
-# 4. US consumer prices (to undo the deflation of a real freight index): OECD SDMX and BLS
-probe(
-    "oecd_cpi_usa",
-    "https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PRICES@DF_PRICES_ALL,1.0/USA.M.N.CPI.IX._T.N._Z",
-    {"startPeriod": "1965-01", "format": "csvfilewithlabels"},
-    n=1200,
-)
-probe(
-    "bls_cpi_v1",
-    "https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SA0",
-    {"startyear": "1985", "endyear": "1994"},
-    n=800,
-)
 
-(OUT / "long_history_probe.json").write_text(json.dumps(res, indent=1))
+for start in ("TUTRSJ/SJ", "TUTRSJ"):
+    walk(start, 0)
+res["asub_tables"] = tables
+
+# 2. Kilian index files: Dallas Fed workbook and the author's Drive files
+save("dallasfed_igrea", "https://www.dallasfed.org/-/media/Documents/research/igrea/igrea.xlsx")
+raw("dallasfed_related", "https://www.dallasfed.org/research/igrea/related", n=4000)
+for fid in (
+    "169Nj256wQ27xOnuVEllfj_jbb7JNGrlQ",
+    "1PK6L5dR5vR8JUI2IbJD32odQByHlPzNo",
+    "1PmgTOlRoJG_0v-1imv-DlBxtzjtaP5Lo",
+    "1fysBGNNB3Vx3mnOI02hBgQ4qMAMm3e0Q",
+    "1taCyNal2BJHqfxiid5-nTrkBaQCbRUmC",
+):
+    save(f"kilian_{fid[:8]}", "https://drive.google.com/uc", {"export": "download", "id": fid})
+r = raw("kilian_page", "https://sites.google.com/site/lkilian2019/research/data-sets", n=200)
+if r is not None and r.ok:
+    text = re.sub(r"<[^>]+>", " ", r.text)
+    text = re.sub(r"\s+", " ", text)
+    i = text.find("ata")
+    res["kilian_page_text"] = text[:6000]
+
+# 3. Open data repositories: Zenodo and figshare
+for q in ('"Baltic Dry Index"', "Baltic Dry Index monthly", "BDI freight index"):
+    raw(f"zenodo_{q[:12]}", "https://zenodo.org/api/records", {"q": q, "size": 25}, n=20000)
+try:
+    r = S.post(
+        "https://api.figshare.com/v2/articles/search",
+        json={"search_for": '"Baltic Dry Index"', "page_size": 50},
+        timeout=60,
+    )
+    res["figshare"] = {
+        "status": r.status_code,
+        "items": [
+            {k: a.get(k) for k in ("title", "doi", "url_public_html", "defined_type_name")}
+            for a in (r.json() if r.ok else [])
+        ][:50],
+    }
+except Exception as exc:  # noqa: BLE001
+    res["figshare"] = {"error": str(exc)[:300]}
+
+(OUT / "long_history_probe2.json").write_text(json.dumps(res, indent=1))
 print("done")
