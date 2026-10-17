@@ -290,7 +290,7 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     long_model, lp = res.get("long") or {}, res.get("long_panel")
     if long_model and lp is not None:
         att = pd.DataFrame(long_model["annual"])
-        fig, ax = plt.subplots(figsize=(7.0, 2.7))
+        fig, ax = plt.subplots(figsize=(7.0, 3.1))
         x = att["year"].to_numpy()
         pos = np.zeros(len(att))
         neg = np.zeros(len(att))
@@ -306,16 +306,23 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
                 color="#6b675e",
                 va="top",
             )
-        for k in _stack_keys(att.columns):
+        # the two price signals share one segment: a second green beside the fleet colour would not read
+        sig_cols = [c for c in att.columns if str(c).startswith("signal_")]
+        att["signals"] = att[sig_cols].sum(axis=1)
+        keys = [k for k in _stack_keys(att.columns) if k not in sig_cols]
+        keys.insert(keys.index("residual") if "residual" in keys else len(keys), "signals")
+        colors = {**COLORS, "signals": "#e87ba4"}
+        labels = {**LABELS, "signals": "Price signals (oil, iron ore)"}
+        for k in keys:
             v = att[k].to_numpy()
             bottom = np.where(v >= 0, pos, neg)
-            ax.bar(x, v, width=0.8, bottom=bottom, color=COLORS[k], label=LABELS[k], linewidth=0)
+            ax.bar(x, v, width=0.8, bottom=bottom, color=colors[k], label=labels[k], edgecolor="#fbfaf7", linewidth=0.3)
             pos = pos + np.where(v >= 0, v, 0)
             neg = neg + np.where(v < 0, v, 0)
         ax.plot(x, att["total"], color="#1b1a17", lw=1.2, label="Total change in log index")
         ax.axhline(0, color="#c5bfb1", lw=0.8)
         ax.set_ylabel("Log points, annual change")
-        ax.legend(frameon=False, fontsize=6.8, ncol=4, loc="lower left")
+        ax.legend(frameon=False, fontsize=6.8, ncol=4, loc="upper center", bbox_to_anchor=(0.5, -0.1))
         fig.tight_layout()
         out["long"] = FIGURES_DIR / "fig4_long_history.png"
         fig.savefig(out["long"], dpi=200)
@@ -788,7 +795,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
         story.append(Image(str(figs["long"]), width=width, height=width * 2.7 / 7.0))
         story.append(
             Paragraph(
-                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points. Shaded years use the Kilian-based proxy for the index. Sources: UN Comtrade (annual), UNCTADstat, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
+                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points; the price signals combine Brent and iron ore over the twelve months to September. Shaded years use the Kilian-based proxy for the index. Sources: UN Comtrade (annual), UNCTADstat, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
                 st["caption"],
             )
         )
@@ -806,7 +813,9 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     }
     for k, v in rb.items():
         parts.append(
-            f"{names.get(k, k)}: {v['elasticity']:.2f} (se {v['std_error']:.2f}, R squared {v['r_squared']:.2f})"
+            f"{names.get(k, k)}: {v['elasticity'] + 0.0:.2f} (se {v['std_error']:.2f}, R squared {v['r_squared']:.2f})".replace(
+                "-0.00 ", "0.00 "
+            )
         )
     dr = n["diff_reg"]
     dr_text = ""

@@ -224,14 +224,21 @@
     // annual attribution
     const A = L.attribution;
     const sigDefs = (L.signals.definitions || []).map((s, i) => ({ key: `signal_${s.name}`, label: `${s.label} (market signal)`, short: s.label, color: C.palette()[SIGNAL_SLOTS[i % SIGNAL_SLOTS.length]] }));
-    const comps = [...PHYSICAL.map((c) => ({ key: c.key, label: c.label, color: c.color() })), ...sigDefs, { key: RESIDUAL.key, label: RESIDUAL.label, color: RESIDUAL.color() }];
-    const data = A.year.map((y, i) => { const d = { x: yr(y), label: `${y - 1} to ${y}`, total: A.total[i] }; comps.forEach((c) => { d[c.key] = A[c.key] ? A[c.key][i] : 0; }); return d; });
+    // the two price signals share one segment here (two more hues would sit too close to the fleet colour); the episode table splits them
+    const sigAll = { key: "signals", label: `Price signals: ${listText((L.signals.definitions || []).map((d) => d.name.replace("_", " ")))} (market)`, color: p.s5 };
+    const comps = [...PHYSICAL.map((c) => ({ key: c.key, label: c.label, color: c.color() })), sigAll, { key: RESIDUAL.key, label: RESIDUAL.label, color: RESIDUAL.color() }];
+    const data = A.year.map((y, i) => {
+      const d = { x: yr(y), label: `${y - 1} to ${y}`, total: A.total[i] };
+      comps.forEach((c) => { d[c.key] = A[c.key] ? A[c.key][i] : 0; });
+      d.signals = d3.sum(sigDefs, (c) => (A[c.key] ? A[c.key][i] : 0));
+      return d;
+    });
     const meanAbs = (arr) => d3.mean(arr, (v) => Math.abs(v));
     const agree = d3.mean(A.total.map((t, i) => (Math.sign(t - A.residual[i]) === Math.sign(t) ? 1 : 0)));
     const e = L.elasticity;
     C.stackedBars("#chart-long-attribution", {
       title: `Year by year, the four forces and the two price signals give the direction of ${fmt.pctPlain(agree)} of annual moves; the residual averages ${fmt.f2(meanAbs(A.residual))} log points against a typical annual move of ${fmt.f2(meanAbs(A.total))}`,
-      subtitle: `Change in the log of the annual average index from the previous year (line) and its attribution (bars), log points. Elasticity ${d3.format(".2f")(e.elasticity)} (standard error ${d3.format(".2f")(e.std_error)}), estimated on ${e.n_obs} annual changes.`,
+      subtitle: `Change in the log of the annual average index from the previous year (line) and its attribution (bars), log points. Elasticity ${d3.format(".2f")(e.elasticity)} (standard error ${d3.format(".2f")(e.std_error)}), estimated on ${e.n_obs} annual changes. The two price signals are combined in one segment; the episode table and the downloadable attribution file show each.`,
       source: sourceLine("this project's annual decomposition; price signals from the World Bank Pink Sheet", srcIds),
       components: comps, total: { key: "total", label: "Change in log index", color: p.ink }, data, yLabel: "Log points", height: 360,
     });
@@ -255,7 +262,7 @@
     const fleetEp = L.episodes.reduce((a, b) => (b.fleet < a.fleet ? b : a), L.episodes[0]);
     const epNote = C.el("div", "prose");
     ep.append(epNote);
-    epNote.append(C.el("p", null, `Each row compares the annual averages of two years. The largest move in the table is ${lcFirst(best.name)} (${signed(best.total, 2)} log points); the strongest drag from fleet growth is in ${lcFirst(fleetEp.name)} (${signed(fleetEp.fleet, 2)}). Rows marked * use the proxy index for at least one endpoint. Annual averages smooth moves inside a year: the 2008 peak and collapse, for example, both fall within 2008. The explained share is shown as n/m when the move is smaller than 0.10 log points.`));
+    epNote.append(C.el("p", null, `Each row compares the annual averages of two years. The largest move in the table is ${lcFirst(best.name)} (${signed(best.total, 2)} log points); the strongest drag from fleet growth is in ${lcFirst(fleetEp.name)} (${signed(fleetEp.fleet, 2)}). Rows marked * use the proxy index for at least one endpoint. Annual averages smooth moves inside a year: the 2008 peak and collapse, for example, both fall within 2008. The explained share is shown as n/m when the move is smaller than 0.10 log points; it is negative when the forces point against the move (the residual is larger than the move itself) and above 100 percent when the residual has the opposite sign to the move.`));
     // proxy against the index
     const F = L.freight;
     const fy = F.year.filter((y) => y >= y0 && y <= y1);
