@@ -1,0 +1,121 @@
+{
+ "folder": [
+  {
+   "id": "SJ101.px",
+   "type": "t",
+   "text": "Price of low sulphur marine diesel (LSMGO) at port of Rotterdam 2014-2025 (USD/ton) by month",
+   "updated": "2026-02-27T15:21:22"
+  },
+  {
+   "id": "SJ102.px",
+   "type": "t",
+   "text": "Index of international dry bulk freight (Baltic Dry Index, 1985 = 1 000) 2011-2025 by month",
+   "updated": "2026-02-27T15:22:26"
+  },
+  {
+   "id": "SJ104.px",
+   "type": "t",
+   "text": "Index for tanker freight rates on routes between NW European ports (Worldscale, Aframax tankers; 70,000-100,000 dwt) 2008-2025 by month",
+   "updated": "2026-03-25T12:41:43"
+  }
+ ],
+ "tables": [
+  {
+   "id": "SJ101.px",
+   "text": "Price of low sulphur marine diesel (LSMGO) at port of Rotterdam 2014-2025 (USD/ton) by month",
+   "updated": "2026-02-27T15:21:22",
+   "title": "Price of low sulphur marine diesel (LSMGO) at port of Rotterdam 2014-2025 (USD/ton) by month",
+   "\u00e5r": [
+    12,
+    [
+     "2014",
+     "2015",
+     "2016"
+    ],
+    [
+     "2023",
+     "2024",
+     "2025"
+    ]
+   ],
+   "m\u00e5nad": [
+    12,
+    [
+     "January",
+     "February",
+     "March"
+    ],
+    [
+     "October",
+     "November",
+     "December"
+    ]
+   ]
+  },
+  {
+   "id": "SJ102.px",
+   "text": "Index of international dry bulk freight (Baltic Dry Index, 1985 = 1 000) 2011-2025 by month",
+   "updated": "2026-02-27T15:22:26",
+   "title": "Index of international dry bulk freight (Baltic Dry Index, 1985 = 1 000) 2011-2025 by month",
+   "\u00e5r": [
+    15,
+    [
+     "2011",
+     "2012",
+     "2013"
+    ],
+    [
+     "2023",
+     "2024",
+     "2025"
+    ]
+   ],
+   "m\u00e5nad": [
+    12,
+    [
+     "January",
+     "February",
+     "March"
+    ],
+    [
+     "October",
+     "November",
+     "December"
+    ]
+   ]
+  },
+  {
+   "id": "SJ104.px",
+   "text": "Index for tanker freight rates on routes between NW European ports (Worldscale, Aframax tankers; 70,000-100,000 dwt) 2008-2025 by month",
+   "updated": "2026-03-25T12:41:43",
+   "title": "Index for tanker freight rates on routes between NW European ports (Worldscale, Aframax tankers; 70,000-100,000 dwt) 2008-2025 by month",
+   "\u00e5r": [
+    18,
+    [
+     "2008",
+     "2009",
+     "2010"
+    ],
+    [
+     "2023",
+     "2024",
+     "2025"
+    ]
+   ],
+   "m\u00e5nad": [
+    12,
+    [
+     "January",
+     "February",
+     "March"
+    ],
+    [
+     "October",
+     "November",
+     "December"
+    ]
+   ]
+  }
+ ],
+ "dallasfed_igrea_text": "Index of global real economic activity - Dallasfed.org Skip to main content News and Events Careers All Authors Series Topics Economy Economy Data Regional data U.S. data International data Energy data DataBasics Research Data Center (RDC) --> Regional economy Texas New Mexico Louisiana Dallas Fed Surveys Economic analysis Beige Book Economic indicators Texas Economic Update Texas Employment Forecast U.S. economy Trimmed Mean PCE Market Value of Government Debt Weekly Economic Index International economy Database of Global Economic Indicators International House Price Database Mexico Update Global Institute Events Conferences Global Perspectives Energy Center for Energy and the Economy Dallas Fed Energy Survey Energy in the Eleventh District Energy Indicators Energy Slideshow Publications Dallas Fed Economics Southwest Economy Southwest Economy Podcast Special reports Working papers Economists Focus areas/topics Community Community Communities blog In-depth reports Small Business Credit Survey Community topics Small business Workforce development Community Reinvestment Act Advance Together initiative Digital access initiative Our people Events Education Education Classroom Resources Building Wealth lesson plans Classroom-ready presentations Federal Reserve Education Publications Building Wealth Everyday Economics Navigate: Exploring College and Careers Student programs Personal finance workshop --> Events Tours information Banking Banking Banker resources Consumer resources Reserves maintenance Risk and surveillance Lending Discount Window Payments & financial services FedNow Financial services Reporting Financial reporting Regulatory reporting Structure reporting (NIC) Contacts Events Publications and reports Dallas Fed Banking Banking Conditions Survey Current Banking Risks Eleventh District Banking Trends Banking and finance articles About us About Us What we do Reserve Banks and the Fed Counties in our district Our branches El Paso Houston San Antonio Holiday schedule Work with us Transparency President Lorie Logan About Lorie Listening in 360\u00b0 Calendar Public speaking events Our people Leadership team Regional executives Boards of directors Economists Dallas Fed advisory councils Federal Advisory Council Office of Minority and Women Inclusion Speeches Lorie Logan speeches and publications Leadership speeches Request a speaker Connect with us Attend our events Visit our exhibits Help us track the economy Ask a question or find a contact Do business with us News and Events Careers Home Economy Economy Economy home Data Regional data U.S. data International data Energy data DataBasics Research Data Center BigTex High-Performance Computing Regional Regional economy Texas New Mexico Louisiana Dallas Fed surveys Agricultural Banking Conditions Dallas Fed Energy Texas Manufacturing Texas Service Sector Economic analysis Beige Book Economic Indicators Texas Economic Update Texas Employment Forecast Mexico and border region All regional analysis Southwest Economy U.S. U.S. economy home Trimmed Mean PCE Market Value of Government Debt Weekly Economic Index All U.S. data International Global Institute International economy International House Price Database Database of Global Economic Indicators International data Energy Center for Energy and the Economy Energy research Dallas Fed Energy Survey Energy in the Eleventh District Energy Indicators Energy slideshow Publications Dallas Fed Economics Southwest Economy Special reports Working papers More publications Our people Our people Leadership Economists Research Affiliates Research analysts Visiting scholars Events Conferences Global Perspectives Seminars Request a speaker Focus areas/topics Energy Index of global real economic activity Updated index of global real economic activity in industrial commodity markets, as proposed in Kilian (2009), with the correction discussed in Kilian (2019). This business-cycle index is expressed in percent deviations from trend. It is derived from a panel of dollar-denominated global bulk dry cargo shipping rates and may be viewed as a proxy for the volume of shipping in global industrial commodity markets. For further discussion of the advantages of this index compared with measures of global real GDP or global industrial production see Kilian and Zhou (2018). This index is updated monthly. Download the data Share this Author The index of global real economic activity was developed by Lutz Kilian , senior economic policy advisor at the Federal Reserve Bank of Dallas. Index of global real economic activity Subscribe to email alerts --> Data About the TWEE How It's Constructed --> Related reading Quick links Global Institute Building Wealth Banking blog Communities blog Economics blog Visit us Publications About us Transparency Holiday schedule Careers Office of Minority and Women Inclusion Contact us Frequently asked questions Locations and teams Media relations Vendors and suppliers Website feedback Stay informed Get analysis, research, resources and event information delivered directly to your inbox. Subscribe Email address Sign Up --> Follow the Dallas Fed 2200 N. Pearl St., Dallas, Texas 75201 P: 214.922.6000 or 800.333.4460 --> expand_less Top 2200 N. Pearl St., Dallas, Texas 75201 214.922.6000 or 800.333.4460 Terms of Use Privacy Notice "
+}
