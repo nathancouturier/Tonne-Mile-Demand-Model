@@ -65,6 +65,24 @@ def _ingest_worldbank() -> None:
     worldbank.fetch()
 
 
+def _ingest_comtrade_long() -> None:
+    from tmdm.ingest import comtrade_long
+
+    comtrade_long.fetch()
+
+
+def _ingest_kilian() -> None:
+    from tmdm.ingest import kilian
+
+    kilian.fetch()
+
+
+def _ingest_oecd_cpi() -> None:
+    from tmdm.ingest import oecd_cpi
+
+    oecd_cpi.fetch()
+
+
 def _ingest_asub() -> None:
     from tmdm.ingest import asub_bdi
 
@@ -80,6 +98,9 @@ SOURCES: dict[str, Callable[[], None]] = {
     "comexstat": _ingest_comexstat,
     "portwatch": _ingest_portwatch,
     "comtrade": _ingest_comtrade,
+    "comtrade_long": _ingest_comtrade_long,
+    "kilian": _ingest_kilian,
+    "oecd_cpi": _ingest_oecd_cpi,
 }
 
 
