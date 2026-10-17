@@ -209,3 +209,56 @@ def test_undisclosed_destinations_are_allocated_pro_rata():
     assert sea["tonnes"].tolist() == pytest.approx([60.0, 20.0])
     assert sea["allocated_tonnes"].tolist() == pytest.approx([30.0, 10.0])
     assert sea["proxy_tonnes"].tolist() == pytest.approx([0.0, 20.0])
+
+
+def _rec(rows):
+    cols = [
+        "classification",
+        "period",
+        "reporterCode",
+        "flowCode",
+        "partnerCode",
+        "cmdCode",
+        "netWgt",
+        "qty",
+        "qtyUnitCode",
+        "primaryValue",
+    ]
+    return pd.DataFrame(rows, columns=cols)
+
+
+def test_estimated_weights_are_replaced_by_benchmark_carried_unit_values():
+    rows = []
+    # coal: 2007 and 2009 measured (different unit values per partner); 2008 estimated at one unit value
+    for y, uvs in ((2007, (80.0, 90.0, 100.0)), (2009, (140.0, 150.0, 160.0))):
+        for p, uv in zip((392, 410, 156), uvs, strict=True):
+            rows.append(("HS", str(y), 124, "X", p, "2701", 1e9, 1e9, 8, uv * 1e6))
+    for p in (392, 410, 156):
+        rows.append(("HS", "2008", 124, "X", p, "2701", 3e9, 3e9, 8, 70.39 * 3e6))  # weights imply 70.39 $/t for all
+    partners = {392: "JPN", 410: "KOR", 156: "CHN"}
+    bench = pd.DataFrame({"coal": [60.0, 120.0, 72.0]}, index=pd.Index([2007, 2008, 2009], name="year"))
+    f = annual_flows(_rec(rows), partners, bench)
+    y8 = f[f["year"] == 2008]
+    # premium over the benchmark: 2007 90/60 = 1.5, 2009 150/72; 2008 gets the geometric mean times 120
+    premium = np.exp((np.log(90 / 60) + np.log(150 / 72)) / 2)
+    assert y8["proxy_tonnes"].sum() == pytest.approx(3 * 70.39 * 3e6 / (premium * 120.0), rel=1e-6)
+    assert (f[f["year"] != 2008]["proxy_tonnes"] == 0).all()
+
+
+def test_distinct_unit_values_are_kept():
+    rows = [
+        ("HS", "2010", 36, "X", p, "2601", 1e9, 1e9, 8, uv * 1e6) for p, uv in ((156, 100.0), (392, 101.0), (410, 99.5))
+    ]
+    f = annual_flows(_rec(rows), {156: "CHN", 392: "JPN", 410: "KOR"})
+    assert (f["proxy_tonnes"] == 0).all() and f["tonnes"].sum() == pytest.approx(3e6)
+
+
+def test_chain_link_skips_a_unit_without_sea_tonnes_on_one_side():
+    # B has no disclosed sea routes in 2000 (all destinations undisclosed), then 500 t in 2001: not growth
+    sea = _sea(
+        [("A_X", "HS", 2000, "a", 100, 100), ("A_X", "HS", 2001, "a", 110, 110), ("B_X", "HS", 2001, "b", 500, 500)]
+    )
+    avail = {("A_X", "HS", 2000), ("A_X", "HS", 2001), ("B_X", "HS", 2000), ("B_X", "HS", 2001)}
+    out = chain_link(sea, avail, 2000, 2001).set_index("year")
+    assert out.loc[2001, "tonnes"] / out.loc[2000, "tonnes"] == pytest.approx(1.10)
+    assert out.loc[2001, "units"] == "A_X:HS"

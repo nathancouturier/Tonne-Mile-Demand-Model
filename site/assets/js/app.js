@@ -237,7 +237,9 @@
     // episodes
     const ep = $("#history-episodes");
     ep.innerHTML = "";
-    ep.append(C.el("h3", null, "Four decades of episodes"));
+    const epHead = C.el("div", "prose");
+    epHead.append(C.el("h3", null, "Four decades of episodes"));
+    ep.append(epHead);
     const wrap = C.el("div", "table-wrap full");
     C.dataTable(wrap, [
       { key: "name", label: "Episode" }, { key: "window", label: "Years" },
@@ -250,7 +252,9 @@
     ep.append(wrap);
     const best = L.episodes.reduce((a, b) => (Math.abs(b.total) > Math.abs(a.total) ? b : a), L.episodes[0]);
     const fleetEp = L.episodes.reduce((a, b) => (b.fleet < a.fleet ? b : a), L.episodes[0]);
-    ep.append(C.el("p", null, `Each row compares the annual averages of two years. The largest move in the table is ${lcFirst(best.name)} (${signed(best.total, 2)} log points); the strongest drag from fleet growth is in ${lcFirst(fleetEp.name)} (${signed(fleetEp.fleet, 2)}). Rows marked * use the proxy index for at least one endpoint. Annual averages smooth moves inside a year: the 2008 peak and collapse, for example, both fall within 2008. The explained share is shown as n/m when the move is smaller than 0.10 log points.`));
+    const epNote = C.el("div", "prose");
+    ep.append(epNote);
+    epNote.append(C.el("p", null, `Each row compares the annual averages of two years. The largest move in the table is ${lcFirst(best.name)} (${signed(best.total, 2)} log points); the strongest drag from fleet growth is in ${lcFirst(fleetEp.name)} (${signed(fleetEp.fleet, 2)}). Rows marked * use the proxy index for at least one endpoint. Annual averages smooth moves inside a year: the 2008 peak and collapse, for example, both fall within 2008. The explained share is shown as n/m when the move is smaller than 0.10 log points.`));
     // proxy against the index
     const F = L.freight;
     const fy = F.year.filter((y) => y >= y0 && y <= y1);
@@ -298,7 +302,7 @@
     const rb = L.robustness || {};
     add("h3", "What the annual model says");
     add("p", `On annual changes the elasticity is ${d3.format(".2f")(e.elasticity)} (standard error ${d3.format(".2f")(e.std_error)}, R squared ${fmt.pctPlain(e.r_squared)} over ${e.n_obs} years)` + (rb.proxy_years && rb.bdi_years ? `, ${d3.format(".2f")(rb.proxy_years.elasticity)} on the proxy years and ${d3.format(".2f")(rb.bdi_years.elasticity)} on the Baltic Dry Index years` : "") + `. The four forces leave ${fmt.pctPlain(f.unexplained_physical)} of a typical annual move unexplained; with the two price signals (coefficients ${Object.entries(f.coefficients || {}).map(([k, v]) => `${k.replace("_", " ")} ${d3.format(".2f")(v)}`).join(", ")}) ${fmt.pctPlain(f.unexplained_extended)}.` + (o.available ? ` Out of sample, refitting every coefficient each year on the years before it (${o.n_years} years from ${o.first_year} to ${o.last_year}), the unexplained share is ${fmt.pctPlain(o.unexplained.physical)} with the forces alone and ${fmt.pctPlain(o.unexplained.extended)} with the signals.` : ""));
-    add("p", "Port time enters only from 2019, when PortWatch data begin; before, congestion is in the residual. Russian exporter records are not used (Russia reports from 1996 and stopped in 2022). Annual averages smooth the short, violent swings of the index, so the annual model explains more of each move than the monthly one but says nothing about timing within a year.");
+    add("p", "Port time enters only from 2019, when PortWatch data begin; before, congestion is in the residual. Russian exporter records are not used (Russia reports from 1996 and stopped in 2022). Annual averages smooth the short swings of the index and say nothing about timing within a year; the monthly model on the other pages covers the years since 2012 in that detail.");
   }
 
   /* ---------------------------------------------------------------- decomposition */

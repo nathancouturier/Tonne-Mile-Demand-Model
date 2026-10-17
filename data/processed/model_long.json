@@ -1,0 +1,1062 @@
+{
+  "elasticity": {
+    "elasticity": 3.9116568210369564,
+    "std_error": 0.9383273274739414,
+    "t_stat": 4.16875508844816,
+    "intercept": 0.005213695262650982,
+    "r_squared": 0.20784506453936358,
+    "n_obs": 45,
+    "durbin_watson": 2.1289714614637445,
+    "residual_std": 0.3432372037020117
+  },
+  "robustness": {
+    "proxy_years": {
+      "elasticity": 3.900002053818546,
+      "std_error": 1.0164502099452768,
+      "r_squared": 0.26718611421634686,
+      "n_obs": 30,
+      "years": [
+        1981,
+        2010
+      ]
+    },
+    "bdi_years": {
+      "elasticity": 3.6304505150666495,
+      "std_error": 2.8780950184257215,
+      "r_squared": 0.047531282803424224,
+      "n_obs": 14,
+      "years": [
+        2012,
+        2025
+      ]
+    },
+    "first_half": {
+      "elasticity": 2.983739856801347,
+      "std_error": 0.6333352359673935,
+      "r_squared": 0.42884737067987533,
+      "n_obs": 22,
+      "years": [
+        1981,
+        2002
+      ]
+    },
+    "second_half": {
+      "elasticity": 7.3340601743150025,
+      "std_error": 1.7006676025312848,
+      "r_squared": 0.23264066502872338,
+      "n_obs": 23,
+      "years": [
+        2003,
+        2025
+      ]
+    }
+  },
+  "signals": {
+    "definitions": [
+      {
+        "name": "oil",
+        "column": "brent_usd_bbl",
+        "label": "Oil price (Brent)"
+      },
+      {
+        "name": "iron_ore",
+        "column": "iron_ore_usd_dmtu_lead3",
+        "label": "Iron ore price, twelve months to September"
+      }
+    ],
+    "fit": {
+      "coefficients": {
+        "oil": 0.23109321355030574,
+        "iron_ore": 0.5323469489713053
+      },
+      "std_errors": {
+        "oil": 0.16988310627078168,
+        "iron_ore": 0.16866704040856614
+      },
+      "t_stats": {
+        "oil": 1.360307205484926,
+        "iron_ore": 3.156200213638591
+      },
+      "n_obs": 45,
+      "r_squared_physical": 0.20765379017524133,
+      "r_squared_extended": 0.4433515100895893,
+      "unexplained_physical": 0.8838439182490679,
+      "unexplained_extended": 0.8126888816006279,
+      "sign_agreement_physical": 0.6444444444444445,
+      "sign_agreement_extended": 0.7555555555555555
+    },
+    "out_of_sample": {
+      "available": true,
+      "first_year": 1996,
+      "last_year": 2025,
+      "n_years": 30,
+      "r2_vs_zero": {
+        "physical": 0.1629404109654523,
+        "extended": 0.2825630236565647
+      },
+      "unexplained": {
+        "physical": 0.9192410357529287,
+        "extended": 0.8507038758977334
+      },
+      "sign_agreement": {
+        "physical": 0.5333333333333333,
+        "extended": 0.7
+      },
+      "predictions": [
+        {
+          "year": 1996,
+          "y": -0.41090172624241905,
+          "physical": -0.1283685653108183,
+          "extended": -0.15336192626935025
+        },
+        {
+          "year": 1997,
+          "y": 0.011421112852346482,
+          "physical": 0.12417300697387555,
+          "extended": 0.12446209116383036
+        },
+        {
+          "year": 1998,
+          "y": -0.34660599591582564,
+          "physical": 0.010940444656219182,
+          "extended": 0.033212884099471526
+        },
+        {
+          "year": 1999,
+          "y": 0.11395327918838838,
+          "physical": -0.03112376350877459,
+          "extended": 0.06428673451482657
+        },
+        {
+          "year": 2000,
+          "y": 0.40976495127926427,
+          "physical": 0.14483650354656316,
+          "extended": 0.20826867519811407
+        },
+        {
+          "year": 2001,
+          "y": -0.28235963388077057,
+          "physical": -0.004462411219746796,
+          "extended": -0.06452566905466334
+        },
+        {
+          "year": 2002,
+          "y": -0.06268780287649278,
+          "physical": 0.010399055159298324,
+          "extended": 0.02190255463455336
+        },
+        {
+          "year": 2003,
+          "y": 0.8312036348427343,
+          "physical": 0.17259044639896412,
+          "extended": 0.15435883076070023
+        },
+        {
+          "year": 2004,
+          "y": 0.537916680859376,
+          "physical": 0.09215804590684279,
+          "extended": 0.10065026264753649
+        },
+        {
+          "year": 2005,
+          "y": -0.29225898243343096,
+          "physical": 0.06373715888612506,
+          "extended": 0.20131831142898776
+        },
+        {
+          "year": 2006,
+          "y": -0.06164321571549003,
+          "physical": 0.027078274952359593,
+          "extended": -0.004260697799438273
+        },
+        {
+          "year": 2007,
+          "y": 0.7964124246338073,
+          "physical": 0.07864823923774464,
+          "extended": -0.09924699898807701
+        },
+        {
+          "year": 2008,
+          "y": -0.11039261663744249,
+          "physical": -0.0769246494772464,
+          "extended": 0.03484537761588921
+        },
+        {
+          "year": 2009,
+          "y": -0.8923934970521392,
+          "physical": -0.02507642652234977,
+          "extended": -0.09526073488478036
+        },
+        {
+          "year": 2010,
+          "y": 0.05299442520172892,
+          "physical": -0.07235678917567383,
+          "extended": 0.20120253556703716
+        },
+        {
+          "year": 2011,
+          "y": -0.5996354324540771,
+          "physical": -0.3181973351059966,
+          "extended": -0.1620483183111001
+        },
+        {
+          "year": 2012,
+          "y": -0.46628438909238046,
+          "physical": -0.24056233874482977,
+          "extended": -0.32920340224011013
+        },
+        {
+          "year": 2013,
+          "y": 0.1980624291930635,
+          "physical": -0.04078803054517104,
+          "extended": -0.04730198106756233
+        },
+        {
+          "year": 2014,
+          "y": 0.012213458643580921,
+          "physical": -0.047068652479735115,
+          "extended": -0.11620287492326165
+        },
+        {
+          "year": 2015,
+          "y": -0.48440566382887695,
+          "physical": 0.03267654042616386,
+          "extended": -0.22809381324667982
+        },
+        {
+          "year": 2016,
+          "y": -0.11252708205766648,
+          "physical": 0.058797597994473774,
+          "extended": -0.03414926075541813
+        },
+        {
+          "year": 2017,
+          "y": 0.5306282510621703,
+          "physical": 0.03576135543158081,
+          "extended": 0.19540337378620704
+        },
+        {
+          "year": 2018,
+          "y": 0.18821166718713833,
+          "physical": -0.09019764194969544,
+          "extended": -0.08589219404904941
+        },
+        {
+          "year": 2019,
+          "y": 0.007035048469939298,
+          "physical": -0.1792948294729265,
+          "extended": -0.08908799886757983
+        },
+        {
+          "year": 2020,
+          "y": -0.23329164972134642,
+          "physical": -0.17295064032949028,
+          "extended": -0.20973063522757013
+        },
+        {
+          "year": 2021,
+          "y": 0.996452749071083,
+          "physical": -0.09465605390002661,
+          "extended": 0.21818322857226646
+        },
+        {
+          "year": 2022,
+          "y": -0.4173207408653239,
+          "physical": -0.16128194948168356,
+          "extended": -0.20711732127402555
+        },
+        {
+          "year": 2023,
+          "y": -0.32060165282833175,
+          "physical": 0.03659229182580676,
+          "extended": -0.056904287455614634
+        },
+        {
+          "year": 2024,
+          "y": 0.25558011413905035,
+          "physical": 0.044530043177266235,
+          "extended": 0.05377753787061828
+        },
+        {
+          "year": 2025,
+          "y": -0.09189134107644126,
+          "physical": -0.16524352376814105,
+          "extended": -0.28559310590048015
+        }
+      ]
+    }
+  },
+  "annual": [
+    {
+      "year": 1981,
+      "total": -0.11863948663573586,
+      "volume": 0.1677824110038088,
+      "distance": 0.13027448803596883,
+      "fleet": -0.11920332524862015,
+      "effective_supply": -0.0,
+      "residual": -0.31214510890689934,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.29749306042689333,
+      "signal_oil": -0.0075927496463595425,
+      "signal_iron_ore": 0.022244798126365564
+    },
+    {
+      "year": 1982,
+      "total": -0.4445091700169996,
+      "volume": -0.08400260865826319,
+      "distance": -0.029185431286897583,
+      "fleet": -0.20309613538287938,
+      "effective_supply": -0.0,
+      "residual": -0.16583486485272564,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.12822499468895943,
+      "signal_oil": -0.021501038883582697,
+      "signal_iron_ore": 0.05911090904734891
+    },
+    {
+      "year": 1983,
+      "total": -0.06399708639993527,
+      "volume": -0.21248950872945016,
+      "distance": 0.09840834365181572,
+      "fleet": -0.18902967848065286,
+      "effective_supply": -0.0,
+      "residual": 0.291700596507279,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.23911375715835204,
+      "signal_oil": -0.026083476611684166,
+      "signal_iron_ore": -0.026503362737242766
+    },
+    {
+      "year": 1984,
+      "total": 0.007368457900348126,
+      "volume": 0.5258308799921023,
+      "distance": -0.025944203435477358,
+      "fleet": -0.12798352292162868,
+      "effective_supply": -0.0,
+      "residual": -0.3004853133706058,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.36453469573464814,
+      "signal_oil": -0.008208463922084871,
+      "signal_iron_ore": -0.055840918441957446
+    },
+    {
+      "year": 1985,
+      "total": -0.11061624857031452,
+      "volume": 0.12966873491352046,
+      "distance": -0.06681854588323087,
+      "fleet": -0.13049456186527003,
+      "effective_supply": -0.0,
+      "residual": -0.023062023822107973,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.04297187573533408,
+      "signal_oil": -0.011934467555102456,
+      "signal_iron_ore": -0.007975384358123649
+    },
+    {
+      "year": 1986,
+      "total": -0.24535214423665597,
+      "volume": -0.3030347653918145,
+      "distance": -0.019082830169430673,
+      "fleet": -0.07339990088858865,
+      "effective_supply": -0.0,
+      "residual": 0.2946646462009371,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.1501653522131779,
+      "signal_oil": -0.1419822824477918,
+      "signal_iron_ore": -0.002517011539967398
+    },
+    {
+      "year": 1987,
+      "total": 0.35288700251073524,
+      "volume": 0.32031071602466427,
+      "distance": 0.0633518005551535,
+      "fleet": 0.0336363758734102,
+      "effective_supply": -0.0,
+      "residual": -0.09728480700667459,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.0644118899424927,
+      "signal_oil": 0.049790517228949914,
+      "signal_iron_ore": -0.016917600164768017
+    },
+    {
+      "year": 1988,
+      "total": 0.30430025559927026,
+      "volume": 0.19554639848990352,
+      "distance": -0.0832739785505391,
+      "fleet": 0.03956831925963219,
+      "effective_supply": -0.0,
+      "residual": 0.22040226282491565,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.15245951640027366,
+      "signal_oil": -0.04668854832484444,
+      "signal_iron_ore": -0.021254198099797564
+    },
+    {
+      "year": 1989,
+      "total": 0.10641606228730927,
+      "volume": 0.2867714138427486,
+      "distance": -0.04886955870669356,
+      "fleet": 0.00035190529965109876,
+      "effective_supply": -0.0,
+      "residual": -0.22621168026949756,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.13183769814839688,
+      "signal_oil": 0.04521527148166512,
+      "signal_iron_ore": 0.04915871063943557
+    },
+    {
+      "year": 1990,
+      "total": -0.13153690843293894,
+      "volume": -0.05846052234704516,
+      "distance": -0.03584295947432904,
+      "fleet": -0.0660520881968336,
+      "effective_supply": -0.0,
+      "residual": -0.11233180131211895,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.028818661585268857,
+      "signal_oil": 0.06057374850027094,
+      "signal_iron_ore": 0.08057671439711687
+    },
+    {
+      "year": 1991,
+      "total": 0.15737097934632246,
+      "volume": 0.22807793851209077,
+      "distance": -0.027642253344853096,
+      "fleet": -0.10652743577081494,
+      "effective_supply": -0.0,
+      "residual": 0.05457968812352957,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.06346272994989974,
+      "signal_oil": -0.03825088803932852,
+      "signal_iron_ore": 0.04713392986569869
+    },
+    {
+      "year": 1992,
+      "total": -0.28311447270740475,
+      "volume": -0.020189873607494763,
+      "distance": 0.028781797779459196,
+      "fleet": -0.03897963890374146,
+      "effective_supply": -0.0,
+      "residual": -0.23293425097011658,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.2527267579756277,
+      "signal_oil": -0.00879158817753794,
+      "signal_iron_ore": -0.011000918827973202
+    },
+    {
+      "year": 1993,
+      "total": 0.1488544132088438,
+      "volume": 0.12519224166568577,
+      "distance": -0.02586977752971996,
+      "fleet": -0.005812615044645781,
+      "effective_supply": -0.0,
+      "residual": 0.14197008135153033,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.05534456411752377,
+      "signal_oil": -0.029256478898186552,
+      "signal_iron_ore": -0.057369038335819994
+    },
+    {
+      "year": 1994,
+      "total": 0.050965573965571005,
+      "volume": 0.01825534307539242,
+      "distance": 0.011747256293013103,
+      "fleet": -0.12607693295581113,
+      "effective_supply": -0.0,
+      "residual": 0.21870286626964963,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.1470399075529766,
+      "signal_oil": -0.016752368881242916,
+      "signal_iron_ore": -0.05491058983543011
+    },
+    {
+      "year": 1995,
+      "total": 0.29152649088365296,
+      "volume": 0.32368953654908283,
+      "distance": -0.006193134394274527,
+      "fleet": -0.19066749934642857,
+      "effective_supply": -0.0,
+      "residual": 0.13239782489730925,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.16469758807527324,
+      "signal_oil": 0.017316699353505927,
+      "signal_iron_ore": 0.014983063824458055
+    },
+    {
+      "year": 1996,
+      "total": -0.4109017262424188,
+      "volume": 0.03166512150529179,
+      "distance": -0.06457183299839626,
+      "fleet": -0.16155562562523956,
+      "effective_supply": -0.0,
+      "residual": -0.29126771642245575,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.21643938912407473,
+      "signal_oil": 0.04381804410985614,
+      "signal_iron_ore": 0.03101028318852488
+    },
+    {
+      "year": 1997,
+      "total": 0.011421112852346428,
+      "volume": 0.3237944127504121,
+      "distance": -0.0155103115717583,
+      "fleet": -0.13624049502194038,
+      "effective_supply": -0.0,
+      "residual": -0.15239179317232018,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.16062249330436698,
+      "signal_oil": -0.018031506558111,
+      "signal_iron_ore": 0.009800806426064191
+    },
+    {
+      "year": 1998,
+      "total": -0.3466059959158256,
+      "volume": 0.031234176295555457,
+      "distance": 0.005351232325136996,
+      "fleet": -0.021121131400518026,
+      "effective_supply": -0.0,
+      "residual": -0.27972487460238366,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.362070273136,
+      "signal_oil": -0.09370023481523784,
+      "signal_iron_ore": 0.011354836281621513
+    },
+    {
+      "year": 1999,
+      "total": 0.11395327918838812,
+      "volume": -0.02224938021825344,
+      "distance": -0.061479544898673195,
+      "fleet": 0.039757366768841486,
+      "effective_supply": -0.0,
+      "residual": 0.12254858669925678,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.15792483753647327,
+      "signal_oil": 0.07762678061757479,
+      "signal_iron_ore": -0.04225052978035831
+    },
+    {
+      "year": 2000,
+      "total": 0.4097649512792645,
+      "volume": 0.23755901237376484,
+      "distance": 0.010625805526350823,
+      "fleet": -0.039927002618896354,
+      "effective_supply": -0.0,
+      "residual": 0.09397969297294377,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.2015071359980452,
+      "signal_oil": 0.10659268080253353,
+      "signal_iron_ore": 0.000934762222567907
+    },
+    {
+      "year": 2001,
+      "total": -0.2823596338807704,
+      "volume": 0.09772365440057791,
+      "distance": 0.03718090682479783,
+      "fleet": -0.14081311118309175,
+      "effective_supply": -0.0,
+      "residual": -0.26455985794103837,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.2764510839230544,
+      "signal_oil": -0.03384678912416709,
+      "signal_iron_ore": 0.021955563142151045
+    },
+    {
+      "year": 2002,
+      "total": -0.0626878028764929,
+      "volume": 0.1692291918426405,
+      "distance": -0.049463430850707896,
+      "fleet": -0.1061278606681806,
+      "effective_supply": -0.0,
+      "residual": -0.07750405262400352,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.0763257032002449,
+      "signal_oil": 0.005226634704629117,
+      "signal_iron_ore": -0.004048285280870501
+    },
+    {
+      "year": 2003,
+      "total": 0.8312036348427344,
+      "volume": 0.28436691649456264,
+      "distance": 0.034494998978317294,
+      "fleet": -0.09259735176991447,
+      "effective_supply": -0.0,
+      "residual": 0.5392577212537187,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.6049390711397689,
+      "signal_oil": 0.03327523277668421,
+      "signal_iron_ore": 0.03240611710936594
+    },
+    {
+      "year": 2004,
+      "total": 0.5379166808593768,
+      "volume": 0.3492954169338073,
+      "distance": -0.060684761228653475,
+      "fleet": -0.1863643346555213,
+      "effective_supply": -0.0,
+      "residual": 0.2897100115603655,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.43567035980974433,
+      "signal_oil": 0.06566174597394712,
+      "signal_iron_ore": 0.08029860227543169
+    },
+    {
+      "year": 2005,
+      "total": -0.2922589824334311,
+      "volume": 0.33952201356000455,
+      "distance": -0.027578232795147054,
+      "fleet": -0.24365106428141556,
+      "effective_supply": -0.0,
+      "residual": -0.6914746346672964,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.3605516989168731,
+      "signal_oil": 0.08122056136939483,
+      "signal_iron_ore": 0.2497023743810285
+    },
+    {
+      "year": 2006,
+      "total": -0.06164321571549078,
+      "volume": 0.264474468692688,
+      "distance": 0.00023830457580138593,
+      "fleet": -0.2353162810731974,
+      "effective_supply": -0.0,
+      "residual": -0.21098970042460108,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.09103970791078272,
+      "signal_oil": 0.04238075440232053,
+      "signal_iron_ore": 0.07756923811149781
+    },
+    {
+      "year": 2007,
+      "total": 0.7964124246338076,
+      "volume": 0.3442949210759079,
+      "distance": -0.03941371942664161,
+      "fleet": -0.2195360649109868,
+      "effective_supply": -0.0,
+      "residual": 0.5029122083985774,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.7110672878955281,
+      "signal_oil": 0.024454081900061934,
+      "signal_iron_ore": 0.18370099759688874
+    },
+    {
+      "year": 2008,
+      "total": -0.11039261663744201,
+      "volume": 0.24506586230348373,
+      "distance": -0.07181719656672111,
+      "fleet": -0.2535911674829959,
+      "effective_supply": -0.0,
+      "residual": -0.4478886340316407,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.030050114891208707,
+      "signal_oil": 0.06812448228607311,
+      "signal_iron_ore": 0.34971403685435887
+    },
+    {
+      "year": 2009,
+      "total": -0.8923934970521399,
+      "volume": 0.26729434143509107,
+      "distance": 0.010997154950373048,
+      "fleet": -0.30434413253747733,
+      "effective_supply": -0.0,
+      "residual": -0.2802018954611828,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.8663408609001266,
+      "signal_oil": -0.10547591332255232,
+      "signal_iron_ore": -0.4806630521163915
+    },
+    {
+      "year": 2010,
+      "total": 0.052994425201728416,
+      "volume": 0.49050098390640673,
+      "distance": -0.024748634299171787,
+      "fleet": -0.5373157519601567,
+      "effective_supply": -0.0,
+      "residual": -0.23586102697616673,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.12455782755465017,
+      "signal_oil": 0.05842621281067488,
+      "signal_iron_ore": 0.301992641720142
+    },
+    {
+      "year": 2011,
+      "total": -0.599635432454077,
+      "volume": 0.3046757239553661,
+      "distance": -0.02051809345194541,
+      "fleet": -0.6033058666138237,
+      "effective_supply": -0.0,
+      "residual": -0.5000147871793204,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.28048719634367403,
+      "signal_oil": 0.07663451884524958,
+      "signal_iron_ore": 0.14289307199039677
+    },
+    {
+      "year": 2012,
+      "total": -0.46628438909238,
+      "volume": 0.2900206083908701,
+      "distance": -0.06454820744380353,
+      "fleet": -0.4492799406162013,
+      "effective_supply": -0.0,
+      "residual": -0.11092871022496495,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.24247684942324532,
+      "signal_oil": 0.0020905737757925423,
+      "signal_iron_ore": -0.13363871297407293
+    },
+    {
+      "year": 2013,
+      "total": 0.19806242919306374,
+      "volume": 0.3493518909378029,
+      "distance": -0.08170302095165748,
+      "fleet": -0.3042761321566322,
+      "effective_supply": -0.0,
+      "residual": 0.24751568237043967,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.23468969136355053,
+      "signal_oil": -0.006506167193472583,
+      "signal_iron_ore": -0.006319823813416551
+    },
+    {
+      "year": 2014,
+      "total": 0.012213458643580774,
+      "volume": 0.2105277119682689,
+      "distance": -0.05818446929514263,
+      "fleet": -0.19498627964726467,
+      "effective_supply": -0.0,
+      "residual": 0.16354883282355617,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.05485649561771918,
+      "signal_oil": -0.02209277005815752,
+      "signal_iron_ore": -0.08659956714767948
+    },
+    {
+      "year": 2015,
+      "total": -0.48440566382887706,
+      "volume": 0.05987672525674887,
+      "distance": 0.0961511140589684,
+      "fleet": -0.12633413575592523,
+      "effective_supply": -0.0,
+      "residual": -0.0583481293840562,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.5140993673886691,
+      "signal_oil": -0.14701594837372414,
+      "signal_iron_ore": -0.3087352896308888
+    },
+    {
+      "year": 2016,
+      "total": -0.11252708205766665,
+      "volume": 0.13717333777093801,
+      "distance": 0.00024009083652046275,
+      "fleet": -0.08350393366727113,
+      "effective_supply": -0.0,
+      "residual": -0.03095061849723041,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.166436576997854,
+      "signal_oil": -0.03996639368133389,
+      "signal_iron_ore": -0.09551956481928969
+    },
+    {
+      "year": 2017,
+      "total": 0.5306282510621704,
+      "volume": 0.13452076804199856,
+      "distance": 0.00528720081870999,
+      "fleet": -0.10686105389010986,
+      "effective_supply": -0.0,
+      "residual": 0.2734300910494205,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.4976813360915717,
+      "signal_oil": 0.04880503241505529,
+      "signal_iron_ore": 0.1754462126270959
+    },
+    {
+      "year": 2018,
+      "total": 0.18821166718713792,
+      "volume": 0.061843517151813666,
+      "distance": -0.02303775201685687,
+      "fleet": -0.12106583439243639,
+      "effective_supply": -0.0,
+      "residual": 0.2436375599109508,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.2704717364446175,
+      "signal_oil": 0.061779435805627454,
+      "signal_iron_ore": -0.034945259271960724
+    },
+    {
+      "year": 2019,
+      "total": 0.007035048469939768,
+      "volume": -0.002906933758279772,
+      "distance": -0.04431490379658286,
+      "fleet": -0.13115188697731067,
+      "effective_supply": 0.011507921241889277,
+      "residual": 0.0530742213968773,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.17390085176022382,
+      "signal_oil": -0.024137482006955438,
+      "signal_iron_ore": 0.14496411237030196
+    },
+    {
+      "year": 2020,
+      "total": -0.23329164972134694,
+      "volume": -0.08917803117801751,
+      "distance": 0.07991065700828129,
+      "fleet": -0.15006754043108084,
+      "effective_supply": -0.0058602328839061826,
+      "residual": -0.01859339301672297,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.0680965022366237,
+      "signal_oil": -0.09581510445167508,
+      "signal_iron_ore": 0.04631199523177436
+    },
+    {
+      "year": 2021,
+      "total": 0.9964527490710828,
+      "volume": 0.03713849736433718,
+      "distance": -0.004176686785795219,
+      "fleet": -0.14470011053203496,
+      "effective_supply": 0.021860175334990538,
+      "residual": 0.6836939615702515,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 1.0863308736895854,
+      "signal_oil": 0.11791171467007236,
+      "signal_iron_ore": 0.2847251974492615
+    },
+    {
+      "year": 2022,
+      "total": -0.41732074086532367,
+      "volume": -0.019935569685429082,
+      "distance": -0.022908191215381138,
+      "fleet": -0.1291096247526734,
+      "effective_supply": 0.007338995550618264,
+      "residual": -0.1769204576196148,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.2527063507624583,
+      "signal_oil": 0.08053150410269366,
+      "signal_iron_ore": -0.15631739724553714
+    },
+    {
+      "year": 2023,
+      "total": -0.32060165282833136,
+      "volume": 0.16477596441328812,
+      "distance": 0.034394482827394074,
+      "fleet": -0.11901008467314507,
+      "effective_supply": -0.044003670843373435,
+      "residual": -0.262071679431554,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.35675834455249505,
+      "signal_oil": -0.04372048595109336,
+      "signal_iron_ore": -0.050966179169847664
+    },
+    {
+      "year": 2024,
+      "total": 0.2555801141390503,
+      "volume": 0.15161005663244748,
+      "distance": 0.036018323271272086,
+      "fleet": -0.11691864401833016,
+      "effective_supply": -0.026167744151132856,
+      "residual": 0.2016134633909457,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.21103812240479375,
+      "signal_oil": -0.005423865206437315,
+      "signal_iron_ore": 0.014848524220285363
+    },
+    {
+      "year": 2025,
+      "total": -0.09189134107644137,
+      "volume": -0.017140244404722744,
+      "distance": -0.00585660437464621,
+      "fleet": -0.11403383939840937,
+      "effective_supply": -0.026892721023038812,
+      "residual": 0.1905346189571706,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.07203206812437576,
+      "signal_oil": -0.03605307252490074,
+      "signal_iron_ore": -0.0824494783078941
+    }
+  ],
+  "episodes": [
+    {
+      "episode_id": "slump_1980s",
+      "name": "The 1980s slump",
+      "start": 1980,
+      "end": 1986,
+      "description": "From the 1980 average to the 1986 low.",
+      "index_start": 2024.7515601742173,
+      "index_end": 763.151528865648,
+      "proxy_start": true,
+      "proxy_end": true,
+      "total": -0.9757456779592932,
+      "volume": 0.22375514312990333,
+      "distance": 0.08765182091274891,
+      "fleet": -0.8432071247876401,
+      "effective_supply": -0.0,
+      "residual": -0.21516206824412307,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.4439455172143053,
+      "signal_oil": -0.21730247906660552,
+      "signal_iron_ore": -0.01148096990357673,
+      "explained_share": 0.7794896015382613,
+      "explained_share_physical": 0.5450192327340997
+    },
+    {
+      "episode_id": "recovery_to_1995",
+      "name": "Recovery to 1995",
+      "start": 1986,
+      "end": 1995,
+      "description": "From the 1986 low to the 1995 high.",
+      "index_start": 763.151528865648,
+      "index_end": 2069.6318172620768,
+      "proxy_start": true,
+      "proxy_end": true,
+      "total": 0.9976693966613615,
+      "volume": 1.4191931922050276,
+      "distance": -0.1238108073727835,
+      "fleet": -0.4605596097855829,
+      "effective_supply": -0.0,
+      "residual": 0.09929018390852856,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 0.1628466216147002,
+      "signal_oil": 0.033156364243251524,
+      "signal_iron_ore": 0.03040007346292011,
+      "explained_share": 0.9004778694818173,
+      "explained_share_physical": 0.8367729609030243
+    },
+    {
+      "episode_id": "asian_crisis",
+      "name": "Asian financial crisis",
+      "start": 1995,
+      "end": 1999,
+      "description": "The 1997 and 1998 crisis in East Asia.",
+      "index_start": 2069.6318172620768,
+      "index_end": 1099.9199399398774,
+      "proxy_start": true,
+      "proxy_end": true,
+      "total": -0.6321333301175099,
+      "volume": 0.3644443303330062,
+      "distance": -0.13621045714369093,
+      "fleet": -0.279159885278856,
+      "effective_supply": -0.0,
+      "residual": -0.6008357974979037,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.5812073180279692,
+      "signal_oil": 0.00971308335408212,
+      "signal_iron_ore": 0.00991539611585234,
+      "explained_share": 0.049510967272977324,
+      "explained_share_physical": 0.08056213723151395
+    },
+    {
+      "episode_id": "boom_2000s",
+      "name": "The 2000s boom",
+      "start": 2001,
+      "end": 2007,
+      "description": "From the 2001 low to the 2007 annual high.",
+      "index_start": 1249.3741084572173,
+      "index_end": 7182.054268746273,
+      "proxy_start": true,
+      "proxy_end": true,
+      "total": 1.7489427393105041,
+      "volume": 1.7511829285996114,
+      "distance": -0.14240684074703164,
+      "fleet": -1.083592957359216,
+      "effective_supply": -0.0,
+      "residual": 0.3519115534967605,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 1.2237596088171403,
+      "signal_oil": 0.25221901112703776,
+      "signal_iron_ore": 0.6196290441933421,
+      "explained_share": 0.7987861205590432,
+      "explained_share_physical": 0.3002860635108099
+    },
+    {
+      "episode_id": "crash_2008",
+      "name": "The 2008 crash",
+      "start": 2007,
+      "end": 2009,
+      "description": "The financial crisis and the fall in trade.",
+      "index_start": 7182.054268746273,
+      "index_end": 2634.7790811352697,
+      "proxy_start": true,
+      "proxy_end": true,
+      "total": -1.002786113689582,
+      "volume": 0.5123602037385749,
+      "distance": -0.06082004161634866,
+      "fleet": -0.5579353000204739,
+      "effective_supply": -0.0,
+      "residual": -0.7280905294928225,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.8963909757913343,
+      "signal_oil": -0.03735143103647922,
+      "signal_iron_ore": -0.13094901526203256,
+      "explained_share": 0.2739323774499265,
+      "explained_share_physical": 0.10609953253818472
+    },
+    {
+      "episode_id": "delivery_wave",
+      "name": "The delivery wave",
+      "start": 2010,
+      "end": 2016,
+      "description": "Record fleet deliveries after 2009.",
+      "index_start": 2778.1736836883447,
+      "index_end": 650.0,
+      "proxy_start": true,
+      "proxy_end": false,
+      "total": -1.4525766795963562,
+      "volume": 1.3516259982799945,
+      "distance": -0.12856258624706032,
+      "fleet": -1.7616862884571187,
+      "effective_supply": -0.0,
+      "residual": -0.289177730091575,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.9139538031721717,
+      "signal_oil": -0.13685618668564606,
+      "signal_iron_ore": -0.48791988639495065,
+      "explained_share": 0.8009208504077512,
+      "explained_share_physical": 0.37080512443161184
+    },
+    {
+      "episode_id": "boom_2021",
+      "name": "Recovery and the 2021 boom",
+      "start": 2016,
+      "end": 2021,
+      "description": "From the 2016 low to the 2021 high.",
+      "index_start": 650.0,
+      "index_end": 2881.333333333333,
+      "proxy_start": false,
+      "proxy_end": false,
+      "total": 1.489036066068984,
+      "volume": 0.14141781762185207,
+      "distance": 0.013668515227755591,
+      "fleet": -0.6538464262229718,
+      "effective_supply": 0.027507863692973446,
+      "residual": 1.2352424409107772,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": 1.9602882957493748,
+      "signal_oil": 0.10854359643212462,
+      "signal_iron_ore": 0.6165022584064731,
+      "explained_share": 0.17044155675034478,
+      "explained_share_physical": -0.31648140728013674
+    },
+    {
+      "episode_id": "after_2021",
+      "name": "After 2021",
+      "start": 2021,
+      "end": 2025,
+      "description": "Normalisation after the pandemic boom.",
+      "index_start": 2881.333333333333,
+      "index_end": 1622.5833333333333,
+      "proxy_start": false,
+      "proxy_end": false,
+      "total": -0.5742336206310461,
+      "volume": 0.2793102069555831,
+      "distance": 0.04164801050863857,
+      "fleet": -0.4790721928425576,
+      "effective_supply": -0.08972514046692658,
+      "residual": -0.04684405470305236,
+      "elasticity": 3.9116568210369564,
+      "residual_physical": -0.32639450478578363,
+      "signal_oil": -0.004665919579737774,
+      "signal_iron_ore": -0.2748845305029935,
+      "explained_share": 0.9184233506711541,
+      "explained_share_physical": 0.43159980004811127
+    }
+  ]
+}

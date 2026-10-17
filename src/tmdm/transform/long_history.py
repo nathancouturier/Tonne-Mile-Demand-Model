@@ -67,6 +67,10 @@ log = logging.getLogger(__name__)
 
 FIRST_YEAR = comtrade_long.FIRST_YEAR
 UNIT_VALUE_BOUNDS = (5.0, 3000.0)  # US dollars per tonne; weights implying values outside are not used
+# commodity-years where at least this share of partner rows share one unit value have estimated weights
+ESTIMATED_MODAL_SHARE = 0.5
+ESTIMATED_MIN_ROWS = 3
+MIN_VALID_VALUE_SHARE = 0.5  # share of a year's value that rows with usable weights must carry to set its unit value
 
 COMMODITY_OF: dict[str, dict[str, str]] = {
     "HS": {
@@ -157,12 +161,51 @@ def _weights(rec: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def annual_flows(records: pd.DataFrame, partners: dict[int, str | None]) -> pd.DataFrame:
+def benchmark_prices(prices_m: pd.DataFrame) -> pd.DataFrame:
+    """Annual World Bank benchmark prices per commodity group, to carry unit values across years.
+
+    Iron ore (CFR China), Australian coal and, for grains, the geometric mean of US wheat, maize and soybeans.
+    """
+    a = prices_m.groupby(pd.PeriodIndex(prices_m.index).year).mean()
+    out = pd.DataFrame(index=a.index)
+    out["iron_ore"] = a["iron_ore_usd_dmtu"]
+    out["coal"] = a["coal_australia_usd_t"]
+    out["grains"] = np.exp(np.log(a[["wheat_us_hrw_usd_t", "maize_usd_t", "soybeans_usd_t"]]).mean(axis=1))
+    out.index.name = "year"
+    return out
+
+
+def _estimated_weights(rec: pd.DataFrame) -> pd.Series:
+    """Rows of commodity-years whose weights Comtrade estimated from a few standard unit values.
+
+    Measured customs weights give each partner its own unit value. When at least half of a reporter's
+    partner rows for a commodity and year share one unit value (to four significant figures), the weights
+    were estimated, not measured: Canada's 2008 records, for example, put most coal at 70.39 and most wheat
+    at 231.67 dollars a tonne while prices were near their peak. Every row of such a commodity-year,
+    the World total included, is then treated as having no usable weight.
+    """
+    part = rec[~rec["is_world"] & rec["tonnes_reported"].notna()]
+    uv4 = (part["value_usd"] / part["tonnes_reported"]).map(lambda v: float(f"{v:.4g}"))
+    key = [part["unit"], part["cls"], part["cmd"], part["year"]]
+    n = uv4.groupby(key).transform("size")
+    modal = uv4.groupby(key).transform(lambda x: x.value_counts().iloc[0])
+    flagged_rows = part[(n >= ESTIMATED_MIN_ROWS) & (modal / n >= ESTIMATED_MODAL_SHARE)]
+    groups = set(zip(flagged_rows["unit"], flagged_rows["cls"], flagged_rows["cmd"], flagged_rows["year"], strict=True))
+    keys = list(zip(rec["unit"], rec["cls"], rec["cmd"], rec["year"], strict=True))
+    return pd.Series([k in groups for k in keys], index=rec.index, dtype=bool)
+
+
+def annual_flows(
+    records: pd.DataFrame, partners: dict[int, str | None], bench: pd.DataFrame | None = None
+) -> pd.DataFrame:
     """Tidy annual flows: unit, classification, year, origin, destination, commodity, tonnes (with proxies).
 
     A unit is a reporter and flow (for example AUS exports, IND coal imports). Rows without a usable weight
-    get tonnes from value over the unit's value-weighted unit value for the same commodity group and year
-    (interpolated across years if that year has none) and are flagged as proxies.
+    (missing, implying an implausible unit value, or estimated by Comtrade from one unit value) get tonnes
+    from value over the unit's value-weighted unit value for the same commodity group and year, and are
+    flagged as proxies. A year whose usable rows carry less than half the value has no unit value of its
+    own: it is carried from the neighbouring years in proportion to the benchmark price ``bench``
+    (World Bank, annual), or interpolated if no benchmark is given.
     """
     rec = records.copy()
     rec["cls"] = rec["classification"].astype(str)
@@ -183,9 +226,17 @@ def annual_flows(records: pd.DataFrame, partners: dict[int, str | None]) -> pd.D
     rec["origin"] = np.where(is_x, rec["reporterCode"].map(REPORTER_ISO), rec["partner_iso"])
     rec["destination"] = np.where(is_x, rec["partner_iso"], rec["reporterCode"].map(IMPORTER_ISO))
     rec["is_world"] = rec["partnerCode"] == 0
+    rec.loc[_estimated_weights(rec), "tonnes_reported"] = np.nan
     # unit values per unit, classification, year and commodity group from rows with plausible weights
-    valid = rec[rec["tonnes_reported"].notna() & ~rec["is_world"]]
-    uv = valid.groupby(["unit", "cls", "commodity", "year"])[["value_usd", "tonnes_reported"]].sum()
+    key = ["unit", "cls", "commodity", "year"]
+    partners_only = rec[~rec["is_world"]]
+    valid = partners_only[partners_only["tonnes_reported"].notna()]
+    uv = valid.groupby(key)[["value_usd", "tonnes_reported"]].sum()
+    total_value = partners_only.groupby(key)["value_usd"].sum()
+    uv["share"] = uv["value_usd"] / total_value.reindex(uv.index)
+    # a year's unit value is trusted only if rows with usable weights carry most of its value; otherwise a
+    # few odd records would set it (US grains 2000 and 2001, Canadian ores 2008), so it is interpolated
+    uv = uv[uv["share"] >= MIN_VALID_VALUE_SHARE]
     uv = (uv["value_usd"] / uv["tonnes_reported"]).rename("uv").reset_index()
     bounds = rec.groupby(["unit", "cls", "commodity"])["year"].agg(["min", "max"])
     span = {k: (int(v["min"]), int(v["max"])) for k, v in bounds.to_dict(orient="index").items()}
@@ -193,7 +244,15 @@ def annual_flows(records: pd.DataFrame, partners: dict[int, str | None]) -> pd.D
     for _key, g in uv.groupby(["unit", "cls", "commodity"]):
         lo, hi = span[_key]
         years = pd.RangeIndex(lo, hi + 1)
-        s = np.log(g.set_index("year")["uv"]).reindex(years).interpolate(limit_direction="both")
+        log_uv = np.log(g.set_index("year")["uv"]).reindex(years)
+        ref = None
+        if bench is not None and str(_key[2]) in bench.columns:
+            ref = np.log(bench[str(_key[2])]).reindex(years)
+        if ref is not None and ref.notna().all():
+            # interpolate the premium over the benchmark, then add the benchmark back
+            s = (log_uv - ref).interpolate(limit_direction="both") + ref
+        else:
+            s = log_uv.interpolate(limit_direction="both")
         filled.append(
             pd.DataFrame({"unit": _key[0], "cls": _key[1], "commodity": _key[2], "year": years, "uv": np.exp(s.values)})
         )
@@ -402,6 +461,10 @@ def chain_link(sea: pd.DataFrame, available: set[tuple[str, str, int]], first: i
                 continue
             a = totals.get((u, cls, y - 1), (0.0, 0.0))
             b = totals.get((u, cls, y), (0.0, 0.0))
+            if a[0] <= 0 or b[0] <= 0:
+                # no sea-route tonnes on one side (for example destinations not yet disclosed): a ratio would be
+                # an entry or an exit, not a change in trade
+                continue
             den_t += a[0]
             den_tm += a[1]
             num_t += b[0]
@@ -524,7 +587,7 @@ def prices_annual(prices_m: pd.DataFrame) -> pd.DataFrame:
 def run() -> dict[str, Any]:
     """Build the annual long-history panel and its supporting tables; returns a coverage summary."""
     records = comtrade_long.load_records()
-    flows = annual_flows(records, partner_iso())
+    flows = annual_flows(records, partner_iso(), benchmark_prices(worldbank.load()))
     ports_db = portwatch.load_ports()
     port_countries = set(ports_db.loc[ports_db["vessel_count_dry_bulk"] > 0, "ISO3"].astype(str))
     flows["route_class"] = [

@@ -262,24 +262,6 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     out["rolling"] = FIGURES_DIR / "fig2_rolling_attribution.png"
     fig.savefig(out["rolling"], dpi=200)
     plt.close(fig)
-    # Figure 3: route shares
-    shares = res["route_shares"].head(12)
-    fig, ax = plt.subplots(figsize=(7.0, 3.1))
-    names = [_route_name(r) for r in shares.index]
-    cols = [
-        COLORS["volume"] if r.endswith("iron_ore") else COLORS["distance"] if r.endswith("coal") else COLORS["fleet"]
-        for r in shares.index
-    ]
-    ax.barh(range(len(shares))[::-1], shares.to_numpy() * 100, color=cols, height=0.7)
-    ax.set_yticks(range(len(shares))[::-1], names, fontsize=7.8)
-    ax.set_xlabel("Share of covered tonne-miles, last twelve months (percent)")
-    for i, v in enumerate(shares.to_numpy()[::-1] * 100):
-        ax.text(v + 0.3, i, f"{v:.1f}", va="center", fontsize=7.5, color="#4f4c45")
-    ax.grid(axis="y", visible=False)
-    fig.tight_layout()
-    out["routes"] = FIGURES_DIR / "fig3_route_shares.png"
-    fig.savefig(out["routes"], dpi=200)
-    plt.close(fig)
     # Figure 4: episode waterfall table as bars
     eps = res["episodes"]
     fig, ax = plt.subplots(figsize=(7.0, 2.6 + 0.25 * len(eps)))
@@ -301,7 +283,7 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     ax.grid(axis="y", visible=False)
     ax.legend(frameon=False, fontsize=7.2, ncol=3, loc="lower right")
     fig.tight_layout()
-    out["episodes"] = FIGURES_DIR / "fig4_episodes.png"
+    out["episodes"] = FIGURES_DIR / "fig3_episodes.png"
     fig.savefig(out["episodes"], dpi=200)
     plt.close(fig)
     # Figure 5: annual decomposition since 1980 (long history)
@@ -335,7 +317,7 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
         ax.set_ylabel("Log points, annual change")
         ax.legend(frameon=False, fontsize=6.8, ncol=4, loc="lower left")
         fig.tight_layout()
-        out["long"] = FIGURES_DIR / "fig5_long_history.png"
+        out["long"] = FIGURES_DIR / "fig4_long_history.png"
         fig.savefig(out["long"], dpi=200)
         plt.close(fig)
     return out
@@ -426,7 +408,7 @@ def _long_text(res: dict[str, Any]) -> str:
                 f" In {label} ({ep['start']} to {ep['end']}, {_lp(ep['total'])} log points) volume contributed {_lp(ep['volume'])}, haul {_lp(ep['distance'])}, fleet {_lp(ep['fleet'])}, the price signals {_lp(sig)} and the residual {_lp(ep['residual'])}."
             )
     parts.append(
-        " Figure 5 shows every year; the proxy years are shaded, and annual averages smooth moves within a year."
+        " Figure 4 shows every year; the proxy years are shaded, and annual averages smooth moves within a year."
     )
     return "".join(parts)
 
@@ -760,13 +742,6 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             st["caption"],
         )
     )
-    story.append(Image(str(figs["routes"]), width=width, height=width * 3.1 / 7.0))
-    story.append(
-        Paragraph(
-            "Figure 4. The twelve largest routes by tonne-miles in the last twelve months of the panel; blue iron ore, orange coal, green grains and soybeans.",
-            st["caption"],
-        )
-    )
     if n["has_signals"]:
         story.append(Paragraph("Market signals", st["h2"]))
         o = n["oos"]
@@ -802,7 +777,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
         story.append(Image(str(figs["long"]), width=width, height=width * 2.7 / 7.0))
         story.append(
             Paragraph(
-                "Figure 5. Annual change in the log of the annual average index (line) and its attribution (bars), log points. Shaded years use the Kilian-based proxy for the index. Sources: UN Comtrade (annual), UNCTADstat, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
+                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points. Shaded years use the Kilian-based proxy for the index. Sources: UN Comtrade (annual), UNCTADstat, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
                 st["caption"],
             )
         )
