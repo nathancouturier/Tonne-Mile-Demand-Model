@@ -228,6 +228,85 @@ def main() -> int:
         check(
             "minor bulks, tonne-miles relative to the major bulks", ext["minor_bulks"]["minor_tonne_miles_share"], share
         )
+    # 15. Long history (when built): annual index, proxy, fleet, a raw customs total and the adding-up
+    long_path = SITE / "long.json"
+    if long_path.exists():
+        lg = json.loads(long_path.read_text())
+        lp = lg["panel"]
+        cal = lg["freight"]["calibration"]
+        bdi_m = bdi_raw.copy()
+        bdi_m.index = pd.PeriodIndex(bdi_m.index, freq="M")
+        y_bdi = next(y for y in lp["year"] if not lp["proxy"][lp["year"].index(y)] and y < lp["year"][-1])
+        check(
+            f"long history, annual index {y_bdi} (BDI mean of the raw months)",
+            lp["index"][lp["year"].index(y_bdi)],
+            float(bdi_m[bdi_m.index.year == y_bdi].mean()),
+            1e-3,
+        )
+        # proxy year recomputed from the raw Kilian workbook values, the raw CPI and the published calibration
+        kil = pd.read_csv(RAW / "dallasfed_kilian_index" / "kilian_index_monthly.csv")
+        cpi = pd.read_csv(RAW / "oecd_cpi_usa" / "cpi_usa_monthly.csv")
+        m = kil.merge(cpi, on="month")
+        m["p"] = pd.PeriodIndex(m["month"], freq="M")
+        y_px = 2005 if 2005 in lp["year"] else lp["year"][0]
+        sub = m[m["p"].dt.year == y_px]
+        tau = (sub["p"].dt.year - 2000) * 12 + sub["p"].dt.month - 1
+        proxy = (
+            cal["intercept"] + cal["trend_per_month"] * tau + sub["kilian_index"] / 100 + sub["cpi"].map(math.log)
+        ).map(math.exp)
+        check(
+            f"long history, proxy index {y_px} (raw Kilian, raw CPI, calibration)",
+            lp["index"][lp["year"].index(y_px)],
+            float(proxy.mean()),
+            1e-3,
+        )
+        # calendar-year fleet: mean of the raw UNCTAD 1 January values of the year and the next
+        y_f = lp["year"][len(lp["year"]) // 2]
+        f0 = float(w.loc[w["Year"] == y_f, "Dead weight tons in thousands"].iloc[0])
+        f1 = float(w.loc[w["Year"] == y_f + 1, "Dead weight tons in thousands"].iloc[0])
+        check(f"long history, fleet {y_f} (Mdwt)", lp["fleet_mdwt"][lp["year"].index(y_f)], (f0 + f1) / 2 / 1000, 1e-3)
+        # Australia's World exports in SITC Revision 2, 1985 (all mapped codes), raw gzip records vs coverage table
+        lr = pd.concat(
+            [
+                pd.read_csv(f, dtype={"cmdCode": str, "period": str}, compression="gzip")
+                for f in (RAW / "un_comtrade_long").glob("records*.csv.gz")
+            ]
+        )
+        codes = {"281", "3221", "3222", "3223", "041", "043", "044", "045", "2222"}
+        raw = lr[
+            (lr["classification"] == "S2")
+            & (lr["reporterCode"] == 36)
+            & (lr["period"] == "1985")
+            & (lr["partnerCode"] == 0)
+            & (lr["flowCode"] == "X")
+            & lr["cmdCode"].isin(codes)
+        ]
+        cov = pd.read_csv(PROC / "long_coverage_annual.csv")
+        row = cov[(cov["unit"] == "AUS_X") & (cov["cls"] == "S2") & (cov["year"] == 1985)]
+        if not raw.empty and not row.empty:
+            check(
+                "long history, Australia World exports 1985, SITC Rev. 2 (Mt)",
+                float(row["world_tonnes"].iloc[0]) / 1e6,
+                float(pd.to_numeric(raw["netWgt"]).sum()) / 1e9,
+                1e-6,
+            )
+        att = lg["attribution"]
+        keys = [k for k in att if k not in ("year", "total", "elasticity", "residual_physical")]
+        last = len(att["year"]) - 1
+        check(
+            "long history, latest annual attribution adds up",
+            sum(att[k][last] for k in keys),
+            att["total"][last],
+            1e-3,
+            abs_tol=5e-5 * len(keys),
+        )
+        for ep in lg["episodes"]:
+            check(
+                f"long history, episode total {ep['episode_id']}",
+                ep["total"],
+                math.log(ep["index_end"] / ep["index_start"]),
+                1e-9,
+            )
     bad = 0
     for name, sv, rv, rel, ok in results:
         print(f"{'OK  ' if ok else 'FAIL'} {name}: site={sv:,.4f} raw={rv:,.4f} rel_diff={rel:.2e}")

@@ -190,6 +190,116 @@
     notes.append(C.el("p", null, "Because freight rates respond to the balance between demand and supply, the cargo volume, haul, fleet and port-time effects are all scaled by the same elasticity. The residual collects everything else: speed changes, bunker prices, sentiment, contract timing and measurement error in the inputs."));
   }
 
+  /* ---------------------------------------------------------------- since 1980 (annual long history) */
+  function renderHistory() {
+    const L = D.long, P = L.panel, p = C.palette();
+    const yr = (y) => new Date(Date.UTC(y, 6, 1));
+    const xf = (d) => String(d.getUTCFullYear());
+    const n = P.year.length, y0 = P.year[0], y1 = P.year[n - 1];
+    const cal = L.freight.calibration || {};
+    const firstBdi = cal.first_bdi_year;
+    const rel = (arr) => arr.map((v) => (v / arr[0]) * 100);
+    const idx = rel(P.index), tm = rel(P.tonne_miles_bn), tn = rel(P.tonnes_mt), fl = rel(P.fleet_mdwt);
+    const mult = (arr) => d3.format(".1f")(arr[arr.length - 1] / arr[0]);
+    const iMax = d3.maxIndex(P.index), iMin = d3.minIndex(P.index);
+    const srcIds = ["un_comtrade_long", "dallasfed_kilian_index", "oecd_cpi_usa", "asub_baltic_dry_index", "unctadstat_maritime"];
+    text("#history-lede", `Annual data put the monthly panel in a longer context: ${n} years from ${y0} to ${y1}, built from the annual customs records of the main exporters for every partner, the UNCTAD bulk carrier fleet, and a freight index that is the Baltic Dry Index from ${firstBdi} and, before, a proxy calibrated on the years where both exist (explained below). Values are calendar-year averages.`);
+    const proxySeg = P.year.map((y, i) => ({ x: yr(y), y: P.proxy[i] || (i > 0 && P.proxy[i - 1]) ? idx[i] : null }));
+    const bdiSeg = P.year.map((y, i) => ({ x: yr(y), y: P.proxy[i] ? null : idx[i] }));
+    C.lineChart("#chart-long-levels", {
+      title: `From ${y0} to ${y1} tonne-miles on the covered trades rose ${mult(tm)}-fold and the bulk carrier fleet ${mult(fl)}-fold; the freight index ranged from ${fmt.int(P.index[iMin])} in ${P.year[iMin]} to ${fmt.int(P.index[iMax])} in ${P.year[iMax]}`,
+      subtitle: `Index, ${y0} = 100, annual averages, log scale. The freight index is a calibrated proxy before ${firstBdi} (shaded, dashed) and the Baltic Dry Index after. Tonnes and tonne-miles are chain-linked across reporters and classifications.`,
+      source: sourceLine("UN Comtrade annual records (tonnes), this project (distances, chain-linking), UNCTADstat (fleet), Federal Reserve Bank of Dallas and OECD (proxy), ASUB (index)", srcIds),
+      series: [
+        { key: "bdi", label: "Baltic Dry Index", color: p.accent, values: bdiSeg },
+        { key: "proxy", label: "Freight index proxy (Kilian-based)", color: p.accent, dashed: true, values: proxySeg },
+        { key: "tm", label: "Tonne-miles", color: p.s2, values: P.year.map((y, i) => ({ x: yr(y), y: tm[i] })) },
+        { key: "t", label: "Tonnes", color: p.s1, values: P.year.map((y, i) => ({ x: yr(y), y: tn[i] })) },
+        { key: "fleet", label: "Fleet (dwt)", color: p.s3, values: P.year.map((y, i) => ({ x: yr(y), y: fl[i] })) },
+      ],
+      bands: firstBdi > y0 ? [{ from: yr(y0), to: yr(firstBdi), label: "proxy" }] : [],
+      yScale: "log", yFormat: ",.0f", yLabel: `Index, ${y0} = 100 (log scale)`, height: 360, valueFormat: fmt.f1, xFormat: xf, xLabel: "Year",
+    });
+    // annual attribution
+    const A = L.attribution;
+    const sigDefs = (L.signals.definitions || []).map((s, i) => ({ key: `signal_${s.name}`, label: `${s.label} (market signal)`, short: s.label, color: C.palette()[SIGNAL_SLOTS[i % SIGNAL_SLOTS.length]] }));
+    const comps = [...PHYSICAL.map((c) => ({ key: c.key, label: c.label, color: c.color() })), ...sigDefs, { key: RESIDUAL.key, label: RESIDUAL.label, color: RESIDUAL.color() }];
+    const data = A.year.map((y, i) => { const d = { x: yr(y), label: `${y - 1} to ${y}`, total: A.total[i] }; comps.forEach((c) => { d[c.key] = A[c.key] ? A[c.key][i] : 0; }); return d; });
+    const meanAbs = (arr) => d3.mean(arr, (v) => Math.abs(v));
+    const agree = d3.mean(A.total.map((t, i) => (Math.sign(t - A.residual[i]) === Math.sign(t) ? 1 : 0)));
+    const e = L.elasticity;
+    C.stackedBars("#chart-long-attribution", {
+      title: `Year by year, the four forces and the two price signals give the direction of ${fmt.pctPlain(agree)} of annual moves; the residual averages ${fmt.f2(meanAbs(A.residual))} log points against a typical annual move of ${fmt.f2(meanAbs(A.total))}`,
+      subtitle: `Change in the log of the annual average index from the previous year (line) and its attribution (bars), log points. Elasticity ${d3.format(".2f")(e.elasticity)} (standard error ${d3.format(".2f")(e.std_error)}), estimated on ${e.n_obs} annual changes.`,
+      source: sourceLine("this project's annual decomposition", srcIds),
+      components: comps, total: { key: "total", label: "Change in log index", color: p.ink }, data, yLabel: "Log points", height: 360,
+    });
+    // episodes
+    const ep = $("#history-episodes");
+    ep.innerHTML = "";
+    ep.append(C.el("h3", null, "Four decades of episodes"));
+    const wrap = C.el("div", "table-wrap full");
+    C.dataTable(wrap, [
+      { key: "name", label: "Episode" }, { key: "window", label: "Years" },
+      { key: "total", label: "Total (log points)", num: true, format: fmt.lp },
+      { key: "volume", label: "Volume", num: true, format: fmt.lp }, { key: "distance", label: "Haul", num: true, format: fmt.lp },
+      { key: "fleet", label: "Fleet", num: true, format: fmt.lp }, { key: "effective_supply", label: "Port time", num: true, format: fmt.lp },
+      ...sigDefs.map((c) => ({ key: c.key, label: `${c.short.split(",")[0]} (signal)`, num: true, format: fmt.lp })),
+      { key: "residual", label: "Residual", num: true, format: fmt.lp }, { key: "explained_txt", label: "Explained", num: true }, { key: "explained_physical_txt", label: "Physical only", num: true },
+    ], L.episodes.map((x) => ({ ...x, name: `${x.name}${x.proxy_start || x.proxy_end ? " *" : ""}`, window: `${x.start} to ${x.end}`, explained_txt: shareText(x.explained_share, x.total), explained_physical_txt: shareText(x.explained_share_physical, x.total) })));
+    ep.append(wrap);
+    const best = L.episodes.reduce((a, b) => (Math.abs(b.total) > Math.abs(a.total) ? b : a), L.episodes[0]);
+    const fleetEp = L.episodes.reduce((a, b) => (b.fleet < a.fleet ? b : a), L.episodes[0]);
+    ep.append(C.el("p", null, `Each row compares the annual averages of two years. The largest move in the table is ${lcFirst(best.name)} (${signed(best.total, 2)} log points); the strongest drag from fleet growth is in ${lcFirst(fleetEp.name)} (${signed(fleetEp.fleet, 2)}). Rows marked * use the proxy index for at least one endpoint. Annual averages smooth moves inside a year: the 2008 peak and collapse, for example, both fall within 2008. The explained share is shown as n/m when the move is smaller than 0.10 log points.`));
+    // proxy against the index
+    const F = L.freight;
+    const fy = F.year.filter((y) => y >= y0 && y <= y1);
+    const at = (arr, y) => arr[F.year.indexOf(y)];
+    C.lineChart("#chart-long-proxy", {
+      title: `Where both exist (${cal.overlap_window ? cal.overlap_window.map((m) => m.slice(0, 4)).join(" to ") : ""}), the calibrated proxy tracks the Baltic Dry Index: annual changes correlate at ${d3.format(".3f")(cal.annual_change_corr)} with a mean gap of ${fmt.f2(cal.annual_change_mean_abs_error)} log points`,
+      subtitle: `Annual averages, index points (1985 = 1,000), log scale. The proxy is the Kilian index of dry cargo freight rates (real, detrended), converted back to nominal terms with US consumer prices and a trend estimated on the overlap (${signed(cal.trend_per_year * 100, 1)} percent a year).`,
+      source: sourceLine("Federal Reserve Bank of Dallas (Kilian index), OECD (US CPI), ASUB (Baltic Dry Index), this project (calibration)", ["dallasfed_kilian_index", "oecd_cpi_usa", "asub_baltic_dry_index"]),
+      series: [
+        { key: "bdi", label: "Baltic Dry Index", color: p.accent, values: fy.map((y) => ({ x: yr(y), y: at(F.bdi, y) })) },
+        { key: "proxy", label: "Kilian-based proxy", color: p.s2, dashed: true, values: fy.map((y) => ({ x: yr(y), y: at(F.kilian_proxy, y) })) },
+      ],
+      yScale: "log", yFormat: ",.0f", yLabel: "Index points (log scale)", height: 300, valueFormat: fmt.int, xFormat: xf, xLabel: "Year",
+    });
+    // coverage
+    const V = L.coverage;
+    const cy = V.year.filter((y) => y >= y0 && y <= y1);
+    const vat = (arr, y) => arr[V.year.indexOf(y)];
+    const share = (y) => vat(V.sea_mt, y) / vat(V.world_mt, y);
+    C.lineChart("#chart-long-coverage", {
+      title: `Sea routes to every partner carry ${fmt.pctPlain(share(cy[cy.length - 1]))} of the covered exporters' world exports in ${cy[cy.length - 1]} and ${fmt.pctPlain(share(cy[0]))} in ${cy[0]}; the rest goes to land neighbours or countries without a dry bulk port`,
+      subtitle: "Million tonnes a year, exporter-reported records (HS where available, SITC Revision 2 before). The number of reporters grows over time; changes are chain-linked on the reporters present in both years.",
+      source: sourceLine("UN Comtrade annual records, this project (route classification)", ["un_comtrade_long", "imf_portwatch"]),
+      series: [
+        { key: "world", label: "World exports of the covered reporters", color: p.ink, values: cy.map((y) => ({ x: yr(y), y: vat(V.world_mt, y) })) },
+        { key: "sea", label: "Sea routes in the model", color: p.s2, values: cy.map((y) => ({ x: yr(y), y: vat(V.sea_mt, y) })) },
+        { key: "land", label: "Land neighbours (left out)", color: p.s4, values: cy.map((y) => ({ x: yr(y), y: vat(V.land_mt, y) })) },
+        { key: "proxy", label: "Estimated from unit values", color: p.neutral, dashed: true, values: cy.map((y) => ({ x: yr(y), y: vat(V.proxy_mt, y) })) },
+      ],
+      yZero: true, yFormat: ",.0f", yLabel: "Million tonnes", height: 300, valueFormat: fmt.f1, xFormat: xf, xLabel: "Year",
+    });
+    // notes
+    const notes = $("#history-notes");
+    notes.innerHTML = "";
+    const add = (tag, t) => notes.append(C.el(tag, null, t));
+    const names = { AUS_X: "Australia", BRA_X: "Brazil", IDN_X: "Indonesia", ZAF_X: "South Africa", USA_X: "United States", CAN_X: "Canada", UKR_X: "Ukraine", ARG_X: "Argentina", COL_X: "Colombia" };
+    const late = V.units.filter((u) => u.first > y0 && names[u.unit]).map((u) => `${names[u.unit]} from ${u.first}`);
+    add("h3", "How the annual series are built");
+    add("p", `Tonnes come from the annual UN Comtrade records of the exporters in the monthly panel, for every partner, in SITC Revision 2 until the mid-1990s and in HS afterwards, plus Russian and Mozambican coal from Indian and Japanese import records. Exports to land neighbours and to countries without a dry bulk port are left out because customs data do not separate sea from rail and road. Each route's distance uses the named loading and discharge ports where the monthly model defines them and otherwise the three ports of each country with the most dry bulk calls in the IMF PortWatch ports table (${fmt.int(V.routes)} routes, ${fmt.int(V.routes_named_ports)} with named ports at both ends). Reporters enter the record in different years${late.length ? ` (${late.join(", ")})` : ""} and the classification changes from SITC to HS, so each year's change is measured on the reporters present in both years, within one classification, and the changes are chained. A reporter's arrival therefore never shows up as a jump. Weights that are missing or imply an implausible unit value are estimated from the reporter's unit value for the same commodity group and year.`);
+    add("h3", "The freight index before " + firstBdi);
+    add("p", `No public Baltic Dry Index series before ${firstBdi} was found (the public ASUB table starts in ${firstBdi}). The proxy is the Kilian index of global real economic activity, published by the Federal Reserve Bank of Dallas, which is built from single-voyage dry cargo ocean freight rates, deflated by US consumer prices and expressed as a deviation from a linear trend. It is converted back to nominal terms with the US consumer price index and calibrated on the ${cal.overlap_months} months where both series exist: log BDI = a + b t + Kilian / 100 + log CPI. On that overlap the monthly levels correlate at ${d3.format(".2f")(cal.monthly_level_corr)} and annual changes at ${d3.format(".3f")(cal.annual_change_corr)}, with a mean gap of ${fmt.f2(cal.annual_change_mean_abs_error)} and a largest gap of ${fmt.f2(cal.annual_change_max_abs_error)} log points. The proxy is a substitute, not the Baltic Dry Index: the freight rates behind it and the index weights differ, and the trend is estimated on fifteen years only.`);
+    const o = L.signals.out_of_sample || {};
+    const f = L.signals.fit || {};
+    const rb = L.robustness || {};
+    add("h3", "What the annual model says");
+    add("p", `On annual changes the elasticity is ${d3.format(".2f")(e.elasticity)} (standard error ${d3.format(".2f")(e.std_error)}, R squared ${fmt.pctPlain(e.r_squared)} over ${e.n_obs} years)` + (rb.proxy_years && rb.bdi_years ? `, ${d3.format(".2f")(rb.proxy_years.elasticity)} on the proxy years and ${d3.format(".2f")(rb.bdi_years.elasticity)} on the Baltic Dry Index years` : "") + `. The four forces leave ${fmt.pctPlain(f.unexplained_physical)} of a typical annual move unexplained; with the two price signals (coefficients ${Object.entries(f.coefficients || {}).map(([k, v]) => `${k.replace("_", " ")} ${d3.format(".2f")(v)}`).join(", ")}) ${fmt.pctPlain(f.unexplained_extended)}.` + (o.available ? ` Out of sample, refitting every coefficient each year on the years before it (${o.n_years} years from ${o.first_year} to ${o.last_year}), the unexplained share is ${fmt.pctPlain(o.unexplained.physical)} with the forces alone and ${fmt.pctPlain(o.unexplained.extended)} with the signals.` : ""));
+    add("p", "Port time enters only from 2019, when PortWatch data begin; before, congestion is in the residual. Russian exporter records are not used (Russia reports from 1996 and stopped in 2022). Annual averages smooth the short, violent swings of the index, so the annual model explains more of each move than the monthly one but says nothing about timing within a year.");
+  }
+
   /* ---------------------------------------------------------------- decomposition */
   function attributeBetween(startM, endM) {
     // recompute from the panel series with 3-month trailing averages, mirroring the Python model
@@ -302,7 +412,7 @@
       ...(hasSignals() ? [{ key: "explained_physical_txt", label: "Physical only", num: true }] : []),
     ], eps.map((e) => ({ ...e, window: `${fmt.month(e.start)} to ${fmt.month(e.end)}`, explained_txt: shareText(e.explained_share, e.total), explained_physical_txt: shareText(e.explained_share_physical, e.total) })));
     notes.append(wrap);
-    notes.append(C.el("p", null, "Episodes before the start of the monthly panel are not shown because the customs data that build the tonne-mile series begin later than the index. The explained share can exceed 100 percent when the residual has the opposite sign to the move; it is shown as n/m (not meaningful) when the move is smaller than 0.10 log points. Episodes shorter than twelve months compare endpoints in different seasons; cargo volumes are seasonal, so their volume effect includes seasonal movement."));
+    notes.append(C.el("p", null, (D.long ? "Episodes before the start of the monthly panel are in the Since 1980 section, on annual data. " : "Episodes before the start of the monthly panel are not shown because the customs data that build the tonne-mile series begin later than the index. ") + "The explained share can exceed 100 percent when the residual has the opposite sign to the move; it is shown as n/m (not meaningful) when the move is smaller than 0.10 log points. Episodes shorter than twelve months compare endpoints in different seasons; cargo volumes are seasonal, so their volume effect includes seasonal movement."));
   }
 
   /* ---------------------------------------------------------------- routes */
@@ -611,6 +721,7 @@
 
   /* ---------------------------------------------------------------- views */
   const RENDERERS = { overview: renderOverview, decomposition: renderDecomposition, routes: renderRoutes, fleet: renderFleet, methodology: renderMethodology, downloads: renderDownloads };
+  const enableHistory = () => { RENDERERS.history = renderHistory; const b = document.querySelector('[data-view="history"]'); if (b) b.hidden = false; };
 
   async function showView(name, push) {
     const buttons = document.querySelectorAll(".view-buttons button");
@@ -632,6 +743,7 @@
       const loaded = await Promise.all(names.map(loadJSON));
       names.forEach((n, i) => { D[n] = loaded[i]; });
       D.land = await (await fetch("assets/vendor/land-110m.json")).json();
+      try { D.long = await loadJSON("long"); enableHistory(); } catch (e) { D.long = null; }
     } catch (e) {
       console.error(e);
       text("#meta-line", "The data files for this page could not be loaded. Run the pipeline (make all) to generate them.");

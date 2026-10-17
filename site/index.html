@@ -24,6 +24,7 @@
   <p class="views-label">Open a section</p>
   <div class="view-buttons" role="tablist">
     <button type="button" role="tab" data-view="overview" aria-selected="false" aria-controls="panel-overview">Overview</button>
+    <button type="button" role="tab" data-view="history" aria-selected="false" aria-controls="panel-history" hidden>Since 1980</button>
     <button type="button" role="tab" data-view="decomposition" aria-selected="false" aria-controls="panel-decomposition">Decomposition explorer</button>
     <button type="button" role="tab" data-view="routes" aria-selected="false" aria-controls="panel-routes">Routes</button>
     <button type="button" role="tab" data-view="fleet" aria-selected="false" aria-controls="panel-fleet">Fleet and supply</button>
@@ -56,6 +57,16 @@
     <figure class="chart-card" id="chart-levels"></figure>
     <figure class="chart-card" id="chart-rolling"></figure>
     <div class="prose" id="overview-notes"></div>
+  </section>
+
+  <section class="panel" id="panel-history" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Since 1980</h2><p class="lede" id="history-lede"></p></header>
+    <figure class="chart-card" id="chart-long-levels"></figure>
+    <figure class="chart-card" id="chart-long-attribution"></figure>
+    <div class="prose" id="history-episodes"></div>
+    <figure class="chart-card" id="chart-long-proxy"></figure>
+    <figure class="chart-card" id="chart-long-coverage"></figure>
+    <div class="prose" id="history-notes"></div>
   </section>
 
   <section class="panel" id="panel-decomposition" role="tabpanel" hidden>
@@ -107,7 +118,7 @@
 </main>
 
 <footer class="colophon">
-  <p id="colophon-text">Built from public data by an automated pipeline. Sources: Statistics and Research Aland (Baltic Dry Index), UN Comtrade, Brazil Comex Stat (MDIC), IMF PortWatch, UNCTADstat, US NGA World Port Index, World Bank Pink Sheet, OECD leading indicators. Distances computed on a maritime routing network.</p>
+  <p id="colophon-text">Built from public data by an automated pipeline. Sources: Statistics and Research Aland (Baltic Dry Index), UN Comtrade, Brazil Comex Stat (MDIC), IMF PortWatch, UNCTADstat, US NGA World Port Index, World Bank Pink Sheet, OECD (leading indicators, US consumer prices), Federal Reserve Bank of Dallas (Kilian freight index). Distances computed on a maritime routing network.</p>
   <p><a href="https://github.com/nathancouturier/Tonne-Mile-Demand-Model">Source code and data on GitHub</a></p>
 </footer>
 

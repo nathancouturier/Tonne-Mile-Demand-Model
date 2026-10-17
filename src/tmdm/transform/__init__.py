@@ -15,6 +15,8 @@ Outputs (all under ``data/processed``):
 * ``signals_monthly.csv``: monthly commodity prices and leading indicators used as market signals.
 * ``minor_bulks_monthly.csv``, ``minor_bulk_flows_monthly.csv``, ``minor_bulk_routes.csv``, ``minor_bulk_ports.csv``:
   tonnes and tonne-miles of the minor bulks (an extension tested against the headline model, not part of the panel).
+* ``long_panel_annual.csv`` and the other ``long_*`` files: the annual panel since 1980 for the long-history
+  decomposition (see :mod:`tmdm.transform.long_history`).
 """
 
 from __future__ import annotations
@@ -203,6 +205,29 @@ def minor_bulks_or_skip(diversion: pd.DataFrame) -> dict[str, object]:
         return {"error": str(exc)}
 
 
+LONG_FILES = (
+    "long_panel_annual.csv",
+    "long_freight_annual.csv",
+    "long_route_distances.csv",
+    "long_prices_annual.csv",
+    "long_coverage_annual.csv",
+    "long_route_flows_annual.csv",
+    "long_coverage.json",
+)
+
+
+def long_history_or_skip() -> None:
+    """Build the long-history panel; on failure remove its outputs so no stale panel is modelled."""
+    from tmdm.transform import long_history
+
+    try:
+        long_history.run()
+    except (LookupError, ValueError, FileNotFoundError, KeyError) as exc:
+        log.warning("long history skipped: %s", exc)
+        for name in LONG_FILES:
+            (PROCESSED_DIR / name).unlink(missing_ok=True)
+
+
 def run() -> None:
     """Build all processed series."""
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
@@ -283,6 +308,8 @@ def run() -> None:
         "minor_bulks": minor,
     }
     (PROCESSED_DIR / "coverage.json").write_text(json.dumps(cov, indent=2))
+    # Long history (annual, since 1980); never allowed to stop the monthly build
+    long_history_or_skip()
     log.info(
         "panel: %s to %s (%d months, %d routes)", panel["month"].min(), panel["month"].max(), len(panel), cov["routes"]
     )

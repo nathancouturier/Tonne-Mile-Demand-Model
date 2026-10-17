@@ -11,6 +11,7 @@ Reads ``data/processed/panel_monthly.csv`` and writes:
 * ``haul_split_rolling.csv``: trade-mix versus rerouting split of the haul effect.
 * ``model_signals.json``: market-signal coefficients and the out-of-sample comparison.
 * ``model_extensions.json``: extensions tested against the headline (minor bulks, leading indicators).
+* ``model_long.json``, ``long_attribution_annual.csv``: the annual decomposition since 1980.
 """
 
 from __future__ import annotations
@@ -51,6 +52,30 @@ def load_minor_bulks() -> pd.DataFrame | None:
     df = pd.read_csv(path)
     df["month"] = pd.PeriodIndex(df["month"], freq="M")
     return df
+
+
+def run_long() -> None:
+    """Annual long-history model, when the transform stage has built its panel."""
+    from tmdm.model.long_history import run_long_model
+
+    path = PROCESSED_DIR / "long_panel_annual.csv"
+    out_path = PROCESSED_DIR / "model_long.json"
+    if not path.exists():
+        out_path.unlink(missing_ok=True)
+        (PROCESSED_DIR / "long_attribution_annual.csv").unlink(missing_ok=True)
+        return
+    panel = pd.read_csv(path)
+    prices = pd.read_csv(PROCESSED_DIR / "long_prices_annual.csv").set_index("year")
+    out = run_long_model(panel, prices)
+    out_path.write_text(json.dumps(_json_ready(out), indent=2))
+    pd.DataFrame(out["annual"]).to_csv(PROCESSED_DIR / "long_attribution_annual.csv", index=False)
+    log.info(
+        "long model: %d to %d, elasticity %.2f (se %.2f)",
+        int(panel["year"].min()),
+        int(panel["year"].max()),
+        out["elasticity"]["elasticity"],
+        out["elasticity"]["std_error"],
+    )
 
 
 def load_panel() -> pd.DataFrame:
@@ -110,6 +135,7 @@ def run() -> None:
     if prices is not None:
         ext = run_extensions(panel, prices, load_minor_bulks(), HORIZON, WINDOW)
         (PROCESSED_DIR / "model_extensions.json").write_text(json.dumps(_json_ready(ext), indent=2))
+    run_long()
     (PROCESSED_DIR / "model_elasticity.json").write_text(
         json.dumps(
             {

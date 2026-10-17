@@ -156,6 +156,10 @@ def load_results() -> dict[str, Any]:
     signals = json.loads(sig_path.read_text()) if sig_path.exists() else {}
     ext_path = PROCESSED_DIR / "model_extensions.json"
     extensions = json.loads(ext_path.read_text()) if ext_path.exists() else {}
+    long_path = PROCESSED_DIR / "model_long.json"
+    long_model = json.loads(long_path.read_text()) if long_path.exists() else {}
+    long_panel = pd.read_csv(PROCESSED_DIR / "long_panel_annual.csv") if long_model else None
+    long_meta = json.loads((PROCESSED_DIR / "long_coverage.json").read_text()) if long_model else {}
     validation = json.loads((PROCESSED_DIR / "validation_report.json").read_text())
     by_route = pd.read_csv(PROCESSED_DIR / "tonne_miles_by_route.csv")
     fleet = pd.read_csv(PROCESSED_DIR / "fleet_annual.csv")
@@ -171,6 +175,9 @@ def load_results() -> dict[str, Any]:
         "diff_reg": diff_reg,
         "signals": signals,
         "extensions": extensions,
+        "long": long_model,
+        "long_panel": long_panel,
+        "long_meta": long_meta,
         "validation": validation,
         "by_route": by_route,
         "fleet": fleet,
@@ -297,7 +304,131 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     out["episodes"] = FIGURES_DIR / "fig4_episodes.png"
     fig.savefig(out["episodes"], dpi=200)
     plt.close(fig)
+    # Figure 5: annual decomposition since 1980 (long history)
+    long_model, lp = res.get("long") or {}, res.get("long_panel")
+    if long_model and lp is not None:
+        att = pd.DataFrame(long_model["annual"])
+        fig, ax = plt.subplots(figsize=(7.0, 2.7))
+        x = att["year"].to_numpy()
+        pos = np.zeros(len(att))
+        neg = np.zeros(len(att))
+        proxy_years = lp.loc[lp["proxy"].astype(bool), "year"]
+        if len(proxy_years):
+            ax.axvspan(proxy_years.min() - 0.5, proxy_years.max() + 0.5, color="#898781", alpha=0.08, linewidth=0)
+            ax.text(
+                proxy_years.min() + 0.2,
+                0.97,
+                "freight index: Kilian-based proxy",
+                transform=ax.get_xaxis_transform(),
+                fontsize=7,
+                color="#6b675e",
+                va="top",
+            )
+        for k in _stack_keys(att.columns):
+            v = att[k].to_numpy()
+            bottom = np.where(v >= 0, pos, neg)
+            ax.bar(x, v, width=0.8, bottom=bottom, color=COLORS[k], label=LABELS[k], linewidth=0)
+            pos = pos + np.where(v >= 0, v, 0)
+            neg = neg + np.where(v < 0, v, 0)
+        ax.plot(x, att["total"], color="#1b1a17", lw=1.2, label="Total change in log index")
+        ax.axhline(0, color="#c5bfb1", lw=0.8)
+        ax.set_ylabel("Log points, annual change")
+        ax.legend(frameon=False, fontsize=6.8, ncol=4, loc="lower left")
+        fig.tight_layout()
+        out["long"] = FIGURES_DIR / "fig5_long_history.png"
+        fig.savefig(out["long"], dpi=200)
+        plt.close(fig)
     return out
+
+
+def _long_cv(res: dict[str, Any]) -> str:
+    ln = _long_numbers(res)
+    if ln is None:
+        return ""
+    return f", extended to an annual decomposition from {ln['y0']} with a calibrated Kilian-index proxy for the freight index before {ln['first_bdi']}"
+
+
+def _long_tp(res: dict[str, Any]) -> str:
+    ln = _long_numbers(res)
+    if ln is None:
+        return ""
+    return (
+        f"; on annual data since {ln['y0']} the elasticity is {ln['e']:.1f} and the forces with the two signals leave "
+        f"{ln['unexpl_ext']:.0%} of a typical annual move unexplained"
+        + (f" ({ln['oos_ext']:.0%} out of sample)" if ln["oos_ext"] is not None else "")
+    )
+
+
+def _long_readme(res: dict[str, Any]) -> str:
+    ln = _long_numbers(res)
+    if ln is None:
+        return ""
+    return (
+        f"Annual decomposition {ln['y0']} to {ln['y1']}: elasticity {ln['e']:.2f} (standard error {ln['se']:.2f}) on annual changes; "
+        f"the physical forces leave {ln['unexpl_phys']:.0%} of a typical annual move unexplained, {ln['unexpl_ext']:.0%} with the two price signals"
+        + (f" and {ln['oos_ext']:.0%} out of sample" if ln["oos_ext"] is not None else "")
+        + f". Before {ln['first_bdi']} the freight index is a proxy from the Kilian index of dry cargo freight rates, calibrated on the overlap "
+        f"(annual changes correlate at {ln['proxy_corr']:.3f})."
+    )
+
+
+def _long_numbers(res: dict[str, Any]) -> dict[str, Any] | None:
+    """Key long-history figures for the README, CV and talking points, or None if it was not built."""
+    lm, lp, meta = res.get("long") or {}, res.get("long_panel"), res.get("long_meta") or {}
+    if not lm or lp is None:
+        return None
+    oos = lm["signals"]["out_of_sample"]
+    return {
+        "y0": int(lp["year"].iloc[0]),
+        "y1": int(lp["year"].iloc[-1]),
+        "e": lm["elasticity"]["elasticity"],
+        "se": lm["elasticity"]["std_error"],
+        "unexpl_phys": lm["signals"]["fit"]["unexplained_physical"],
+        "unexpl_ext": lm["signals"]["fit"]["unexplained_extended"],
+        "oos_ext": oos["unexplained"]["extended"] if oos.get("available") else None,
+        "first_bdi": meta.get("freight_calibration", {}).get("first_bdi_year"),
+        "proxy_corr": meta.get("freight_calibration", {}).get("annual_change_corr"),
+    }
+
+
+def _long_text(res: dict[str, Any]) -> str:
+    """One paragraph on the annual decomposition since 1980, empty if it was not built."""
+    lm, lp, meta = res.get("long") or {}, res.get("long_panel"), res.get("long_meta") or {}
+    if not lm or lp is None:
+        return ""
+    cal = meta.get("freight_calibration", {})
+    e = lm["elasticity"]
+    fit = lm["signals"]["fit"]
+    oos = lm["signals"]["out_of_sample"]
+    y0, y1 = int(lp["year"].iloc[0]), int(lp["year"].iloc[-1])
+    tm_x = float(lp["tonne_miles"].iloc[-1] / lp["tonne_miles"].iloc[0])
+    fl_x = float(lp["fleet"].iloc[-1] / lp["fleet"].iloc[0])
+    eps = {ep["episode_id"]: ep for ep in lm["episodes"]}
+    parts = [
+        f"An annual version of the decomposition runs from {y0} to {y1} ({y1 - y0} annual changes). Tonnes come from the annual UN Comtrade records of the same exporters for every partner (SITC Revision 2 before HS), chain-linked on the reporters present in both years of each change; the fleet is the UNCTAD series; the freight index is the Baltic Dry Index from {cal.get('first_bdi_year')} and, before, a proxy: the Kilian index of dry cargo freight rates (Federal Reserve Bank of Dallas), converted back to nominal terms with US consumer prices and calibrated on {cal.get('overlap_months')} months where both exist (annual changes correlate at {cal.get('annual_change_corr', float('nan')):.3f}). "
+        f"Over the period tonne-miles on the covered trades rose {tm_x:.1f}-fold and the fleet {fl_x:.1f}-fold. On annual changes the elasticity is {e['elasticity']:.2f} (standard error {e['std_error']:.2f}); the forces leave {fit['unexplained_physical']:.0%} of a typical annual move unexplained, {fit['unexplained_extended']:.0%} with the two price signals"
+        + (
+            f" ({oos['unexplained']['extended']:.0%} out of sample, {oos['first_year']} to {oos['last_year']})"
+            if oos.get("available")
+            else ""
+        )
+        + "."
+    ]
+    for key, label in (
+        ("boom_2000s", "the 2000s boom"),
+        ("crash_2008", "the 2008 crash"),
+        ("delivery_wave", "the delivery wave"),
+    ):
+        ep = eps.get(key)
+        if ep:
+            sig = sum(v for k, v in ep.items() if k.startswith("signal_"))
+            parts.append(
+                f" In {label} ({ep['start']} to {ep['end']}, {_lp(ep['total'])} log points) volume contributed {_lp(ep['volume'])}, haul {_lp(ep['distance'])}, fleet {_lp(ep['fleet'])}, the price signals {_lp(sig)} and the residual {_lp(ep['residual'])}."
+            )
+    parts.append(
+        " Figure 5 shows every year; the proxy years are shaded, and annual averages smooth moves within a year."
+    )
+    return "".join(parts)
 
 
 def _numbers(res: dict[str, Any]) -> dict[str, Any]:
@@ -659,6 +790,22 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
         ext_text = _extensions_text(res.get("extensions", {}), res["coverage"].get("minor_bulks"))
         if ext_text:
             story.append(Paragraph(ext_text, st["body"]))
+    long_text = _long_text(res)
+    if long_text and "long" in figs:
+        story.append(
+            Paragraph(
+                f"Four decades: {int(res['long_panel']['year'].iloc[0])} to {int(res['long_panel']['year'].iloc[-1])}",
+                st["h2"],
+            )
+        )
+        story.append(Paragraph(long_text, st["body"]))
+        story.append(Image(str(figs["long"]), width=width, height=width * 2.7 / 7.0))
+        story.append(
+            Paragraph(
+                "Figure 5. Annual change in the log of the annual average index (line) and its attribution (bars), log points. Shaded years use the Kilian-based proxy for the index. Sources: UN Comtrade (annual), UNCTADstat, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
+                st["caption"],
+            )
+        )
     story.append(Paragraph("Robustness", st["h2"]))
     rb = n["robustness"]
     parts = [
@@ -720,7 +867,7 @@ def write_deliverables(res: dict[str, Any]) -> None:
     """CV description, interview talking points and a results summary used by the README."""
     n = _numbers(res)
     cv = (
-        f"Tonne-Mile Demand Model (Python, D3, GitHub Actions): built an automated, fully documented pipeline that decomposes moves in the Baltic Dry Index into cargo volume, haul distance, fleet growth and port-time effects using only public data (UN Comtrade, Brazil Comex Stat, IMF PortWatch AIS data, UNCTADstat, NGA World Port Index), with sea distances computed on a maritime routing network for {n['n_routes']} major bulk routes.\n"
+        f"Tonne-Mile Demand Model (Python, D3, GitHub Actions): built an automated, fully documented pipeline that decomposes moves in the Baltic Dry Index into cargo volume, haul distance, fleet growth and port-time effects using only public data (UN Comtrade, Brazil Comex Stat, IMF PortWatch AIS data, UNCTADstat, NGA World Port Index), with sea distances computed on a maritime routing network for {n['n_routes']} major bulk routes{_long_cv(res)}.\n"
         f"Estimated a freight rate elasticity of {n['elasticity']:.1f} to the tonne-mile over effective fleet balance (twelve-month changes, {n['n_months']} months of data); the physical balance alone leaves about {n['share_resid_phys']:.0%} of a typical twelve-month move unexplained"
         + (
             f", and two public price signals (Brent crude, iron ore) cut this to {n['share_resid']:.0%} in sample"
@@ -743,7 +890,7 @@ def write_deliverables(res: dict[str, Any]) -> None:
             if n["has_signals"]
             else ""
         )
-        + f"; in the latest window the largest physical driver was {LABELS[n['biggest']].lower()}.\n"
+        + f"; in the latest window the largest physical driver was {LABELS[n['biggest']].lower()}{_long_tp(res)}.\n"
         f"4. Limitation: speed and anchorage waiting are not observable from free data and sit in the residual; the price signals are market correlates, not causes, and were chosen on the same sample{_ext_note(res)}; the public monthly index ends earlier than the demand data; representative ports and customs timing add measurement error.\n"
         f"5. Next: replace the price signals with physical cycle measures (China steel output, monthly ship deliveries, berth waiting times), add a Capesize versus Panamax split if sub-index history becomes available, and estimate a time-varying elasticity to test whether the market's sensitivity to utilisation has changed since 2021.\n"
     )
@@ -792,6 +939,7 @@ def write_readme_results(res: dict[str, Any]) -> None:
             else []
         ),
         *([f"* {ext_line}"] if ext_line else []),
+        *([f"* {_long_readme(res)}"] if _long_readme(res) else []),
         f"* Between the first and last twelve months of the panel, tonnes on the covered routes grew {n['t_growth']:+.0%}, tonne-miles {n['tm_growth']:+.0%} "
         f"(average haul {n['haul_growth']:+.1%}) and the bulk carrier fleet {n['fleet_growth']:+.0%} to {n['fleet_last_mdwt']:,.0f} million dwt.",
         f"* Latest window ({_month_label(n['last_start'])} to {_month_label(n['last_end'])}): the index moved {n['last_pct']:+.0f} percent; "
