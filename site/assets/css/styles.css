@@ -183,7 +183,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .legend .key { display: inline-flex; align-items: center; gap: 6px; }
 .legend .swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
 .legend .swatch.rect { height: 10px; border-radius: 2px; }
-.legend .swatch.dashed { height: 0; border-top: 2px dashed currentColor; background: none !important; }
+.legend .swatch.dashed { width: 18px; height: 2px; border-radius: 0; background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 7px) !important; }
 .tooltip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: var(--radius); padding: 8px 10px; font-family: var(--sans); font-size: 0.78rem; box-shadow: 0 4px 16px rgba(0,0,0,0.08); min-width: 150px; z-index: 5; }
 .tooltip .tt-head { color: var(--muted); margin-bottom: 4px; }
 .tooltip .tt-row { display: flex; justify-content: space-between; gap: 14px; }

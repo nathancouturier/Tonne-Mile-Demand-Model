@@ -559,7 +559,7 @@
   "bdi_last": 2024.0,
   "fleet_last_mdwt": 1056.975549513019,
   "validation": {
-    "pass": 20,
+    "pass": 31,
     "warn": 6,
     "fail": 0
   },

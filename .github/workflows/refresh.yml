@@ -46,7 +46,7 @@ jobs:
       - run: python -m pip install -e .
       - name: Download
         env:
-          TMDM_INGEST_SKIP: comtrade
+          TMDM_INGEST_SKIP: comtrade,comtrade_long
         run: python -m tmdm.cli ingest
       - name: Commit raw data
         if: always()
@@ -76,7 +76,7 @@ jobs:
       - run: python -m pip install -e .
       - name: Download with periodic checkpoint commits
         env:
-          TMDM_INGEST_ONLY: comtrade
+          TMDM_INGEST_ONLY: comtrade,comtrade_long
           TMDM_COMTRADE_SHARD: ${{ matrix.shard }}/3
         run: |
           set -o pipefail
@@ -85,7 +85,7 @@ jobs:
           while kill -0 "$pid" 2>/dev/null; do
             sleep 900
             tail -n 2 comtrade.log || true
-            bash scripts/commit_data.sh "data: comtrade checkpoint shard ${{ matrix.shard }}" data/raw/un_comtrade || true
+            bash scripts/commit_data.sh "data: comtrade checkpoint shard ${{ matrix.shard }}" data/raw/un_comtrade data/raw/un_comtrade_long || true
           done
           wait "$pid"
           status=$?
@@ -94,11 +94,35 @@ jobs:
       - name: Commit raw data
         if: always()
         run: |
-          bash scripts/commit_data.sh "data: refresh UN Comtrade shard ${{ matrix.shard }}" data/raw/un_comtrade
+          bash scripts/commit_data.sh "data: refresh UN Comtrade shard ${{ matrix.shard }}" data/raw/un_comtrade data/raw/un_comtrade_long
+
+  # The shards run in parallel and shard 0 writes the metadata records with the copies of the other shards
+  # it last saw; once every shard is committed, the records are rewritten with the hashes of the merged files.
+  rehash-comtrade:
+    name: Rehash UN Comtrade metadata
+    needs: [ingest-comtrade]
+    if: ${{ always() && needs.ingest-comtrade.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Recompute shard hashes
+        run: |
+          python -c "from tmdm.io import rehash_sharded; [rehash_sharded(d) for d in ('un_comtrade', 'un_comtrade_long')]"
+      - name: Commit metadata
+        run: |
+          bash scripts/commit_data.sh "data: rehash UN Comtrade metadata" data/raw/un_comtrade/metadata.json data/raw/un_comtrade_long/metadata.json
 
   build:
     name: Validate, model, export and deploy
-    needs: [ingest-fast, ingest-comtrade]
+    needs: [ingest-fast, ingest-comtrade, rehash-comtrade]
     if: ${{ always() && !inputs.ingest_only && (github.event_name != 'push' || contains(github.event.head_commit.message, '[build')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -123,7 +147,7 @@ jobs:
           python -m tmdm.cli report
       - name: Commit processed data, site and report
         run: |
-          bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
+          bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md data/raw/un_comtrade/metadata.json data/raw/un_comtrade_long/metadata.json
       - name: Publish site to gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

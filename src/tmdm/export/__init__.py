@@ -19,9 +19,11 @@ import pandas as pd
 
 from tmdm import __version__
 from tmdm.config import PROCESSED_DIR, SITE_DATA_DIR, SITE_DIR
+from tmdm.ingest import comtrade_long
 from tmdm.io import all_metadata, utc_now_iso
 from tmdm.model.attribution import log_points_to_pct
 from tmdm.reference import DISCHARGE, ECONOMY_NAMES, IMPORTER_ORIGIN_LOAD, ROUTE_GROUPS, loading_blend
+from tmdm.transform import long_history
 
 log = logging.getLogger(__name__)
 
@@ -54,6 +56,24 @@ DOWNLOADS = {
     "minor_bulk_flows_monthly.csv": "Monthly tonnes per minor-bulk route, with proxy and interpolation flags",
     "minor_bulk_routes.csv": "Minor-bulk routes: baseline distance, canal use and tonnes over the window",
     "minor_bulk_ports.csv": "Ports and weights used for minor-bulk distances (IMF PortWatch ports table)",
+    "long_panel_annual.csv": (
+        "Annual panel since 1980: freight index (proxy flag), chained tonnes, tonne-miles, fleet, chain coverage"
+    ),
+    "long_attribution_annual.csv": "Annual decomposition since 1980: each year's change by force, signal and residual",
+    "long_freight_annual.csv": "Annual Baltic Dry Index and the calibrated Kilian proxy, with the overlap",
+    "long_coverage_annual.csv": "Annual coverage per exporter: World total, sea routes, land and no-port exclusions",
+    "long_route_flows_annual.csv": (
+        "Annual tonnes (measured, estimated, allocated) and tonne-miles per route, unit and classification since 1980"
+    ),
+    "long_coverage.json": (
+        "Long-history build summary: freight proxy calibration, missing input months, series counts, "
+        "monthly cross-check and undisclosed-destination exclusions"
+    ),
+    "long_prices_annual.csv": (
+        "Annual Brent (calendar year) and iron ore (October to September) prices, the long-history signals (World Bank)"
+    ),
+    "long_route_distances.csv": "Baseline sea distance per long-history route",
+    "model_long.json": "Annual long-history model: elasticity, signals, out-of-sample test, episodes",
 }
 
 
@@ -441,6 +461,124 @@ def export_chokepoints_and_portwatch() -> dict[str, Any]:
     return out
 
 
+def export_long() -> dict[str, Any] | None:
+    """Site data for the long-history view (annual, since 1980), or None if it was not built."""
+    mpath = PROCESSED_DIR / "model_long.json"
+    if not mpath.exists() or not (PROCESSED_DIR / "long_panel_annual.csv").exists():
+        (SITE_DATA_DIR / "long.json").unlink(missing_ok=True)
+        return None
+    model = json.loads(mpath.read_text())
+    panel = _read("long_panel_annual.csv")
+    freight = _read("long_freight_annual.csv")
+    cov = _read("long_coverage_annual.csv")
+    meta = json.loads((PROCESSED_DIR / "long_coverage.json").read_text())
+    att = pd.DataFrame(model["annual"])
+    hs_or_s2 = cov.sort_values("cls").drop_duplicates(["unit", "year"], keep="first")  # HS before S2
+    for c in ("unspecified", "sea_with_allocation", "sea_allocated", "undisclosed_dropped", "undisclosed_to_other"):
+        if c not in hs_or_s2.columns:
+            hs_or_s2[c] = 0.0
+    sea_y = hs_or_s2.groupby("year")[
+        [
+            "world_tonnes",
+            "sea_with_allocation",
+            "land",
+            "no_port",
+            "unspecified",
+            "sea_allocated",
+            "undisclosed_dropped",
+            "undisclosed_to_other",
+            "proxy_tonnes",
+        ]
+    ].sum()
+    flows = _read("long_route_flows_annual.csv")
+    # reporter-years that disclose no destination at all (codes without one are counted in dropped_mt)
+    for c in ("sea", "land", "no_port", "own"):
+        if c not in hs_or_s2.columns:
+            hs_or_s2[c] = 0.0
+    no_dest = hs_or_s2[["sea", "land", "no_port", "own"]].sum(axis=1) <= 0
+    dropped = (
+        hs_or_s2[no_dest & (hs_or_s2["unspecified"] > 0)].groupby("unit")["year"].agg(["min", "max"]).reset_index()
+    )
+    units = (
+        hs_or_s2[hs_or_s2["sea_with_allocation"] > 0]
+        .groupby("unit")["year"]
+        .agg(["min", "max"])
+        .reset_index()
+        .rename(columns={"min": "first", "max": "last"})
+    )
+    # first year with any record (destinations disclosed or not) and years without records inside the span
+    rec_years = cov.groupby("unit")["year"].apply(lambda s: sorted({int(v) for v in s}))
+    units["first_record"] = [rec_years[u][0] for u in units["unit"]]
+    units["missing_years"] = [
+        [y for y in range(rec_years[u][0], rec_years[u][-1] + 1) if y not in set(rec_years[u])] for u in units["unit"]
+    ]
+    dominated = []
+    for item in meta.get("allocation_dominated", []):
+        u, c, k, y = item.split()
+        dominated.append((u, k, int(y)))
+    runs: list[dict[str, Any]] = []
+    for u, k, y in sorted(set((u, k, y) for u, k, y in dominated)):
+        if runs and runs[-1]["unit"] == u and runs[-1]["commodity"] == k and runs[-1]["last"] == y - 1:
+            runs[-1]["last"] = y
+        else:
+            runs.append({"unit": u, "commodity": k, "first": y, "last": y})
+    out = {
+        "panel": {
+            "year": _col(panel, "year"),
+            "index": _col(panel, "index", 1),
+            "proxy": [bool(v) for v in panel["proxy"]],
+            "tonnes_mt": [round(_f(v) / 1e6, 2) for v in panel["tonnes"]],
+            "tonne_miles_bn": [round(_f(v) / 1e9, 2) for v in panel["tonne_miles"]],
+            "avg_haul_nm": _col(panel, "avg_haul_nm", 0),
+            "fleet_mdwt": [round(_f(v) / 1e6, 1) for v in panel["fleet"]],
+            "supply_factor": _col(panel, "supply_factor", 4),
+            "n_units": _col(panel, "n_units"),
+            "chain_share": [None if pd.isna(v) else round(_f(v), 4) for v in panel["chain_share"]],
+        },
+        "freight": {
+            "year": _col(freight, "year"),
+            "bdi": _col(freight, "bdi", 1),
+            "kilian_proxy": _col(freight, "kilian_proxy", 1),
+            "calibration": meta.get("freight_calibration", {}),
+        },
+        "attribution": {c: (_col(att, c, 4) if c != "year" else _col(att, c)) for c in att.columns},
+        "episodes": model["episodes"],
+        "elasticity": model["elasticity"],
+        "robustness": model["robustness"],
+        "signals": {
+            "definitions": model["signals"]["definitions"],
+            "fit": model["signals"]["fit"],
+            "out_of_sample": {k: v for k, v in model["signals"]["out_of_sample"].items() if k != "predictions"},
+        },
+        "coverage": {
+            "year": [int(y) for y in sea_y.index],
+            "world_mt": [round(_f(v) / 1e6, 1) for v in sea_y["world_tonnes"]],
+            "sea_mt": [round(_f(v) / 1e6, 1) for v in sea_y["sea_with_allocation"]],
+            "undisclosed_mt": [round(_f(v) / 1e6, 1) for v in sea_y["unspecified"]],
+            "allocated_mt": [round(_f(v) / 1e6, 1) for v in sea_y["sea_allocated"]],
+            "dropped_mt": [round(_f(v) / 1e6, 1) for v in sea_y["undisclosed_dropped"]],
+            "allocated_other_mt": [round(_f(v) / 1e6, 1) for v in sea_y["undisclosed_to_other"]],
+            "dropped_units": dropped.rename(columns={"min": "first", "max": "last"}).to_dict(orient="records"),
+            "estimated_share": _f(flows["proxy_tonnes"].sum() / flows["tonnes"].sum()),
+            "series_years": meta.get("series_years"),
+            "series_years_measured": meta.get("series_years_measured"),
+            "monthly_mismatch": meta.get("monthly_mismatch", []),
+            "allocation_dominated": runs,
+            "sacu_last_year": comtrade_long.REPORTER_YEARS.get("ZAF_SACU", (None, None))[1],
+            "trading_hubs": {k: (sorted(v) if v else None) for k, v in long_history.TRADING_HUBS.items()},
+            "land_mt": [round(_f(v) / 1e6, 1) for v in sea_y["land"]],
+            "no_port_mt": [round(_f(v) / 1e6, 1) for v in sea_y["no_port"]],
+            "proxy_mt": [round(_f(v) / 1e6, 1) for v in sea_y["proxy_tonnes"]],
+            "units": units.to_dict(orient="records"),
+            "routes": meta.get("routes"),
+            "routes_named_ports": meta.get("routes_named_ports"),
+            "window": meta.get("window"),
+        },
+    }
+    _json(SITE_DATA_DIR / "long.json", out)
+    return out
+
+
 def export_downloads() -> list[dict[str, Any]]:
     """Copy processed files into the site downloads folder and return the manifest."""
     dl = SITE_DIR / "downloads"
@@ -499,6 +637,7 @@ def run() -> None:
         },
     )
     _json(SITE_DATA_DIR / "validation.json", validation)
+    long_out = export_long()
     sources = [m.__dict__ for m in all_metadata()]
     for s in sources:
         s.pop("sha256", None)
@@ -548,6 +687,9 @@ def run() -> None:
             "total_tonne_miles_last12_bn": routes_out["total_tonne_miles_last12_bn"],
         },
         "portwatch_latest_week": pw["latest_week"],
+        "long_history": None
+        if long_out is None
+        else {"window": long_out["coverage"]["window"], "proxy_years": sum(long_out["panel"]["proxy"])},
         "comex_coverage": comex_cov.get("coverage"),
         "coverage": coverage,
         "validation_summary": validation["summary"],

@@ -31,7 +31,7 @@ from tmdm.io import DatasetMetadata, raw_dir, utc_now_iso, write_metadata
 log = logging.getLogger(__name__)
 
 DATASET_ID = "un_comtrade"
-PREVIEW = "https://comtradeapi.un.org/public/v1/preview/C/{freq}/HS"
+PREVIEW = "https://comtradeapi.un.org/public/v1/preview/C/{freq}/{cls}"
 AVAILABILITY = "https://comtradeapi.un.org/public/v1/getDa/C/{freq}/HS"
 REF_REPORTERS = "https://comtradeapi.un.org/files/v1/app/reference/Reporters.json"
 REF_PARTNERS = "https://comtradeapi.un.org/files/v1/app/reference/partnerAreas.json"
@@ -108,9 +108,12 @@ class ComtradeClient:
         self.log_rows: list[dict[str, Any]] = []
         self.calls = 0
 
-    def call(self, freq: str, params: dict[str, Any]) -> tuple[list[dict[str, Any]], int]:
-        """Return (records, count) for one preview query, handling 429, 403 quota and 5xx."""
-        url = PREVIEW.format(freq=freq)
+    def call(self, freq: str, params: dict[str, Any], cls: str = "HS") -> tuple[list[dict[str, Any]], int]:
+        """Return (records, count) for one preview query, handling 429, 403 quota and 5xx.
+
+        ``cls`` is the classification: HS (as reported) or SITC revisions S1, S2, S3.
+        """
+        url = PREVIEW.format(freq=freq, cls=cls)
         clean = {k: v for k, v in params.items() if v is not None}
         for attempt in range(10):
             self.pacer.wait()
@@ -190,31 +193,39 @@ def _tidy(recs: list[dict[str, Any]], retrieved_at: str) -> pd.DataFrame:
 
 
 def fetch_period(
-    client: ComtradeClient, group: CallGroup, reporters: tuple[int, ...], freq: str, period: str
+    client: ComtradeClient,
+    group: CallGroup,
+    reporters: tuple[int, ...],
+    freq: str,
+    period: str,
+    cls: str = "HS",
 ) -> list[dict[str, Any]]:
-    """Fetch one period for a reporter list, splitting on the record cap so nothing is truncated."""
+    """Fetch one period for a reporter list, splitting on the record cap so nothing is truncated.
+
+    An empty ``group.partner_codes`` requests every partner (including the World total).
+    """
     params = {
         "reporterCode": ",".join(str(r) for r in reporters),
         "period": period,
         "cmdCode": ",".join(group.cmd_codes),
         "flowCode": group.flow,
-        "partnerCode": ",".join(str(p) for p in group.partner_codes),
+        "partnerCode": ",".join(str(p) for p in group.partner_codes) if group.partner_codes else None,
         "partner2Code": 0,
         "customsCode": "C00",
         "motCode": 0,
     }
-    recs, count = client.call(freq, params)
+    recs, count = client.call(freq, params, cls)
     if count < RECORD_CAP:
         return recs
     if len(reporters) > 1:
         half = len(reporters) // 2
         log.info("comtrade %s %s: %d records hit the cap, splitting reporters", group.group_id, period, count)
-        return fetch_period(client, group, reporters[:half], freq, period) + fetch_period(
-            client, group, reporters[half:], freq, period
+        return fetch_period(client, group, reporters[:half], freq, period, cls) + fetch_period(
+            client, group, reporters[half:], freq, period, cls
         )
     out: list[dict[str, Any]] = []
     for cmd in group.cmd_codes:
-        sub, sub_count = client.call(freq, {**params, "cmdCode": cmd})
+        sub, sub_count = client.call(freq, {**params, "cmdCode": cmd}, cls)
         if sub_count >= RECORD_CAP:
             raise RuntimeError(f"comtrade {group.group_id} {period} {cmd}: single commodity still at the record cap")
         out.extend(sub)
@@ -271,8 +282,9 @@ def fetch(
     Periods are assigned to shards round-robin so that parallel jobs, each with
     its own hourly quota, cover disjoint months. Each shard writes its own
     files; :func:`load_records` merges them. Annual records are fetched from
-    2000 to the last complete year (default) for the long history and for the
-    annual unit values used where monthly records lack a net weight.
+    2000 to the last complete year (default) for the annual unit values used
+    where monthly records lack a net weight (the multi-decade history has its
+    own download, :mod:`tmdm.ingest.comtrade_long`).
     """
     d = raw_dir(DATASET_ID)
     rec_path, log_path, done_path = _files(d)
@@ -401,7 +413,7 @@ def _metadata(start_month: str, groups: list[CallGroup], out: pd.DataFrame) -> D
         publisher="United Nations Statistics Division (UN Comtrade)",
         source_url=PORTAL,
         licence="UN Comtrade public data; free for non-commercial use with attribution (see Comtrade terms of use)",
-        frequency="monthly from 2010; annual from 2000 (long history and annual unit values)",
+        frequency="monthly from 2010; annual from 2000 (annual unit values)",
         coverage=f"{start_month} to latest published month per reporter; {len(groups)} reporter groups",
         units="kilograms (netWgt); values in current US dollars (primaryValue)",
         retrieved_at=utc_now_iso(),

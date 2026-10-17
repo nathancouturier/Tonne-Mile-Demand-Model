@@ -85,6 +85,33 @@ def read_metadata(dataset_id: str) -> DatasetMetadata | None:
     return DatasetMetadata(**data)
 
 
+def rehash_sharded(dataset_id: str) -> DatasetMetadata | None:
+    """Bring a sharded download's metadata record up to date with the merged shards on disk.
+
+    The shards of a download run as parallel jobs and the one that writes the record sees the other shards
+    only as of its last checkpoint. Once every shard is merged, the record is rewritten with all shard files,
+    their current hashes and the latest retrieval time in the done lists.
+    """
+    meta = read_metadata(dataset_id)
+    if meta is None:
+        return None
+    d = raw_dir(dataset_id)
+    shard_files = sorted(p.name for p in d.glob("*shard*") if p.is_file())
+    meta.files = sorted(f for f in set(meta.files) | set(shard_files) if (d / f).is_file())
+    meta.sha256 = {}
+    stamps = []
+    for done in d.glob("done*.csv"):
+        with done.open(encoding="utf-8") as fh:
+            header = fh.readline().strip().split(",")
+            if "retrieved_at" in header:
+                i = header.index("retrieved_at")
+                stamps += [line.strip().split(",")[i] for line in fh if line.strip()]
+    if stamps:
+        meta.retrieved_at = max(stamps)
+    write_metadata(meta)
+    return meta
+
+
 def all_metadata() -> list[DatasetMetadata]:
     """Return every metadata record found under the raw data directory."""
     records: list[DatasetMetadata] = []

@@ -14,8 +14,9 @@ import logging
 import numpy as np
 import pandas as pd
 
-from tmdm.config import PROCESSED_DIR
-from tmdm.ingest import asub_bdi, comexstat, comtrade, portwatch, unctad
+from tmdm.config import PROCESSED_DIR, RAW_DIR
+from tmdm.ingest import asub_bdi, comexstat, comtrade, comtrade_long, portwatch, unctad
+from tmdm.io import all_metadata, rehash_sharded, sha256_of
 from tmdm.reference import CODE_TO_ISO3, COMEX_COUNTRY_TO_ISO3, COMMODITY_GROUPS, COMTRADE_CODES, ROUTE_GROUPS
 from tmdm.validate.checks import (
     CheckResult,
@@ -291,12 +292,36 @@ def fleet_checks() -> list[CheckResult]:
     ]
 
 
+def metadata_checks() -> list[CheckResult]:
+    """Every file listed in a metadata record exists and has the recorded SHA-256 hash."""
+    out = []
+    for meta in all_metadata():
+        base = RAW_DIR / meta.dataset_id
+        listed = set(meta.files) | set(meta.sha256)
+        bad = sorted(f for f in listed if f not in meta.sha256 or not (base / f).is_file()
+                     or sha256_of(base / f) != meta.sha256[f])  # fmt: skip
+        out.append(
+            CheckResult(
+                meta.dataset_id,
+                "metadata_hashes",
+                "fail" if bad else "pass",
+                f"{len(bad)} of {len(listed)} listed files are missing or differ from their recorded hash"
+                if bad
+                else f"{len(listed)} listed files match their recorded hash",
+                {"files": bad},
+            )
+        )
+    return out
+
+
 def run() -> None:
-    """Run every check and write the report."""
+    """Bring the sharded downloads' metadata up to date, run every check and write the report."""
+    for dataset_id in (comtrade.DATASET_ID, comtrade_long.DATASET_ID):
+        rehash_sharded(dataset_id)
     records = comtrade.load_records()
     comex = comexstat.load()
     results: list[CheckResult] = []
-    for fn in (freight_checks, fleet_checks, portwatch_checks):
+    for fn in (metadata_checks, freight_checks, fleet_checks, portwatch_checks):
         try:
             results.extend(fn())
         except (FileNotFoundError, KeyError, ValueError) as exc:

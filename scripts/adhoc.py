@@ -1,54 +1,61 @@
-"""Ad hoc remote check: which extra public sources answer from a GitHub runner, and what PortWatch publishes."""
+"""Ad hoc remote check (round 3): ASUB shipping market tables (slow crawl) and the Kilian index definition."""
 
 from __future__ import annotations
 
 import json
+import re
+import time
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 
 OUT = Path(".adhoc")
-OUT.mkdir(exist_ok=True)
 S = requests.Session()
-S.headers.update({"User-Agent": "tonne-mile-demand-model/0.1 (research)"})
+S.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) tonne-mile-demand-model/0.1 research"})
 res: dict[str, object] = {}
+api = "https://pxweb.asub.ax/PXWeb/api/v1/en/Statistik"
+folder = "TUTRSJ/SJ/" + quote("Konjunkturstatistik för sjöfarten")
 
 
-def probe(name: str, url: str, params: dict | None = None, n: int = 600) -> None:
-    try:
-        r = S.get(url, params=params, timeout=60)
-        res[name] = {"status": r.status_code, "type": r.headers.get("content-type"), "head": r.text[:n]}
-    except Exception as exc:  # noqa: BLE001
-        res[name] = {"error": str(exc)[:300]}
-    print(name, res[name].get("status", res[name].get("error")))
+def get_json(url: str) -> object:
+    for attempt in range(6):
+        r = S.get(url, timeout=60)
+        if r.status_code == 429 or "Too many requests" in r.text[:200]:
+            time.sleep(20 * (attempt + 1))
+            continue
+        return r.json()
+    return {"error": "rate limited"}
 
 
-# IMF PortWatch: every service in the folder and the fields of each layer
-base = "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services"
+time.sleep(5)
+items = get_json(f"{api}/{folder}")
+res["folder"] = items
+tables = []
+if isinstance(items, list):
+    for it in items:
+        time.sleep(6)
+        meta = get_json(f"{api}/{folder}/{quote(str(it.get('id')))}")
+        entry = {"id": it.get("id"), "text": it.get("text"), "updated": it.get("updated")}
+        if isinstance(meta, dict):
+            entry["title"] = meta.get("title")
+            for v in meta.get("variables", []):
+                vals = v.get("valueTexts", [])
+                entry[v.get("code", "?")] = [len(vals), vals[:3], vals[-3:]]
+        tables.append(entry)
+        print(entry["id"], entry.get("text"))
+res["tables"] = tables
+
+# Kilian index definition (Dallas Fed page text)
 try:
-    services = S.get(base, params={"f": "json"}, timeout=60).json().get("services", [])
-    res["portwatch_services"] = [s["name"] for s in services]
-    fields = {}
-    for s in services:
-        url = f"{base}/{s['name']}/{s['type']}/0"
-        try:
-            j = S.get(url, params={"f": "json"}, timeout=60).json()
-            fields[s["name"]] = [f["name"] for f in j.get("fields", [])][:60]
-        except Exception as exc:  # noqa: BLE001
-            fields[s["name"]] = [f"error {exc}"]
-    res["portwatch_fields"] = fields
-    print("portwatch services:", len(services))
+    r = S.get("https://www.dallasfed.org/research/igrea", timeout=60)
+    text = re.sub(r"<script.*?</script>|<style.*?</style>", " ", r.text, flags=re.S)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text)
+    i = text.find("Index of global real economic activity")
+    res["dallasfed_igrea_text"] = text[i : i + 6000]
 except Exception as exc:  # noqa: BLE001
-    res["portwatch_services"] = f"error {exc}"
+    res["dallasfed_igrea_text"] = f"error {exc}"
 
-probe("fred_brent", "https://fred.stlouisfed.org/graph/fredgraph.csv", {"id": "MCOILBRENTEU"})
-probe("fred_iron_ore", "https://fred.stlouisfed.org/graph/fredgraph.csv", {"id": "PIORECRUSDM"})
-probe(
-    "oecd_cli",
-    "https://sdmx.oecd.org/public/rest/data/OECD.SDD.STES,DSD_STES@DF_CLI,4.1/.M.LI...AA...H?startPeriod=2024-01&format=csvfilewithlabels",
-)
-probe("worldsteel_press", "https://worldsteel.org/media/press-releases/")
-probe("kiel_trade_indicator", "https://www.ifw-kiel.de/topics/international-trade/kiel-trade-indicator/")
-probe("unctad_bulk_list", "https://unctadstat-api.unctad.org/bulkdownload")
-probe("china_nbs", "https://data.stats.gov.cn/english/")
-(OUT / "sources_probe.json").write_text(json.dumps(res, indent=1))
+(OUT / "long_history_probe3.json").write_text(json.dumps(res, indent=1))
+print("done")
