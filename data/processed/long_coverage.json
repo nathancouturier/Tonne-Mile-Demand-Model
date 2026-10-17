@@ -41,19 +41,19 @@
   ],
   "freight_calibration": {
     "intercept": 3.0925802854987543,
-    "trend_per_month": -0.0018439279394019856,
-    "trend_per_year": -0.02212713527282383,
+    "trend_per_month": -0.0018439279394019859,
+    "trend_per_year": -0.022127135272823832,
     "overlap_months": 179,
     "overlap_window": [
       "2011-01",
       "2025-12"
     ],
     "monthly_level_corr": 0.947246901829232,
-    "monthly_change12_corr": 0.9378850977968459,
+    "monthly_change12_corr": 0.9378850977968461,
     "annual_change_corr": 0.9938583858514067,
-    "annual_change_mean_abs_error": 0.034393421892290485,
-    "annual_change_max_abs_error": 0.10954756671701826,
-    "annual_level_mean_abs_log_error": 0.024989062138683595,
+    "annual_change_mean_abs_error": 0.034393421892290624,
+    "annual_change_max_abs_error": 0.10954756671701915,
+    "annual_level_mean_abs_log_error": 0.024989062138683675,
     "first_bdi_year": 2011,
     "cpi_missing_months": [
       "2025-10"
