@@ -16,25 +16,25 @@
     "fetch_log_shard0of3.csv",
     "fetch_log_shard1of3.csv",
     "fetch_log_shard2of3.csv",
+    "partnerAreas.json",
     "records_shard0of3.csv",
     "records_shard1of3.csv",
     "records_shard2of3.csv",
-    "reporters.json",
-    "partnerAreas.json"
+    "reporters.json"
   ],
   "sha256": {
     "availability.csv": "ccda5fb78ef7eda2afdf771efa09f0f1e8042a88a923ef4816d26b46588a8a11",
     "done_shard0of3.csv": "d24e462415a6f263d8d0cbe310ac625bbf091609cb413e94b98368fecdfc3974",
-    "done_shard1of3.csv": "9ac0fa3e13a04cd888ca248c3c43bccbb2087f15fe2c79dcd7f33ad5f4177d14",
-    "done_shard2of3.csv": "94d843556ba8e2e479bda2c24136b20782e4c1b2c5d48623bf586a82e69ecca5",
+    "done_shard1of3.csv": "4d2bab204b5476ab2cf1df30aa43f06c5dcdc2ba2836e2088b83db398f0cc075",
+    "done_shard2of3.csv": "51c58f82c7da16b8985b656bcb2a0a8c44cc62ebe27aa161d1ad41d743c25cd2",
     "fetch_log_shard0of3.csv": "ee7f502e9a1872663c643f89b3fd922ffbb37e8cecfe0ed176c072cf3f0e340c",
-    "fetch_log_shard1of3.csv": "a93196b450d1c780fb09715e0fbd1bc730280b2009c4b2f32be0dadc6749db9e",
-    "fetch_log_shard2of3.csv": "7b1396bdd35901ff2b3be94772f0157a371f5df802e8c8778464baecd5883b5c",
+    "fetch_log_shard1of3.csv": "f1f83be8d30a55e14231689c54bf9365d8bb05ccd1d71177eea9bb79f58de2c4",
+    "fetch_log_shard2of3.csv": "8629a9c2b06be37b26a49ae6c496563b5e142ad1c1e25f16e3f7522234d2b2b4",
+    "partnerAreas.json": "2da5667693b5a7f8b203028964a431cdb46356d3a377c7369bb9736c59f03733",
     "records_shard0of3.csv": "be6a71ade17a19abc2df18f03e0e2e991847de86afa8f8597a9dcd6cb29e9a37",
-    "records_shard1of3.csv": "b95e70da3f8bccdd2f06b3f36f5a4944af621af493653a80c5436010aa938f86",
-    "records_shard2of3.csv": "8c2f21349dd50bad973021d29704b71de04b82532425c7be46538336c0c08960",
-    "reporters.json": "f2a1d78949089831c1fc7714e009996887db724a8d5a43379cdc37be9449f74b",
-    "partnerAreas.json": "2da5667693b5a7f8b203028964a431cdb46356d3a377c7369bb9736c59f03733"
+    "records_shard1of3.csv": "e2e65e029cc4daf6c1f54a708c6de11d030593e551e5ae109f8e526ce56d3ea4",
+    "records_shard2of3.csv": "74b5c7eca6950aad137424a0698268ebc7fe8c920f969dbfc6dc62eb198f2c19",
+    "reporters.json": "f2a1d78949089831c1fc7714e009996887db724a8d5a43379cdc37be9449f74b"
   },
   "limitations": [
     "Reporter customs data are used as reported; mirror flows between two reporters differ by timing, valuation and routing.",

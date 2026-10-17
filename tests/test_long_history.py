@@ -5,6 +5,7 @@ import pytest
 from tmdm.model.long_history import out_of_sample, run_long_model
 from tmdm.transform.long_history import (
     allocate_undisclosed,
+    allocation_dominated,
     annual_flows,
     chain_link,
     classify_partner,
@@ -250,7 +251,72 @@ def test_undisclosed_destinations_are_allocated_pro_rata():
     assert list(sea["destination"]) == ["JPN", "ITA"]
     assert sea["tonnes"].tolist() == pytest.approx([60.0, 20.0])
     assert sea["allocated_tonnes"].tolist() == pytest.approx([30.0, 10.0])
-    assert sea["proxy_tonnes"].tolist() == pytest.approx([0.0, 20.0])
+    # the undisclosed tonnes are measured: each sea row gains measured tonnes, its proxy part is unchanged
+    assert sea["measured_tonnes"].tolist() == pytest.approx([60.0, 10.0])
+    assert sea["proxy_tonnes"].tolist() == pytest.approx([0.0, 10.0])
+    # undisclosed tonnes that are value estimates stay estimates once allocated
+    est = flows.copy()
+    est.loc[3, ["measured_tonnes", "proxy_tonnes"]] = [0.0, 50.0]
+    sea = allocate_undisclosed(est)
+    assert sea["measured_tonnes"].tolist() == pytest.approx([30.0, 0.0])
+    assert sea["proxy_tonnes"].tolist() == pytest.approx([30.0, 20.0])
+
+
+def test_a_code_with_mostly_undisclosed_destinations_leaves_its_series_unmeasured():
+    # Australian wheat 1992: 7.3 Mt under "Special categories", 124 t disclosed (mostly to Switzerland)
+    flows = pd.DataFrame(
+        {"unit": "AUS_X", "cls": "HS", "commodity": "grains", "year": 1992, "is_world": False,
+         "cmd": ["1001", "1001", "1001", "1003"], "route_class": ["unspecified", "no_port", "sea", "sea"],
+         "tonnes": [7.3e6, 119.0, 5.0, 2.3e6]}
+    )  # fmt: skip
+    assert allocation_dominated(flows) == {("AUS_X", "HS", "grains", 1992)}
+    sea = pd.DataFrame(
+        {"unit": "AUS_X", "cls": "HS", "cmd": "1003", "commodity": "grains", "year": 1992,
+         "tonnes": [2.3e6], "measured_tonnes": [2.3e6]}
+    )  # fmt: skip
+    assert measured_series(sea) == {("AUS_X", "HS", "grains", 1992)}
+    assert measured_series(sea, dominated=allocation_dominated(flows)) == set()
+    # a small undisclosed remainder does not
+    flows.loc[0, "tonnes"] = 50.0
+    assert allocation_dominated(flows) == set()
+
+
+def test_a_shift_in_the_allocated_share_does_not_move_the_haul():
+    # A's ore: 20% allocated in 1993 (at the average haul), disclosed in 1994 and partly long-haul
+    sea = pd.DataFrame(
+        {"unit": "AUS_X", "cls": "HS", "cmd": "2601", "commodity": "iron_ore", "year": [1993, 1994],
+         "route_id": "r", "tonnes": [100.0, 110.0], "tonne_miles": [400_000.0, 520_000.0],
+         "measured_tonnes": [100.0, 110.0], "allocated_tonnes": [20.0, 0.0]}
+    )  # fmt: skip
+    out = chain_link(sea, measured_series(sea), 1993, 1994).set_index("year")
+    assert out.loc[1994, "tonnes_chain"] == pytest.approx(1.10)
+    assert out.loc[1994, "tm_chain"] == pytest.approx(1.10)  # haul held at 4,000
+    assert out.loc[1994, "held"] == "AUS_X:HS:iron_ore"
+
+
+def test_understated_partner_weight_becomes_an_estimate():
+    # US maize 1990: Japan's weight implies 407 $/t while the other partners pay about 110 $/t
+    rows = [
+        ("S2", "1990", 842, "X", 392, "044", 4.05e9, 4.05e9, 8, 1.65e9),
+        ("S2", "1990", 842, "X", 410, "044", 6.0e9, 6.0e9, 8, 0.66e9),
+        ("S2", "1990", 842, "X", 156, "044", 5.0e9, 5.0e9, 8, 0.56e9),
+        ("S2", "1990", 842, "X", 818, "044", 8.0e9, 8.0e9, 8, 0.90e9),
+        ("S2", "1990", 842, "X", 0, "044", 23.05e9, 23.05e9, 8, 3.77e9),
+    ]
+    f = annual_flows(_rec(rows), {392: "JPN", 410: "KOR", 156: "CHN", 818: "EGY", 0: None}).set_index("destination")
+    assert f.loc["JPN", "measured_tonnes"] == 0
+    assert f.loc["JPN", "tonnes"] == pytest.approx(1.65e9 / ((0.66e9 + 0.56e9 + 0.90e9) / 19e6), rel=1e-6)
+    assert f.loc["KOR", "measured_tonnes"] == pytest.approx(6e6)
+    world = f[f["is_world"]].iloc[0]
+    assert world["measured_tonnes"] == 0
+
+
+def test_trading_hubs_are_undisclosed_for_the_commodities_they_do_not_consume():
+    ports = {"SGP", "CHN", "CYM", "HKG"}
+    assert classify_partner("AUS", "SGP", ports, "iron_ore") == "unspecified"
+    assert classify_partner("AUS", "SGP", ports, "coal") == "sea"
+    assert classify_partner("COL", "CYM", ports, "coal") == "unspecified"
+    assert classify_partner("AUS", "CHN", ports, "iron_ore") == "sea"
 
 
 def _rec(rows):

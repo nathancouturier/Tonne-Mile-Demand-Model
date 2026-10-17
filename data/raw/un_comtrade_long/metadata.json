@@ -21,14 +21,14 @@
   ],
   "sha256": {
     "done_shard0of3.csv": "52d59d2544ed739ffb64c419f227f5af01e32daa9e8ece2295a2c67528da60b1",
-    "done_shard1of3.csv": "a62d9f4b702d79f5821cea1304ffb118efd1f79eaf45b1a2f51dd530e40741e1",
-    "done_shard2of3.csv": "ac15a60835bf06dcc0f28fbb88d70c3f49bf2a59d71bb41bef870b4ba527419c",
+    "done_shard1of3.csv": "d416ee5100de2ab4e657577420732bf7853b027804ae16cf95715d550a650efc",
+    "done_shard2of3.csv": "0aef6ca8f04a309e910536e830b1779f87b9f1775d857147e15147310d6b87f9",
     "fetch_log_shard0of3.csv": "d60c043b722cad2023a0108c951400ecf159ffcf48cae068bc69fade3714c606",
-    "fetch_log_shard1of3.csv": "0196693a8832258df91b57d9cc31d076b8931211089014b946f3b43c7f6fe6d2",
-    "fetch_log_shard2of3.csv": "73f3699ebafc57799faf0d104a3481e800ada2f1bc68662a166f9cb2d270ae6a",
+    "fetch_log_shard1of3.csv": "929d8bed7b9ebe594f64ccd3af6cc066626ba6121cb4a041e75c06afad6de196",
+    "fetch_log_shard2of3.csv": "7aab8f5373a831c76db948bac794c34f15fa0b5016472498b6cd932941141bd3",
     "records_shard0of3.csv.gz": "a899373e4e902492218e9b694d12f07dfd4a81cb5fa090efaf6c3d1479911850",
-    "records_shard1of3.csv.gz": "73b38c545655a8e3cb767d3a338f3e5820107cddaa0e890435f6f99124459e07",
-    "records_shard2of3.csv.gz": "ce00e90123469757b97c23f1ea0779354ba09301606cfa16558d6ecf6947c585"
+    "records_shard1of3.csv.gz": "88805b36cf968006a4b2b6a193c919e63a1770f18f11f2afb070c7b071206bf1",
+    "records_shard2of3.csv.gz": "390f85bb2095e5f64b8130eb0a3ea89cb9ec019b7b4c4544dfc3b7d0f19861dc"
   },
   "limitations": [
     "Reporters enter the record in different years (HS from 1988 to 1993; the United States from 1981, Brazil from 1983 in SITC Revision 2; Ukraine from 1996); annual changes are measured on the reporters present in both years.",

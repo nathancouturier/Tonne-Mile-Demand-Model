@@ -4,7 +4,7 @@
     2025
   ],
   "years": 46,
-  "routes": 2144,
+  "routes": 2110,
   "routes_named_ports": 482,
   "proxy_years": [
     1980,
@@ -49,12 +49,16 @@
       "2025-12"
     ],
     "monthly_level_corr": 0.947246901829232,
-    "monthly_change12_corr": 0.9362612920288509,
+    "monthly_change12_corr": 0.9378850977968459,
     "annual_change_corr": 0.9938583858514067,
     "annual_change_mean_abs_error": 0.034393421892290485,
     "annual_change_max_abs_error": 0.10954756671701826,
     "annual_level_mean_abs_log_error": 0.024989062138683595,
-    "first_bdi_year": 2011
+    "first_bdi_year": 2011,
+    "cpi_missing_months": [
+      "2025-10"
+    ],
+    "kilian_missing_months": []
   },
   "units": [
     "ARG_X",
@@ -75,6 +79,44 @@
     "IDN_X 1201 2015",
     "USA_X 2701 2025"
   ],
-  "series_years": 1218,
-  "series_years_measured": 1032
+  "allocation_dominated": [
+    "AUS_X HS grains 1992",
+    "AUS_X HS grains 1993",
+    "AUS_X HS grains 1994",
+    "AUS_X HS grains 1995",
+    "AUS_X HS grains 1996",
+    "AUS_X HS grains 1997",
+    "AUS_X HS grains 1998",
+    "AUS_X HS grains 1999",
+    "AUS_X HS grains 2000",
+    "AUS_X HS grains 2001",
+    "AUS_X HS grains 2002",
+    "AUS_X HS grains 2003",
+    "AUS_X HS grains 2004",
+    "AUS_X HS grains 2005",
+    "AUS_X HS grains 2006",
+    "AUS_X HS grains 2007",
+    "AUS_X HS grains 2008",
+    "AUS_X HS grains 2014",
+    "AUS_X S2 grains 1992",
+    "AUS_X S2 grains 1993",
+    "AUS_X S2 grains 1994",
+    "AUS_X S2 grains 1995",
+    "ZAF_X S2 coal 1980",
+    "ZAF_X S2 coal 1981",
+    "ZAF_X S2 coal 1982",
+    "ZAF_X S2 coal 1983",
+    "ZAF_X S2 coal 1984",
+    "ZAF_X S2 grains 1980",
+    "ZAF_X S2 grains 1981",
+    "ZAF_X S2 grains 1982",
+    "ZAF_X S2 grains 1983",
+    "ZAF_X S2 iron_ore 1980",
+    "ZAF_X S2 iron_ore 1981",
+    "ZAF_X S2 iron_ore 1982",
+    "ZAF_X S2 iron_ore 1983",
+    "ZAF_X S2 iron_ore 1984"
+  ],
+  "series_years": 1216,
+  "series_years_measured": 1018
 }

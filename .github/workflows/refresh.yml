@@ -123,7 +123,7 @@ jobs:
           python -m tmdm.cli report
       - name: Commit processed data, site and report
         run: |
-          bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md
+          bash scripts/commit_data.sh "build: refresh processed data, site and report" data/processed site docs README.md data/raw/un_comtrade/metadata.json data/raw/un_comtrade_long/metadata.json
       - name: Publish site to gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

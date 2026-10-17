@@ -269,6 +269,15 @@
       if (opts.yLabel) svg.append("text").attr("class", "axis-label").attr("x", 4).attr("y", 10).text(opts.yLabel);
       g.append("line").attr("x1", 0).attr("x2", iw).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", cssVar("--axis"));
       const bw = Math.max(1, (iw / data.length) * 0.8);
+      if (opts.bands) {
+        // shade whole bars: half a step either side of the first and last bar in the band
+        const step = data.length > 1 ? (x(data[data.length - 1].x) - x(data[0].x)) / (data.length - 1) : bw;
+        opts.bands.forEach((b) => {
+          const x0 = Math.max(0, x(b.from) - step / 2), x1 = Math.min(iw, x(b.to) + step / 2);
+          g.insert("rect", ":first-child").attr("x", x0).attr("width", Math.max(0, x1 - x0)).attr("y", 0).attr("height", ih).attr("fill", p.neutral).attr("opacity", 0.08);
+          g.append("text").attr("class", "annotation").attr("x", x0 + 4).attr("y", 12).text(b.label);
+        });
+      }
       data.forEach((d) => {
         let up = 0, down = 0;
         comps.forEach((k) => {

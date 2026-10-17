@@ -28,6 +28,7 @@ from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Image, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
@@ -264,7 +265,7 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     plt.close(fig)
     # Figure 4: episode waterfall table as bars
     eps = res["episodes"]
-    fig, ax = plt.subplots(figsize=(7.0, 2.6 + 0.25 * len(eps)))
+    fig, ax = plt.subplots(figsize=(7.0, 1.5 + 0.24 * len(eps)))
     ypos = np.arange(len(eps))[::-1]
     left_pos = np.zeros(len(eps))
     left_neg = np.zeros(len(eps))
@@ -281,8 +282,9 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     ax.axvline(0, color="#c5bfb1", lw=0.8)
     ax.set_xlabel("Log points")
     ax.grid(axis="y", visible=False)
-    ax.legend(frameon=False, fontsize=7.2, ncol=3, loc="lower right")
-    fig.tight_layout()
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, frameon=False, fontsize=7.2, ncol=4, loc="lower center", bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(rect=(0, 0.11, 1, 1))
     out["episodes"] = FIGURES_DIR / "fig3_episodes.png"
     fig.savefig(out["episodes"], dpi=200)
     plt.close(fig)
@@ -290,15 +292,16 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
     long_model, lp = res.get("long") or {}, res.get("long_panel")
     if long_model and lp is not None:
         att = pd.DataFrame(long_model["annual"])
-        fig, ax = plt.subplots(figsize=(7.0, 3.1))
+        fig, ax = plt.subplots(figsize=(7.0, 2.75))
         x = att["year"].to_numpy()
         pos = np.zeros(len(att))
         neg = np.zeros(len(att))
         proxy_years = lp.loc[lp["proxy"].astype(bool), "year"]
         if len(proxy_years):
-            ax.axvspan(proxy_years.min() - 0.5, proxy_years.max() + 0.5, color="#898781", alpha=0.08, linewidth=0)
+            # bars are changes labelled by their end year: shade every change with a proxy year at either end
+            ax.axvspan(proxy_years.min() + 0.5, proxy_years.max() + 1.5, color="#898781", alpha=0.08, linewidth=0)
             ax.text(
-                proxy_years.min() + 0.2,
+                proxy_years.min() + 0.7,
                 0.97,
                 "freight index: Kilian-based proxy",
                 transform=ax.get_xaxis_transform(),
@@ -311,12 +314,21 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
         att["signals"] = att[sig_cols].sum(axis=1)
         keys = [k for k in _stack_keys(att.columns) if k not in sig_cols]
         keys.insert(keys.index("residual") if "residual" in keys else len(keys), "signals")
-        colors = {**COLORS, "signals": "#e87ba4"}
-        labels = {**LABELS, "signals": "Price signals (oil, iron ore)"}
+        seg_colors = {**COLORS, "signals": "#e87ba4"}
+        seg_labels = {**LABELS, "signals": "Price signals (oil, iron ore)"}
         for k in keys:
             v = att[k].to_numpy()
             bottom = np.where(v >= 0, pos, neg)
-            ax.bar(x, v, width=0.8, bottom=bottom, color=colors[k], label=labels[k], edgecolor="#fbfaf7", linewidth=0.3)
+            ax.bar(
+                x,
+                v,
+                width=0.8,
+                bottom=bottom,
+                color=seg_colors[k],
+                label=seg_labels[k],
+                edgecolor="#fbfaf7",
+                linewidth=0.3,
+            )
             pos = pos + np.where(v >= 0, v, 0)
             neg = neg + np.where(v < 0, v, 0)
         ax.plot(x, att["total"], color="#1b1a17", lw=1.2, label="Total change in log index")
@@ -328,6 +340,12 @@ def make_figures(res: dict[str, Any]) -> dict[str, Path]:
         fig.savefig(out["long"], dpi=200)
         plt.close(fig)
     return out
+
+
+def _image(path: Path, width: float) -> Image:
+    """A figure at the given width, its height taken from the PNG's own aspect ratio."""
+    w, h = ImageReader(str(path)).getSize()
+    return Image(str(path), width=width, height=width * h / w)
 
 
 def _long_cv(res: dict[str, Any]) -> str:
@@ -358,7 +376,8 @@ def _long_readme(res: dict[str, Any]) -> str:
         + (f" and {ln['oos_ext']:.0%} out of sample" if ln["oos_ext"] is not None else "")
         + f". Before {ln['first_bdi']} the freight index is a proxy from the Kilian index of dry cargo freight rates, calibrated on the overlap "
         f"(annual changes correlate at {ln['proxy_corr']:.3f}). Unit-value estimates are {ln['estimated_share']:.0%} of sea-route tonnes; "
-        f"annual changes use the {ln['measured_share']:.0%} of exporter-commodity-years whose tonnes are at least 90% measured."
+        f"each annual change rests on series at least 90% measured in both years, on average {ln['chain_share']:.0%} of the year's "
+        f"sea-route tonnes (lowest {ln['chain_share_min']:.0%}, in {ln['chain_share_min_year']})."
     )
 
 
@@ -386,7 +405,9 @@ def _long_numbers(res: dict[str, Any]) -> dict[str, Any] | None:
         "oos_ext": oos["unexplained"]["extended"] if oos.get("available") else None,
         "first_bdi": meta.get("freight_calibration", {}).get("first_bdi_year"),
         "estimated_share": _estimated_share(),
-        "measured_share": (meta.get("series_years_measured") or 0) / (meta.get("series_years") or 1),
+        "chain_share": float(lp["chain_share"].mean()),
+        "chain_share_min": float(lp["chain_share"].min()),
+        "chain_share_min_year": int(lp.loc[lp["chain_share"].idxmin(), "year"]),
         "proxy_corr": meta.get("freight_calibration", {}).get("annual_change_corr"),
     }
 
@@ -405,7 +426,7 @@ def _long_text(res: dict[str, Any]) -> str:
     fl_x = float(lp["fleet"].iloc[-1] / lp["fleet"].iloc[0])
     eps = {ep["episode_id"]: ep for ep in lm["episodes"]}
     parts = [
-        f"An annual version of the decomposition runs from {y0} to {y1} ({y1 - y0} annual changes). Tonnes come from the annual UN Comtrade records of the same exporters for every partner (SITC Revision 2 before HS), chain-linked on the series (exporter and commodity group) measured in both years of each change, with unit-value estimates for missing or estimated weights in the levels only; the fleet is the UNCTAD series; the freight index is the Baltic Dry Index from {cal.get('first_bdi_year')} and, before, a proxy: the Kilian index of dry cargo freight rates (Federal Reserve Bank of Dallas), converted back to nominal terms with US consumer prices and calibrated on {cal.get('overlap_months')} months where both exist (annual changes correlate at {cal.get('annual_change_corr', float('nan')):.3f}). "
+        f"An annual version of the decomposition runs from {y0} to {y1} ({y1 - y0} annual changes). Tonnes come from the annual UN Comtrade records of the same exporters for every partner (SITC Revision 2 before HS), chain-linked on the series (exporter and commodity group) at least 90% measured in both years of each change (on average {float(lp['chain_share'].mean()):.0%} of the year's sea-route tonnes); unit-value estimates for missing, estimated or understated weights fill the levels; the fleet is the UNCTAD series; the freight index is the Baltic Dry Index from {cal.get('first_bdi_year')} and, before, a proxy: the Kilian index of dry cargo freight rates (Federal Reserve Bank of Dallas; Kilian 2009, Am. Econ. Rev. 99(3); Kilian 2019, Econ. Letters 178), converted back to nominal terms with US consumer prices and calibrated on {cal.get('overlap_months')} months where both exist (annual changes correlate at {cal.get('annual_change_corr', float('nan')):.3f}). "
         f"Over the period tonne-miles on the covered trades rose {tm_x:.1f}-fold and the fleet {fl_x:.1f}-fold. On annual changes the elasticity is {e['elasticity']:.2f} (standard error {e['std_error']:.2f}); the forces leave {fit['unexplained_physical']:.0%} of a typical annual move unexplained, {fit['unexplained_extended']:.0%} with the two price signals"
         + (
             f" ({oos['unexplained']['extended']:.0%} out of sample, {oos['first_year']} to {oos['last_year']})"
@@ -425,9 +446,7 @@ def _long_text(res: dict[str, Any]) -> str:
             parts.append(
                 f" In {label} ({ep['start']} to {ep['end']}, {_lp(ep['total'])} log points) volume contributed {_lp(ep['volume'])}, haul {_lp(ep['distance'])}, fleet {_lp(ep['fleet'])}, the price signals {_lp(sig)} and the residual {_lp(ep['residual'])}."
             )
-    parts.append(
-        " Figure 4 shows every year; the proxy years are shaded, and annual averages smooth moves within a year."
-    )
+    parts.append(" Figure 4 shows every year (changes that use the proxy are shaded).")
     return "".join(parts)
 
 
@@ -626,7 +645,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             st["body"],
         )
     )
-    story.append(Image(str(figs["fitted"]), width=width, height=width * 2.9 / 7.0))
+    story.append(_image(figs["fitted"], width))
     story.append(
         Paragraph(
             f"Figure 1. Twelve-month percent change in the Baltic Dry Index and the part attributed to cargo volume, haul, fleet and port time at the estimated elasticity ({n['elasticity']:.2f}); endpoints are three-month averages. Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat and this project's distance matrix (inputs).",
@@ -683,14 +702,14 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             st["body"],
         )
     )
-    story.append(Image(str(figs["rolling"]), width=width, height=width * 3.0 / 7.0))
+    story.append(_image(figs["rolling"], width))
     story.append(
         Paragraph(
             "Figure 2. Twelve-month change in the log Baltic Dry Index (line) and its attribution (bars), log points. Endpoints are three-month averages.",
             st["caption"],
         )
     )
-    story.append(Image(str(figs["episodes"]), width=width, height=width * (2.6 + 0.25 * len(n["episodes"])) / 7.0))
+    story.append(_image(figs["episodes"], width))
     story.append(
         Paragraph(
             "Figure 3. Named episodes covered by the panel: contributions in log points (bars) and the total change (dot). An episode is listed only when both endpoints fall inside the data.",
@@ -792,10 +811,10 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
             )
         )
         story.append(Paragraph(long_text, st["body"]))
-        story.append(Image(str(figs["long"]), width=width, height=width * 2.7 / 7.0))
+        story.append(_image(figs["long"], width))
         story.append(
             Paragraph(
-                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points; the price signals combine Brent and iron ore over the twelve months to September. Shaded years use the Kilian-based proxy for the index. Sources: UN Comtrade (annual), UNCTADstat, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
+                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points; the price signals combine Brent and iron ore over the twelve months to September. Shaded bars are changes that use the Kilian-based proxy for at least one of the two years. Sources: UN Comtrade (annual), UNCTADstat, IMF PortWatch, NGA World Port Index, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
                 st["caption"],
             )
         )
@@ -851,7 +870,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(
         Paragraph(
             "The pipeline (Python 3.11 or later) runs in six stages: ingest, validate, transform, model, export and report; one command rebuilds everything, unit tests check the distance routing, the tonne-mile aggregation and the adding-up of the decomposition, and a scheduled GitHub Actions workflow refreshes the data and republishes the site. "
-            "Every raw file is stored with a metadata record (source URL, retrieval timestamp, frequency, coverage, licence and known limitations). Code, data and this note: github.com/nathancouturier/Tonne-Mile-Demand-Model.",
+            "Every raw file has a metadata record (source, retrieval time, coverage, licence, limitations, file hashes). Code, data and note: github.com/nathancouturier/Tonne-Mile-Demand-Model.",
             st["body"],
         )
     )

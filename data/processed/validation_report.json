@@ -1,11 +1,110 @@
 {
-  "generated_at": "2026-10-17T16:12:43Z",
+  "generated_at": "2026-10-17T17:20:37Z",
   "summary": {
-    "pass": 20,
+    "pass": 31,
     "warn": 6,
     "fail": 0
   },
   "checks": [
+    {
+      "dataset": "asub_baltic_dry_index",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "3 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "brazil_comexstat",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "2 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "dallasfed_kilian_index",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "2 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "imf_portwatch",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "5 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "nga_world_port_index",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "1 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "oecd_cli",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "1 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "oecd_cpi_usa",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "1 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "un_comtrade",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "12 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "un_comtrade_long",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "9 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "unctadstat_maritime",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "7 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "dataset": "worldbank_cmo",
+      "check": "metadata_hashes",
+      "status": "pass",
+      "message": "1 files match their recorded hash",
+      "details": {
+        "files": []
+      }
+    },
     {
       "dataset": "asub_baltic_dry_index",
       "check": "missing_values",

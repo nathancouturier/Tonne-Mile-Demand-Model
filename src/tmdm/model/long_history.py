@@ -50,7 +50,7 @@ LONG_EPISODES: tuple[LongEpisode, ...] = (
     LongEpisode("slump_1980s", "The 1980s slump", 1980, 1986, "From the 1980 average to the 1986 low."),
     LongEpisode("recovery_to_1995", "Recovery to 1995", 1986, 1995, "From the 1986 low to the 1995 high."),
     LongEpisode("asian_crisis", "Asian financial crisis", 1995, 1999, "The 1997 and 1998 crisis in East Asia."),
-    LongEpisode("boom_2000s", "The 2000s boom", 2001, 2007, "From the 2001 low to the 2007 annual high."),
+    LongEpisode("boom_2000s", "The 2000s boom", 2002, 2007, "From the 2002 low to the 2007 annual high."),
     LongEpisode("crash_2008", "The 2008 crash", 2007, 2009, "The financial crisis and the fall in trade."),
     LongEpisode("delivery_wave", "The delivery wave", 2010, 2016, "Record fleet deliveries after 2009."),
     LongEpisode("boom_2021", "Recovery and the 2021 boom", 2016, 2021, "From the 2016 low to the 2021 high."),
