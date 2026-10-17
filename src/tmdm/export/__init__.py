@@ -70,7 +70,7 @@ DOWNLOADS = {
         "monthly cross-check and undisclosed-destination exclusions"
     ),
     "long_prices_annual.csv": (
-        "Annual Brent and iron ore (October to September) prices used as long-history signals (World Bank Pink Sheet)"
+        "Annual Brent (calendar year) and iron ore (October to September) prices, the long-history signals (World Bank)"
     ),
     "long_route_distances.csv": "Baseline sea distance per long-history route",
     "model_long.json": "Annual long-history model: elasticity, signals, out-of-sample test, episodes",

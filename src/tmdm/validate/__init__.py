@@ -296,16 +296,18 @@ def metadata_checks() -> list[CheckResult]:
     """Every file listed in a metadata record exists and has the recorded SHA-256 hash."""
     out = []
     for meta in all_metadata():
-        bad = [f for f, h in meta.sha256.items() if not (RAW_DIR / meta.dataset_id / f).exists()
-               or sha256_of(RAW_DIR / meta.dataset_id / f) != h]  # fmt: skip
+        base = RAW_DIR / meta.dataset_id
+        listed = set(meta.files) | set(meta.sha256)
+        bad = sorted(f for f in listed if f not in meta.sha256 or not (base / f).is_file()
+                     or sha256_of(base / f) != meta.sha256[f])  # fmt: skip
         out.append(
             CheckResult(
                 meta.dataset_id,
                 "metadata_hashes",
                 "fail" if bad else "pass",
-                f"{len(bad)} of {len(meta.sha256)} files differ from their recorded hash"
+                f"{len(bad)} of {len(listed)} listed files are missing or differ from their recorded hash"
                 if bad
-                else f"{len(meta.sha256)} files match their recorded hash",
+                else f"{len(listed)} listed files match their recorded hash",
                 {"files": bad},
             )
         )

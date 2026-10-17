@@ -648,7 +648,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
     story.append(_image(figs["fitted"], width))
     story.append(
         Paragraph(
-            f"Figure 1. Twelve-month percent change in the Baltic Dry Index and the part attributed to cargo volume, haul, fleet and port time at the estimated elasticity ({n['elasticity']:.2f}); endpoints are three-month averages. Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat and this project's distance matrix (inputs).",
+            f"Figure 1. Twelve-month percent change in the Baltic Dry Index and the part attributed to cargo volume, haul, fleet and port time{' plus the two market-price signals' if n['has_signals'] else ''} at the estimated elasticity ({n['elasticity']:.2f}); endpoints are three-month averages. Shaded area is the residual. Sources: Statistics and Research Aland (index, originator Baltic Exchange); UN Comtrade, Brazil Comex Stat, UNCTADstat, IMF PortWatch (port calls, chokepoint transits) and this project's distance matrix from NGA World Port Index ports (inputs){'; World Bank Pink Sheet (prices)' if n['has_signals'] else ''}.",
             st["caption"],
         )
     )
@@ -814,7 +814,7 @@ def build_pdf(res: dict[str, Any], figs: dict[str, Path], out_path: Path) -> Non
         story.append(_image(figs["long"], width))
         story.append(
             Paragraph(
-                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points; the price signals combine Brent and iron ore over the twelve months to September. Shaded bars are changes that use the Kilian-based proxy for at least one of the two years. Sources: UN Comtrade (annual), UNCTADstat, IMF PortWatch, NGA World Port Index, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
+                "Figure 4. Annual change in the log of the annual average index (line) and its attribution (bars), log points; the price signals combine Brent (calendar-year average) and iron ore (twelve months to September). Shaded bars are changes that use the Kilian-based proxy for at least one of the two years. Sources: UN Comtrade (annual), UNCTADstat, IMF PortWatch, NGA World Port Index, Federal Reserve Bank of Dallas, OECD, ASUB, World Bank.",
                 st["caption"],
             )
         )

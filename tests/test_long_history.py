@@ -281,17 +281,25 @@ def test_a_code_with_mostly_undisclosed_destinations_leaves_its_series_unmeasure
     assert allocation_dominated(flows) == set()
 
 
-def test_a_shift_in_the_allocated_share_does_not_move_the_haul():
-    # A's ore: 20% allocated in 1993 (at the average haul), disclosed in 1994 and partly long-haul
+def test_a_shift_in_the_allocated_share_moves_the_haul_only_beyond_what_the_allocation_can_explain():
+    # 1993: 100 t to Asia (4,000 nm), 20 of them allocated from undisclosed destinations;
+    # 1994: all disclosed, 90 t to Asia and 20 t to Europe (9,000 nm)
     sea = pd.DataFrame(
-        {"unit": "AUS_X", "cls": "HS", "cmd": "2601", "commodity": "iron_ore", "year": [1993, 1994],
-         "route_id": "r", "tonnes": [100.0, 110.0], "tonne_miles": [400_000.0, 520_000.0],
-         "measured_tonnes": [100.0, 110.0], "allocated_tonnes": [20.0, 0.0]}
+        {"unit": "AUS_X", "cls": "HS", "cmd": "2601", "commodity": "iron_ore", "year": [1993, 1994, 1994],
+         "route_id": ["asia", "asia", "europe"], "tonnes": [100.0, 90.0, 20.0],
+         "tonne_miles": [400_000.0, 360_000.0, 180_000.0], "measured_tonnes": [100.0, 90.0, 20.0],
+         "allocated_tonnes": [20.0, 0.0, 0.0]}
     )  # fmt: skip
     out = chain_link(sea, measured_series(sea), 1993, 1994).set_index("year")
     assert out.loc[1994, "tonnes_chain"] == pytest.approx(1.10)
-    assert out.loc[1994, "tm_chain"] == pytest.approx(1.10)  # haul held at 4,000
+    # haul change log(4909/4000) = 0.205; the 20% allocated could account for 0.2 x 5000/4000 = 0.25: all held
+    assert out.loc[1994, "tm_chain"] == pytest.approx(1.10)
     assert out.loc[1994, "held"] == "AUS_X:HS:iron_ore"
+    # with 3% allocated, most of the haul change is real and kept
+    sea.loc[0, "allocated_tonnes"] = 3.0
+    out = chain_link(sea, measured_series(sea), 1993, 1994).set_index("year")
+    dh = np.log(540_000.0 / 110.0 / 4000.0)
+    assert np.log(out.loc[1994, "tm_chain"] / 1.10) == pytest.approx(dh - 0.03 * 5000.0 / 4000.0)
 
 
 def test_understated_partner_weight_becomes_an_estimate():

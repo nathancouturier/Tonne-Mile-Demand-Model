@@ -97,7 +97,7 @@ def rehash_sharded(dataset_id: str) -> DatasetMetadata | None:
         return None
     d = raw_dir(dataset_id)
     shard_files = sorted(p.name for p in d.glob("*shard*") if p.is_file())
-    meta.files = sorted(set(meta.files) | set(shard_files))
+    meta.files = sorted(f for f in set(meta.files) | set(shard_files) if (d / f).is_file())
     meta.sha256 = {}
     stamps = []
     for done in d.glob("done*.csv"):

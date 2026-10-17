@@ -96,9 +96,33 @@ jobs:
         run: |
           bash scripts/commit_data.sh "data: refresh UN Comtrade shard ${{ matrix.shard }}" data/raw/un_comtrade data/raw/un_comtrade_long
 
+  # The shards run in parallel and shard 0 writes the metadata records with the copies of the other shards
+  # it last saw; once every shard is committed, the records are rewritten with the hashes of the merged files.
+  rehash-comtrade:
+    name: Rehash UN Comtrade metadata
+    needs: [ingest-comtrade]
+    if: ${{ always() && needs.ingest-comtrade.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e .
+      - name: Recompute shard hashes
+        run: |
+          python -c "from tmdm.io import rehash_sharded; [rehash_sharded(d) for d in ('un_comtrade', 'un_comtrade_long')]"
+      - name: Commit metadata
+        run: |
+          bash scripts/commit_data.sh "data: rehash UN Comtrade metadata" data/raw/un_comtrade/metadata.json data/raw/un_comtrade_long/metadata.json
+
   build:
     name: Validate, model, export and deploy
-    needs: [ingest-fast, ingest-comtrade]
+    needs: [ingest-fast, ingest-comtrade, rehash-comtrade]
     if: ${{ always() && !inputs.ingest_only && (github.event_name != 'push' || contains(github.event.head_commit.message, '[build')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 60

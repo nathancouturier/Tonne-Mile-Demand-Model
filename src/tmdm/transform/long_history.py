@@ -75,7 +75,7 @@ MEASURED_SHARE = 0.9  # a series-year counts as measured if at least this share 
 MONTHLY_TOLERANCE = 0.15  # largest gap between an annual weight and the sum of its twelve monthly weights
 # a code-year with more undisclosed than disclosed tonnes (and at least this many) leaves its series unmeasured
 MIN_DOMINATED_TONNES = 0.1e6
-# when a series' allocated share moves by more than this between two years, its haul is held for that change
+# when a series' allocated share moves by more than this between two years, its haul change is limited
 MAX_ALLOCATION_SHIFT = 0.02
 # a partner weight is understated when its unit value is this many times the code-year's median ...
 OUTLIER_RATIO = 2.5
@@ -615,10 +615,13 @@ def chain_link(sea: pd.DataFrame, measured: set[tuple[str, str, str, int]], firs
     Reporters that enter, leave or change classification therefore never move the chain, and estimated
     tonnes move it only within a measured series (at most 1 - MEASURED_SHARE of its tonnes). When a series'
     share of tonnes allocated from undisclosed destinations moves by more than MAX_ALLOCATION_SHIFT between
-    the two years, its haul is held at the earlier year's value for that change: its tonnes count, but the
-    allocation does not move the haul (Australian iron ore under "Special categories" from 1988 to 1993,
-    mostly bound for Europe, would otherwise add a false 10 percent haul step in 1994). ``held`` lists those
-    series. ``chain_share``
+    the two years, the true destinations of those tonnes could move its haul by up to the allocated share
+    times the widest relative gap between a route's distance and the series' haul (routes of either year),
+    in each year. The haul change is then reduced by the sum of those two bounds (towards zero, never past
+    it): its tonnes count in full, but only the part of the haul change the allocation cannot explain does.
+    Australian iron ore under "Special categories" from 1988 to 1993, mostly bound for Europe, would
+    otherwise add a false 10 percent haul step in 1994; Colombian coal in 2025 (3 percent allocated) keeps
+    most of its real 19 percent fall. ``held`` lists the series whose haul change was reduced. ``chain_share``
     is the share of year t's sea tonnes (each unit in the classification it uses, else HS where present)
     that the change to year t rests on. Levels are scaled so that the last year equals that year's covered
     total (HS, all series).
@@ -635,6 +638,20 @@ def chain_link(sea: pd.DataFrame, measured: set[tuple[str, str, str, int]], firs
         k4 = (str(r["unit"]), str(r["cls"]), str(r["commodity"]), int(r["year"]))
         totals[k4] = (float(r["tonnes"]), float(r["tonne_miles"]))
         alloc_share[k4] = float(r["allocated_tonnes"]) / float(r["tonnes"]) if float(r["tonnes"]) > 0 else 0.0
+    # route distances (tonne-miles over tonnes) per series-year, for the bound on the allocation's effect
+    by_route = sea.groupby(["unit", "cls", "commodity", "year", "route_id"])[["tonnes", "tonne_miles"]].sum()
+    by_route = by_route[by_route["tonnes"] > 0]
+    route_dist: dict[tuple[str, str, str, int], list[float]] = {}
+    for (u, c, k, yy, _r), row in zip(by_route.index, by_route.to_dict(orient="records"), strict=True):
+        route_dist.setdefault((str(u), str(c), str(k), int(yy)), []).append(row["tonne_miles"] / row["tonnes"])
+
+    def alloc_bound(key: tuple[str, str, str, int], other: tuple[str, str, str, int]) -> float:
+        haul = totals[key][1] / totals[key][0]
+        dists = route_dist.get(key, []) + route_dist.get(other, [])
+        if not dists or haul <= 0:
+            return 0.0
+        return alloc_share[key] * max(abs(d - haul) / haul for d in dists)
+
     series: dict[tuple[str, str], set[str]] = {}
     for u, c, k, _y in totals:
         series.setdefault((u, c), set()).add(k)
@@ -663,10 +680,14 @@ def chain_link(sea: pd.DataFrame, measured: set[tuple[str, str, str, int]], firs
                 continue
             total_t += sum(totals[(u, cls, k, y)][0] for k in series.get((u, cls), set()) if (u, cls, k, y) in totals)
             for k in both:
-                a, b = totals[(u, cls, k, y - 1)], totals[(u, cls, k, y)]
-                if abs(alloc_share[(u, cls, k, y)] - alloc_share[(u, cls, k, y - 1)]) > MAX_ALLOCATION_SHIFT:
-                    b = (b[0], b[0] * a[1] / a[0])
-                    held.append(f"{u}:{cls}:{k}")
+                k0, k1 = (u, cls, k, y - 1), (u, cls, k, y)
+                a, b = totals[k0], totals[k1]
+                if abs(alloc_share[k1] - alloc_share[k0]) > MAX_ALLOCATION_SHIFT:
+                    dh = float(np.log((b[1] / b[0]) / (a[1] / a[0])))
+                    keep = float(np.sign(dh)) * max(abs(dh) - alloc_bound(k0, k1) - alloc_bound(k1, k0), 0.0)
+                    if keep != dh:
+                        b = (b[0], b[0] * a[1] / a[0] * float(np.exp(keep)))
+                        held.append(f"{u}:{cls}:{k}")
                 den_t, den_tm, num_t, num_tm = den_t + a[0], den_tm + a[1], num_t + b[0], num_tm + b[1]
             used.append(f"{u}:{cls}")
             n_series += len(both)
