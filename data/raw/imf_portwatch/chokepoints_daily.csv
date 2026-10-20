@@ -2836,10 +2836,17 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-05,chokepoint1,Suez Canal,4,163019,36,1339861,17,11
 2026-10-06,chokepoint1,Suez Canal,11,347995,48,1798283,18,12
 2026-10-07,chokepoint1,Suez Canal,2,238652,32,1640112,15,14
-2026-10-08,chokepoint1,Suez Canal,11,410723,37,1710276,14,10
+2026-10-08,chokepoint1,Suez Canal,11,410723,37,1710275,14,10
 2026-10-09,chokepoint1,Suez Canal,14,622684,55,1773726,19,12
 2026-10-10,chokepoint1,Suez Canal,9,381735,41,2094816,16,14
 2026-10-11,chokepoint1,Suez Canal,5,206926,43,1300421,20,13
+2026-10-12,chokepoint1,Suez Canal,12,510554,50,2194694,20,9
+2026-10-13,chokepoint1,Suez Canal,8,378750,36,1449755,12,11
+2026-10-14,chokepoint1,Suez Canal,13,587980,54,2648709,17,17
+2026-10-15,chokepoint1,Suez Canal,8,320823,42,1716065,17,12
+2026-10-16,chokepoint1,Suez Canal,4,110502,43,1542020,16,16
+2026-10-17,chokepoint1,Suez Canal,14,550177,42,2180846,14,14
+2026-10-18,chokepoint1,Suez Canal,10,323906,43,1554286,15,15
 2019-01-01,chokepoint10,Oresund Strait,4,4360,27,54049,8,3
 2019-01-02,chokepoint10,Oresund Strait,1,3541,28,47928,7,6
 2019-01-03,chokepoint10,Oresund Strait,3,6288,45,52260,16,4
@@ -5681,6 +5688,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint10,Oresund Strait,9,4038,35,48722,9,5
 2026-10-10,chokepoint10,Oresund Strait,7,151825,42,217044,7,7
 2026-10-11,chokepoint10,Oresund Strait,9,17507,38,64648,6,3
+2026-10-12,chokepoint10,Oresund Strait,6,79853,39,133445,8,6
+2026-10-13,chokepoint10,Oresund Strait,3,49720,39,121738,12,5
+2026-10-14,chokepoint10,Oresund Strait,6,6088,46,90569,10,4
+2026-10-15,chokepoint10,Oresund Strait,15,75424,48,129088,7,8
+2026-10-16,chokepoint10,Oresund Strait,7,29381,41,88360,8,6
+2026-10-17,chokepoint10,Oresund Strait,3,0,35,61196,9,4
+2026-10-18,chokepoint10,Oresund Strait,4,5610,42,62092,6,10
 2019-01-01,chokepoint11,Taiwan Strait,59,1929838,252,5071527,72,90
 2019-01-02,chokepoint11,Taiwan Strait,68,2701141,265,5904166,68,98
 2019-01-03,chokepoint11,Taiwan Strait,60,2220854,246,4654043,53,92
@@ -8503,11 +8517,11 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-09-20,chokepoint11,Taiwan Strait,59,3151394,230,5800748,48,92
 2026-09-21,chokepoint11,Taiwan Strait,64,2983939,225,5457871,38,90
 2026-09-22,chokepoint11,Taiwan Strait,68,3489730,223,6129263,51,81
-2026-09-23,chokepoint11,Taiwan Strait,61,2700838,217,5522230,47,85
+2026-09-23,chokepoint11,Taiwan Strait,61,2700838,217,5522229,47,85
 2026-09-24,chokepoint11,Taiwan Strait,84,4436974,253,7424427,43,95
 2026-09-25,chokepoint11,Taiwan Strait,74,3432311,234,6705339,47,83
 2026-09-26,chokepoint11,Taiwan Strait,72,3450578,249,6499988,54,92
-2026-09-27,chokepoint11,Taiwan Strait,75,4343075,225,7129580,42,81
+2026-09-27,chokepoint11,Taiwan Strait,75,4343075,225,7129579,42,81
 2026-09-28,chokepoint11,Taiwan Strait,67,2688725,234,5680239,44,87
 2026-09-29,chokepoint11,Taiwan Strait,60,2827994,243,6763396,66,85
 2026-09-30,chokepoint11,Taiwan Strait,55,3291291,237,6327302,57,94
@@ -8520,8 +8534,15 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-07,chokepoint11,Taiwan Strait,53,2100490,222,5267400,55,89
 2026-10-08,chokepoint11,Taiwan Strait,60,2585975,231,5867284,52,85
 2026-10-09,chokepoint11,Taiwan Strait,71,3423293,242,6629583,46,94
-2026-10-10,chokepoint11,Taiwan Strait,67,3700153,224,6033449,49,85
+2026-10-10,chokepoint11,Taiwan Strait,67,3700153,224,6033448,49,85
 2026-10-11,chokepoint11,Taiwan Strait,70,2643450,246,4971248,58,81
+2026-10-12,chokepoint11,Taiwan Strait,76,3310616,261,6283450,56,95
+2026-10-13,chokepoint11,Taiwan Strait,63,3211828,222,5818209,41,81
+2026-10-14,chokepoint11,Taiwan Strait,58,2017533,224,4139874,46,83
+2026-10-15,chokepoint11,Taiwan Strait,70,3372390,232,6688741,51,84
+2026-10-16,chokepoint11,Taiwan Strait,57,2563508,218,5540910,41,87
+2026-10-17,chokepoint11,Taiwan Strait,42,1929123,204,4755090,41,83
+2026-10-18,chokepoint11,Taiwan Strait,56,1908207,230,4944077,47,95
 2019-01-01,chokepoint12,Korea Strait,33,851402,202,2408688,68,47
 2019-01-02,chokepoint12,Korea Strait,44,1000690,186,2800852,63,39
 2019-01-03,chokepoint12,Korea Strait,25,635623,208,2533816,69,42
@@ -11363,6 +11384,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint12,Korea Strait,36,942742,196,2924100,48,46
 2026-10-10,chokepoint12,Korea Strait,40,1442437,215,4006245,55,53
 2026-10-11,chokepoint12,Korea Strait,33,860864,192,3031102,61,55
+2026-10-12,chokepoint12,Korea Strait,19,572190,183,3362281,49,56
+2026-10-13,chokepoint12,Korea Strait,41,1153600,203,2534029,60,46
+2026-10-14,chokepoint12,Korea Strait,29,681486,185,2544908,44,49
+2026-10-15,chokepoint12,Korea Strait,34,1041520,209,2969408,50,54
+2026-10-16,chokepoint12,Korea Strait,41,1747904,224,4003210,57,51
+2026-10-17,chokepoint12,Korea Strait,40,692049,193,2781003,46,53
+2026-10-18,chokepoint12,Korea Strait,28,1162280,174,3344458,47,50
 2019-01-01,chokepoint13,Tsugaru Strait,6,126632,27,354698,9,5
 2019-01-02,chokepoint13,Tsugaru Strait,12,259429,33,518618,16,2
 2019-01-03,chokepoint13,Tsugaru Strait,15,409483,29,585990,11,3
@@ -14204,6 +14232,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint13,Tsugaru Strait,15,677253,56,1431133,14,10
 2026-10-10,chokepoint13,Tsugaru Strait,12,466946,51,1456783,11,17
 2026-10-11,chokepoint13,Tsugaru Strait,8,300509,58,1123903,15,19
+2026-10-12,chokepoint13,Tsugaru Strait,5,128171,36,669769,13,9
+2026-10-13,chokepoint13,Tsugaru Strait,12,300677,46,1163470,16,9
+2026-10-14,chokepoint13,Tsugaru Strait,7,256738,25,954394,5,9
+2026-10-15,chokepoint13,Tsugaru Strait,8,342484,45,1044039,14,14
+2026-10-16,chokepoint13,Tsugaru Strait,11,251992,52,985791,17,14
+2026-10-17,chokepoint13,Tsugaru Strait,12,400028,51,1217030,15,13
+2026-10-18,chokepoint13,Tsugaru Strait,14,458308,53,1289148,17,15
 2019-01-01,chokepoint14,Luzon Strait,35,2208930,79,3244531,21,11
 2019-01-02,chokepoint14,Luzon Strait,41,3245704,87,4566815,24,7
 2019-01-03,chokepoint14,Luzon Strait,46,3451057,96,5976839,25,9
@@ -17045,6 +17080,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint14,Luzon Strait,33,3799431,85,5531721,30,14
 2026-10-10,chokepoint14,Luzon Strait,41,3665253,98,6233866,31,14
 2026-10-11,chokepoint14,Luzon Strait,43,6236898,110,9325690,37,19
+2026-10-12,chokepoint14,Luzon Strait,52,4659062,115,6608906,31,14
+2026-10-13,chokepoint14,Luzon Strait,50,5767870,100,7559669,32,10
+2026-10-14,chokepoint14,Luzon Strait,50,4545975,102,7512458,32,9
+2026-10-15,chokepoint14,Luzon Strait,53,5114164,114,7952525,27,18
+2026-10-16,chokepoint14,Luzon Strait,50,3831464,106,6537387,31,15
+2026-10-17,chokepoint14,Luzon Strait,47,4544983,108,6666284,32,11
+2026-10-18,chokepoint14,Luzon Strait,32,2055451,79,4078009,24,15
 2019-01-01,chokepoint15,Lombok Strait,17,1119023,24,1171971,5,1
 2019-01-02,chokepoint15,Lombok Strait,17,2059089,26,2208440,7,1
 2019-01-03,chokepoint15,Lombok Strait,23,1618838,36,1738104,10,0
@@ -19886,6 +19928,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint15,Lombok Strait,24,2887903,32,2955780,7,0
 2026-10-10,chokepoint15,Lombok Strait,27,2093525,37,2257577,7,1
 2026-10-11,chokepoint15,Lombok Strait,28,2538770,35,2562370,6,0
+2026-10-12,chokepoint15,Lombok Strait,30,2396976,40,2590781,10,0
+2026-10-13,chokepoint15,Lombok Strait,25,2932102,30,3006245,2,0
+2026-10-14,chokepoint15,Lombok Strait,28,2052508,37,2201933,7,0
+2026-10-15,chokepoint15,Lombok Strait,22,2342932,34,2549136,9,0
+2026-10-16,chokepoint15,Lombok Strait,26,1909122,40,2007055,11,1
+2026-10-17,chokepoint15,Lombok Strait,32,4347319,40,4489487,8,0
+2026-10-18,chokepoint15,Lombok Strait,32,2781593,48,3008317,13,1
 2019-01-01,chokepoint16,Ombai Strait,10,1326665,18,1396660,5,2
 2019-01-02,chokepoint16,Ombai Strait,7,548503,10,696149,2,1
 2019-01-03,chokepoint16,Ombai Strait,9,1139559,18,1336483,3,1
@@ -22727,6 +22776,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint16,Ombai Strait,6,232548,14,440808,4,2
 2026-10-10,chokepoint16,Ombai Strait,3,277768,8,364693,3,1
 2026-10-11,chokepoint16,Ombai Strait,5,461354,11,574260,6,0
+2026-10-12,chokepoint16,Ombai Strait,5,328727,9,413852,3,0
+2026-10-13,chokepoint16,Ombai Strait,2,147074,3,149651,0,1
+2026-10-14,chokepoint16,Ombai Strait,1,178446,3,266245,2,0
+2026-10-15,chokepoint16,Ombai Strait,2,112357,8,202461,4,2
+2026-10-16,chokepoint16,Ombai Strait,3,392296,9,426570,3,1
+2026-10-17,chokepoint16,Ombai Strait,10,782444,12,782444,2,0
+2026-10-18,chokepoint16,Ombai Strait,5,403505,10,437407,3,1
 2019-01-01,chokepoint17,Bohai Strait,53,1039399,97,1881357,17,17
 2019-01-02,chokepoint17,Bohai Strait,58,2097912,105,2538043,20,13
 2019-01-03,chokepoint17,Bohai Strait,56,2348695,105,3004825,13,22
@@ -25568,6 +25624,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint17,Bohai Strait,91,4552031,174,5803393,36,20
 2026-10-10,chokepoint17,Bohai Strait,85,4041740,166,5505113,40,17
 2026-10-11,chokepoint17,Bohai Strait,91,5947096,149,7264675,27,14
+2026-10-12,chokepoint17,Bohai Strait,92,6184858,157,6985075,31,17
+2026-10-13,chokepoint17,Bohai Strait,75,5299412,134,6117736,25,20
+2026-10-14,chokepoint17,Bohai Strait,83,5154577,158,6421319,40,20
+2026-10-15,chokepoint17,Bohai Strait,85,4688800,160,5824863,42,21
+2026-10-16,chokepoint17,Bohai Strait,88,5824005,174,6799241,39,23
+2026-10-17,chokepoint17,Bohai Strait,66,6594803,115,7307969,24,12
+2026-10-18,chokepoint17,Bohai Strait,70,2852190,135,4026260,28,21
 2019-01-01,chokepoint18,Torres Strait,1,0,4,89911,2,1
 2019-01-02,chokepoint18,Torres Strait,4,0,12,192451,3,3
 2019-01-03,chokepoint18,Torres Strait,7,247447,12,295616,2,2
@@ -28409,6 +28472,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint18,Torres Strait,1,0,5,80686,2,0
 2026-10-10,chokepoint18,Torres Strait,6,111611,13,155892,1,2
 2026-10-11,chokepoint18,Torres Strait,2,83970,5,231148,1,2
+2026-10-12,chokepoint18,Torres Strait,5,59172,11,107162,4,2
+2026-10-13,chokepoint18,Torres Strait,7,181106,10,243850,1,2
+2026-10-14,chokepoint18,Torres Strait,7,252729,10,368627,3,0
+2026-10-15,chokepoint18,Torres Strait,5,70456,5,70456,0,0
+2026-10-16,chokepoint18,Torres Strait,2,115375,4,173614,1,1
+2026-10-17,chokepoint18,Torres Strait,8,238112,15,318373,2,3
+2026-10-18,chokepoint18,Torres Strait,1,54477,2,54477,1,0
 2019-01-01,chokepoint19,Sunda Strait,11,1164944,23,1313318,9,3
 2019-01-02,chokepoint19,Sunda Strait,9,450168,25,952788,7,5
 2019-01-03,chokepoint19,Sunda Strait,5,419341,24,862728,14,2
@@ -31250,6 +31320,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint19,Sunda Strait,13,767739,32,1211919,12,4
 2026-10-10,chokepoint19,Sunda Strait,4,262000,25,1021616,12,4
 2026-10-11,chokepoint19,Sunda Strait,14,1100504,34,1412238,12,3
+2026-10-12,chokepoint19,Sunda Strait,17,1116965,37,1515362,11,3
+2026-10-13,chokepoint19,Sunda Strait,13,1790812,30,1910307,10,3
+2026-10-14,chokepoint19,Sunda Strait,10,934840,39,1790211,17,8
+2026-10-15,chokepoint19,Sunda Strait,11,356862,34,625131,19,2
+2026-10-16,chokepoint19,Sunda Strait,12,752260,34,1268867,12,5
+2026-10-17,chokepoint19,Sunda Strait,10,735139,29,1186458,12,3
+2026-10-18,chokepoint19,Sunda Strait,14,548918,32,785278,14,2
 2019-01-01,chokepoint2,Panama Canal,10,495367,35,880491,17,6
 2019-01-02,chokepoint2,Panama Canal,6,234174,29,746739,9,8
 2019-01-03,chokepoint2,Panama Canal,7,385910,35,977516,12,8
@@ -34091,6 +34168,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint2,Panama Canal,4,140471,23,690245,8,6
 2026-10-10,chokepoint2,Panama Canal,2,87850,24,719779,9,8
 2026-10-11,chokepoint2,Panama Canal,4,193942,32,892610,15,10
+2026-10-12,chokepoint2,Panama Canal,1,56684,23,617392,7,8
+2026-10-13,chokepoint2,Panama Canal,4,142046,25,756616,13,7
+2026-10-14,chokepoint2,Panama Canal,4,158746,31,867736,13,8
+2026-10-15,chokepoint2,Panama Canal,4,162688,26,771818,10,7
+2026-10-16,chokepoint2,Panama Canal,2,107578,30,877188,20,4
+2026-10-17,chokepoint2,Panama Canal,4,194726,30,848388,15,6
+2026-10-18,chokepoint2,Panama Canal,5,150506,29,887764,13,9
 2019-01-01,chokepoint20,Makassar Strait,39,2389505,47,2500296,6,2
 2019-01-02,chokepoint20,Makassar Strait,44,2256516,52,2377521,3,2
 2019-01-03,chokepoint20,Makassar Strait,36,2044256,46,2090253,6,3
@@ -36932,6 +37016,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint20,Makassar Strait,50,2853089,60,2869606,3,3
 2026-10-10,chokepoint20,Makassar Strait,43,3139532,54,3305432,3,3
 2026-10-11,chokepoint20,Makassar Strait,36,3009635,55,3323681,6,5
+2026-10-12,chokepoint20,Makassar Strait,46,3491303,60,3644475,6,5
+2026-10-13,chokepoint20,Makassar Strait,31,2067989,43,2197527,7,3
+2026-10-14,chokepoint20,Makassar Strait,43,3643346,58,3740516,10,2
+2026-10-15,chokepoint20,Makassar Strait,52,3137167,62,3240858,3,2
+2026-10-16,chokepoint20,Makassar Strait,35,2295565,49,2357989,7,1
+2026-10-17,chokepoint20,Makassar Strait,41,2473429,52,2516843,2,5
+2026-10-18,chokepoint20,Makassar Strait,49,2346233,66,2397724,9,2
 2019-01-01,chokepoint21,Magellan Strait,1,28666,2,36875,0,0
 2019-01-02,chokepoint21,Magellan Strait,0,0,1,22741,0,1
 2019-01-03,chokepoint21,Magellan Strait,7,233438,8,238415,0,0
@@ -39773,6 +39864,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint21,Magellan Strait,3,53930,5,53930,2,0
 2026-10-10,chokepoint21,Magellan Strait,2,50085,3,54028,0,0
 2026-10-11,chokepoint21,Magellan Strait,1,116980,2,120768,0,1
+2026-10-12,chokepoint21,Magellan Strait,2,0,4,52694,0,1
+2026-10-13,chokepoint21,Magellan Strait,1,21737,4,119394,1,1
+2026-10-14,chokepoint21,Magellan Strait,4,194101,5,229423,0,1
+2026-10-15,chokepoint21,Magellan Strait,1,39913,2,39913,1,0
+2026-10-16,chokepoint21,Magellan Strait,4,172487,5,267009,1,0
+2026-10-17,chokepoint21,Magellan Strait,3,152581,4,152581,0,0
+2026-10-18,chokepoint21,Magellan Strait,5,166023,6,179043,0,1
 2019-01-01,chokepoint22,Yucatan Channel,5,178763,28,529872,13,6
 2019-01-02,chokepoint22,Yucatan Channel,8,258997,47,1155232,24,10
 2019-01-03,chokepoint22,Yucatan Channel,9,182525,49,1562362,26,5
@@ -42614,6 +42712,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint22,Yucatan Channel,2,20580,37,684875,23,7
 2026-10-10,chokepoint22,Yucatan Channel,7,254772,49,1350714,30,7
 2026-10-11,chokepoint22,Yucatan Channel,10,414364,66,1391063,33,14
+2026-10-12,chokepoint22,Yucatan Channel,11,513495,67,1964113,38,10
+2026-10-13,chokepoint22,Yucatan Channel,6,291015,51,1116018,32,9
+2026-10-14,chokepoint22,Yucatan Channel,3,108046,48,1159916,27,13
+2026-10-15,chokepoint22,Yucatan Channel,6,225177,45,1518747,26,9
+2026-10-16,chokepoint22,Yucatan Channel,7,288223,50,1068196,29,9
+2026-10-17,chokepoint22,Yucatan Channel,5,270228,48,1400308,27,14
+2026-10-18,chokepoint22,Yucatan Channel,3,131993,47,1175950,26,12
 2019-01-01,chokepoint23,Windward Passage,6,184216,22,248130,2,7
 2019-01-02,chokepoint23,Windward Passage,2,54678,10,101588,2,3
 2019-01-03,chokepoint23,Windward Passage,2,60722,13,144057,4,2
@@ -45455,6 +45560,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint23,Windward Passage,0,0,14,128010,0,9
 2026-10-10,chokepoint23,Windward Passage,2,86260,13,251285,1,6
 2026-10-11,chokepoint23,Windward Passage,1,0,18,321211,1,12
+2026-10-12,chokepoint23,Windward Passage,3,82630,13,162001,1,5
+2026-10-13,chokepoint23,Windward Passage,0,0,15,232600,2,8
+2026-10-14,chokepoint23,Windward Passage,1,34441,9,169718,0,4
+2026-10-15,chokepoint23,Windward Passage,0,0,16,387033,4,10
+2026-10-16,chokepoint23,Windward Passage,1,48485,11,200918,1,8
+2026-10-17,chokepoint23,Windward Passage,1,44342,13,313529,1,6
+2026-10-18,chokepoint23,Windward Passage,3,17580,16,142900,0,8
 2019-01-01,chokepoint24,Mona Passage,0,0,12,337191,6,4
 2019-01-02,chokepoint24,Mona Passage,1,0,11,222367,5,1
 2019-01-03,chokepoint24,Mona Passage,1,91312,8,157159,2,3
@@ -48296,6 +48408,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint24,Mona Passage,4,394870,11,654776,3,3
 2026-10-10,chokepoint24,Mona Passage,4,157176,9,285625,3,1
 2026-10-11,chokepoint24,Mona Passage,2,87606,8,194301,0,3
+2026-10-12,chokepoint24,Mona Passage,2,155929,10,295327,3,3
+2026-10-13,chokepoint24,Mona Passage,1,60435,8,111528,1,2
+2026-10-14,chokepoint24,Mona Passage,2,66938,16,413927,4,6
+2026-10-15,chokepoint24,Mona Passage,4,185605,10,353073,2,2
+2026-10-16,chokepoint24,Mona Passage,1,56684,7,153149,1,3
+2026-10-17,chokepoint24,Mona Passage,3,179973,13,242352,2,4
+2026-10-18,chokepoint24,Mona Passage,2,91479,15,248973,2,5
 2019-01-01,chokepoint25,Balabac Strait,7,131618,14,159510,2,2
 2019-01-02,chokepoint25,Balabac Strait,5,198584,12,526100,5,0
 2019-01-03,chokepoint25,Balabac Strait,6,133229,11,155341,3,2
@@ -51137,6 +51256,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint25,Balabac Strait,5,135552,8,146606,2,0
 2026-10-10,chokepoint25,Balabac Strait,2,157474,12,264955,4,3
 2026-10-11,chokepoint25,Balabac Strait,6,349174,11,367144,4,0
+2026-10-12,chokepoint25,Balabac Strait,3,90672,7,111389,2,2
+2026-10-13,chokepoint25,Balabac Strait,5,121261,10,374271,5,0
+2026-10-14,chokepoint25,Balabac Strait,5,173504,8,189671,1,0
+2026-10-15,chokepoint25,Balabac Strait,5,292707,8,301463,1,0
+2026-10-16,chokepoint25,Balabac Strait,5,244047,11,272939,5,1
+2026-10-17,chokepoint25,Balabac Strait,9,316632,13,330278,2,2
+2026-10-18,chokepoint25,Balabac Strait,7,241202,15,259331,5,1
 2019-01-01,chokepoint26,Bering Strait,1,0,3,72843,0,2
 2019-01-02,chokepoint26,Bering Strait,2,72870,5,151980,2,1
 2019-01-03,chokepoint26,Bering Strait,1,38992,4,240679,3,0
@@ -53978,6 +54104,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint26,Bering Strait,1,72851,11,296148,6,0
 2026-10-10,chokepoint26,Bering Strait,2,143258,8,284347,1,1
 2026-10-11,chokepoint26,Bering Strait,0,0,5,169379,3,1
+2026-10-12,chokepoint26,Bering Strait,1,71732,2,74856,1,0
+2026-10-13,chokepoint26,Bering Strait,1,72319,4,188065,2,0
+2026-10-14,chokepoint26,Bering Strait,0,0,1,0,1,0
+2026-10-15,chokepoint26,Bering Strait,1,77499,3,77499,1,0
+2026-10-16,chokepoint26,Bering Strait,0,0,7,64156,4,0
+2026-10-17,chokepoint26,Bering Strait,0,0,4,116522,3,0
+2026-10-18,chokepoint26,Bering Strait,0,0,1,10901,0,0
 2019-01-01,chokepoint27,Mindoro Strait,33,2126839,41,2242519,4,0
 2019-01-02,chokepoint27,Mindoro Strait,38,2691430,46,2846137,3,1
 2019-01-03,chokepoint27,Mindoro Strait,38,2486849,48,2586064,5,1
@@ -56819,6 +56952,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint27,Mindoro Strait,44,3191875,62,3730316,8,8
 2026-10-10,chokepoint27,Mindoro Strait,44,4237324,57,4333059,2,6
 2026-10-11,chokepoint27,Mindoro Strait,34,2842722,40,2932209,5,0
+2026-10-12,chokepoint27,Mindoro Strait,36,2549991,44,2692448,4,3
+2026-10-13,chokepoint27,Mindoro Strait,51,3901599,63,3981785,4,2
+2026-10-14,chokepoint27,Mindoro Strait,47,2738334,62,2804192,7,5
+2026-10-15,chokepoint27,Mindoro Strait,36,3148638,56,3402457,7,6
+2026-10-16,chokepoint27,Mindoro Strait,39,1229207,52,1330008,7,3
+2026-10-17,chokepoint27,Mindoro Strait,50,4185347,67,4396515,7,3
+2026-10-18,chokepoint27,Mindoro Strait,33,1936226,52,2043928,2,8
 2019-01-01,chokepoint28,Kerch Strait,3,34923,48,186071,12,1
 2019-01-02,chokepoint28,Kerch Strait,4,6520,30,54957,7,0
 2019-01-03,chokepoint28,Kerch Strait,4,13157,49,105090,21,0
@@ -59660,6 +59800,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint28,Kerch Strait,0,0,0,0,0,0
 2026-10-10,chokepoint28,Kerch Strait,0,0,0,0,0,0
 2026-10-11,chokepoint28,Kerch Strait,0,0,2,3871,0,0
+2026-10-12,chokepoint28,Kerch Strait,0,0,0,0,0,0
+2026-10-13,chokepoint28,Kerch Strait,0,0,0,0,0,0
+2026-10-14,chokepoint28,Kerch Strait,0,0,0,0,0,0
+2026-10-15,chokepoint28,Kerch Strait,0,0,0,0,0,0
+2026-10-16,chokepoint28,Kerch Strait,0,0,0,0,0,0
+2026-10-17,chokepoint28,Kerch Strait,0,0,0,0,0,0
+2026-10-18,chokepoint28,Kerch Strait,0,0,0,0,0,0
 2019-01-01,chokepoint3,Bosporus Strait,19,419351,97,877288,31,12
 2019-01-02,chokepoint3,Bosporus Strait,23,599979,121,1270608,21,6
 2019-01-03,chokepoint3,Bosporus Strait,19,463077,62,1082771,18,8
@@ -62501,6 +62648,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint3,Bosporus Strait,12,286974,66,609242,13,4
 2026-10-10,chokepoint3,Bosporus Strait,8,293583,55,499198,11,7
 2026-10-11,chokepoint3,Bosporus Strait,6,103345,54,449285,15,8
+2026-10-12,chokepoint3,Bosporus Strait,15,405231,65,563089,13,7
+2026-10-13,chokepoint3,Bosporus Strait,12,503899,48,1018038,18,6
+2026-10-14,chokepoint3,Bosporus Strait,1,46765,16,348621,8,3
+2026-10-15,chokepoint3,Bosporus Strait,7,158318,20,479671,8,1
+2026-10-16,chokepoint3,Bosporus Strait,18,415598,68,804976,20,7
+2026-10-17,chokepoint3,Bosporus Strait,7,168833,51,703151,20,11
+2026-10-18,chokepoint3,Bosporus Strait,11,247039,58,454945,14,7
 2019-01-01,chokepoint4,Bab el-Mandeb Strait,10,319056,52,2742136,21,16
 2019-01-02,chokepoint4,Bab el-Mandeb Strait,16,867667,59,2780443,18,18
 2019-01-03,chokepoint4,Bab el-Mandeb Strait,13,882606,59,2682135,19,18
@@ -65342,6 +65496,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint4,Bab el-Mandeb Strait,6,146667,24,673505,6,5
 2026-10-10,chokepoint4,Bab el-Mandeb Strait,6,306556,22,573864,5,8
 2026-10-11,chokepoint4,Bab el-Mandeb Strait,6,365270,31,1136777,7,11
+2026-10-12,chokepoint4,Bab el-Mandeb Strait,11,415387,34,997549,12,4
+2026-10-13,chokepoint4,Bab el-Mandeb Strait,7,271157,17,600323,6,3
+2026-10-14,chokepoint4,Bab el-Mandeb Strait,4,161711,24,1037239,10,6
+2026-10-15,chokepoint4,Bab el-Mandeb Strait,6,237482,24,952646,7,5
+2026-10-16,chokepoint4,Bab el-Mandeb Strait,8,409741,25,1333613,11,3
+2026-10-17,chokepoint4,Bab el-Mandeb Strait,6,254421,29,1028126,7,8
+2026-10-18,chokepoint4,Bab el-Mandeb Strait,6,214048,32,1055547,17,4
 2019-01-01,chokepoint5,Malacca Strait,47,3059194,201,8185371,76,56
 2019-01-02,chokepoint5,Malacca Strait,41,2509210,159,7496931,66,34
 2019-01-03,chokepoint5,Malacca Strait,30,2121409,154,6016625,69,40
@@ -68173,7 +68334,7 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-09-29,chokepoint5,Malacca Strait,72,4265279,241,10095847,88,55
 2026-09-30,chokepoint5,Malacca Strait,60,3956385,208,7981679,69,52
 2026-10-01,chokepoint5,Malacca Strait,72,3691312,240,8229251,76,66
-2026-10-02,chokepoint5,Malacca Strait,66,3462360,233,8664690,68,68
+2026-10-02,chokepoint5,Malacca Strait,66,3462360,233,8664689,68,68
 2026-10-03,chokepoint5,Malacca Strait,71,5132625,245,10205438,72,68
 2026-10-04,chokepoint5,Malacca Strait,59,2790327,209,8499124,75,52
 2026-10-05,chokepoint5,Malacca Strait,73,4789505,217,8414455,58,59
@@ -68183,6 +68344,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint5,Malacca Strait,68,3322535,237,9384594,88,55
 2026-10-10,chokepoint5,Malacca Strait,68,4454530,232,9540070,69,68
 2026-10-11,chokepoint5,Malacca Strait,57,3538393,223,8240624,80,66
+2026-10-12,chokepoint5,Malacca Strait,62,3579492,214,7951366,63,60
+2026-10-13,chokepoint5,Malacca Strait,68,3675511,220,7824727,68,55
+2026-10-14,chokepoint5,Malacca Strait,61,2759730,211,7589301,72,53
+2026-10-15,chokepoint5,Malacca Strait,58,3117179,208,6813933,57,69
+2026-10-16,chokepoint5,Malacca Strait,50,2799764,221,8382922,83,63
+2026-10-17,chokepoint5,Malacca Strait,57,3141002,205,8437996,78,48
+2026-10-18,chokepoint5,Malacca Strait,57,2882993,227,8458750,79,60
 2019-01-01,chokepoint6,Strait of Hormuz,9,272678,52,2795480,33,6
 2019-01-02,chokepoint6,Strait of Hormuz,9,419636,61,1991917,37,13
 2019-01-03,chokepoint6,Strait of Hormuz,9,330114,71,3604099,49,10
@@ -71024,6 +71192,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint6,Strait of Hormuz,1,37812,3,41992,0,1
 2026-10-10,chokepoint6,Strait of Hormuz,2,0,4,50421,0,1
 2026-10-11,chokepoint6,Strait of Hormuz,1,72751,2,77388,1,0
+2026-10-12,chokepoint6,Strait of Hormuz,3,214117,3,214117,0,0
+2026-10-13,chokepoint6,Strait of Hormuz,4,92709,7,105860,0,0
+2026-10-14,chokepoint6,Strait of Hormuz,2,17299,3,17757,0,0
+2026-10-15,chokepoint6,Strait of Hormuz,0,0,2,10315,1,0
+2026-10-16,chokepoint6,Strait of Hormuz,0,0,7,87360,1,2
+2026-10-17,chokepoint6,Strait of Hormuz,0,0,0,0,0,0
+2026-10-18,chokepoint6,Strait of Hormuz,2,105999,4,125163,2,0
 2019-01-01,chokepoint7,Cape of Good Hope,25,1169945,50,1857609,12,8
 2019-01-02,chokepoint7,Cape of Good Hope,8,437483,24,1174851,4,3
 2019-01-03,chokepoint7,Cape of Good Hope,37,2218651,64,3574420,16,7
@@ -73858,13 +74033,20 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-02,chokepoint7,Cape of Good Hope,56,4343786,99,6105760,16,16
 2026-10-03,chokepoint7,Cape of Good Hope,35,1976078,76,3644445,21,10
 2026-10-04,chokepoint7,Cape of Good Hope,48,3090493,99,5277587,17,24
-2026-10-05,chokepoint7,Cape of Good Hope,42,3272052,92,5990908,22,21
+2026-10-05,chokepoint7,Cape of Good Hope,42,3272052,92,5990907,22,21
 2026-10-06,chokepoint7,Cape of Good Hope,39,2686844,75,5384655,16,13
 2026-10-07,chokepoint7,Cape of Good Hope,45,3773031,84,5746649,18,14
 2026-10-08,chokepoint7,Cape of Good Hope,49,3606208,82,4845973,16,11
 2026-10-09,chokepoint7,Cape of Good Hope,49,3764033,99,6118126,23,17
 2026-10-10,chokepoint7,Cape of Good Hope,34,2768730,66,4399430,12,11
 2026-10-11,chokepoint7,Cape of Good Hope,44,3142346,90,5913632,15,18
+2026-10-12,chokepoint7,Cape of Good Hope,39,3310418,93,5186431,20,21
+2026-10-13,chokepoint7,Cape of Good Hope,42,3906773,81,5260931,19,10
+2026-10-14,chokepoint7,Cape of Good Hope,50,3046122,93,4194278,21,13
+2026-10-15,chokepoint7,Cape of Good Hope,56,4937905,98,6725919,18,16
+2026-10-16,chokepoint7,Cape of Good Hope,36,2549533,88,5596022,26,18
+2026-10-17,chokepoint7,Cape of Good Hope,39,2519935,69,4436246,13,10
+2026-10-18,chokepoint7,Cape of Good Hope,39,2512971,78,4242000,18,13
 2019-01-01,chokepoint8,Gibraltar Strait,30,1270278,124,3260069,41,31
 2019-01-02,chokepoint8,Gibraltar Strait,30,1298720,114,3310454,28,23
 2019-01-03,chokepoint8,Gibraltar Strait,26,1171203,102,3198591,22,28
@@ -76693,7 +76875,7 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-09-26,chokepoint8,Gibraltar Strait,27,806364,122,3070328,46,32
 2026-09-27,chokepoint8,Gibraltar Strait,30,1497257,129,3481150,44,30
 2026-09-28,chokepoint8,Gibraltar Strait,38,1481267,149,3134204,52,28
-2026-09-29,chokepoint8,Gibraltar Strait,26,952987,126,3446506,42,30
+2026-09-29,chokepoint8,Gibraltar Strait,26,952987,126,3446505,42,30
 2026-09-30,chokepoint8,Gibraltar Strait,32,982329,121,2747812,34,32
 2026-10-01,chokepoint8,Gibraltar Strait,25,870623,141,3053778,53,37
 2026-10-02,chokepoint8,Gibraltar Strait,30,910953,138,3053946,44,27
@@ -76706,6 +76888,13 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint8,Gibraltar Strait,20,546463,128,2943971,38,31
 2026-10-10,chokepoint8,Gibraltar Strait,33,1156152,130,3877089,47,23
 2026-10-11,chokepoint8,Gibraltar Strait,28,1023955,130,3460420,35,41
+2026-10-12,chokepoint8,Gibraltar Strait,31,1009078,138,3395856,37,36
+2026-10-13,chokepoint8,Gibraltar Strait,22,558075,109,2792114,40,26
+2026-10-14,chokepoint8,Gibraltar Strait,23,592786,113,2189264,43,23
+2026-10-15,chokepoint8,Gibraltar Strait,26,1252693,121,3836332,43,26
+2026-10-16,chokepoint8,Gibraltar Strait,39,1228071,137,3655263,44,24
+2026-10-17,chokepoint8,Gibraltar Strait,26,734949,111,2730128,31,21
+2026-10-18,chokepoint8,Gibraltar Strait,28,885380,142,3158829,39,43
 2019-01-01,chokepoint9,Dover Strait,10,520681,130,2460257,47,26
 2019-01-02,chokepoint9,Dover Strait,17,902435,133,2919672,43,33
 2019-01-03,chokepoint9,Dover Strait,17,628234,158,3298433,49,43
@@ -79547,3 +79736,10 @@ date,portid,portname,n_dry_bulk,capacity_dry_bulk,n_total,capacity,n_tanker,n_co
 2026-10-09,chokepoint9,Dover Strait,27,1163562,154,3354905,46,30
 2026-10-10,chokepoint9,Dover Strait,26,1161025,159,3492399,51,34
 2026-10-11,chokepoint9,Dover Strait,24,997149,185,4183785,67,43
+2026-10-12,chokepoint9,Dover Strait,29,1007838,185,3756940,65,31
+2026-10-13,chokepoint9,Dover Strait,25,710269,159,2703913,47,35
+2026-10-14,chokepoint9,Dover Strait,23,1053268,169,3489992,56,43
+2026-10-15,chokepoint9,Dover Strait,36,1525382,202,3945106,67,34
+2026-10-16,chokepoint9,Dover Strait,23,927218,146,2827267,46,26
+2026-10-17,chokepoint9,Dover Strait,26,1186625,191,3673056,64,41
+2026-10-18,chokepoint9,Dover Strait,21,348553,173,2828617,72,42

@@ -7,7 +7,7 @@
   "frequency": "daily (aggregated here to months and to global daily totals)",
   "coverage": "2019-01-01 to 2026-10-09, 2065 ports, 28 chokepoints",
   "units": "metric tons of cargo (import and export estimates), number of port calls, number of transits",
-  "retrieved_at": "2026-10-17T13:51:00Z",
+  "retrieved_at": "2026-10-20T11:41:17Z",
   "files": [
     "ports_database.csv",
     "chokepoints_database.csv",
@@ -20,7 +20,7 @@
     "chokepoints_database.csv": "84e1a58f3c0639dc6b647fd552bb567a4b74419e233440e02566a80568134c03",
     "dry_bulk_monthly_by_country.csv": "61549368a55118f5971b0c0e2a57c3e9798d41edbf01f5a2be1c906228c78428",
     "dry_bulk_daily_global.csv": "bb2186d49895ebc0fb23979693e4899af1eba07b5315c303c2d6ae8b41e9b851",
-    "chokepoints_daily.csv": "b3b448a9de1373eaa3f462f1fd5240c8095439e36031b719013758fe8683766a"
+    "chokepoints_daily.csv": "bbde0ac98b031a962f627c28ee14c7fe66a8f4be9c0932ce0483d4fd9d225d39"
   },
   "limitations": [
     "Volumes are statistical estimates derived from AIS draught changes and vessel capacity, not customs data.",
@@ -38,6 +38,6 @@
       "PortWatch_chokepoints_database": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/PortWatch_chokepoints_database/FeatureServer/0/query"
     },
     "monthly_rows": 16920,
-    "chokepoint_rows": 79548
+    "chokepoint_rows": 79744
   }
 }
