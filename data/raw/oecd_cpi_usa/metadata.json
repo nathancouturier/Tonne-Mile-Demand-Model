@@ -7,7 +7,7 @@
   "frequency": "monthly",
   "coverage": "1960-01 to 2026-09, except 2025-10",
   "units": "index, base 2015, not seasonally adjusted",
-  "retrieved_at": "2026-10-20T11:41:18Z",
+  "retrieved_at": "2026-10-27T12:21:15Z",
   "files": [
     "cpi_usa_monthly.csv"
   ],
