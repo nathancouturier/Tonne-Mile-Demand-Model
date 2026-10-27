@@ -59,7 +59,7 @@ Sources that were investigated and not used: Stooq and other quote sites (bot pr
 <!-- results:start -->
 ## Results
 
-Panel: Dec 2012 to Sep 2025, 154 months, 271 routes. Built from data retrieved on 2026-10-20.
+Panel: Dec 2012 to Sep 2025, 154 months, 271 routes. Built from data retrieved on 2026-10-27.
 
 * Elasticity of the index to tonne-miles over effective fleet: 2.36 (Newey-West standard error 0.79); estimated on twelve-month changes, it explains 7% of the variance of twelve-month changes in the log index (Durbin-Watson 0.53).
 * Over rolling twelve-month windows the four physical forces leave about 91% of a typical move unexplained (mean residual 0.39 log points against a typical move of 0.43) and have the sign of the move 66% of the time.
