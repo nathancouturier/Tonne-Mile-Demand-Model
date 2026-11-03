@@ -1,0 +1,1549 @@
+route_id,end,port_id,port,weight
+ARG-ARE-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-ARE-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-ARE-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+ARG-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+ARG-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+ARG-BEL-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-BEL-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-BEL-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+ARG-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+ARG-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+ARG-BGD-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-BGD-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-BGD-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+ARG-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+ARG-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+ARG-CHN-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-CHN-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-CHN-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+ARG-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+ARG-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+ARG-DEU-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-DEU-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-DEU-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+ARG-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+ARG-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+ARG-EGY-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-EGY-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-EGY-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+ARG-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+ARG-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+ARG-ESP-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-ESP-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-ESP-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+ARG-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+ARG-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+ARG-FRA-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-FRA-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-FRA-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+ARG-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+ARG-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+ARG-GBR-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-GBR-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-GBR-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+ARG-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+ARG-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+ARG-IDN-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-IDN-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-IDN-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+ARG-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+ARG-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+ARG-IND-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-IND-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-IND-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+ARG-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+ARG-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+ARG-ITA-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-ITA-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-ITA-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+ARG-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+ARG-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+ARG-JPN-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-JPN-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-JPN-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+ARG-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+ARG-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+ARG-KOR-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-KOR-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-KOR-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+ARG-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+ARG-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+ARG-MAR-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-MAR-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-MAR-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+ARG-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+ARG-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+ARG-MEX-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-MEX-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-MEX-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+ARG-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+ARG-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+ARG-MYS-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-MYS-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-MYS-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+ARG-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+ARG-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+ARG-NLD-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-NLD-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-NLD-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+ARG-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+ARG-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+ARG-PAK-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-PAK-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-PAK-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+ARG-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+ARG-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+ARG-PER-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-PER-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-PER-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+ARG-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+ARG-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+ARG-PHL-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-PHL-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-PHL-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+ARG-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+ARG-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+ARG-POL-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-POL-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-POL-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+ARG-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+ARG-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+ARG-SAU-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-SAU-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-SAU-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+ARG-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+ARG-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+ARG-THA-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-THA-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-THA-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+ARG-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+ARG-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+ARG-TUR-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-TUR-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-TUR-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+ARG-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+ARG-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+ARG-TWN-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-TWN-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-TWN-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+ARG-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+ARG-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+ARG-USA-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-USA-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-USA-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-USA-minor_bulks,discharge,PW_port812,New Orleans,0.5757
+ARG-USA-minor_bulks,discharge,PW_port1214,South Louisiana,0.2628
+ARG-USA-minor_bulks,discharge,PW_port481,Houston (US-TX),0.1615
+ARG-VNM-minor_bulks,loading,PW_port1059,San Martin,0.416
+ARG-VNM-minor_bulks,loading,PW_port1108,Rosario,0.4079
+ARG-VNM-minor_bulks,loading,PW_port1048,Bahia Blanca,0.1761
+ARG-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+ARG-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+ARG-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+AUS-ARE-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-ARE-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-ARE-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+AUS-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+AUS-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+AUS-BEL-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-BEL-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-BEL-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+AUS-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+AUS-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+AUS-BGD-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-BGD-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-BGD-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+AUS-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+AUS-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+AUS-BRA-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-BRA-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-BRA-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-BRA-minor_bulks,discharge,PW_port1160,Santos,0.4333
+AUS-BRA-minor_bulks,discharge,PW_port506,Itaqui,0.3455
+AUS-BRA-minor_bulks,discharge,PW_port885,Paranaguá,0.2211
+AUS-CHL-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-CHL-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-CHL-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+AUS-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+AUS-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+AUS-CHN-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-CHN-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-CHN-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+AUS-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+AUS-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+AUS-DEU-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-DEU-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-DEU-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+AUS-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+AUS-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+AUS-EGY-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-EGY-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-EGY-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+AUS-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+AUS-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+AUS-ESP-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-ESP-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-ESP-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+AUS-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+AUS-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+AUS-FRA-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-FRA-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-FRA-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+AUS-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+AUS-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+AUS-GBR-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-GBR-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-GBR-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+AUS-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+AUS-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+AUS-IDN-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-IDN-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-IDN-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+AUS-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+AUS-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+AUS-IND-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-IND-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-IND-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+AUS-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+AUS-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+AUS-ITA-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-ITA-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-ITA-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+AUS-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+AUS-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+AUS-JPN-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-JPN-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-JPN-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+AUS-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+AUS-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+AUS-KOR-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-KOR-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-KOR-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+AUS-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+AUS-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+AUS-MAR-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-MAR-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-MAR-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+AUS-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+AUS-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+AUS-MEX-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-MEX-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-MEX-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+AUS-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+AUS-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+AUS-MYS-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-MYS-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-MYS-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+AUS-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+AUS-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+AUS-NLD-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-NLD-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-NLD-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+AUS-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+AUS-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+AUS-PAK-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-PAK-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-PAK-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+AUS-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+AUS-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+AUS-PER-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-PER-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-PER-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+AUS-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+AUS-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+AUS-PHL-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-PHL-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-PHL-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+AUS-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+AUS-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+AUS-POL-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-POL-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-POL-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+AUS-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+AUS-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+AUS-SAU-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-SAU-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-SAU-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+AUS-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+AUS-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+AUS-THA-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-THA-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-THA-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+AUS-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+AUS-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+AUS-TUR-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-TUR-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-TUR-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+AUS-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+AUS-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+AUS-TWN-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-TWN-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-TWN-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+AUS-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+AUS-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+AUS-USA-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-USA-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-USA-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-USA-minor_bulks,discharge,PW_port664,Los Angeles-Long Beach,0.5038
+AUS-USA-minor_bulks,discharge,PW_port2267,Longview,0.2581
+AUS-USA-minor_bulks,discharge,PW_port993,"Portland, OR",0.238
+AUS-VNM-minor_bulks,loading,PW_port955,Port Hedland,0.4966
+AUS-VNM-minor_bulks,loading,PW_port816,Newcastle,0.3088
+AUS-VNM-minor_bulks,loading,PW_port398,Gladstone,0.1947
+AUS-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+AUS-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+AUS-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+BRA-ARE-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-ARE-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-ARE-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+BRA-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+BRA-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+BRA-BEL-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-BEL-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-BEL-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+BRA-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+BRA-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+BRA-BGD-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-BGD-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-BGD-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+BRA-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+BRA-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+BRA-CHL-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-CHL-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-CHL-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+BRA-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+BRA-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+BRA-CHN-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-CHN-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-CHN-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+BRA-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+BRA-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+BRA-DEU-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-DEU-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-DEU-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+BRA-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+BRA-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+BRA-EGY-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-EGY-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-EGY-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+BRA-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+BRA-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+BRA-ESP-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-ESP-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-ESP-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+BRA-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+BRA-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+BRA-FRA-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-FRA-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-FRA-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+BRA-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+BRA-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+BRA-GBR-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-GBR-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-GBR-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+BRA-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+BRA-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+BRA-IDN-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-IDN-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-IDN-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+BRA-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+BRA-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+BRA-IND-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-IND-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-IND-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+BRA-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+BRA-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+BRA-ITA-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-ITA-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-ITA-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+BRA-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+BRA-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+BRA-JPN-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-JPN-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-JPN-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+BRA-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+BRA-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+BRA-KOR-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-KOR-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-KOR-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+BRA-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+BRA-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+BRA-MAR-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-MAR-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-MAR-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+BRA-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+BRA-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+BRA-MEX-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-MEX-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-MEX-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+BRA-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+BRA-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+BRA-MYS-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-MYS-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-MYS-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+BRA-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+BRA-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+BRA-NLD-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-NLD-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-NLD-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+BRA-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+BRA-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+BRA-PAK-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-PAK-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-PAK-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+BRA-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+BRA-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+BRA-PHL-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-PHL-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-PHL-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+BRA-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+BRA-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+BRA-POL-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-POL-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-POL-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+BRA-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+BRA-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+BRA-SAU-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-SAU-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-SAU-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+BRA-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+BRA-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+BRA-THA-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-THA-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-THA-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+BRA-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+BRA-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+BRA-TUR-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-TUR-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-TUR-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+BRA-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+BRA-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+BRA-TWN-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-TWN-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-TWN-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+BRA-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+BRA-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+BRA-USA-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-USA-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-USA-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-USA-minor_bulks,discharge,PW_port812,New Orleans,0.5757
+BRA-USA-minor_bulks,discharge,PW_port1214,South Louisiana,0.2628
+BRA-USA-minor_bulks,discharge,PW_port481,Houston (US-TX),0.1615
+BRA-VNM-minor_bulks,loading,PW_port1160,Santos,0.4333
+BRA-VNM-minor_bulks,loading,PW_port506,Itaqui,0.3455
+BRA-VNM-minor_bulks,loading,PW_port885,Paranaguá,0.2211
+BRA-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+BRA-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+BRA-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+CAN-ARE-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-ARE-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-ARE-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+CAN-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+CAN-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+CAN-BEL-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-BEL-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-BEL-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+CAN-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+CAN-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+CAN-BGD-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-BGD-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-BGD-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+CAN-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+CAN-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+CAN-BRA-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-BRA-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-BRA-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-BRA-minor_bulks,discharge,PW_port1160,Santos,0.4333
+CAN-BRA-minor_bulks,discharge,PW_port506,Itaqui,0.3455
+CAN-BRA-minor_bulks,discharge,PW_port885,Paranaguá,0.2211
+CAN-CHL-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-CHL-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-CHL-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+CAN-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+CAN-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+CAN-CHN-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-CHN-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-CHN-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+CAN-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+CAN-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+CAN-DEU-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-DEU-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-DEU-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+CAN-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+CAN-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+CAN-EGY-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-EGY-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-EGY-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+CAN-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+CAN-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+CAN-ESP-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-ESP-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-ESP-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+CAN-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+CAN-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+CAN-FRA-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-FRA-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-FRA-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+CAN-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+CAN-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+CAN-GBR-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-GBR-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-GBR-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+CAN-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+CAN-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+CAN-IDN-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-IDN-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-IDN-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+CAN-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+CAN-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+CAN-IND-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-IND-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-IND-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+CAN-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+CAN-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+CAN-ITA-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-ITA-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-ITA-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+CAN-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+CAN-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+CAN-JPN-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-JPN-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-JPN-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+CAN-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+CAN-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+CAN-KOR-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-KOR-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-KOR-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+CAN-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+CAN-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+CAN-MAR-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-MAR-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-MAR-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+CAN-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+CAN-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+CAN-MEX-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-MEX-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-MEX-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+CAN-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+CAN-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+CAN-MYS-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-MYS-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-MYS-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+CAN-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+CAN-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+CAN-NLD-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-NLD-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-NLD-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+CAN-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+CAN-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+CAN-PAK-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-PAK-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-PAK-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+CAN-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+CAN-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+CAN-PER-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-PER-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-PER-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+CAN-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+CAN-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+CAN-PHL-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-PHL-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-PHL-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+CAN-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+CAN-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+CAN-POL-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-POL-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-POL-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+CAN-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+CAN-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+CAN-SAU-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-SAU-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-SAU-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+CAN-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+CAN-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+CAN-THA-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-THA-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-THA-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+CAN-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+CAN-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+CAN-TUR-minor_bulks,loading,PW_port938,Port Cartier,0.3382
+CAN-TUR-minor_bulks,loading,PW_port447,Hamilton,0.3356
+CAN-TUR-minor_bulks,loading,PW_port1295,Thunder Bay,0.3262
+CAN-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+CAN-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+CAN-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+CAN-TWN-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-TWN-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-TWN-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+CAN-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+CAN-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+CAN-VNM-minor_bulks,loading,PW_port1350,Vancouver,0.7859
+CAN-VNM-minor_bulks,loading,PW_port1021,Prince Rupert,0.1498
+CAN-VNM-minor_bulks,loading,PW_port814,New Westminster,0.0643
+CAN-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+CAN-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+CAN-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+COL-ARE-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-ARE-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-ARE-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+COL-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+COL-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+COL-BEL-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-BEL-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-BEL-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+COL-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+COL-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+COL-BGD-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-BGD-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-BGD-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+COL-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+COL-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+COL-BRA-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-BRA-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-BRA-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-BRA-minor_bulks,discharge,PW_port1160,Santos,0.4333
+COL-BRA-minor_bulks,discharge,PW_port506,Itaqui,0.3455
+COL-BRA-minor_bulks,discharge,PW_port885,Paranaguá,0.2211
+COL-CHL-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-CHL-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-CHL-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+COL-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+COL-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+COL-CHN-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-CHN-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-CHN-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+COL-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+COL-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+COL-DEU-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-DEU-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-DEU-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+COL-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+COL-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+COL-EGY-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-EGY-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-EGY-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+COL-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+COL-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+COL-ESP-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-ESP-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-ESP-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+COL-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+COL-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+COL-FRA-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-FRA-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-FRA-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+COL-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+COL-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+COL-GBR-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-GBR-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-GBR-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+COL-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+COL-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+COL-IDN-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-IDN-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-IDN-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+COL-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+COL-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+COL-IND-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-IND-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-IND-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+COL-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+COL-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+COL-ITA-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-ITA-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-ITA-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+COL-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+COL-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+COL-JPN-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-JPN-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-JPN-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+COL-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+COL-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+COL-KOR-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-KOR-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-KOR-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+COL-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+COL-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+COL-MAR-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-MAR-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-MAR-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+COL-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+COL-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+COL-MEX-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-MEX-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-MEX-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+COL-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+COL-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+COL-MYS-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-MYS-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-MYS-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+COL-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+COL-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+COL-NLD-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-NLD-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-NLD-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+COL-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+COL-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+COL-PAK-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-PAK-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-PAK-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+COL-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+COL-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+COL-PHL-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-PHL-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-PHL-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+COL-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+COL-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+COL-POL-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-POL-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-POL-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+COL-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+COL-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+COL-SAU-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-SAU-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-SAU-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+COL-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+COL-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+COL-THA-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-THA-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-THA-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+COL-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+COL-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+COL-TUR-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-TUR-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-TUR-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+COL-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+COL-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+COL-TWN-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-TWN-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-TWN-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+COL-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+COL-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+COL-USA-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-USA-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-USA-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-USA-minor_bulks,discharge,PW_port812,New Orleans,0.5757
+COL-USA-minor_bulks,discharge,PW_port1214,South Louisiana,0.2628
+COL-USA-minor_bulks,discharge,PW_port481,Houston (US-TX),0.1615
+COL-VNM-minor_bulks,loading,PW_port1054,Puerto Nuevo,0.3559
+COL-VNM-minor_bulks,loading,PW_port120,Barranquilla,0.3472
+COL-VNM-minor_bulks,loading,PW_port183,Buenaventura,0.2969
+COL-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+COL-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+COL-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+IDN-ARE-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-ARE-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-ARE-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+IDN-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+IDN-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+IDN-BEL-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-BEL-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-BEL-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+IDN-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+IDN-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+IDN-BGD-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-BGD-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-BGD-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+IDN-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+IDN-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+IDN-BRA-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-BRA-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-BRA-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-BRA-minor_bulks,discharge,PW_port1160,Santos,0.4333
+IDN-BRA-minor_bulks,discharge,PW_port506,Itaqui,0.3455
+IDN-BRA-minor_bulks,discharge,PW_port885,Paranaguá,0.2211
+IDN-CHL-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-CHL-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-CHL-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+IDN-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+IDN-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+IDN-CHN-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-CHN-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-CHN-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+IDN-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+IDN-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+IDN-DEU-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-DEU-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-DEU-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+IDN-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+IDN-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+IDN-EGY-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-EGY-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-EGY-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+IDN-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+IDN-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+IDN-ESP-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-ESP-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-ESP-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+IDN-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+IDN-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+IDN-FRA-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-FRA-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-FRA-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+IDN-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+IDN-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+IDN-GBR-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-GBR-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-GBR-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+IDN-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+IDN-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+IDN-IND-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-IND-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-IND-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+IDN-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+IDN-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+IDN-ITA-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-ITA-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-ITA-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+IDN-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+IDN-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+IDN-JPN-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-JPN-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-JPN-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+IDN-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+IDN-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+IDN-KOR-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-KOR-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-KOR-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+IDN-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+IDN-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+IDN-MAR-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-MAR-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-MAR-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+IDN-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+IDN-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+IDN-MEX-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-MEX-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-MEX-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+IDN-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+IDN-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+IDN-MYS-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-MYS-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-MYS-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+IDN-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+IDN-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+IDN-NLD-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-NLD-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-NLD-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+IDN-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+IDN-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+IDN-PAK-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-PAK-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-PAK-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+IDN-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+IDN-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+IDN-PER-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-PER-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-PER-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+IDN-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+IDN-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+IDN-PHL-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-PHL-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-PHL-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+IDN-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+IDN-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+IDN-POL-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-POL-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-POL-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+IDN-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+IDN-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+IDN-SAU-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-SAU-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-SAU-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+IDN-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+IDN-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+IDN-THA-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-THA-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-THA-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+IDN-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+IDN-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+IDN-TUR-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-TUR-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-TUR-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+IDN-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+IDN-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+IDN-TWN-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-TWN-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-TWN-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+IDN-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+IDN-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+IDN-USA-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-USA-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-USA-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-USA-minor_bulks,discharge,PW_port664,Los Angeles-Long Beach,0.5038
+IDN-USA-minor_bulks,discharge,PW_port2267,Longview,0.2581
+IDN-USA-minor_bulks,discharge,PW_port993,"Portland, OR",0.238
+IDN-VNM-minor_bulks,loading,PW_port112,Banjarmasin,0.4139
+IDN-VNM-minor_bulks,loading,PW_port1137,Samarinda,0.3693
+IDN-VNM-minor_bulks,loading,PW_port875,Palembang,0.2168
+IDN-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+IDN-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+IDN-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+UKR-ARE-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-ARE-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-ARE-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+UKR-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+UKR-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+UKR-BEL-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-BEL-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-BEL-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+UKR-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+UKR-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+UKR-BGD-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-BGD-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-BGD-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+UKR-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+UKR-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+UKR-CHL-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-CHL-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-CHL-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+UKR-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+UKR-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+UKR-CHN-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-CHN-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-CHN-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+UKR-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+UKR-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+UKR-DEU-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-DEU-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-DEU-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+UKR-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+UKR-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+UKR-EGY-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-EGY-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-EGY-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+UKR-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+UKR-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+UKR-ESP-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-ESP-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-ESP-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+UKR-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+UKR-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+UKR-FRA-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-FRA-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-FRA-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+UKR-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+UKR-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+UKR-GBR-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-GBR-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-GBR-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+UKR-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+UKR-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+UKR-IDN-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-IDN-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-IDN-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+UKR-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+UKR-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+UKR-IND-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-IND-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-IND-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+UKR-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+UKR-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+UKR-ITA-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-ITA-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-ITA-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+UKR-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+UKR-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+UKR-JPN-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-JPN-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-JPN-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+UKR-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+UKR-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+UKR-KOR-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-KOR-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-KOR-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+UKR-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+UKR-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+UKR-MAR-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-MAR-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-MAR-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+UKR-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+UKR-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+UKR-MYS-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-MYS-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-MYS-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+UKR-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+UKR-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+UKR-NLD-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-NLD-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-NLD-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+UKR-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+UKR-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+UKR-PAK-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-PAK-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-PAK-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+UKR-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+UKR-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+UKR-PER-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-PER-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-PER-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+UKR-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+UKR-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+UKR-PHL-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-PHL-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-PHL-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+UKR-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+UKR-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+UKR-SAU-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-SAU-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-SAU-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+UKR-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+UKR-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+UKR-THA-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-THA-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-THA-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+UKR-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+UKR-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+UKR-TUR-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-TUR-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-TUR-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+UKR-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+UKR-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+UKR-TWN-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-TWN-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-TWN-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+UKR-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+UKR-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+UKR-USA-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-USA-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-USA-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-USA-minor_bulks,discharge,PW_port812,New Orleans,0.5757
+UKR-USA-minor_bulks,discharge,PW_port1214,South Louisiana,0.2628
+UKR-USA-minor_bulks,discharge,PW_port481,Houston (US-TX),0.1615
+UKR-VNM-minor_bulks,loading,PW_port1419,Pivdennyi,0.387
+UKR-VNM-minor_bulks,loading,PW_port489,Chornomorsk,0.3431
+UKR-VNM-minor_bulks,loading,PW_port843,Odessa,0.27
+UKR-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+UKR-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+UKR-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+USA-ARE-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-ARE-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-ARE-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+USA-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+USA-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+USA-BEL-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-BEL-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-BEL-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+USA-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+USA-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+USA-BGD-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-BGD-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-BGD-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+USA-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+USA-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+USA-BRA-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-BRA-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-BRA-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-BRA-minor_bulks,discharge,PW_port1160,Santos,0.4333
+USA-BRA-minor_bulks,discharge,PW_port506,Itaqui,0.3455
+USA-BRA-minor_bulks,discharge,PW_port885,Paranaguá,0.2211
+USA-CHL-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-CHL-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-CHL-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+USA-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+USA-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+USA-CHN-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-CHN-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-CHN-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+USA-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+USA-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+USA-DEU-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-DEU-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-DEU-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+USA-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+USA-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+USA-EGY-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-EGY-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-EGY-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+USA-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+USA-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+USA-ESP-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-ESP-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-ESP-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+USA-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+USA-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+USA-FRA-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-FRA-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-FRA-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+USA-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+USA-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+USA-GBR-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-GBR-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-GBR-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+USA-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+USA-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+USA-IDN-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-IDN-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-IDN-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+USA-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+USA-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+USA-IND-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-IND-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-IND-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+USA-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+USA-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+USA-ITA-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-ITA-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-ITA-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+USA-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+USA-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+USA-JPN-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-JPN-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-JPN-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+USA-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+USA-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+USA-KOR-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-KOR-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-KOR-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+USA-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+USA-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+USA-MAR-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-MAR-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-MAR-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+USA-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+USA-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+USA-MYS-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-MYS-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-MYS-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+USA-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+USA-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+USA-NLD-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-NLD-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-NLD-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+USA-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+USA-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+USA-PAK-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-PAK-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-PAK-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+USA-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+USA-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+USA-PER-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-PER-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-PER-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+USA-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+USA-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+USA-PHL-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-PHL-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-PHL-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+USA-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+USA-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+USA-POL-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-POL-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-POL-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+USA-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+USA-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+USA-SAU-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-SAU-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-SAU-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+USA-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+USA-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+USA-THA-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-THA-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-THA-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+USA-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+USA-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+USA-TUR-minor_bulks,loading,PW_port812,New Orleans,0.5757
+USA-TUR-minor_bulks,loading,PW_port1214,South Louisiana,0.2628
+USA-TUR-minor_bulks,loading,PW_port481,Houston (US-TX),0.1615
+USA-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+USA-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+USA-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+USA-TWN-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-TWN-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-TWN-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+USA-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+USA-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+USA-VNM-minor_bulks,loading,PW_port664,Los Angeles-Long Beach,0.5038
+USA-VNM-minor_bulks,loading,PW_port2267,Longview,0.2581
+USA-VNM-minor_bulks,loading,PW_port993,"Portland, OR",0.238
+USA-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+USA-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+USA-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
+ZAF-ARE-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-ARE-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-ARE-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-ARE-minor_bulks,discharge,PW_port747,Mina Saqr,0.5493
+ZAF-ARE-minor_bulks,discharge,PW_port744,Jebel Ali,0.2861
+ZAF-ARE-minor_bulks,discharge,PW_port362,Fujairah,0.1646
+ZAF-BEL-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-BEL-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-BEL-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-BEL-minor_bulks,discharge,PW_port57,Antwerp,0.4978
+ZAF-BEL-minor_bulks,discharge,PW_port393,Ghent,0.4767
+ZAF-BEL-minor_bulks,discharge,PW_port1424,Zeebrugge,0.0255
+ZAF-BGD-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-BGD-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-BGD-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-BGD-minor_bulks,discharge,PW_port241,Chittagong,0.886
+ZAF-BGD-minor_bulks,discharge,PW_port890,Payra,0.1111
+ZAF-BGD-minor_bulks,discharge,PW_port759,Mongla,0.0028
+ZAF-BRA-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-BRA-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-BRA-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-BRA-minor_bulks,discharge,PW_port1160,Santos,0.4333
+ZAF-BRA-minor_bulks,discharge,PW_port506,Itaqui,0.3455
+ZAF-BRA-minor_bulks,discharge,PW_port885,Paranaguá,0.2211
+ZAF-CHL-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-CHL-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-CHL-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-CHL-minor_bulks,discharge,PW_port728,Mejillones,0.367
+ZAF-CHL-minor_bulks,discharge,PW_port208,Caleta Patillos,0.3456
+ZAF-CHL-minor_bulks,discharge,PW_port56,Antofagasta,0.2875
+ZAF-CHN-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-CHN-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-CHN-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-CHN-minor_bulks,discharge,PW_port1188,Shanghai,0.6315
+ZAF-CHN-minor_bulks,discharge,PW_port1195,Shougang Jingtang,0.1898
+ZAF-CHN-minor_bulks,discharge,PW_port154,Huanghua,0.1786
+ZAF-DEU-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-DEU-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-DEU-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-DEU-minor_bulks,discharge,PW_port446,Hamburg,0.5279
+ZAF-DEU-minor_bulks,discharge,PW_port179,Brunsbuettel,0.2493
+ZAF-DEU-minor_bulks,discharge,PW_port1111,Rostock,0.2228
+ZAF-EGY-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-EGY-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-EGY-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-EGY-minor_bulks,discharge,PW_port274,Damietta,0.379
+ZAF-EGY-minor_bulks,discharge,PW_port2044,El Dekheila,0.3169
+ZAF-EGY-minor_bulks,discharge,PW_port23,Alexandria,0.3041
+ZAF-ESP-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-ESP-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-ESP-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-ESP-minor_bulks,discharge,PW_port635,Las Palmas (de Gran Canaria),0.6954
+ZAF-ESP-minor_bulks,discharge,PW_port394,Gijon,0.1525
+ZAF-ESP-minor_bulks,discharge,PW_port31,Algeciras,0.1521
+ZAF-FRA-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-FRA-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-FRA-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-FRA-minor_bulks,discharge,PW_port310,Dunkirk,0.4661
+ZAF-FRA-minor_bulks,discharge,PW_port986,Rouen,0.3519
+ZAF-FRA-minor_bulks,discharge,PW_port620,La Pallice,0.1819
+ZAF-GBR-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-GBR-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-GBR-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-GBR-minor_bulks,discharge,PW_port493,Immingham,0.4361
+ZAF-GBR-minor_bulks,discharge,PW_port654,Liverpool,0.3578
+ZAF-GBR-minor_bulks,discharge,PW_port1298,Tilbury,0.2061
+ZAF-IDN-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-IDN-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-IDN-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-IDN-minor_bulks,discharge,PW_port112,Banjarmasin,0.4139
+ZAF-IDN-minor_bulks,discharge,PW_port1137,Samarinda,0.3693
+ZAF-IDN-minor_bulks,discharge,PW_port875,Palembang,0.2168
+ZAF-IND-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-IND-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-IND-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-IND-minor_bulks,discharge,PW_port1367,Visakhapatnam,0.3558
+ZAF-IND-minor_bulks,discharge,PW_port776,Mumbai-Jawaharlal Nehru (Nhava Sheva),0.3256
+ZAF-IND-minor_bulks,discharge,PW_port883,Paradip,0.3186
+ZAF-ITA-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-ITA-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-ITA-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-ITA-minor_bulks,discharge,PW_port1004,Ravenna,0.4716
+ZAF-ITA-minor_bulks,discharge,PW_port1005,Porto Di Lido-Venezia,0.3767
+ZAF-ITA-minor_bulks,discharge,PW_port1275,Taranto,0.1516
+ZAF-JPN-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-JPN-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-JPN-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-JPN-minor_bulks,discharge,PW_port538,Kanda,0.52
+ZAF-JPN-minor_bulks,discharge,PW_port1324,Tsukumi,0.2438
+ZAF-JPN-minor_bulks,discharge,PW_port1378,Kitakyushu (Wakamatsu),0.2362
+ZAF-KOR-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-KOR-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-KOR-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-KOR-minor_bulks,discharge,PW_port432,Gwangyang (Kwangyang),0.3526
+ZAF-KOR-minor_bulks,discharge,PW_port1067,Pyeongtaek,0.3431
+ZAF-KOR-minor_bulks,discharge,PW_port494,Incheon,0.3042
+ZAF-MAR-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-MAR-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-MAR-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-MAR-minor_bulks,discharge,PW_port319,Jorf Lasfar,0.5196
+ZAF-MAR-minor_bulks,discharge,PW_port220,Casablanca,0.3669
+ZAF-MAR-minor_bulks,discharge,PW_port1118,Safi,0.1135
+ZAF-MEX-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-MEX-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-MEX-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-MEX-minor_bulks,discharge,PW_port1358,Veracruz,0.3991
+ZAF-MEX-minor_bulks,discharge,PW_port699,Manzanillo,0.3268
+ZAF-MEX-minor_bulks,discharge,PW_port38,Altamira,0.2741
+ZAF-MYS-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-MYS-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-MYS-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-MYS-minor_bulks,discharge,PW_port960,Port Klang,0.3882
+ZAF-MYS-minor_bulks,discharge,PW_port672,Lumut,0.3363
+ZAF-MYS-minor_bulks,discharge,PW_port603,Kuantan,0.2755
+ZAF-NLD-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-NLD-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-NLD-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-NLD-minor_bulks,discharge,PW_port1114,Rotterdam,0.5831
+ZAF-NLD-minor_bulks,discharge,PW_port45,Amsterdam,0.2483
+ZAF-NLD-minor_bulks,discharge,PW_port487,IJmuiden,0.1685
+ZAF-PAK-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-PAK-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-PAK-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-PAK-minor_bulks,discharge,PW_port775,Muhammad Bin Qasim,0.5355
+ZAF-PAK-minor_bulks,discharge,PW_port543,Karachi,0.4561
+ZAF-PAK-minor_bulks,discharge,PW_port431,Gwadar,0.0084
+ZAF-PER-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-PER-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-PER-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-PER-minor_bulks,discharge,PW_port1045,Callao,0.495
+ZAF-PER-minor_bulks,discharge,PW_port88,Matarani,0.3319
+ZAF-PER-minor_bulks,discharge,PW_port1132,Salaverry,0.1731
+ZAF-PHL-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-PHL-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-PHL-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-PHL-minor_bulks,discharge,PW_port694,Manila,0.8087
+ZAF-PHL-minor_bulks,discharge,PW_port281,Davao,0.1017
+ZAF-PHL-minor_bulks,discharge,PW_port1366,Villanueva,0.0896
+ZAF-POL-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-POL-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-POL-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-POL-minor_bulks,discharge,PW_port380,Gdansk,0.4295
+ZAF-POL-minor_bulks,discharge,PW_port381,Gdynia,0.3693
+ZAF-POL-minor_bulks,discharge,PW_port1246,Szczecin,0.2013
+ZAF-SAU-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-SAU-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-SAU-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-SAU-minor_bulks,discharge,PW_port275,Dammam,0.4677
+ZAF-SAU-minor_bulks,discharge,PW_port24,Jubail,0.359
+ZAF-SAU-minor_bulks,discharge,PW_port518,Jeddah,0.1734
+ZAF-THA-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-THA-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-THA-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-THA-minor_bulks,discharge,PW_port2036,Siam Seaport,0.4245
+ZAF-THA-minor_bulks,discharge,PW_port701,Map Ta Phut,0.3339
+ZAF-THA-minor_bulks,discharge,PW_port111,Bangkok,0.2416
+ZAF-TUR-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-TUR-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-TUR-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-TUR-minor_bulks,discharge,PW_port504,Istanbul,0.4112
+ZAF-TUR-minor_bulks,discharge,PW_port1406,Yakacik,0.3716
+ZAF-TUR-minor_bulks,discharge,PW_port805,Nemrut Bay,0.2172
+ZAF-TWN-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-TWN-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-TWN-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-TWN-minor_bulks,discharge,PW_port541,Kaohsiung,0.5174
+ZAF-TWN-minor_bulks,discharge,PW_port1252,Taichung,0.3764
+ZAF-TWN-minor_bulks,discharge,PW_port1261,Taipei,0.1062
+ZAF-USA-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-USA-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-USA-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-USA-minor_bulks,discharge,PW_port812,New Orleans,0.5757
+ZAF-USA-minor_bulks,discharge,PW_port1214,South Louisiana,0.2628
+ZAF-USA-minor_bulks,discharge,PW_port481,Houston (US-TX),0.1615
+ZAF-VNM-minor_bulks,loading,PW_port1099,Richards Bay,0.4774
+ZAF-VNM-minor_bulks,loading,PW_port311,Durban,0.267
+ZAF-VNM-minor_bulks,loading,PW_port948,Port Elizabeth,0.2556
+ZAF-VNM-minor_bulks,discharge,PW_port903,Cai Mep,0.4009
+ZAF-VNM-minor_bulks,discharge,PW_port1291,Saigon,0.3651
+ZAF-VNM-minor_bulks,discharge,PW_port2405,Nghi Son,0.234
