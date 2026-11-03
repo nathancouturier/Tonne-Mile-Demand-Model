@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T12:32:00Z",
+  "generated_at": "2026-11-03T14:52:43Z",
   "summary": {
     "pass": 31,
     "warn": 6,
@@ -239,11 +239,11 @@
       "message": "highest missing share 2.1%",
       "details": {
         "missing_share": {
-          "netWgt": 0.02073341634919265,
+          "netWgt": 0.020709415497785384,
           "period": 0.0,
           "partnerCode": 0.0
         },
-        "rows": 243327
+        "rows": 243609
       }
     },
     {
@@ -252,8 +252,8 @@
       "status": "warn",
       "message": "7.3% of records carry an estimated net weight",
       "details": {
-        "share_estimated": 0.07328409917518401,
-        "rows": 243327
+        "share_estimated": 0.07323621048483431,
+        "rows": 243609
       }
     },
     {
@@ -308,7 +308,7 @@
       "details": {
         "share_by_reporter": {
           "BRA": 0.013,
-          "USA": 0.361,
+          "USA": 0.359,
           "ZAF": 0.01
         },
         "years_mostly_weightless": {

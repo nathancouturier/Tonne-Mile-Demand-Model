@@ -82,8 +82,8 @@
     {
       "group_id": "IND_M_coal_RUS_MOZ",
       "first_month": "2011-02",
-      "last_month": "2026-07",
-      "n_months": 186
+      "last_month": "2026-08",
+      "n_months": 187
     },
     {
       "group_id": "JPN_M_coal_RUS",
@@ -100,14 +100,14 @@
     {
       "group_id": "USA_X_coal",
       "first_month": "2010-01",
-      "last_month": "2026-07",
-      "n_months": 199
+      "last_month": "2026-08",
+      "n_months": 200
     },
     {
       "group_id": "USA_X_grains",
       "first_month": "2010-01",
-      "last_month": "2026-07",
-      "n_months": 199
+      "last_month": "2026-08",
+      "n_months": 200
     },
     {
       "group_id": "ZAF_X_coal",
@@ -740,8 +740,8 @@
       {
         "group_id": "USA_X_minor_bulks",
         "first_month": "2010-01",
-        "last_month": "2026-07",
-        "n_months": 199
+        "last_month": "2026-08",
+        "n_months": 200
       },
       {
         "group_id": "ZAF_X_minor_bulks",
