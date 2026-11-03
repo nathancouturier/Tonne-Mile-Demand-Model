@@ -7,7 +7,7 @@
   "frequency": "annual",
   "coverage": "SITC Revision 2 1980 to 1995; HS as reported 1988 to 2025",
   "units": "kilograms (netWgt); values in current US dollars (primaryValue)",
-  "retrieved_at": "2026-11-03T14:22:25Z",
+  "retrieved_at": "2026-11-03T14:22:27Z",
   "files": [
     "done_shard0of3.csv",
     "done_shard1of3.csv",
@@ -21,13 +21,13 @@
   ],
   "sha256": {
     "done_shard0of3.csv": "38fa69bc793c674370ccfa89414825f168b38e1971df05784219d8bf21ab99be",
-    "done_shard1of3.csv": "b0b56d1e76469c68e79ed6e19438c84a1264df2ac166def929dd9c9ae853b960",
+    "done_shard1of3.csv": "3aae8a7a61a7855d03bec1206e7349739547e28be392cdd9844d7d73da9d5b89",
     "done_shard2of3.csv": "0aef6ca8f04a309e910536e830b1779f87b9f1775d857147e15147310d6b87f9",
     "fetch_log_shard0of3.csv": "0fce334a3ec3a9a1870a6ed93aa62a85b84662541ff8629242b9e43210ac63a3",
-    "fetch_log_shard1of3.csv": "c184b2bdee6b8e7826a2ca786fc0140f5a3f2cfc616c0e96010f2edab4c12d7d",
+    "fetch_log_shard1of3.csv": "0716e9032f616acd90d3bcc47810ecb5df28cf82d9b5e01fafcccc8d21b3b751",
     "fetch_log_shard2of3.csv": "7aab8f5373a831c76db948bac794c34f15fa0b5016472498b6cd932941141bd3",
     "records_shard0of3.csv.gz": "d613ea45f59aac2846d9e3b9d50ff96dbd40c7726213306764adfbab72605f33",
-    "records_shard1of3.csv.gz": "d59f0dd661a5d237e0f711db43763afa2cd77d47cfe64ad51f68bdb5a4776057",
+    "records_shard1of3.csv.gz": "f4d3edd75b7262b0a1cab22f9fd369d87b4d6c1691533336bf4e6dd0ef458111",
     "records_shard2of3.csv.gz": "390f85bb2095e5f64b8130eb0a3ea89cb9ec019b7b4c4544dfc3b7d0f19861dc"
   },
   "limitations": [
