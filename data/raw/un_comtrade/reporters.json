@@ -889,6 +889,17 @@
       "isGroup": false
     },
     {
+      "id": 238,
+      "text": "Falkland Isds (Malvinas)",
+      "PartnerCode": 238,
+      "PartnerDesc": "Falkland Isds (Malvinas)",
+      "partnerNote": "Falkland Islands (Malvinas)",
+      "PartnerCodeIsoAlpha2": "FK",
+      "PartnerCodeIsoAlpha3": "FLK",
+      "entryEffectiveDate": "1900-01-01T00:00:00",
+      "isGroup": false
+    },
+    {
       "id": 280,
       "text": "Fed. Rep. of Germany (...1990)",
       "reporterCode": 280,
