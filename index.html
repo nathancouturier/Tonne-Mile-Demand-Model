@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tonne-Mile Demand Model</title>
+<meta name="description" content="A decomposition of Baltic Dry Index moves into cargo volumes, average haul distance, fleet growth and effective supply, built only from public data.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f3a5f'/%3E%3Cpath d='M6 22h20l-3 4H9z' fill='%23f6f1e7'/%3E%3Cpath d='M9 20V11h5v9M16 20V7h4v13' fill='%23f6f1e7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#views">Skip to the views</a>
+<header class="masthead">
+  <p class="eyebrow">Research note <span aria-hidden="true">&middot;</span> Dry bulk freight</p>
+  <h1>Tonne-Mile Demand Model</h1>
+  <p class="thesis">Moves in the Baltic Dry Index are decomposed into four measurable forces: how much cargo moved, how far it sailed, how much fleet was available, and how much of that fleet was tied up in port, plus two public price signals that track the commodity cycle. What none of them explains is shown as a residual, never hidden.</p>
+  <p class="meta" id="meta-line">Loading the latest build&hellip;</p>
+</header>
+
+<nav class="views" id="views" aria-label="Sections of the note">
+  <p class="views-label">Open a section</p>
+  <div class="view-buttons" role="tablist">
+    <button type="button" role="tab" data-view="overview" aria-selected="false" aria-controls="panel-overview">Overview</button>
+    <button type="button" role="tab" data-view="history" aria-selected="false" aria-controls="panel-history" hidden>Since 1980</button>
+    <button type="button" role="tab" data-view="decomposition" aria-selected="false" aria-controls="panel-decomposition">Decomposition explorer</button>
+    <button type="button" role="tab" data-view="routes" aria-selected="false" aria-controls="panel-routes">Routes</button>
+    <button type="button" role="tab" data-view="fleet" aria-selected="false" aria-controls="panel-fleet">Fleet and supply</button>
+    <button type="button" role="tab" data-view="methodology" aria-selected="false" aria-controls="panel-methodology">Methodology and data</button>
+    <button type="button" role="tab" data-view="downloads" aria-selected="false" aria-controls="panel-downloads">Downloads</button>
+  </div>
+</nav>
+
+<section class="headline" aria-labelledby="headline-title">
+  <h2 id="headline-title" class="visually-hidden">Latest reading</h2>
+  <div class="tiles" id="tiles" aria-live="polite"></div>
+  <figure class="chart-card" id="chart-headline">
+    <figcaption class="chart-head">
+      <h3 class="chart-title" data-role="title"></h3>
+      <p class="chart-sub" data-role="subtitle"></p>
+    </figcaption>
+    <div class="chart-body" data-role="plot"></div>
+    <div class="chart-foot">
+      <p class="source" data-role="source"></p>
+      <button type="button" class="table-toggle" data-role="table-toggle" aria-expanded="false">Show data table</button>
+    </div>
+    <div class="chart-table" data-role="table" hidden></div>
+  </figure>
+  <div class="today" id="today"></div>
+</section>
+
+<main id="panels">
+  <section class="panel" id="panel-overview" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Overview</h2><p class="lede" id="overview-lede"></p></header>
+    <figure class="chart-card" id="chart-levels"></figure>
+    <figure class="chart-card" id="chart-rolling"></figure>
+    <div class="prose" id="overview-notes"></div>
+  </section>
+
+  <section class="panel" id="panel-history" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Since 1980</h2><p class="lede" id="history-lede"></p></header>
+    <figure class="chart-card" id="chart-long-levels"></figure>
+    <figure class="chart-card" id="chart-long-attribution"></figure>
+    <div id="history-episodes"></div>
+    <figure class="chart-card" id="chart-long-proxy"></figure>
+    <figure class="chart-card" id="chart-long-coverage"></figure>
+    <div class="prose" id="history-notes"></div>
+  </section>
+
+  <section class="panel" id="panel-decomposition" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Decomposition explorer</h2><p class="lede">Pick a named episode or any two months. The waterfall shows how much of the change in the index each force accounts for, in log points and as a share of the move.</p></header>
+    <div class="controls" id="decomp-controls">
+      <label>Episode <select id="episode-select"></select></label>
+      <label>From <select id="start-select"></select></label>
+      <label>To <select id="end-select"></select></label>
+    </div>
+    <p class="episode-text" id="episode-text"></p>
+    <figure class="chart-card" id="chart-waterfall"></figure>
+    <div class="prose" id="decomp-notes"></div>
+  </section>
+
+  <section class="panel" id="panel-routes" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Routes</h2><p class="lede" id="routes-lede"></p></header>
+    <figure class="chart-card map-card" id="chart-map"></figure>
+    <figure class="chart-card" id="chart-route-shares"></figure>
+    <figure class="chart-card" id="chart-commodity"></figure>
+    <figure class="chart-card" id="chart-haul-split"></figure>
+    <div class="prose" id="routes-notes"></div>
+  </section>
+
+  <section class="panel" id="panel-fleet" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Fleet and supply</h2><p class="lede" id="fleet-lede"></p></header>
+    <figure class="chart-card" id="chart-fleet"></figure>
+    <figure class="chart-card" id="chart-supply"></figure>
+    <figure class="chart-card" id="chart-chokepoints"></figure>
+    <figure class="chart-card" id="chart-portwatch"></figure>
+    <div class="prose" id="fleet-notes"></div>
+  </section>
+
+  <section class="panel" id="panel-methodology" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Methodology and data</h2><p class="lede">Definitions, the attribution identity, how the elasticity is estimated, what every series is made of, what the checks found, and what the model cannot explain.</p></header>
+    <div class="prose" id="method-prose"></div>
+    <h3>Data sources</h3>
+    <div class="table-wrap" id="sources-table"></div>
+    <h3>Validation and reconciliation</h3>
+    <div class="table-wrap" id="validation-table"></div>
+    <h3>Regression results</h3>
+    <div class="table-wrap" id="regression-table"></div>
+    <div class="prose" id="limitations-prose"></div>
+  </section>
+
+  <section class="panel" id="panel-downloads" role="tabpanel" hidden>
+    <header class="panel-head"><h2>Downloads</h2><p class="lede">Every number on this page comes from one of these files. The research note is generated from the same pipeline.</p></header>
+    <div class="downloads" id="downloads-list"></div>
+  </section>
+</main>
+
+<footer class="colophon">
+  <p id="colophon-text">Built from public data by an automated pipeline. Sources: Statistics and Research Aland (Baltic Dry Index), UN Comtrade, Brazil Comex Stat (MDIC), IMF PortWatch, UNCTADstat, US NGA World Port Index, World Bank Pink Sheet, OECD (leading indicators, US consumer prices), Federal Reserve Bank of Dallas (Kilian freight index). Distances computed on a maritime routing network.</p>
+  <p><a href="https://github.com/nathancouturier/Tonne-Mile-Demand-Model">Source code and data on GitHub</a></p>
+</footer>
+
+<script src="assets/vendor/d3.v7.9.0.min.js" defer></script>
+<script src="assets/vendor/topojson-client.v3.1.0.min.js" defer></script>
+<script src="assets/js/charts.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>

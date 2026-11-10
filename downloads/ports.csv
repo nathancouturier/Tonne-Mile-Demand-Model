@@ -1,0 +1,89 @@
+port_id,name,country,lat,lon
+AU_PHE,Port Hedland,Australia,-20.319444,118.572222
+AU_DAM,Dampier,Australia,-20.633333,116.716667
+AU_NTL,Newcastle (NSW),Australia,-32.916667,151.783333
+AU_HPT,Hay Point,Australia,-21.283333,149.3
+AU_GLT,Gladstone,Australia,-23.85,151.25
+AU_KWI,Kwinana,Australia,-32.05,115.75
+AU_PAD,Port Adelaide,Australia,-34.85,138.5
+BR_TUB,Tubarao,Brazil,-20.283333,-40.25
+BR_PDM,Ponta da Madeira (Sao Luis),Brazil,-2.566667,-44.366667
+BR_SSZ,Santos,Brazil,-23.95,-46.3
+BR_PNG,Paranagua,Brazil,-25.5,-48.516667
+BR_RIG,Rio Grande,Brazil,-32.05,-52.083333
+ID_BPN,Balikpapan,Indonesia,-1.25,116.816667
+ID_BDJ,Banjarmasin (Taboneo),Indonesia,-3.333333,114.583333
+ZA_SDB,Saldanha Bay,South Africa,-33.033333,17.966667
+ZA_RCB,Richards Bay,South Africa,-28.81,32.098333333
+US_ORF,Hampton Roads,United States,36.85,-76.29999999999998
+US_MSY,New Orleans,United States,29.95,-90.04999999999998
+US_BAL,Baltimore,United States,39.266667,-76.58333299999998
+US_PDX,"Columbia River (Kalama, Longview, Vancouver)",United States,46.016667,-122.85
+CA_SEI,Sept-Iles,Canada,50.2,-66.383333
+CA_VAN,Vancouver,Canada,49.283333,-123.116667
+CA_MTR,Montreal,Canada,45.516667,-73.54999999999998
+UA_ODS,Odesa,Ukraine,46.483333,30.733333
+UA_YUZ,Pivdennyi,Ukraine,46.6,31.016667
+AR_ROS,Rosario,Argentina,-32.95,-60.633333
+AR_BHI,Bahia Blanca,Argentina,-38.783333,-62.266667
+CO_PBO,Puerto Bolivar,Colombia,12.25,-71.966667
+CO_SMR,Santa Marta,Colombia,11.25,-74.216667
+RU_VYP,Vostochny,Russia,42.75,133.083333
+RU_TAM,Taman,Russia,44.716667,37.783333
+RU_NVS,Novorossiysk,Russia,44.716667,37.783333
+MZ_BEW,Beira,Mozambique,-19.833333,34.833333
+CN_TAO,Qingdao,China,36.033333,120.266667
+CN_CAN,Guangzhou,China,23.116667,113.233333
+CN_SHA,Shanghai,China,31.216667,121.5
+JP_KSM,Kashima,Japan,35.933333,140.7
+KR_POH,Pohang,South Korea,36.05,129.383333
+KR_KAN,Gwangyang,South Korea,34.90846,127.75012
+TW_TXG,Taichung,Taiwan,24.3,120.5
+IN_MUN,Mundra,India,22.728333333,69.706666667
+IN_PRT,Paradip,India,20.266667,86.683333
+IN_VTZ,Visakhapatnam,India,17.683333,83.29999999999998
+VN_VUT,Vung Tau,Vietnam,10.35,107.066667
+PH_MNL,Manila,Philippines,14.583333,120.966667
+MY_LUM,Lumut (Teluk Rubiah),Malaysia,4.233333,100.633333
+TH_BKK,Bangkok,Thailand,13.75,100.5
+BD_CGP,Chittagong,Bangladesh,22.316666667,91.816666667
+PK_KHI,Karachi,Pakistan,24.783333,66.983333
+ID_JKT,Jakarta,Indonesia,-6.1,106.883333
+NL_RTM,Rotterdam,Netherlands,51.9,4.483333
+DE_HAM,Hamburg,Germany,53.55,9.933333
+FR_DKK,Dunkerque,France,51.066667,2.35
+IT_TAR,Taranto,Italy,40.466667,17.2
+ES_TAR,Tarragona,Spain,41.1,1.233333
+GB_IMM,Immingham,United Kingdom,53.633333,-0.2
+PT_LIS,Lisbon,Portugal,38.7,-9.166667
+IE_DUB,Dublin,Ireland,53.35,-6.25
+TR_ISK,Iskenderun,Turkey,36.6,36.166667
+EG_ALY,Alexandria,Egypt,31.166667,29.833333
+SA_JED,Jeddah,Saudi Arabia,21.483333,39.183333
+AE_KHL,Abu Dhabi,United Arab Emirates,24.5,54.333333
+OM_SOH,Sohar,Oman,24.516667,56.633333
+BH_MIN,Bahrain,Bahrain,26.2,50.633333
+IR_BND,Bandar Abbas,Iran,27.15,56.2
+IL_HFA,Haifa,Israel,32.816667,35.0
+MA_CAS,Casablanca,Morocco,33.6,-7.616667
+DZ_ALG,Algiers,Algeria,36.766667,3.066667
+TN_TUN,Tunis,Tunisia,36.8,10.25
+LY_TIP,Tripoli,Libya,32.9,13.183333
+NG_LOS,Lagos,Nigeria,6.4,3.4
+KE_MBA,Mombasa,Kenya,-4.066667,39.666667
+YE_ADE,Aden,Yemen,12.783333,44.95
+LB_BEY,Beirut,Lebanon,33.9,35.5
+MX_VER,Veracruz,Mexico,19.2,-96.133333
+CO_CTG,Cartagena,Colombia,10.416667,-75.533333
+PE_CLL,Callao,Peru,-12.05,-77.15
+CL_VAP,Valparaiso,Chile,-33.033333,-71.616667
+EC_GYE,Guayaquil,Ecuador,-2.2,-79.88333299999998
+GT_PRQ,Puerto Quetzal,Guatemala,13.916667,-90.8
+HN_PCR,Puerto Cortes,Honduras,15.833333,-87.95
+PA_BLB,Balboa,Panama,8.95,-79.56666699999998
+DO_RHA,Rio Haina,Dominican Republic,18.416667,-70.016667
+BR_RIO,Rio de Janeiro,Brazil,-22.9,-43.166667
+ZA_DUR,Durban,South Africa,-29.866667,31.066667
+HK_HKG,Hong Kong,Hong Kong,22.266667,114.2
+SG_SIN,Singapore,Singapore,1.283333,103.85
+GR_PIR,Piraeus,Greece,37.933333,23.65
