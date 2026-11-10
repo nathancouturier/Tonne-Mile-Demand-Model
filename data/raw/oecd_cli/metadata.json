@@ -5,14 +5,14 @@
   "source_url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.STES,DSD_STES@DF_CLI,4.1/.M.LI...AA...H?startPeriod=2005-01&format=csvfilewithlabels",
   "licence": "OECD terms and conditions (free reuse with attribution, CC BY 4.0 for OECD data)",
   "frequency": "monthly",
-  "coverage": "2005-01 to 2026-09, 22 areas",
+  "coverage": "2005-01 to 2026-10, 22 areas",
   "units": "index, long-term average = 100",
-  "retrieved_at": "2026-11-03T14:18:38Z",
+  "retrieved_at": "2026-11-10T14:56:42Z",
   "files": [
     "cli_monthly.csv"
   ],
   "sha256": {
-    "cli_monthly.csv": "c773fef0904b8d9630a30eae2c98ef95f7fcb3da238e2858df9e9f0eff796fc9"
+    "cli_monthly.csv": "5860cce219009213cacdd3f8068a10bcf083b4738c009aff56ba0c3d3cc057e5"
   },
   "limitations": [
     "Recent months are revised as the cycle is re-estimated; each refresh stores the current vintage.",

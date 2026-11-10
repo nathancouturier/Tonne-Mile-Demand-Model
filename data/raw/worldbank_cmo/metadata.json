@@ -5,14 +5,14 @@
   "source_url": "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx",
   "licence": "Creative Commons Attribution 4.0 (CC BY 4.0), as stated by the World Bank for its datasets",
   "frequency": "monthly",
-  "coverage": "1960-01 to 2026-09, nominal US dollars",
+  "coverage": "1960-01 to 2026-10, nominal US dollars",
   "units": "US dollars per metric ton (iron ore: per dry metric ton unit; Brent: per barrel; gas: per mmbtu)",
-  "retrieved_at": "2026-11-03T14:18:36Z",
+  "retrieved_at": "2026-11-10T14:56:41Z",
   "files": [
     "CMO-Historical-Data-Monthly.xlsx"
   ],
   "sha256": {
-    "CMO-Historical-Data-Monthly.xlsx": "ea1c350827878ea3bbe30e3cda16a13fd3bd5b409b8458940dc94a36b5a33154"
+    "CMO-Historical-Data-Monthly.xlsx": "3c8d9d8dbb48342fdbf24777c39a8ce8964cc2fd0958f72f6779e6e4ad99cde2"
   },
   "limitations": [
     "Prices are benchmark assessments, not transaction volumes.",
