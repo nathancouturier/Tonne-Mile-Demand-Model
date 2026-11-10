@@ -12100,6 +12100,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-ARE-grains,BRA,ARE,grains,0.026,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-ARE-grains,BRA,ARE,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-ARE-grains,BRA,ARE,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-ARE-grains,BRA,ARE,grains,0.026,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-ARE-iron_ore,BRA,ARE,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-ARE-iron_ore,BRA,ARE,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-ARE-iron_ore,BRA,ARE,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -12457,6 +12458,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-ARE-iron_ore,BRA,ARE,iron_ore,59320.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-ARE-iron_ore,BRA,ARE,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-ARE-iron_ore,BRA,ARE,iron_ore,182631.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-ARE-iron_ore,BRA,ARE,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-BGD-grains,BRA,BGD,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-BGD-grains,BRA,BGD,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-BGD-grains,BRA,BGD,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -12812,8 +12814,9 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-05,BRA-BGD-grains,BRA,BGD,grains,223207.927,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-06,BRA-BGD-grains,BRA,BGD,grains,165901.868,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-BGD-grains,BRA,BGD,grains,220148.495,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-08,BRA-BGD-grains,BRA,BGD,grains,63726.034,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-08,BRA-BGD-grains,BRA,BGD,grains,102969.501,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-BGD-grains,BRA,BGD,grains,59089.24,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-BGD-grains,BRA,BGD,grains,108163.737,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-BHR-iron_ore,BRA,BHR,iron_ore,428043.04,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-BHR-iron_ore,BRA,BHR,iron_ore,246606.92,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-BHR-iron_ore,BRA,BHR,iron_ore,83248.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -13163,14 +13166,15 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2025-11,BRA-BHR-iron_ore,BRA,BHR,iron_ore,693970.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2025-12,BRA-BHR-iron_ore,BRA,BHR,iron_ore,696952.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-01,BRA-BHR-iron_ore,BRA,BHR,iron_ore,691666.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
-2026-02,BRA-BHR-iron_ore,BRA,BHR,iron_ore,174107.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
-2026-03,BRA-BHR-iron_ore,BRA,BHR,iron_ore,174567.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-02,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-03,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-04,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-05,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-06,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-07,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-BHR-iron_ore,BRA,BHR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-CHN-grains,BRA,CHN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-CHN-grains,BRA,CHN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-CHN-grains,BRA,CHN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -13521,13 +13525,14 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2025-12,BRA-CHN-grains,BRA,CHN,grains,2605596.1199999996,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-01,BRA-CHN-grains,BRA,CHN,grains,1258024.2149999999,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-02,BRA-CHN-grains,BRA,CHN,grains,5144808.064,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-03,BRA-CHN-grains,BRA,CHN,grains,9846764.514999999,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-03,BRA-CHN-grains,BRA,CHN,grains,9846764.514,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-04,BRA-CHN-grains,BRA,CHN,grains,11523812.225,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-05,BRA-CHN-grains,BRA,CHN,grains,10485841.796,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-06,BRA-CHN-grains,BRA,CHN,grains,10280846.259,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-CHN-grains,BRA,CHN,grains,9496296.865,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-08,BRA-CHN-grains,BRA,CHN,grains,7376287.4459999995,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-CHN-grains,BRA,CHN,grains,5538760.393,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-08,BRA-CHN-grains,BRA,CHN,grains,7376287.445,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-CHN-grains,BRA,CHN,grains,5530677.524,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-CHN-grains,BRA,CHN,grains,4448954.637999999,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-CHN-iron_ore,BRA,CHN,iron_ore,493309.859,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-CHN-iron_ore,BRA,CHN,iron_ore,721383.291,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-CHN-iron_ore,BRA,CHN,iron_ore,1206656.931,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -13884,7 +13889,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-CHN-iron_ore,BRA,CHN,iron_ore,31924471.357,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-07,BRA-CHN-iron_ore,BRA,CHN,iron_ore,25453967.8,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-CHN-iron_ore,BRA,CHN,iron_ore,27675719.734,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
-2026-09,BRA-CHN-iron_ore,BRA,CHN,iron_ore,25025763.87,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-09,BRA-CHN-iron_ore,BRA,CHN,iron_ore,24898246.47,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-CHN-iron_ore,BRA,CHN,iron_ore,24972585.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-COL-grains,BRA,COL,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-COL-grains,BRA,COL,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-COL-grains,BRA,COL,grains,1.21,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -14242,6 +14248,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-COL-grains,BRA,COL,grains,36563.183,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-COL-grains,BRA,COL,grains,200.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-COL-grains,BRA,COL,grains,200.4,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-COL-grains,BRA,COL,grains,250.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-DEU-grains,BRA,DEU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-DEU-grains,BRA,DEU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-DEU-grains,BRA,DEU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -14599,6 +14606,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-DEU-grains,BRA,DEU,grains,72.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-DEU-grains,BRA,DEU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-DEU-grains,BRA,DEU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-DEU-grains,BRA,DEU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-DEU-iron_ore,BRA,DEU,iron_ore,1459007.36,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-DEU-iron_ore,BRA,DEU,iron_ore,1644203.005,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-DEU-iron_ore,BRA,DEU,iron_ore,1292073.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -14956,6 +14964,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-DEU-iron_ore,BRA,DEU,iron_ore,78919.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-DEU-iron_ore,BRA,DEU,iron_ore,0.96,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-DEU-iron_ore,BRA,DEU,iron_ore,3.025,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-DEU-iron_ore,BRA,DEU,iron_ore,68038.222,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-DZA-grains,BRA,DZA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-DZA-grains,BRA,DZA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-DZA-grains,BRA,DZA,grains,15000.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -15313,6 +15322,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-DZA-grains,BRA,DZA,grains,109814.55799999999,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-DZA-grains,BRA,DZA,grains,88146.461,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-DZA-grains,BRA,DZA,grains,265823.213,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-DZA-grains,BRA,DZA,grains,356593.432,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-EGY-grains,BRA,EGY,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-EGY-grains,BRA,EGY,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-EGY-grains,BRA,EGY,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -15670,6 +15680,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-EGY-grains,BRA,EGY,grains,758588.6030000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-EGY-grains,BRA,EGY,grains,1358281.821,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-EGY-grains,BRA,EGY,grains,878384.775,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-EGY-grains,BRA,EGY,grains,683845.457,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-ESP-grains,BRA,ESP,grains,13730.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-ESP-grains,BRA,ESP,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-ESP-grains,BRA,ESP,grains,77666.67,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -16026,7 +16037,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-ESP-grains,BRA,ESP,grains,595164.174,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-ESP-grains,BRA,ESP,grains,617913.0900000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-ESP-grains,BRA,ESP,grains,876129.0830000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-ESP-grains,BRA,ESP,grains,793530.733,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-ESP-grains,BRA,ESP,grains,882807.783,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-ESP-grains,BRA,ESP,grains,845325.0190000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-FRA-iron_ore,BRA,FRA,iron_ore,699940.176,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-FRA-iron_ore,BRA,FRA,iron_ore,638097.547,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-FRA-iron_ore,BRA,FRA,iron_ore,570769.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -16384,6 +16396,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-FRA-iron_ore,BRA,FRA,iron_ore,130250.2,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-FRA-iron_ore,BRA,FRA,iron_ore,0.255,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-FRA-iron_ore,BRA,FRA,iron_ore,80226.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-FRA-iron_ore,BRA,FRA,iron_ore,80600.67,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-GBR-grains,BRA,GBR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-GBR-grains,BRA,GBR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-GBR-grains,BRA,GBR,grains,30735.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -16739,8 +16752,9 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-05,BRA-GBR-grains,BRA,GBR,grains,169552.63499999998,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-06,BRA-GBR-grains,BRA,GBR,grains,56371.246,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-GBR-grains,BRA,GBR,grains,0.754,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-08,BRA-GBR-grains,BRA,GBR,grains,167128.507,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-GBR-grains,BRA,GBR,grains,117878.29100000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-08,BRA-GBR-grains,BRA,GBR,grains,167128.508,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-GBR-grains,BRA,GBR,grains,85862.542,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-GBR-grains,BRA,GBR,grains,179993.698,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-GBR-iron_ore,BRA,GBR,iron_ore,98587.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-GBR-iron_ore,BRA,GBR,iron_ore,139191.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-GBR-iron_ore,BRA,GBR,iron_ore,339907.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -17098,6 +17112,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-GBR-iron_ore,BRA,GBR,iron_ore,0.314,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-GBR-iron_ore,BRA,GBR,iron_ore,33075.47,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-GBR-iron_ore,BRA,GBR,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-GBR-iron_ore,BRA,GBR,iron_ore,72000.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-IDN-grains,BRA,IDN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-IDN-grains,BRA,IDN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-IDN-grains,BRA,IDN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -17455,6 +17470,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-IDN-grains,BRA,IDN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-IDN-grains,BRA,IDN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-IDN-grains,BRA,IDN,grains,156.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-IDN-grains,BRA,IDN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-IRN-grains,BRA,IRN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-IRN-grains,BRA,IRN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-IRN-grains,BRA,IRN,grains,8580.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -17812,6 +17828,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-IRN-grains,BRA,IRN,grains,457144.469,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-IRN-grains,BRA,IRN,grains,426985.597,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-IRN-grains,BRA,IRN,grains,1057311.1970000002,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-IRN-grains,BRA,IRN,grains,1195792.083,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-ITA-grains,BRA,ITA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-ITA-grains,BRA,ITA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-ITA-grains,BRA,ITA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -18169,6 +18186,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-ITA-grains,BRA,ITA,grains,94299.533,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-ITA-grains,BRA,ITA,grains,171226.50699999998,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-ITA-grains,BRA,ITA,grains,290622.938,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-ITA-grains,BRA,ITA,grains,199904.483,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-ITA-iron_ore,BRA,ITA,iron_ore,461319.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-ITA-iron_ore,BRA,ITA,iron_ore,750543.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-ITA-iron_ore,BRA,ITA,iron_ore,851604.696,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -18526,6 +18544,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-ITA-iron_ore,BRA,ITA,iron_ore,82100.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-ITA-iron_ore,BRA,ITA,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-ITA-iron_ore,BRA,ITA,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-ITA-iron_ore,BRA,ITA,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-JPN-grains,BRA,JPN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-JPN-grains,BRA,JPN,grains,0.252,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-JPN-grains,BRA,JPN,grains,2.186,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -18882,7 +18901,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-JPN-grains,BRA,JPN,grains,39501.12,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-JPN-grains,BRA,JPN,grains,116935.90000000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-JPN-grains,BRA,JPN,grains,52194.274,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-JPN-grains,BRA,JPN,grains,362014.392,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-JPN-grains,BRA,JPN,grains,384014.392,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-JPN-grains,BRA,JPN,grains,553497.694,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-JPN-iron_ore,BRA,JPN,iron_ore,2114010.251,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-JPN-iron_ore,BRA,JPN,iron_ore,1215218.24,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-JPN-iron_ore,BRA,JPN,iron_ore,3374075.537,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -19240,6 +19260,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-JPN-iron_ore,BRA,JPN,iron_ore,2075174.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-JPN-iron_ore,BRA,JPN,iron_ore,778797.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-JPN-iron_ore,BRA,JPN,iron_ore,470402.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-JPN-iron_ore,BRA,JPN,iron_ore,1528948.01,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-KOR-grains,BRA,KOR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-KOR-grains,BRA,KOR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-KOR-grains,BRA,KOR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -19597,6 +19618,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-KOR-grains,BRA,KOR,grains,121800.006,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-KOR-grains,BRA,KOR,grains,61006.002,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-KOR-grains,BRA,KOR,grains,57391.985,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-KOR-grains,BRA,KOR,grains,258476.334,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-KOR-iron_ore,BRA,KOR,iron_ore,1305791.43,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-KOR-iron_ore,BRA,KOR,iron_ore,176781.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-KOR-iron_ore,BRA,KOR,iron_ore,770605.972,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -19953,7 +19975,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-KOR-iron_ore,BRA,KOR,iron_ore,794642.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-07,BRA-KOR-iron_ore,BRA,KOR,iron_ore,503595.4,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-KOR-iron_ore,BRA,KOR,iron_ore,743044.3,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
-2026-09,BRA-KOR-iron_ore,BRA,KOR,iron_ore,746808.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-09,BRA-KOR-iron_ore,BRA,KOR,iron_ore,738496.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-KOR-iron_ore,BRA,KOR,iron_ore,811392.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-MAR-grains,BRA,MAR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-MAR-grains,BRA,MAR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-MAR-grains,BRA,MAR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -20311,6 +20334,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-MAR-grains,BRA,MAR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-MAR-grains,BRA,MAR,grains,48964.86,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-MAR-grains,BRA,MAR,grains,163278.913,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-MAR-grains,BRA,MAR,grains,27550.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-MEX-grains,BRA,MEX,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-MEX-grains,BRA,MEX,grains,0.825,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-MEX-grains,BRA,MEX,grains,30.38,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -20668,6 +20692,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-MEX-grains,BRA,MEX,grains,409715.83999999997,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-MEX-grains,BRA,MEX,grains,219896.204,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-MEX-grains,BRA,MEX,grains,113591.51599999999,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-MEX-grains,BRA,MEX,grains,149891.809,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-MYS-grains,BRA,MYS,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-MYS-grains,BRA,MYS,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-MYS-grains,BRA,MYS,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -21025,6 +21050,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-MYS-grains,BRA,MYS,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-MYS-grains,BRA,MYS,grains,3078.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-MYS-grains,BRA,MYS,grains,75961.85,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-MYS-grains,BRA,MYS,grains,10794.685,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-MYS-iron_ore,BRA,MYS,iron_ore,403985.451,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-MYS-iron_ore,BRA,MYS,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-MYS-iron_ore,BRA,MYS,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -21382,6 +21408,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-MYS-iron_ore,BRA,MYS,iron_ore,1390337.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-MYS-iron_ore,BRA,MYS,iron_ore,1100350.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-MYS-iron_ore,BRA,MYS,iron_ore,1382583.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-MYS-iron_ore,BRA,MYS,iron_ore,2148258.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-NLD-grains,BRA,NLD,grains,170000.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-NLD-grains,BRA,NLD,grains,66790.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-NLD-grains,BRA,NLD,grains,333128.9,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -21738,7 +21765,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-NLD-grains,BRA,NLD,grains,296969.21699999995,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-NLD-grains,BRA,NLD,grains,410116.968,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-NLD-grains,BRA,NLD,grains,209424.32200000001,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-NLD-grains,BRA,NLD,grains,383108.088,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-NLD-grains,BRA,NLD,grains,325846.788,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-NLD-grains,BRA,NLD,grains,157785.82,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-NLD-iron_ore,BRA,NLD,iron_ore,548648.158,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-NLD-iron_ore,BRA,NLD,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-NLD-iron_ore,BRA,NLD,iron_ore,426915.136,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -22096,6 +22124,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-NLD-iron_ore,BRA,NLD,iron_ore,645884.101,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-NLD-iron_ore,BRA,NLD,iron_ore,643258.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-NLD-iron_ore,BRA,NLD,iron_ore,595497.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-NLD-iron_ore,BRA,NLD,iron_ore,572498.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-OMN-iron_ore,BRA,OMN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-OMN-iron_ore,BRA,OMN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-OMN-iron_ore,BRA,OMN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -22453,6 +22482,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-OMN-iron_ore,BRA,OMN,iron_ore,753267.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-OMN-iron_ore,BRA,OMN,iron_ore,377599.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-OMN-iron_ore,BRA,OMN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-OMN-iron_ore,BRA,OMN,iron_ore,975153.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-PAK-grains,BRA,PAK,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-PAK-grains,BRA,PAK,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-PAK-grains,BRA,PAK,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -22809,7 +22839,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-PAK-grains,BRA,PAK,grains,270262.433,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-PAK-grains,BRA,PAK,grains,295529.518,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-PAK-grains,BRA,PAK,grains,316292.411,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-PAK-grains,BRA,PAK,grains,260933.991,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-PAK-grains,BRA,PAK,grains,260933.993,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-PAK-grains,BRA,PAK,grains,298756.972,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-PER-grains,BRA,PER,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-PER-grains,BRA,PER,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-PER-grains,BRA,PER,grains,35.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -23167,6 +23198,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-PER-grains,BRA,PER,grains,2252.145,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-PER-grains,BRA,PER,grains,1286.402,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-PER-grains,BRA,PER,grains,1929.446,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-PER-grains,BRA,PER,grains,57097.179,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-PHL-grains,BRA,PHL,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-PHL-grains,BRA,PHL,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-PHL-grains,BRA,PHL,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -23524,6 +23556,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-PHL-grains,BRA,PHL,grains,324.063,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-PHL-grains,BRA,PHL,grains,107791.455,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-PHL-grains,BRA,PHL,grains,5719.48,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-PHL-grains,BRA,PHL,grains,115966.27,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-PRT-grains,BRA,PRT,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-PRT-grains,BRA,PRT,grains,0.691,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-PRT-grains,BRA,PRT,grains,4031.56,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -23881,6 +23914,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-PRT-grains,BRA,PRT,grains,2.472,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-PRT-grains,BRA,PRT,grains,62654.878,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-PRT-grains,BRA,PRT,grains,44561.039000000004,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-PRT-grains,BRA,PRT,grains,131101.269,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-SAU-grains,BRA,SAU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-SAU-grains,BRA,SAU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-SAU-grains,BRA,SAU,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -24238,6 +24272,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-SAU-grains,BRA,SAU,grains,62045.941,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-SAU-grains,BRA,SAU,grains,213593.843,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-SAU-grains,BRA,SAU,grains,340463.478,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-SAU-grains,BRA,SAU,grains,247721.561,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-THA-grains,BRA,THA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-THA-grains,BRA,THA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-THA-grains,BRA,THA,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -24595,6 +24630,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-THA-grains,BRA,THA,grains,386927.672,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-THA-grains,BRA,THA,grains,452290.06,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-THA-grains,BRA,THA,grains,267379.591,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-THA-grains,BRA,THA,grains,280408.11500000005,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-TUR-grains,BRA,TUR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-TUR-grains,BRA,TUR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-TUR-grains,BRA,TUR,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -24952,6 +24988,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-TUR-grains,BRA,TUR,grains,257531.01299999998,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-TUR-grains,BRA,TUR,grains,186291.085,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-TUR-grains,BRA,TUR,grains,181020.839,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-TUR-grains,BRA,TUR,grains,202293.382,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-TWN-grains,BRA,TWN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-TWN-grains,BRA,TWN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-TWN-grains,BRA,TWN,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -25309,6 +25346,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-TWN-grains,BRA,TWN,grains,186011.185,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-TWN-grains,BRA,TWN,grains,449548.963,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-09,BRA-TWN-grains,BRA,TWN,grains,106277.6,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-TWN-grains,BRA,TWN,grains,340342.14999999997,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-01,BRA-TWN-iron_ore,BRA,TWN,iron_ore,380631.726,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-02,BRA-TWN-iron_ore,BRA,TWN,iron_ore,120714.512,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-03,BRA-TWN-iron_ore,BRA,TWN,iron_ore,361130.155,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
@@ -25666,6 +25704,7 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-07,BRA-TWN-iron_ore,BRA,TWN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-08,BRA-TWN-iron_ore,BRA,TWN,iron_ore,80400.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 2026-09,BRA-TWN-iron_ore,BRA,TWN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
+2026-10,BRA-TWN-iron_ore,BRA,TWN,iron_ore,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_iron_ore,0.0,False,reported
 1997-01,BRA-VNM-grains,BRA,VNM,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-02,BRA-VNM-grains,BRA,VNM,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 1997-03,BRA-VNM-grains,BRA,VNM,grains,0.0,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
@@ -26022,7 +26061,8 @@ month,route_id,origin,destination,commodity,tonnes,source,group_id,proxy_tonnes,
 2026-06,BRA-VNM-grains,BRA,VNM,grains,229385.742,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-07,BRA-VNM-grains,BRA,VNM,grains,349805.742,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2026-08,BRA-VNM-grains,BRA,VNM,grains,624189.254,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
-2026-09,BRA-VNM-grains,BRA,VNM,grains,404278.365,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-09,BRA-VNM-grains,BRA,VNM,grains,390361.234,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
+2026-10,BRA-VNM-grains,BRA,VNM,grains,482460.243,Brazil Comex Stat (exports),BRA_COMEX_X_grains,0.0,False,reported
 2010-01,CAN-ARE-grains,CAN,ARE,grains,22495.0,"UN Comtrade, reporter CAN (X)",CAN_X_grains,0.0,False,reported
 2010-02,CAN-ARE-grains,CAN,ARE,grains,0.0,"UN Comtrade, reporter CAN (X)",CAN_X_grains,0.0,False,reported
 2010-03,CAN-ARE-grains,CAN,ARE,grains,33460.0,"UN Comtrade, reporter CAN (X)",CAN_X_grains,0.0,False,reported

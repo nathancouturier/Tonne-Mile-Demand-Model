@@ -40,14 +40,14 @@
     {
       "group_id": "BRA_COMEX_X_grains",
       "first_month": "1997-01",
-      "last_month": "2026-09",
-      "n_months": 357
+      "last_month": "2026-10",
+      "n_months": 358
     },
     {
       "group_id": "BRA_COMEX_X_iron_ore",
       "first_month": "1997-01",
-      "last_month": "2026-09",
-      "n_months": 357
+      "last_month": "2026-10",
+      "n_months": 358
     },
     {
       "group_id": "CAN_X_coal",
@@ -710,8 +710,8 @@
       {
         "group_id": "BRA_COMEX_X_minor_bulks",
         "first_month": "1997-01",
-        "last_month": "2026-09",
-        "n_months": 357
+        "last_month": "2026-10",
+        "n_months": 358
       },
       {
         "group_id": "CAN_X_minor_bulks",

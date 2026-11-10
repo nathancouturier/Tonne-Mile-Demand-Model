@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-03T14:52:43Z",
+  "generated_at": "2026-11-10T15:12:16Z",
   "summary": {
-    "pass": 31,
+    "pass": 30,
     "warn": 6,
-    "fail": 0
+    "fail": 1
   },
   "checks": [
     {
@@ -36,10 +36,12 @@
     {
       "dataset": "imf_portwatch",
       "check": "metadata_hashes",
-      "status": "pass",
-      "message": "5 listed files match their recorded hash",
+      "status": "fail",
+      "message": "1 of 5 listed files are missing or differ from their recorded hash",
       "details": {
-        "files": []
+        "files": [
+          "dry_bulk_monthly_by_country.csv"
+        ]
       }
     },
     {
@@ -458,10 +460,10 @@
       "message": "median absolute gap 0.0%, mean gap +2.1% (Comex Stat relative to Comtrade BRA), 185 overlapping periods",
       "details": {
         "median_abs_rel_gap": 2.3573355482382804e-07,
-        "mean_rel_gap": 0.020696117828946033,
-        "log_correlation": 0.9918248900801682,
+        "mean_rel_gap": 0.020696117828500445,
+        "log_correlation": 0.9918248900802015,
         "n_overlap": 185,
-        "total_a": 9646149122.871,
+        "total_a": 9646149122.864,
         "total_b": 9550455972.204088,
         "basis": "12-month rolling sums, tonnes"
       }
