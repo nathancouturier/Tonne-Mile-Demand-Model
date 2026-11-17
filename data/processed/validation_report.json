@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T15:12:16Z",
+  "generated_at": "2026-11-17T16:27:50Z",
   "summary": {
     "pass": 30,
     "warn": 6,
@@ -37,10 +37,11 @@
       "dataset": "imf_portwatch",
       "check": "metadata_hashes",
       "status": "fail",
-      "message": "1 of 5 listed files are missing or differ from their recorded hash",
+      "message": "2 of 5 listed files are missing or differ from their recorded hash",
       "details": {
         "files": [
-          "dry_bulk_monthly_by_country.csv"
+          "dry_bulk_monthly_by_country.csv",
+          "ports_database.csv"
         ]
       }
     },
@@ -241,11 +242,11 @@
       "message": "highest missing share 2.1%",
       "details": {
         "missing_share": {
-          "netWgt": 0.020709415497785384,
+          "netWgt": 0.02065047986219342,
           "period": 0.0,
           "partnerCode": 0.0
         },
-        "rows": 243609
+        "rows": 243820
       }
     },
     {
@@ -254,18 +255,18 @@
       "status": "warn",
       "message": "7.3% of records carry an estimated net weight",
       "details": {
-        "share_estimated": 0.07323621048483431,
-        "rows": 243609
+        "share_estimated": 0.07323025182511689,
+        "rows": 243820
       }
     },
     {
       "dataset": "un_comtrade:exporters_a",
       "check": "monthly_continuity",
       "status": "pass",
-      "message": "0 missing months between 2010-01 and 2026-08",
+      "message": "0 missing months between 2010-01 and 2026-09",
       "details": {
         "first": "2010-01",
-        "last": "2026-08",
+        "last": "2026-09",
         "gaps": []
       }
     },
@@ -273,10 +274,10 @@
       "dataset": "un_comtrade:exporters_b",
       "check": "monthly_continuity",
       "status": "pass",
-      "message": "0 missing months between 2010-01 and 2026-08",
+      "message": "0 missing months between 2010-01 and 2026-09",
       "details": {
         "first": "2010-01",
-        "last": "2026-08",
+        "last": "2026-09",
         "gaps": []
       }
     },
@@ -295,10 +296,10 @@
       "dataset": "un_comtrade:minor_bulks",
       "check": "monthly_continuity",
       "status": "pass",
-      "message": "0 missing months between 2010-01 and 2026-08",
+      "message": "0 missing months between 2010-01 and 2026-09",
       "details": {
         "first": "2010-01",
-        "last": "2026-08",
+        "last": "2026-09",
         "gaps": []
       }
     },
@@ -309,7 +310,7 @@
       "message": "value without net weight: BRA 1% (years mostly weightless: none); USA 36% (years mostly weightless: 2010, 2011, 2012, 2013, 2014, 2015); ZAF 1% (years mostly weightless: none). Tonnes for these records are estimated from annual unit values or interpolated (see coverage.json).",
       "details": {
         "share_by_reporter": {
-          "BRA": 0.013,
+          "BRA": 0.012,
           "USA": 0.359,
           "ZAF": 0.01
         },
@@ -442,14 +443,14 @@
       "dataset": "reconciliation",
       "check": "reconcile:Brazil iron ore exports to China",
       "status": "pass",
-      "message": "median absolute gap 0.0%, mean gap +2.4% (Comex Stat relative to Comtrade BRA), 189 overlapping periods",
+      "message": "median absolute gap 0.0%, mean gap +2.4% (Comex Stat relative to Comtrade BRA), 190 overlapping periods",
       "details": {
-        "median_abs_rel_gap": 1.6815768169666297e-07,
-        "mean_rel_gap": 0.023879971747119106,
-        "log_correlation": 0.9659704457118371,
-        "n_overlap": 189,
-        "total_a": 41337374047.378006,
-        "total_b": 40420657800.22301,
+        "median_abs_rel_gap": 1.7398503675373368e-07,
+        "mean_rel_gap": 0.023754186654715088,
+        "log_correlation": 0.9664555435656426,
+        "n_overlap": 190,
+        "total_a": 41632151331.311005,
+        "total_b": 40715439968.966,
         "basis": "12-month rolling sums, tonnes"
       }
     },
@@ -457,14 +458,14 @@
       "dataset": "reconciliation",
       "check": "reconcile:Brazil soybean exports to China",
       "status": "pass",
-      "message": "median absolute gap 0.0%, mean gap +2.1% (Comex Stat relative to Comtrade BRA), 185 overlapping periods",
+      "message": "median absolute gap 0.0%, mean gap +2.1% (Comex Stat relative to Comtrade BRA), 186 overlapping periods",
       "details": {
-        "median_abs_rel_gap": 2.3573355482382804e-07,
-        "mean_rel_gap": 0.020696117828500445,
-        "log_correlation": 0.9918248900802015,
-        "n_overlap": 185,
-        "total_a": 9646149122.864,
-        "total_b": 9550455972.204088,
+        "median_abs_rel_gap": 2.3740504982351166e-07,
+        "mean_rel_gap": 0.020588969904438606,
+        "log_correlation": 0.9918980970524301,
+        "n_overlap": 186,
+        "total_a": 9728954173.27,
+        "total_b": 9633196365.476088,
         "basis": "12-month rolling sums, tonnes"
       }
     },

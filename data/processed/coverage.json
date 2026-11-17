@@ -76,8 +76,8 @@
     {
       "group_id": "IDN_X_coal",
       "first_month": "2012-12",
-      "last_month": "2026-07",
-      "n_months": 164
+      "last_month": "2026-09",
+      "n_months": 166
     },
     {
       "group_id": "IND_M_coal_RUS_MOZ",
@@ -728,8 +728,8 @@
       {
         "group_id": "IDN_X_minor_bulks",
         "first_month": "2012-12",
-        "last_month": "2026-07",
-        "n_months": 164
+        "last_month": "2026-09",
+        "n_months": 166
       },
       {
         "group_id": "UKR_X_minor_bulks",
