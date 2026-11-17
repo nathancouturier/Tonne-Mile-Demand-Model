@@ -5,14 +5,14 @@
   "source_url": "https://data-explorer.oecd.org/",
   "licence": "OECD terms and conditions (free use with attribution)",
   "frequency": "monthly",
-  "coverage": "1960-01 to 2026-09, except 2025-10",
+  "coverage": "1960-01 to 2026-10, except 2025-10",
   "units": "index, base 2015, not seasonally adjusted",
-  "retrieved_at": "2026-11-10T15:11:28Z",
+  "retrieved_at": "2026-11-17T16:27:02Z",
   "files": [
     "cpi_usa_monthly.csv"
   ],
   "sha256": {
-    "cpi_usa_monthly.csv": "02d339a2663f0b8d2126270eeb727b1a045e54603bb0c57fde216f6593f056b0"
+    "cpi_usa_monthly.csv": "e3b3603e051d68014e547e237b3f4e9c550f10486dca3750548723003d3fa10e"
   },
   "limitations": [
     "Used only to convert the Kilian freight index back to nominal terms.",
