@@ -7,7 +7,7 @@
   "frequency": "monthly",
   "coverage": "1968-01 to 2026-10",
   "units": "percent deviation of real (US CPI deflated) freight rates from a linear trend",
-  "retrieved_at": "2026-11-17T16:27:02Z",
+  "retrieved_at": "2026-11-24T17:57:44Z",
   "files": [
     "igrea.xlsx",
     "kilian_index_monthly.csv"

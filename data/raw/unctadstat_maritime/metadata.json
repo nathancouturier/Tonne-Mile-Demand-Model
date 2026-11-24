@@ -7,7 +7,7 @@
   "frequency": "annual",
   "coverage": "US.MerchantFleet: 1980 to 2026; US.ShipBuilding: 2014 to 2025; US.ShipScrapping: 2014 to 2025; US.PortCalls: 2018 to 2023; US.SeaborneTrade: 2000 to 2024; US.PortCalls_S: 2018S01 to 2023S02; US.PortCallsArrivals: 2018 to 2023",
   "units": "thousand deadweight tons (fleet, 1 January), gross tons (ships built and scrapped), days (median time in port), thousand metric tons (seaborne trade)",
-  "retrieved_at": "2026-11-17T16:02:31Z",
+  "retrieved_at": "2026-11-24T17:48:32Z",
   "files": [
     "US_MerchantFleet.csv",
     "US_ShipBuilding.csv",
@@ -18,7 +18,7 @@
     "US_PortCallsArrivals.csv"
   ],
   "sha256": {
-    "US_MerchantFleet.csv": "a0c318d2e174e022ef8319fa08cef85cee9625ade9ca48a3dde7a15029372a62",
+    "US_MerchantFleet.csv": "4946c382263243fafa8adf112519d16fdd30390fe25995f5840cf642044e269c",
     "US_ShipBuilding.csv": "97b799ceaf43f75a05b14c288e83a1e08dd29b8145b0e6b0f646500de3d0e0da",
     "US_ShipScrapping.csv": "f7166477cecabbe3cdc834db5da0b5249c6087499c8824d994e9b2449a4955d7",
     "US_PortCalls.csv": "43e5ec3a7cc8d9655a32c7bfb94912c44da90fceb7fb214ad87a17ca0608d547",
