@@ -7,7 +7,7 @@
   "frequency": "monthly from 2010; annual from 2000 (annual unit values)",
   "coverage": "2010-01 to latest published month per reporter; 4 reporter groups",
   "units": "kilograms (netWgt); values in current US dollars (primaryValue)",
-  "retrieved_at": "2026-11-17T16:05:58Z",
+  "retrieved_at": "2026-11-24T17:55:43Z",
   "files": [
     "availability.csv",
     "done_shard0of3.csv",
@@ -16,25 +16,25 @@
     "fetch_log_shard0of3.csv",
     "fetch_log_shard1of3.csv",
     "fetch_log_shard2of3.csv",
-    "partnerAreas.json",
     "records_shard0of3.csv",
     "records_shard1of3.csv",
     "records_shard2of3.csv",
-    "reporters.json"
+    "reporters.json",
+    "partnerAreas.json"
   ],
   "sha256": {
-    "availability.csv": "10a9c858f46ea2a0652c2fd3818cf4f60c6b1506ba6b16230ecf7ccc8c2dad2e",
-    "done_shard0of3.csv": "dd41338660c8f92fef1871ad60860218b50f171892097cdfdbc9ba0e8b7a6315",
+    "availability.csv": "211b0eae6559899ab0343d3c3ad16278b52be17ca9be68cdfb441a60dd16a85a",
+    "done_shard0of3.csv": "59372fb50a75353df0a58759668fd5be509d82249cb4d0ad2f39da15ee11bf22",
     "done_shard1of3.csv": "3b3b245d529446f22a249c7c22ec7d9ac014417a0ccde4ce58f71b4f4b7d73d7",
     "done_shard2of3.csv": "25643b8a1c8892d28d4e844f9c503083538e4a006c8140eb771ab3a41c115e5e",
-    "fetch_log_shard0of3.csv": "a1fcc87ba66ccd5152c280e1feda0bcd9f66429374fd35e2721c1673e9f35581",
+    "fetch_log_shard0of3.csv": "40c9bd8a82e6b64b47d121cfcf2f021147fe4d9384fed84b5735d6295467d180",
     "fetch_log_shard1of3.csv": "7c9659e67716035a39f9b3c4c8ad63ecda6575349e0c53211218ef414f7224bd",
     "fetch_log_shard2of3.csv": "0856f2c966e8ea1e7be5ad3e240d2cc3cb47b443adb28b09cb71f3c42f2f0ea0",
-    "partnerAreas.json": "624c1b17fffb8bc74608c4caee4e80f5635bafb479bacf2b17bd7ad94d347a22",
-    "records_shard0of3.csv": "fce43f4f07e7bb9b0304a74dda2e7b48307449a57f53160acf10ee5cd88cdcbd",
+    "records_shard0of3.csv": "ebd7356ed87812770915613599251f2d336093c948213ebfedb63f66d9f45b16",
     "records_shard1of3.csv": "16ee908fdd6273758e0769878581eb626cf9f25b9240080c2aa3a9674508ec31",
     "records_shard2of3.csv": "361cc02427005eb8d12d8cb624bd51b2789d01cd765c50b9b854b6a3f7ab4617",
-    "reporters.json": "e4e1114a11f59580428ece93ab22f4a1c2522ff239860bc54d52c94ec4bcd34d"
+    "reporters.json": "e4e1114a11f59580428ece93ab22f4a1c2522ff239860bc54d52c94ec4bcd34d",
+    "partnerAreas.json": "624c1b17fffb8bc74608c4caee4e80f5635bafb479bacf2b17bd7ad94d347a22"
   },
   "limitations": [
     "Reporter customs data are used as reported; mirror flows between two reporters differ by timing, valuation and routing.",
